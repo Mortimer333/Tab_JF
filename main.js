@@ -1,9 +1,13 @@
 class TabJF {
   editor;
-  add;
   lastX     = 0;
   isActive  = false;
   clipboard = [];
+
+  stack = {
+    building : [], // currently building trace
+    trace    : [], // array of seperate builds (each time a function was called this contain debug info about it, with arguments)
+  };
 
   pressed = {
     shift : false,
@@ -25,33 +29,125 @@ class TabJF {
     active  : false,
   }
 
-  constructor( editor, set = {} ) {
+  constructor( editor, set = {}, logger = false ) {
     if ( typeof editor.nodeType == 'undefined'         ) Log.InvalidArgumentException('You can\'t construct Styles without passing node to lock on.');
     if ( editor.nodeType != 1                          ) Log.InvalidArgumentException('Editor node has to be of proper node type.'                  );
     if ( Cntr.noParentTags.includes( editor.nodeName ) ) Log.InvalidArgumentException('Editor node has to be proper parent tag.'                    );
-
-    this.editor = editor;
-    set.left    = ( set.left    ||  0   );
-    set.top     = ( set.top   ||  0   );
-    set.letter  = ( set.letter  ||  8.8 );
-    set.line    = ( set.line    ||  20  );
-
+    this.editor   = editor;
+    set.left      = ( set.left    ||  0   );
+    set.top       = ( set.top     ||  0   );
+    set.letter    = ( set.letter  ||  8.8 );
+    set.line      = ( set.line    ||  20  );
     this.settings = set;
+
+    this._save.debounce = Cntr.debounce( this._save.push, 200 );
+
+
+    let methods    = Object.getOwnPropertyNames( SingleFileEditor.prototype );
+    let properties = Object.getOwnPropertyNames( this );
+
+    let consIndex = methods.indexOf('constructor');
+    if ( consIndex > -1 ) methods.splice(consIndex, 1);
+
+    let hiddenMethods = methods.concat(properties); // ['proxy', 'save', 'start', 'expand', 'end', 'remove', 'set', 'get', 'caret', 'action', 'keys']);
+    this.set.methodsProxy(this, hiddenMethods);
+
     this.assignEvents();
-    this.caret.el = this.caret.create(this.editor);
+    this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
+    // lets clear save after all the setup
+    this._save.actions.group   = [];
+    this._save.actions.current = [];
+  }
+
+  _hidden = {
+
+  }
+
+  _proxyHandle = {
+    main : this,
+    get : function (target, name, receiver) {
+      // nothing for now
+    },
+    apply : function (target, scope, args) {
+      const name = scope?._name;
+
+      let methodsToSave = {
+        insert  : true,
+        newLine : true,
+        remove : {
+          one      : true,
+          selected : true,
+          word     : true,
+        },
+        action : {
+          paste : true,
+          cut   : true,
+        },
+      };
+
+      // changing scope
+      methodsToSave = methodsToSave[name] ? methodsToSave[name] : methodsToSave;
+
+      this.main.stack.building.push({ name : target.name, args : args });
+
+      let oldMaster = this.main._save.stackOpen;
+      if (oldMaster) {
+        console.log("<=======START======>");
+      }
+      console.log('before', target.name, oldMaster);
+      this.main._save.stackOpen = false;
+
+      const results = target.bind(this.main)(...args);
+
+      if ( methodsToSave[ target.name ] ) {
+        this.main._save.add({ res : results, scope : name, func : target.name, args : args });
+      }
+
+      console.log('after', target.name, oldMaster);
+      if ( oldMaster ) {
+        console.log("<=======END======>");
+
+        this.main._save.debounce();
+        this.main.stack.trace.push(this.main.stack.building);
+        this.main.stack.building  = [];
+        this.main._save.stackOpen = true;
+      }
+
+      return results;
+    }
+  }
+
+  _save = {
+    _name : 'save',
+    stackOpen : true,
+    debounce : undefined,
+    actions : {
+      group   : [], // all saved states
+      current : [], // current version saved actions
+    },
+    add : ( action ) => {
+      this._save.actions.current.push(action);
+    },
+    push : () => {
+      if ( this._save.actions.current.length == 0 ) return;
+      this._save.actions.group.push( this._save.actions.current );
+      this._save.actions.current = [];
+    },
   }
 
   start = {
+    _name : 'start',
     select : () => {
       this.selection.anchor = this.pos.el;
       this.selection.offset = this.pos.letter;
       this.selection.line   = this.pos.line;
       this.selection.active = true;
-    }
+    },
   }
 
   expand = {
+    _name : 'expand',
     select : (stop = false) => {
       const range = new Range();
 
@@ -78,6 +174,7 @@ class TabJF {
   }
 
   end = {
+    _name : 'end',
     select : () => {
       this.get.selection().empty();
       this.selection.anchor  = null;
@@ -90,6 +187,7 @@ class TabJF {
   }
 
   remove = {
+    _name : 'remove',
     selected : () => {
       let startAnchor = this.selection.anchor;
       let startOffset = this.selection.offset;
@@ -277,6 +375,19 @@ class TabJF {
   }
 
   set = {
+    _name : 'set',
+    methodsProxy : ( object, keys ) => {
+      for (var i = 0; i < keys.length; i++) {
+        let propertyName = keys[i];
+        const type = typeof object[propertyName];
+        if ( type == 'function') {
+          if ( object[propertyName] == this.set.methodsProxy )  continue;
+          object[propertyName] = new Proxy( object[propertyName], this._proxyHandle );
+        } else if ( type == 'object' && object[propertyName] !== null && propertyName[0] != '_' ) {
+          this.set.methodsProxy( object[propertyName], Object.keys( object[propertyName] ) );
+        }
+      };
+    },
     side : ( node, dirX, newLine = this.pos.line ) => {
       this.pos.el = node;
            if ( dirX > 0 ) this.pos.letter = node.innerText.length;
@@ -292,6 +403,10 @@ class TabJF {
   }
 
   get = {
+    _name : 'get',
+    myself : () => {
+      return this;
+    },
     selectedNodes : () => {
       let sel = this.get.selection();
       if ( sel.type == "Caret") return this.get.line( sel.anchorNode );
@@ -399,6 +514,7 @@ class TabJF {
   }
 
   caret = {
+    _name : 'caret',
     el : null,
     scrollTo : () => {
       let caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
@@ -442,6 +558,7 @@ class TabJF {
       return caret;
     },
     pos : {
+      _name : 'pos',
       toX : ( pos ) => {
         return ( Math.round( ( pos - this.settings.left ) / this.settings.letter ) * this.settings.letter ) + this.settings.left
       },
@@ -460,6 +577,7 @@ class TabJF {
   }
 
   action = {
+    _name : 'action',
     copy : () => {
       /*
         As coping to clipboard sucks without https server - https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
@@ -525,9 +643,9 @@ class TabJF {
   }
 
   assignEvents() {
-    this.editor.addEventListener("mousedown", this.active     .bind(this));
-    this.editor.addEventListener("keyup"    , this.key        .bind(this));
-    this.editor.addEventListener("mouseup"  , this.checkSelect.bind(this));
+    this.editor.addEventListener("mousedown", this.active     );
+    this.editor.addEventListener("keyup"    , this.key        );
+    this.editor.addEventListener("mouseup"  , this.checkSelect);
   }
 
   checkSelect( e ) {
@@ -580,10 +698,6 @@ class TabJF {
     this.end.select();
   }
 
-  change ( e ) {
-    Styles.eActions.checkParagraf();
-  }
-
   updateSpecialKeys( e ) {
     if ( !this.selection.anchor && e.shiftKey ) this.start.select( e );
     this.pressed.shift = e.shiftKey;
@@ -597,11 +711,33 @@ class TabJF {
 
     if ( type == 'up' ) return;
 
-    const prevent = [ 37, 38, 39, 40, 222 ];
+    const prevent = {
+      37 : true,
+      38 : true,
+      39 : true,
+      40 : true,
+      222 : true
+    };
 
-    if ( prevent.includes( e.keyCode ) !== false ) {
-      e.preventDefault();
-    }
+    const skip = {
+      /* F1 - F12 */
+      112 : true,
+      113 : true,
+      114 : true,
+      115 : true,
+      116 : true,
+      117 : true,
+      118 : true,
+      119 : true,
+      120 : true,
+      121 : true,
+      122 : true,
+      123 : true,
+      /*/ F1 - F12 */
+    };
+
+    if ( skip   [ e.keyCode ] ) return;
+    if ( prevent[ e.keyCode ] ) e.preventDefault();
 
     const keys = {
       0 : ( e, type ) => {
@@ -735,9 +871,7 @@ class TabJF {
       default : ( e, type ) => {}
     };
 
-    let skip = [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123] // F1 - F12
-
-    let selDelSkip = {'delete' : true, 'backspace' : true, 'escape' : true};
+    let selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
 
     if ( this.selection.active && !selDelSkip[e.key.toLowerCase()] && !this.pressed.ctrl ) {
       if ( !!this.keys[e.key.toLowerCase()]  ||  e.key.length == 1 ) this.remove.selected();
@@ -763,6 +897,7 @@ class TabJF {
   }
 
   keys = {
+    _name : 'keys',
     enter : ( e ) => {
       this.newLine( e );
     },
