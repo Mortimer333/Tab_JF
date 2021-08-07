@@ -1,0 +1,68 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#editor .caret {
+  width     : 1px ;
+  height    : 20px;
+  position  : absolute   ;
+  background-color : #FFF;
+  animation : blink 1s linear infinite;
+}
+
+#editor {
+  --editor-bg : #3e3e3e;
+  color     : #FFF;
+  overflow  : auto;
+  position  : relative;
+  height    : 100vh   ;
+  width     : calc(100% - 45px);
+  padding-left  : 35px;
+  padding-right : 10px;
+  counter-reset : editor-line;
+  font-family   : Consolas, monospace;
+  background-color : var(--editor-bg);
+}
+
+#editor p {
+  --color-grey : #bdc3c7 ;
+  position     : relative;
+  min-height   : 20px    ;
+  cursor       : text    ;
+  display      : flex    ;
+}
+
+#editor p::before {
+  position   : absolute;
+  left       : -35px   ;
+  top        : 0       ;
+  width      : 30px    ;
+  text-align : center  ;
+  color      : var(--color-grey)   ;
+  content    : counter(editor-line);
+  border-right      : 1px solid var(--color-grey);
+  counter-increment : editor-line   ;
+}
+
+#editor p::after {
+  display : block;
+  content : '█'  ;
+  color   : var(--editor-bg);
+}
+
+#editor p span {
+  display: block;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#editor p span:last-child {
+  margin-right: 10px;
+}

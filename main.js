@@ -1,4 +1,5 @@
 class TabJF {
+  noParentTags = ["INPUT","TEXTAREA","BR","HR","IMG","AREA","BASE","EMBED","IFRAME","LINK","META","PARAM","SOURCE","TRACK"];
   editor;
   lastX     = 0;
   isActive  = false;
@@ -29,27 +30,41 @@ class TabJF {
     active  : false,
   }
 
-  constructor( editor, set = {}, logger = false ) {
-    if ( typeof editor.nodeType == 'undefined'         ) Log.InvalidArgumentException('You can\'t construct Styles without passing node to lock on.');
-    if ( editor.nodeType != 1                          ) Log.InvalidArgumentException('Editor node has to be of proper node type.'                  );
-    if ( Cntr.noParentTags.includes( editor.nodeName ) ) Log.InvalidArgumentException('Editor node has to be proper parent tag.'                    );
+  // [DEPRICATED]
+  methodsToSave = {
+    insert  : true,
+    newLine : true,
+    remove : {
+      one      : true,
+      selected : true,
+      word     : true,
+    },
+    action : {
+      paste : true,
+      cut   : true,
+    },
+  };
+
+  constructor( editor, set = {} ) {
+    if ( typeof editor.nodeType == 'undefined'         ) throw new Error('You can\'t construct Styles without passing node to lock on.');
+    if ( editor.nodeType != 1                          ) throw new Error('Editor node has to be of proper node type.'                  );
+    if ( this.noParentTags.includes( editor.nodeName ) ) throw new Error('Editor node has to be proper parent tag.'                    );
     this.editor   = editor;
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
-    set.letter    = ( set.letter  ||  8.8 );
+    set.letter    = ( set.letter  ||  9.6333 );
     set.line      = ( set.line    ||  20  );
     this.settings = set;
 
-    this._save.debounce = Cntr.debounce( this._save.push, 200 );
+    this._save.debounce = this._hidden.debounce( this._save.push, 200 );
 
-
-    let methods    = Object.getOwnPropertyNames( SingleFileEditor.prototype );
+    let methods    = Object.getOwnPropertyNames( TabJF.prototype );
     let properties = Object.getOwnPropertyNames( this );
 
     let consIndex = methods.indexOf('constructor');
     if ( consIndex > -1 ) methods.splice(consIndex, 1);
 
-    let hiddenMethods = methods.concat(properties); // ['proxy', 'save', 'start', 'expand', 'end', 'remove', 'set', 'get', 'caret', 'action', 'keys']);
+    let hiddenMethods = methods.concat(properties);
     this.set.methodsProxy(this, hiddenMethods);
 
     this.assignEvents();
@@ -61,7 +76,13 @@ class TabJF {
   }
 
   _hidden = {
-
+    debounce : (func, timeout = 300) => {
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+      };
+    }
   }
 
   _proxyHandle = {
@@ -72,42 +93,22 @@ class TabJF {
     apply : function (target, scope, args) {
       const name = scope?._name;
 
-      let methodsToSave = {
-        insert  : true,
-        newLine : true,
-        remove : {
-          one      : true,
-          selected : true,
-          word     : true,
-        },
-        action : {
-          paste : true,
-          cut   : true,
-        },
-      };
-
       // changing scope
-      methodsToSave = methodsToSave[name] ? methodsToSave[name] : methodsToSave;
+      let methodsToSave = this.methodsToSave[name] ? this.methodsToSave[name] : this.methodsToSave;
 
-      this.main.stack.building.push({ name : target.name, args : args });
 
       let oldMaster = this.main._save.stackOpen;
-      if (oldMaster) {
-        console.log("<=======START======>");
-      }
-      console.log('before', target.name, oldMaster);
+
       this.main._save.stackOpen = false;
 
       const results = target.bind(this.main)(...args);
+      this.main.stack.building.push({ name : target.name, args : args, res : results });
 
       if ( methodsToSave[ target.name ] ) {
-        this.main._save.add({ res : results, scope : name, func : target.name, args : args });
+        this.main._save.add({ res : results, func : target.name, args : args });
       }
 
-      console.log('after', target.name, oldMaster);
       if ( oldMaster ) {
-        console.log("<=======END======>");
-
         this.main._save.debounce();
         this.main.stack.trace.push(this.main.stack.building);
         this.main.stack.building  = [];
@@ -538,13 +539,13 @@ class TabJF {
       this.pos.line   = line  ;
 
       this.caret.el.style.top  = ( ( line * this.settings.line ) + this.settings.top  ) + 'px' ;
-      this.caret.el.style.left = ( this.caret.pos.toX( posX    ) + this.settings.left ) + 'px';
+      this.caret.el.style.left = ( this.caret.pos.toX( posX + this.settings.left ) ) + 'px';
       this.caret.scrollTo();
     },
     getPos : () => {
       return {
-        top  : this.caret.el.style.top .pxToInt(),
-        left : this.caret.el.style.left.pxToInt(),
+        top  : this.caret.el.style.top .replace('px',''),
+        left : this.caret.el.style.left.replace('px',''),
       }
     },
     move : ( dirX, dirY ) => {
@@ -636,6 +637,7 @@ class TabJF {
     },
     undo : () => {
       console.log("undo");
+      console.log(this._save.actions);
     },
     redo : () => {
       console.log("redo");
@@ -643,6 +645,7 @@ class TabJF {
   }
 
   assignEvents() {
+    document.addEventListener('keydown', this.key);
     this.editor.addEventListener("mousedown", this.active     );
     this.editor.addEventListener("keyup"    , this.key        );
     this.editor.addEventListener("mouseup"  , this.checkSelect);
