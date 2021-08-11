@@ -25,4 +25,18 @@ Possible solutions
   - past/cut/remove selection - we could copy clipboard and start position. Depending on action (cut/remove we can count as one) we paste selection or remove by given selection length (how many characters was selected)
     - we could also do the selection from start node to end node but this might fail easily when nodes will be replaced by other functionality and will lose their reference
 
-This solution also works if we where to add font styling. We have to figure out how to save changed lines count and those lines. Then just backtrack one by one. We could even let them choose to which version they want to go back and let them label them. Give them option to display what was changed, choose version and merge those changes. Like git but not with branches but rather commits.  
+This solution also works if we where to add font styling. We have to figure out how to save changed lines count and those lines. Then just backtrack one by one. We could even let them choose to which version they want to go back and let them label them. Give them option to display what was changed, choose version and merge those changes. Like git but not with branches but rather commits.
+
+When we save line?
+Actually this is tricky. If we wanna save statuses when something changes by one line only then we have to set this not only on debounce but on move down/up too.
+But not always we can save on move as sometimes user just travels. So We need:
+- changed - if change occured - this will tell us if we can save line content
+- content - line content we want to revert to
+- line - line number for replacement reference
+- letter - letter for pos reference
+- type - default false, exception center, this could be :
+  - newLine
+  - mergeLine
+  - cut
+  - paste
+- data - additional variable for exception data

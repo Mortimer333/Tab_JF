@@ -94,7 +94,7 @@ class TabJF {
       const name = scope?._name;
 
       // changing scope
-      let methodsToSave = this.methodsToSave[name] ? this.methodsToSave[name] : this.methodsToSave;
+      let methodsToSave = this.main.methodsToSave[name] ? this.main.methodsToSave[name] : this.main.methodsToSave;
 
 
       let oldMaster = this.main._save.stackOpen;
@@ -156,6 +156,7 @@ class TabJF {
         range.setStart(this.pos.el          .childNodes[0], this.pos.letter      );
         range.setEnd  (this.selection.anchor.childNodes[0], this.selection.offset);
       } else {
+        console.log(this.selection.anchor, this.selection.anchor.childNodes, this.selection.offset);
         range.setStart(this.selection.anchor.childNodes[0], this.selection.offset);
         range.setEnd  (this.pos.el          .childNodes[0], this.pos.letter      );
       }
@@ -590,13 +591,23 @@ class TabJF {
       document.execCommand('copy');
     },
     paste : () => {
-      this.remove.selected();
       let toDelete = [];
-      let splited  = this.getSplitNode();
-      this.pos.el.parentElement.insertBefore(splited.pre, this.pos.el);
-      this.pos.el.parentElement.insertBefore(splited.suf, this.pos.el);
-      this.pos.el.remove();
-      this.set.side(splited.pre, 1);
+      this.remove.selected();
+      // let splited  = this.getSplitNode();
+      // console.log(splited.pre.innerText.length, splited.suf.innerText.length);
+      //
+      // if (splited.pre.innerText.length > 0) {
+      //   this.pos.el.parentElement.insertBefore(splited.pre, this.pos.el);
+      // }
+      //
+      // if (splited.suf.innerText.length > 0) {
+      //   this.pos.el.parentElement.insertBefore(splited.suf, this.pos.el);
+      // }
+      // console.log(this.pos.el, splited, splited.pre.innerText.length, splited.suf.innerText.length);
+      // this.pos.el.remove();
+      //
+      // if (splited.pre.innerText.length > 0) this.set.side(splited.pre, 1);
+      // else this.set.side(splited.suf, 1);
 
       for (var i = 0; i < this.clipboard.length; i++) {
         let node = this.clipboard[i];
@@ -621,6 +632,7 @@ class TabJF {
           this.set.side( line.children[0], 1 );
           this.pos.line++;
         } else {
+          console.log(this.pos.el);
           this.pos.el.parentElement.insertBefore( nodeClone, this.pos.el.nextSibling );
           this.set.side( nodeClone, 1 );
         }
@@ -975,16 +987,24 @@ class TabJF {
 
       if ( this.pressed.ctrl ) {
         this.keys.moveCtrl( dirX );
-      } else if ( dirX != 0 ) this.keys.moveX( dirY, dirX );
+      } else if ( dirX != 0 ) {
+        this.keys.moveX( dirY, dirX );
+      }
 
       if ( dirY != 0 ) this.keys.moveY( dirY, dirX );
+
+      if (this.pos.el.innerText.length == 0) {
+        let temp = this.pos.el;
+        this.keys.move(dirX, 0);
+        temp.remove();
+      }
 
       if ( this.pressed.shift ) this.expand.select();
       else                      this.end   .select();
 
     },
     moveX : ( dirY, dirX ) => {
-      if ( this.pos.letter + dirX == -1 ) {
+      if ( this.pos.letter + dirX <= -1 ) {
         if ( this.pos.el.previousSibling && this.pos.el.previousSibling.nodeType == 1 ) {
           this.pos.el = this.pos.el.previousSibling;
           this.pos.letter = this.pos.el.innerText.length;

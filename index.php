@@ -10,7 +10,10 @@
   </head>
   <body>
     <div id="editor">
-      <p><span>a</span></p>
+      <p><span>aaaaaaaaa</span></p>
+      <p><span>aaaaaaa</span><span></span><span>aaaaaaaa</span></p>
+      <p><span>aaaaaaaaaaaaaa</span></p>
+      <p><span>aaaaaaaaa</span></p>
     </div>
     <?php
       $v = filemtime(__DIR__ . '/main.js');
