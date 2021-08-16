@@ -39,4 +39,16 @@ But not always we can save on move as sometimes user just travels. So We need:
   - mergeLine
   - cut
   - paste
-- data - additional variable for exception data
+- data - additional variable for exceptions
+
+# THIS IS PLAN
+Or better we can save which lines where changed. With that we could save everything without exceptions.
+On cut/paste we have saved start and end lines and those we will save.
+This would look like this:
+  - startLine
+  - endLine
+  - content
+We would revome lines from startLine to endLine (including) and replace them with saved content. It's exception free
+
+# Known issues
+- quick deletion (like just pressing delete) will save only the first line and wont add deleted

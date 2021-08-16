@@ -6,8 +6,9 @@ class TabJF {
   clipboard = [];
 
   stack = {
-    building : [], // currently building trace
-    trace    : [], // array of seperate builds (each time a function was called this contain debug info about it, with arguments)
+    open : true,
+    building  : [], // currently building trace
+    trace     : [], // array of seperate builds (each time a function was called this contain debug info about it, with arguments)
   };
 
   pressed = {
@@ -28,6 +29,7 @@ class TabJF {
     line    : -1   ,
     reverse : false,
     active  : false,
+    expanded : false,
   }
 
   // [DEPRICATED]
@@ -52,12 +54,28 @@ class TabJF {
     this.editor   = editor;
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
-    set.letter    = ( set.letter  ||  9.6333 );
+    set.letter    = ( set.letter  ||  8.8 ); //9.6333 );
     set.line      = ( set.line    ||  20  );
     this.settings = set;
 
-    this._save.debounce = this._hidden.debounce( this._save.push, 200 );
+    this._save.debounce = this._hidden.debounce( this._save.publish, 500 );
+    this._save.resetTmp();
+    // Proxy for save
+    const methodsSave = [
+      ['remove', 'selected'],
+      ['remove', 'one'     ],
+      ['remove', 'word'    ],
+      ['action', 'paste'   ],
+      ['action', 'cut'     ],
+      ['newLine'           ],
+      ['mergeLine'         ],
+      ['insert'            ],
+    ];
+    methodsSave.forEach(path => {
+      this.set.preciseMethodsProxy(this, path);
+    });
 
+    // Proxy for all methods
     let methods    = Object.getOwnPropertyNames( TabJF.prototype );
     let properties = Object.getOwnPropertyNames( this );
 
@@ -70,9 +88,6 @@ class TabJF {
     this.assignEvents();
     this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
-    // lets clear save after all the setup
-    this._save.actions.group   = [];
-    this._save.actions.current = [];
   }
 
   _hidden = {
@@ -80,7 +95,13 @@ class TabJF {
       let timer;
       return (...args) => {
         clearTimeout(timer);
-        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        this._save.masterMethod = false;
+        if ( args[0] === "clear" ) {
+          this._save.masterMethod = true;
+          return; // if only clear then stop the debouncing
+        }
+
+        timer = setTimeout(() => { func.apply(this, args); this._save.masterMethod = true; }, timeout);
       };
     }
   }
@@ -95,25 +116,46 @@ class TabJF {
 
       // changing scope
       let methodsToSave = this.main.methodsToSave[name] ? this.main.methodsToSave[name] : this.main.methodsToSave;
+      let oldMaster = this.main.stack.open;
+      this.main.stack.open = false;
 
-
-      let oldMaster = this.main._save.stackOpen;
-
-      this.main._save.stackOpen = false;
-
-      const results = target.bind(this.main)(...args);
+      let results;
+      if (target.bind) {
+        results = target.bind(this.main)(...args);
+      } else {
+        results = target(...args);
+      }
       this.main.stack.building.push({ name : target.name, args : args, res : results });
 
-      if ( methodsToSave[ target.name ] ) {
-        this.main._save.add({ res : results, func : target.name, args : args });
+      if ( oldMaster ) {
+        if (this.main.stack.trace.length == 100) this.main.stack.trace.shift();
+        this.main.stack.trace.push(this.main.stack.building);
+        this.main.stack.building = [];
+        this.main.stack.open = true;
       }
 
-      if ( oldMaster ) {
-        this.main._save.debounce();
-        this.main.stack.trace.push(this.main.stack.building);
-        this.main.stack.building  = [];
-        this.main._save.stackOpen = true;
+      return results;
+    }
+  }
+
+  _proxySaveHandle = {
+    main : this,
+    apply : function (target, scope, args) {
+      const exceptions = ['mergeLine', 'newLine'];
+
+      if (this.main._save.masterMethod && exceptions.includes(target.name)) {
+        this.main._save.debounce('clear');
+        this.main._save.publish();
+        this.main._save.exceptions[target.name]();
+      } else if (this.main._save.masterMethod) {
+        this.main._save.updateVersion();
+      } else if (this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0) {
+        this.main._save.updateVersionWithNewLine();
       }
+
+      this.main._save.debounce();
+
+      const results = target.bind(this.main)(...args);
 
       return results;
     }
@@ -121,20 +163,228 @@ class TabJF {
 
   _save = {
     _name : 'save',
-    stackOpen : true,
     debounce : undefined,
-    actions : {
-      group   : [], // all saved states
-      current : [], // current version saved actions
+    masterMethod : true,
+    version : 0,
+    add : {
+      line : () => {
+        const sCheck = this._save.tmp.sLine == -1 || this._save.tmp.sLine > this.pos.line;
+        const eCheck = this._save.tmp.eLine == -1 || this._save.tmp.eLine < this.pos.line;
+        if ( sCheck ) this._save.tmp.sLine = this.pos.line;
+        if ( eCheck ) this._save.tmp.eLine = this.pos.line;
+        if ( sCheck || eCheck ) {
+          const line = this.get.line( this.pos.el );
+          if ( line ) this._save.tmp.content.push( line.cloneNode(true) );
+        }
+      },
+      lines : ( sel ) => {
+        let sNode = sel.anchorNode;
+        let eNode = sel.focusNode;
+        console.log("first", sNode, eNode);
+        if ( this.selection.reverse && !this.selection.expanded ) {
+          console.log("reverse");
+          sNode = sel.focusNode;
+          eNode = sel.anchorNode;
+        }
+
+        let sLine = this.get.line(sNode);
+        let eLine = this.get.line(eNode);
+
+        // if the selection apeared to be in the same line we just save current line
+        if (sLine == eLine) {
+          this._save.add.line();
+          return;
+        }
+
+        // clear debounce and publish
+        this._save.debounce('clear');
+        if ( this._save.tmp.content.length > 0 ) this._save.publish();
+
+        const sLinePos = this.get.linePos(sLine);
+        const eLinePos = this.get.linePos(eLine);
+
+        // here we save line to insert (not replace)
+        this._save.tmp.add = {};
+        this._save.tmp.add.sLine = sLinePos;
+
+        console.log(sNode, eNode, sLine, eLine);
+
+        this._save.tmp.add.content = this.get.selectedLines(sLine, eLine);
+        // here we save to line that left after select, which will have to be deleted
+        this._save.tmp.remove = {};
+        this._save.tmp.remove.sLine = sLinePos;
+        this._save.tmp.remove.eLine = sLinePos;
+        this._save.publish();
+      }
     },
-    add : ( action ) => {
-      this._save.actions.current.push(action);
+    tmp : {},
+    tmpDefault : {
+      pending : false,
+      sLine   : -1, // start line number
+      eLine   : -1, // end line number
+      content : [], // saved line nodes to be later pushed into control version
+      /* {
+        eLine: 1​,​
+        sLine: 1
+      } */
+      remove  : false, // this tells if we have to remove some lines, if false then no
+      /* {
+        content : [p, p],
+        sLine : 1
+      } */
+      add     : false, // this tells if we have to add some lines, if false then no
+      focus : {
+        letter  : -1,
+        line    : -1,
+        childIndex : -1,
+      },
     },
-    push : () => {
-      if ( this._save.actions.current.length == 0 ) return;
-      this._save.actions.group.push( this._save.actions.current );
-      this._save.actions.current = [];
+    versions : [],
+    exceptions : {
+      newLine : () => {
+        // this will add current line
+        this._save.updateVersion();
+
+        // this will remove new line
+        this._save.tmp.remove = {
+          sLine : this._save.tmp.sLine + 1,
+          eLine : this._save.tmp.sLine + 1,
+        };
+
+        this._save.publish();
+      },
+      mergeLine : () => {
+        // Merge line happens when remove.one tries to remove smth at the start of line
+        // so we have to remove last version as it is not needed
+        this._save.versions.shift();
+        this._save.updateVersion();
+        let line = this.get.lineByPos(this.pos.line - 1);
+        this._save.tmp.add = {
+          content : [ line.cloneNode(true) ],
+          sLine : this.pos.line - 1,
+        };
+
+        this._save.publish();
+      },
     },
+    updateVersion : () => {
+      const sel      = this.get.selection();
+      const selTypes = ['caret', 'none'];
+      this._save.tmp.focus.letter = this.pos.letter;
+      this._save.tmp.focus.line   = this.pos.line  ;
+      let childIndex = this.get.childIndex(this.pos.el);
+      this._save.tmp.focus.childIndex = childIndex;
+      if ( selTypes.includes(sel.type.toLowerCase()) ) this._save.add.line();
+      else                                             this._save.add.lines(sel);
+      this._save.tmp.pending = true;
+    },
+    updateVersionWithNewLine : () => {
+      this._save.add.line();
+    },
+    publish : () => {
+      if ( this._save.version > 0 ) {
+        this._save.versions.splice(0, this._save.version );
+        this._save.version = 0;
+      }
+      // we wanna save new version at the start of the $versions so the newest one is 0 and older are bigger
+      // it will make chronological sens as bigger numbers are older versions, not realy logical
+      // but humans aren't made for logical thinking anyway
+      if ( this._save.tmp.content.length == 0 && !this._save.tmp.remove && !this._save.tmp.add ) return;
+      this.version = 0;
+      this._save.versions.unshift({ ...this._save.tmp });
+      this._save.resetTmp();
+    },
+    resetTmp : () => {
+      this._save.tmpDefault.content = [];
+      this._save.tmpDefault.focus = {};
+      this._save.tmp = { ...this._save.tmpDefault };
+    },
+    restore : () => {
+      if ( this._save.tmp.pending == true ) {
+        this._save.publish();
+        this._save.debounce('clear');
+      }
+
+      if (this._save.versions.length == this._save.version) {
+        return;
+      }
+
+      let version = this._save.versions[this._save.version];
+      this._save.content.removeAndAdd( version );
+      this._save.content.replace( version );
+      let line = this.get.lineByPos(version.focus.line);
+
+      if (line) {
+        this.set.pos( line.childNodes[ version.focus.childIndex ], version.focus.letter, version.focus.line );
+      } else {
+        console.error("Line not found! Please refocus caret.");
+      }
+
+      this._save.version++;
+    },
+    content : {
+      removeAndAdd : (version) => {
+        if ( version.remove === false && version.add === false ) return;
+        let linePos = -1, toFind = 0, found, isFirstLine;
+        if (version.add !== false) {
+          toFind = version.add.sLine - 1;
+          if (toFind < 0) {
+            isFirstLine = true;
+            if ( version.remove.sLine == 0 ) {
+              toFind = version.remove.eLine + 1;
+            } else {
+              toFind = 0;
+            }
+          }
+        }
+        for (let i = 0; i < this.editor.children.length; i++) {
+          let child = this.editor.children[i];
+          if (child.nodeName == "P") linePos++;
+          if ( linePos == toFind ) found = child;
+          if ( linePos >= version.remove.sLine && linePos <= version.remove.eLine ) {
+            child.remove();
+            i--;
+          }
+          if ( linePos >= version.remove.eLine && linePos >= toFind ) break;
+        }
+
+        if (version.add === false) return;
+        let anchor = found.nextSibling;
+        if ( isFirstLine ) anchor = found;
+
+        for (var i = 0; i < version.add.content.length; i++) {
+          let line = version.add.content[i];
+          this.editor.insertBefore(line.cloneNode(true), anchor);
+        }
+
+      },
+      replace : (version) => {
+        if ( version.content.length == 0 ) return;
+
+        let linePos = -1;
+        let anchor;
+
+        for (let i = 0; i < this.editor.children.length; i++) {
+          let child = this.editor.children[i];
+          if (child.nodeName == "P") linePos++;
+          if ( linePos == version.eLine ) {
+            anchor = child.nextSibling;
+            child.remove();
+            break;
+          }
+
+          if ( linePos >= version.sLine && linePos <= version.eLine ) {
+            child.remove();
+            i--;
+          }
+        }
+
+        for (var i = 0; i < version.content.length; i++) {
+          let line = version.content[i];
+          this.editor.insertBefore(line.cloneNode(true), anchor);
+        }
+      }
+    }
   }
 
   start = {
@@ -150,13 +400,16 @@ class TabJF {
   expand = {
     _name : 'expand',
     select : (stop = false) => {
+      this.selection.expanded = true;
       const range = new Range();
 
+      // I have to do it like this because otherwise selection doesn't appear
+      // but this create false data, as when we get selection even if it is reversed
+      // the anchor node and focus node are correctly set
       if (this.selection.reverse) {
         range.setStart(this.pos.el          .childNodes[0], this.pos.letter      );
         range.setEnd  (this.selection.anchor.childNodes[0], this.selection.offset);
       } else {
-        console.log(this.selection.anchor, this.selection.anchor.childNodes, this.selection.offset);
         range.setStart(this.selection.anchor.childNodes[0], this.selection.offset);
         range.setEnd  (this.pos.el          .childNodes[0], this.pos.letter      );
       }
@@ -184,6 +437,7 @@ class TabJF {
       this.selection.line    = -1;
       this.selection.reverse = false;
       this.selection.active  = false;
+      this.selection.expanded = false;
       this.pressed.shift     = false; // forcing the state, might not be the same as in real world
     }
   }
@@ -378,6 +632,13 @@ class TabJF {
 
   set = {
     _name : 'set',
+    preciseMethodsProxy : ( scope, path ) => {
+      if (path.length == 1) {
+        scope[path[0]] = new Proxy(scope[path[0]], this._proxySaveHandle );
+      } else {
+        this.set.preciseMethodsProxy(scope[path[0]], path.slice(1));
+      }
+    },
     methodsProxy : ( object, keys ) => {
       for (var i = 0; i < keys.length; i++) {
         let propertyName = keys[i];
@@ -409,13 +670,45 @@ class TabJF {
     myself : () => {
       return this;
     },
+    selectedLines : (sLine = null, eLine = null) => {
+      if (!sLine || !eLine) {
+        const sel = this.get.selection();
+        let sNode = sel.anchorNode;
+        let eNode = sel.focusNode;
+
+        if ( this.selection.reverse && !this.selection.expanded ) {
+          sNode = sel.focusNode;
+          eNode = sel.anchorNode;
+        }
+
+        sLine = this.get.line(sNode);
+        eLine = this.get.line(eNode);
+      }
+
+      if (!sLine || !eLine) throw new Error('Couldn\'t find lines');
+
+      return [sLine.cloneNode(true), ...this.get.selectedLinesRecursive(sLine.nextSibling, eLine)];
+    },
+    selectedLinesRecursive : (node, end) => {
+      if (node === null) throw new Error('The node doesn\'t exist in this parent');
+      if (node == end) return [node.cloneNode(true)];
+      if (node.nodeName !== "P") return this.get.selectedLinesRecursive(node.nextSibling, end);
+      return [node.cloneNode(true), ...this.get.selectedLinesRecursive(node.nextSibling, end)];
+    },
     selectedNodes : () => {
       let sel = this.get.selection();
       if ( sel.type == "Caret") return this.get.line( sel.anchorNode );
       let startNode   = sel.anchorNode;
-      let endNode     = sel.focusNode;
       let startOffset = sel.anchorOffset;
+      let endNode     = sel.focusNode;
       let endOffset   = sel.focusOffset;
+
+      if ( this.selection.reverse && !this.selection.expanded ) {
+        startNode   = sel.focusNode;
+        startOffset = sel.focusOffset;
+        endNode     = sel.anchorNode;
+        endOffset   = sel.anchorOffset;
+      }
 
       if ( startNode == endNode ) {
         let newNode = startNode.parentElement.cloneNode( true );
@@ -466,9 +759,14 @@ class TabJF {
       return false;
     },
     linePos : ( line ) => {
+      let linePos = 0;
       for ( let i = 0; i < this.editor.children.length; i++ ) {
         let child = this.editor.children[i];
-        if ( line == child ) return i - 1;
+        if ( line == child ) return linePos;
+        // we only increase if there was actual line in editor between our target
+        if (child.nodeName && child.nodeName == "P") {
+          linePos++;
+        }
       }
       return false;
     },
@@ -484,6 +782,15 @@ class TabJF {
     line : ( el ) => {
       if ( el.parentElement == this.editor ) return el;
       return this.get.line( el.parentElement );
+    },
+    lineByPos : ( pos ) => {
+      let linePos = -1;
+      for (var i = 0; i < this.editor.children.length; i++) {
+        let line = this.editor.children[i];
+        if (line.nodeName == "P") linePos++;
+        if (linePos == pos) return line;
+      }
+      return false;
     },
     lineInDirection : ( line, dir, first = true ) => {
 
@@ -512,6 +819,13 @@ class TabJF {
     sibling : ( node, dir ) => {
            if ( dir > 0 ) return node.nextSibling;
       else if ( dir < 0 ) return node.previousSibling;
+    },
+    childIndex : ( el ) => {
+      for (var i = 0; i < el.parentElement.childNodes.length; i++) {
+        let child = el.parentElement.childNodes[i];
+        if ( child == el ) return i;
+      }
+      return false;
     }
   }
 
@@ -593,21 +907,6 @@ class TabJF {
     paste : () => {
       let toDelete = [];
       this.remove.selected();
-      // let splited  = this.getSplitNode();
-      // console.log(splited.pre.innerText.length, splited.suf.innerText.length);
-      //
-      // if (splited.pre.innerText.length > 0) {
-      //   this.pos.el.parentElement.insertBefore(splited.pre, this.pos.el);
-      // }
-      //
-      // if (splited.suf.innerText.length > 0) {
-      //   this.pos.el.parentElement.insertBefore(splited.suf, this.pos.el);
-      // }
-      // console.log(this.pos.el, splited, splited.pre.innerText.length, splited.suf.innerText.length);
-      // this.pos.el.remove();
-      //
-      // if (splited.pre.innerText.length > 0) this.set.side(splited.pre, 1);
-      // else this.set.side(splited.suf, 1);
 
       for (var i = 0; i < this.clipboard.length; i++) {
         let node = this.clipboard[i];
@@ -632,7 +931,6 @@ class TabJF {
           this.set.side( line.children[0], 1 );
           this.pos.line++;
         } else {
-          console.log(this.pos.el);
           this.pos.el.parentElement.insertBefore( nodeClone, this.pos.el.nextSibling );
           this.set.side( nodeClone, 1 );
         }
@@ -648,8 +946,7 @@ class TabJF {
       this.remove.selected();
     },
     undo : () => {
-      console.log("undo");
-      console.log(this._save.actions);
+      this._save.restore();
     },
     redo : () => {
       console.log("redo");
@@ -981,8 +1278,8 @@ class TabJF {
     move : ( dirX, dirY ) => {
 
       if ( this.selection.active && !this.pressed.shift ) {
-             if ( this.selection.reverse && dirX < 0 ) dirX = 0;
-        else if ( dirX > 0                           ) dirX = 0;
+             if ( this.selection.reverse && !this.selection.expanded && dirX < 0 ) dirX = 0;
+        else if ( dirX > 0 ) dirX = 0;
       }
 
       if ( this.pressed.ctrl ) {
