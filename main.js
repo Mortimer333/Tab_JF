@@ -141,17 +141,30 @@ class TabJF {
   _proxySaveHandle = {
     main : this,
     apply : function (target, scope, args) {
-      const exceptions = ['mergeLine', 'newLine'];
+      // const exceptions = ['mergeLine', 'newLine'];
+      const exceptions = {
+        mergeLine : 1, // save this line to be added
+        newLine : -1, // save this line to be removed
+        default : 0
+      };
+      let lineSaveStatus = (exceptions[target.name] || exceptions['default'])();
+      console.log(target.name, this.main._save.tmp.eLine, this.main.pos.line, this.main._save.tmp.content.length, this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0);
 
-      if (this.main._save.masterMethod && exceptions.includes(target.name)) {
-        this.main._save.debounce('clear');
-        this.main._save.publish();
-        this.main._save.exceptions[target.name]();
-      } else if (this.main._save.masterMethod) {
+      // if change happens in new line add it to save version
+      if (this.main._save.tmp.eLine < this.main.pos.line || this.main._save.tmp.pLine > this.main.pos.line) {
         this.main._save.updateVersion();
-      } else if (this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0) {
-        this.main._save.updateVersionWithNewLine();
       }
+
+      // if (this.main._save.masterMethod && exceptions.includes(target.name)) {
+      //   this.main._save.debounce('clear');
+      //   this.main._save.publish();
+      //   this.main._save.exceptions[target.name]();
+      // } else if (this.main._save.masterMethod) {
+      //   this.main._save.updateVersion();
+      // } else if (this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0) {
+      //   // if something happend after _save.masterMethod for example remove.one after mergeLine this will
+      //   this.main._save.add.line();
+      // }
 
       this.main._save.debounce();
 
@@ -167,22 +180,25 @@ class TabJF {
     masterMethod : true,
     version : 0,
     add : {
-      line : () => {
-        const sCheck = this._save.tmp.sLine == -1 || this._save.tmp.sLine > this.pos.line;
-        const eCheck = this._save.tmp.eLine == -1 || this._save.tmp.eLine < this.pos.line;
-        if ( sCheck ) this._save.tmp.sLine = this.pos.line;
-        if ( eCheck ) this._save.tmp.eLine = this.pos.line;
-        if ( sCheck || eCheck ) {
-          const line = this.get.line( this.pos.el );
-          if ( line ) this._save.tmp.content.push( line.cloneNode(true) );
+      line : ( type = 0 ) => {
+        const add = this._save.tmp.add;
+        if (add.sLine > this.pos.line) {
+          add.sLine = this.pos.line;
+        }
+        const line = this.get.line( this.pos.el );
+        if ( line ) add.content.push( line.cloneNode(true) );
+
+        const remove = this._save.tmp.remove;
+        if (remove.sLine > this.pos.line) {
+          remove.sLine = this.pos.line;
+        } else if (remove.eLine < this.pos.line) {
+          remove.eLine = this.pos.line;
         }
       },
       lines : ( sel ) => {
         let sNode = sel.anchorNode;
         let eNode = sel.focusNode;
-        console.log("first", sNode, eNode);
         if ( this.selection.reverse && !this.selection.expanded ) {
-          console.log("reverse");
           sNode = sel.focusNode;
           eNode = sel.anchorNode;
         }
@@ -206,8 +222,6 @@ class TabJF {
         // here we save line to insert (not replace)
         this._save.tmp.add = {};
         this._save.tmp.add.sLine = sLinePos;
-
-        console.log(sNode, eNode, sLine, eLine);
 
         this._save.tmp.add.content = this.get.selectedLines(sLine, eLine);
         // here we save to line that left after select, which will have to be deleted
@@ -240,46 +254,43 @@ class TabJF {
       },
     },
     versions : [],
-    exceptions : {
-      newLine : () => {
-        // this will add current line
-        this._save.updateVersion();
-
-        // this will remove new line
-        this._save.tmp.remove = {
-          sLine : this._save.tmp.sLine + 1,
-          eLine : this._save.tmp.sLine + 1,
-        };
-
-        this._save.publish();
-      },
-      mergeLine : () => {
-        // Merge line happens when remove.one tries to remove smth at the start of line
-        // so we have to remove last version as it is not needed
-        this._save.versions.shift();
-        this._save.updateVersion();
-        let line = this.get.lineByPos(this.pos.line - 1);
-        this._save.tmp.add = {
-          content : [ line.cloneNode(true) ],
-          sLine : this.pos.line - 1,
-        };
-
-        this._save.publish();
-      },
-    },
-    updateVersion : () => {
+    // exceptions : {
+    //   newLine : () => {
+    //     // this will add current line
+    //     this._save.updateVersion();
+    //
+    //     // this will remove new line
+    //     this._save.tmp.remove = {
+    //       sLine : this._save.tmp.sLine + 1,
+    //       eLine : this._save.tmp.sLine + 1,
+    //     };
+    //
+    //     this._save.publish();
+    //   },
+    //   mergeLine : () => {
+    //     // Merge line happens when remove.one tries to remove smth at the start of line
+    //     // so we have to remove last version as it is not needed
+    //     this._save.versions.shift();
+    //     this._save.updateVersion();
+    //     let line = this.get.lineByPos(this.pos.line - 1);
+    //     this._save.tmp.add = {
+    //       content : [ line.cloneNode(true) ],
+    //       sLine : this.pos.line - 1,
+    //     };
+    //
+    //     this._save.publish();
+    //   },
+    // },
+    updateVersion : (type = 0) => {
       const sel      = this.get.selection();
       const selTypes = ['caret', 'none'];
       this._save.tmp.focus.letter = this.pos.letter;
       this._save.tmp.focus.line   = this.pos.line  ;
       let childIndex = this.get.childIndex(this.pos.el);
       this._save.tmp.focus.childIndex = childIndex;
-      if ( selTypes.includes(sel.type.toLowerCase()) ) this._save.add.line();
+      if ( selTypes.includes(sel.type.toLowerCase()) ) this._save.add.line(type);
       else                                             this._save.add.lines(sel);
       this._save.tmp.pending = true;
-    },
-    updateVersionWithNewLine : () => {
-      this._save.add.line();
     },
     publish : () => {
       if ( this._save.version > 0 ) {
@@ -432,13 +443,13 @@ class TabJF {
     _name : 'end',
     select : () => {
       this.get.selection().empty();
-      this.selection.anchor  = null;
-      this.selection.offset  = -1;
-      this.selection.line    = -1;
-      this.selection.reverse = false;
-      this.selection.active  = false;
+      this.selection.anchor   = null;
+      this.selection.offset   = -1;
+      this.selection.line     = -1;
+      this.selection.reverse  = false;
+      this.selection.active   = false;
       this.selection.expanded = false;
-      this.pressed.shift     = false; // forcing the state, might not be the same as in real world
+      this.pressed.shift      = false; // forcing the state, might not be the same as in real world
     }
   }
 
@@ -610,12 +621,14 @@ class TabJF {
     posElWithOnlyOneChar : ( dir ) => {
       if ( this.pos.letter == 0 && dir > 0   ||   this.pos.letter == 1 && dir < 0 ) {
         let sibling = this.get.sibling( this.pos.el, dir );
-
         if ( sibling === null ) {
-          sibling = this.get.sibling( this.pos.el, dir * -1 );
+          dir *= -1;
+          sibling = this.get.sibling( this.pos.el, dir );
 
           if ( sibling === null ) {
-            let span = document.createElement("span");
+            const span = document.createElement("span");
+            const text = document.createTextNode('');
+            span.appendChild(text);
             this.pos.el.parentElement.insertBefore( span, this.pos.el );
             sibling = span;
           }
