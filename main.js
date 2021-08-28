@@ -66,7 +66,7 @@ class TabJF {
       ['remove', 'one'     ],
       ['remove', 'word'    ],
       ['action', 'paste'   ],
-      ['action', 'cut'     ],
+      // ['action', 'cut'     ],
       ['newLine'           ],
       ['mergeLine'         ],
       ['insert'            ],
@@ -95,13 +95,11 @@ class TabJF {
       let timer;
       return (...args) => {
         clearTimeout(timer);
-        this._save.masterMethod = false;
         if ( args[0] === "clear" ) {
-          this._save.masterMethod = true;
-          return; // if only clear then stop the debouncing
+          return; // if passed `clear` then stop debouncing
         }
 
-        timer = setTimeout(() => { func.apply(this, args); this._save.masterMethod = true; }, timeout);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
       };
     }
   }
@@ -141,34 +139,27 @@ class TabJF {
   _proxySaveHandle = {
     main : this,
     apply : function (target, scope, args) {
-      // const exceptions = ['mergeLine', 'newLine'];
-      const exceptions = {
-        mergeLine : 1, // save this line to be added
-        newLine : -1, // save this line to be removed
-        default : 0
-      };
-      let lineSaveStatus = (exceptions[target.name] || exceptions['default'])();
-      console.log(target.name, this.main._save.tmp.eLine, this.main.pos.line, this.main._save.tmp.content.length, this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0);
+      const save = this.main._save;
+      save.debounce();
 
-      // if change happens in new line add it to save version
-      if (this.main._save.tmp.eLine < this.main.pos.line || this.main._save.tmp.pLine > this.main.pos.line) {
-        this.main._save.updateVersion();
-      }
+      const oldInProggress = save.inProgress;
+      save.inProgress = true;
 
-      // if (this.main._save.masterMethod && exceptions.includes(target.name)) {
-      //   this.main._save.debounce('clear');
-      //   this.main._save.publish();
-      //   this.main._save.exceptions[target.name]();
-      // } else if (this.main._save.masterMethod) {
-      //   this.main._save.updateVersion();
-      // } else if (this.main._save.tmp.eLine < this.main.pos.line && this.main._save.tmp.content.length > 0) {
-      //   // if something happend after _save.masterMethod for example remove.one after mergeLine this will
-      //   this.main._save.add.line();
-      // }
-
-      this.main._save.debounce();
-
+      const step = save.tmp.length;
+      save.methodsStack.push(target.name);
+      const startLine = this.main.pos.line;
+      save.set.add(target.name, args);
       const results = target.bind(this.main)(...args);
+      save.set.remove(target.name, args, step, startLine);
+
+      // only move to pending if master function ended
+      if (!oldInProggress) {
+        save.methodsStack = [];
+        save.inProgress = false;
+        console.log(save.tmp);
+        save.moveToPending();
+        console.log(save.pending);
+      }
 
       return results;
     }
@@ -176,157 +167,269 @@ class TabJF {
 
   _save = {
     _name : 'save',
-    debounce : undefined,
-    masterMethod : true,
-    version : 0,
-    add : {
-      line : ( type = 0 ) => {
-        const add = this._save.tmp.add;
-        if (add.sLine > this.pos.line) {
-          add.sLine = this.pos.line;
-        }
-        const line = this.get.line( this.pos.el );
-        if ( line ) add.content.push( line.cloneNode(true) );
-
-        const remove = this._save.tmp.remove;
-        if (remove.sLine > this.pos.line) {
-          remove.sLine = this.pos.line;
-        } else if (remove.eLine < this.pos.line) {
-          remove.eLine = this.pos.line;
-        }
-      },
-      lines : ( sel ) => {
-        let sNode = sel.anchorNode;
-        let eNode = sel.focusNode;
-        if ( this.selection.reverse && !this.selection.expanded ) {
-          sNode = sel.focusNode;
-          eNode = sel.anchorNode;
-        }
-
-        let sLine = this.get.line(sNode);
-        let eLine = this.get.line(eNode);
-
-        // if the selection apeared to be in the same line we just save current line
-        if (sLine == eLine) {
-          this._save.add.line();
-          return;
-        }
-
-        // clear debounce and publish
-        this._save.debounce('clear');
-        if ( this._save.tmp.content.length > 0 ) this._save.publish();
-
-        const sLinePos = this.get.linePos(sLine);
-        const eLinePos = this.get.linePos(eLine);
-
-        // here we save line to insert (not replace)
-        this._save.tmp.add = {};
-        this._save.tmp.add.sLine = sLinePos;
-
-        this._save.tmp.add.content = this.get.selectedLines(sLine, eLine);
-        // here we save to line that left after select, which will have to be deleted
-        this._save.tmp.remove = {};
-        this._save.tmp.remove.sLine = sLinePos;
-        this._save.tmp.remove.eLine = sLinePos;
-        this._save.publish();
-      }
-    },
-    tmp : {},
+    debounce : undefined,   // Here we store debounce function
+    version : 0,            // Version counter
     tmpDefault : {
-      pending : false,
-      sLine   : -1, // start line number
-      eLine   : -1, // end line number
-      content : [], // saved line nodes to be later pushed into control version
-      /* {
-        eLine: 1​,​
-        sLine: 1
-      } */
-      remove  : false, // this tells if we have to remove some lines, if false then no
-      /* {
-        content : [p, p],
-        sLine : 1
-      } */
-      add     : false, // this tells if we have to add some lines, if false then no
+      fun_name : false,
+      remove : {
+        sLine : -1,
+        len   : -1,
+      },
+      add : {},
       focus : {
         letter  : -1,
         line    : -1,
         childIndex : -1,
       },
     },
-    versions : [],
-    // exceptions : {
-    //   newLine : () => {
-    //     // this will add current line
-    //     this._save.updateVersion();
-    //
-    //     // this will remove new line
-    //     this._save.tmp.remove = {
-    //       sLine : this._save.tmp.sLine + 1,
-    //       eLine : this._save.tmp.sLine + 1,
-    //     };
-    //
-    //     this._save.publish();
-    //   },
-    //   mergeLine : () => {
-    //     // Merge line happens when remove.one tries to remove smth at the start of line
-    //     // so we have to remove last version as it is not needed
-    //     this._save.versions.shift();
-    //     this._save.updateVersion();
-    //     let line = this.get.lineByPos(this.pos.line - 1);
-    //     this._save.tmp.add = {
-    //       content : [ line.cloneNode(true) ],
-    //       sLine : this.pos.line - 1,
-    //     };
-    //
-    //     this._save.publish();
-    //   },
-    // },
-    updateVersion : (type = 0) => {
-      const sel      = this.get.selection();
-      const selTypes = ['caret', 'none'];
-      this._save.tmp.focus.letter = this.pos.letter;
-      this._save.tmp.focus.line   = this.pos.line  ;
-      let childIndex = this.get.childIndex(this.pos.el);
-      this._save.tmp.focus.childIndex = childIndex;
-      if ( selTypes.includes(sel.type.toLowerCase()) ) this._save.add.line(type);
-      else                                             this._save.add.lines(sel);
-      this._save.tmp.pending = true;
-    },
-    publish : () => {
-      if ( this._save.version > 0 ) {
-        this._save.versions.splice(0, this._save.version );
-        this._save.version = 0;
-      }
-      // we wanna save new version at the start of the $versions so the newest one is 0 and older are bigger
-      // it will make chronological sens as bigger numbers are older versions, not realy logical
-      // but humans aren't made for logical thinking anyway
-      if ( this._save.tmp.content.length == 0 && !this._save.tmp.remove && !this._save.tmp.add ) return;
-      this.version = 0;
-      this._save.versions.unshift({ ...this._save.tmp });
+    tmp : [],            // Here we store steps which we are working on, later merged with pending as means to not overwrite them
+    pending : [],        // Here we store set of steps called version which gets updated until debounce stops and move them to versions
+    versions : [],       // Here we store versions
+    methodsStack : [],   // Save current methods stuck
+    inProgress : false,  // Tells us if maste function has ended and we can do cleanup operations
+
+    /**
+     * Merges tmp with pending and resets it
+     */
+    moveToPending : () => {
+      this._save.pending = this._save.pending.concat(this._save.tmp);
       this._save.resetTmp();
     },
-    resetTmp : () => {
-      this._save.tmpDefault.content = [];
-      this._save.tmpDefault.focus = {};
-      this._save.tmp = { ...this._save.tmpDefault };
+
+    set : {
+      /**
+       * One of two main methods for saving steps.
+       * This one add or related lines before they are changed.
+       * @param {string} name Name of the function (mainly used for exception)
+       * @param {array } args Array of arguments which will be passed to the function
+       */
+      add : ( name, args ) => {
+        // Modifiers tells us if we need to get one more line and from which direction
+        let modifiers = 0;
+        if (name == "mergeLine") {
+          modifiers = args[0];
+        }
+
+        // Create new tmp object from default
+        const tmp = JSON.parse(JSON.stringify(this._save.tmpDefault));
+
+        // Get selection and check if something is selected
+        const sel = this.get.selection();
+        if (sel.type.toLowerCase() == 'range') {
+          // If so figure out which line is first and save selected lines
+          let start = sel.anchorNode;
+          let end = this.pos.el;
+          if (this.selection.reverse) {
+            end = sel.focusNode;
+          }
+
+          const startLine = this.get.line(start);
+          const startLinePos = this.get.linePos(startLine);
+
+          const endLine = this.get.line(end);
+          const endLinePos = this.get.linePos(endLine);
+
+          for (let i = startLinePos; i <= endLinePos; i++) {
+            tmp.add[i] = this.get.lineByPos(i).cloneNode(true);
+          }
+        }
+
+        // Save function name, just for clarification when debugging
+        tmp.fun_name = name;
+        // Save where caret is focused
+        tmp.focus.letter = this.pos.letter;
+        tmp.focus.line   = this.pos.line  ;
+        let childIndex = this.get.childIndex(this.pos.el);
+        tmp.focus.childIndex = childIndex;
+
+        const line = this.get.lineByPos(this.pos.line);
+        // Get and save current line if we haven't already saved her
+        if (!tmp.add[this.pos.line]) {
+          tmp.add[this.pos.line] = line.cloneNode(true);
+        }
+
+        // Save line from modificators if we haven't already saved her
+        if ( modifiers != 0 && !tmp.add[this.pos.line + modifiers] ) {
+          let nexLine = this.get.lineInDirection(line, modifiers);
+          if (nexLine) tmp.add[this.pos.line + modifiers] = nexLine.cloneNode(true);
+        }
+
+        // Push created step to tmp
+        this._save.tmp.push(tmp);
+      },
+
+      /**
+       * Second main method for saving steps.
+       * Here we save which line are to be deleted.
+       * @param  {string } name      Name of function that was called
+       * @param  {array  } args      Argument passed to that function
+       * @param  {integer} step      Index of used step (there might be few at once in tmp)
+       * @param  {integer} startLine The line where caret started before function was called
+       */
+      remove : ( name, args, step, startLine ) => {
+
+        // Remove not needed steps
+        if (
+          name == "one"       && this._save.methodsStack[ this._save.methodsStack.length - 1 ] == "mergeLine" || // If the newest is mergeLine
+          name == "mergeLine" && this._save.methodsStack[ this._save.methodsStack.length - 2 ] == "selected"     // If previous is selected
+        ) {
+          this._save.tmp.splice(step, 1);
+          return;
+        }
+
+        // Paste if pretty special as it uses a lot of existing functionality like newLine
+        // which makes this solution get wierd out. So we have one whole exception for this method
+        if ( name == "paste" ) {
+          let tmp = this._save.tmp[step]
+          this._save.tmp = [];
+          tmp.remove = {
+            sLine : startLine,
+            len : this.pos.line - startLine + 1
+          };
+          this._save.tmp.push(tmp);
+          return;
+        }
+
+        // Get step from current tmp
+        let tmp = this._save.tmp[step];
+
+        // If step is not present in tmp it might have been pushed to
+        // pending due to some clearing, try to get it from there
+        if (!tmp) {
+          tmp = this._save.pending[ step ];
+        }
+
+        // Set name
+        tmp.fun_name = name;
+
+        // Check if anything will be added
+        // if not just skip this as this never happens
+        const lines = Object.keys(tmp.add);
+        if (lines.length == 0) return;
+
+        // Get min and max of saved lines
+        // as similar numbers will be deleted
+        let minOrMax = this.pos.line;
+        let max = Math.max(...lines);
+        let min = Math.max(...lines);
+
+        // Here we decide if out current position is the lowest or highest
+        if (minOrMax < min) {
+          min = minOrMax;
+          max = this.pos.line;
+        } else if (minOrMax > max) {
+          max = minOrMax;
+          min = this.pos.line;
+        } else {
+          max = minOrMax;
+          min = minOrMax;
+        }
+
+        // Set start of lines to be removed and the length
+        tmp.remove.sLine = min;
+        tmp.remove.len = max - min + 1;
+
+        // Move lines to be deleted by one if be have created new line
+        if ( name == "newLine") {
+          tmp.remove.sLine--;
+          tmp.remove.len++;
+        }
+      }
     },
+
+    /**
+     * Moves panding version to versions. Removes old versions that got replaced by newer one.
+     *
+     * Versions are saved in reverse order. The newest is 0 and the oldest is the biggest.
+     * This makes it easier to understand as current version is at start of the array and dipper are the older ones.
+     */
+    publish : () => {
+      // If we are publishing new version
+      // and current counter is pointing to older version
+      // remove previous one and set counter as the newest
+      if ( this._save.version > 0 ) {
+        this._save.versions.splice(0, this._save.version);
+        this._save.version = 0;
+      }
+
+      // Don't add new version if pending is empty
+      if ( this._save.pending.length == 0 ) return;
+
+      this._save.squash(); // squash all "duplicated" steps
+      // Move pending version to the start of array
+      this._save.versions.unshift( this._save.pending );
+      // Clear pending
+      this._save.pending = [];
+    },
+
+    /**
+     * Better name for this one would be removeRepeatingSteps but that's not really what I like.
+     * This method basically checks if all steps are necessary and deletes those which brings nothing to the table.
+     * It does it by method checkStepsCompatibility which checks if two steps are basically the same, just content of lines
+     * is different. If so remove *newer* step as the older step is the closer is to the original line.
+     */
+    squash : () => {
+      const pending = this._save.pending;
+      // Start from step 2 as first one is always closes to the original line
+      for (let i = 1; i < pending.length; i++) {
+        const step     = pending[i];      // Step Two
+        const previous = pending[i - 1];  // Step One
+        if ( this._save.checkStepsCompatibility(step, previous) ) {
+          pending.splice(i, 1);
+          i--;
+        }
+      }
+    },
+
+    /**
+     * Check if two steps where created by the same fuction, have the same lines to remove and to add
+     * @param  {object } stepOne Step to compare
+     * @param  {object } stepTwo Step to compare
+     * @return {boolean}         If the steps are identical except the lines content
+     */
+    checkStepsCompatibility : (stepOne, stepTwo) => {
+      return stepOne.fun_name == stepTwo.fun_name && Object.values(stepOne.remove).toString() == Object.values(stepTwo.remove).toString() && Object.keys(stepOne.add).toString() == Object.keys(stepTwo.add).toString();
+    },
+
+    /**
+     * Reset tmp object
+     */
+    resetTmp : () => {
+      this._save.tmp = [];
+    },
+
+    /**
+     * Restore previous version and increase version counter.
+     */
     restore : () => {
-      if ( this._save.tmp.pending == true ) {
+      // If debounce didn't end and last version wasn't published,
+      // publish it and stop debouncing
+      if ( this._save.pending.length > 0 ) {
         this._save.publish();
         this._save.debounce('clear');
       }
 
-      if (this._save.versions.length == this._save.version) {
-        return;
-      }
+      // If we can't go back any further
+      if (this._save.versions.length == this._save.version) return;
 
+      // Get previous version
       let version = this._save.versions[this._save.version];
-      this._save.content.removeAndAdd( version );
-      this._save.content.replace( version );
-      let line = this.get.lineByPos(version.focus.line);
+      // Reverse steps and go through each of them and restore editor content
+      // starting from removing new lines and replacing them with older one
+      version.reverse().forEach(step => {
+        this._save.content.remove(step);
+        this._save.content.add   (step);
+      });
 
-      if (line) {
-        this.set.pos( line.childNodes[ version.focus.childIndex ], version.focus.letter, version.focus.line );
+      // Reverse it to the original state
+      version.reverse()
+
+      // Set caret focus on saved state
+      let focus = version[0].focus;
+      let line = this.get.lineByPos(focus?.line);
+
+      if ( line ) {
+        this.set.pos( line.childNodes[ focus.childIndex ], focus.letter, focus.line );
       } else {
         console.error("Line not found! Please refocus caret.");
       }
@@ -334,67 +437,38 @@ class TabJF {
       this._save.version++;
     },
     content : {
-      removeAndAdd : (version) => {
-        if ( version.remove === false && version.add === false ) return;
-        let linePos = -1, toFind = 0, found, isFirstLine;
-        if (version.add !== false) {
-          toFind = version.add.sLine - 1;
-          if (toFind < 0) {
-            isFirstLine = true;
-            if ( version.remove.sLine == 0 ) {
-              toFind = version.remove.eLine + 1;
-            } else {
-              toFind = 0;
-            }
-          }
-        }
-        for (let i = 0; i < this.editor.children.length; i++) {
-          let child = this.editor.children[i];
-          if (child.nodeName == "P") linePos++;
-          if ( linePos == toFind ) found = child;
-          if ( linePos >= version.remove.sLine && linePos <= version.remove.eLine ) {
-            child.remove();
-            i--;
-          }
-          if ( linePos >= version.remove.eLine && linePos >= toFind ) break;
-        }
 
-        if (version.add === false) return;
-        let anchor = found.nextSibling;
-        if ( isFirstLine ) anchor = found;
-
-        for (var i = 0; i < version.add.content.length; i++) {
-          let line = version.add.content[i];
-          this.editor.insertBefore(line.cloneNode(true), anchor);
+      /**
+       * Remove lines using step instructions
+       * @param {object} step Step
+       */
+      remove : (step) => {
+        for (let i = step.remove.sLine; i < step.remove.len + step.remove.sLine; i++) {
+          // We always remove the line with position of sLine because after deletion
+          // the order of line will be moved up by one, which means when removing 4th line 5th will become 4th etc.
+          let line = this.get.lineByPos(step.remove.sLine);
+          if ( line ) line.remove();
         }
-
       },
-      replace : (version) => {
-        if ( version.content.length == 0 ) return;
 
-        let linePos = -1;
-        let anchor;
-
-        for (let i = 0; i < this.editor.children.length; i++) {
-          let child = this.editor.children[i];
-          if (child.nodeName == "P") linePos++;
-          if ( linePos == version.eLine ) {
-            anchor = child.nextSibling;
-            child.remove();
-            break;
-          }
-
-          if ( linePos >= version.sLine && linePos <= version.eLine ) {
-            child.remove();
-            i--;
-          }
+      /**
+       * Adds line using step instructions
+       * @param {object} step Step
+       */
+      add : (step) => {
+        const positions = Object.keys(step.add);
+        // Get first line to add
+        let line = this.get.lineByPos(positions[0]);
+        if (!line) {
+          // If not found it means that editor doesn't have lines before this one
+          // so we set it to null, which insertBefore will interprate as `insert at the end`
+          line = null
         }
 
-        for (var i = 0; i < version.content.length; i++) {
-          let line = version.content[i];
-          this.editor.insertBefore(line.cloneNode(true), anchor);
-        }
-      }
+        positions.forEach(linePos => {
+          this.editor.insertBefore(step.add[linePos].cloneNode(true), line);
+        });
+      },
     }
   }
 
@@ -807,7 +881,7 @@ class TabJF {
     },
     lineInDirection : ( line, dir, first = true ) => {
 
-      if ( first  && line?.nodeName != "P" ) Log.ElementRulesViolationException("Parent has wrong tag, can't find proper lines");
+      if ( first  && line?.nodeName != "P" ) throw new Error("Parent has wrong tag, can't find proper lines");
       if ( !first && line?.nodeName == "P" ) return line;
 
       let newLine;
@@ -1197,8 +1271,8 @@ class TabJF {
     };
 
     let selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
-
-    if ( this.selection.active && !selDelSkip[e.key.toLowerCase()] && !this.pressed.ctrl ) {
+    const sel = this.get.selection();
+    if ( this.selection.active && !selDelSkip[e.key.toLowerCase()] && !this.pressed.ctrl &&  sel.type == "Range") {
       if ( !!this.keys[e.key.toLowerCase()]  ||  e.key.length == 1 ) this.remove.selected();
     }
 
@@ -1231,7 +1305,12 @@ class TabJF {
         if ( this.pressed.ctrl ) this.remove.word(-1);
         else                     this.remove.one (-1);
       } else {
-        this.remove.selected();
+        const sel = this.get.selection();
+        if (sel.type.toLowerCase() != "range") {
+          this.remove.one (-1);
+        } else {
+          this.remove.selected();
+        }
       }
     },
     tab : ( e ) => {
@@ -1288,7 +1367,7 @@ class TabJF {
       if ( this.pressed.shift ) this.expand.select();
       else                      this.end   .select();
     },
-    move : ( dirX, dirY ) => {
+    move : ( dirX, dirY, recuresionCheck = false ) => {
 
       if ( this.selection.active && !this.pressed.shift ) {
              if ( this.selection.reverse && !this.selection.expanded && dirX < 0 ) dirX = 0;
@@ -1303,9 +1382,9 @@ class TabJF {
 
       if ( dirY != 0 ) this.keys.moveY( dirY, dirX );
 
-      if (this.pos.el.innerText.length == 0) {
+      if (this.pos.el.innerText.length == 0 && !recuresionCheck) {
         let temp = this.pos.el;
-        this.keys.move(dirX, 0);
+        this.keys.move(dirX, 0, true);
         temp.remove();
       }
 
