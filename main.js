@@ -3,6 +3,8 @@ class TabJF {
   lastX     = 0;
   isActive  = false;
   clipboard = [];
+  docEventsSet = false;
+  copiedHere = false;
 
   stack = {
     open : true,
@@ -35,6 +37,7 @@ class TabJF {
     if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
+    this.editor.setAttribute('tabindex', '-1');
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
     set.letter    = ( set.letter  ||  8.8 ); //9.6333 );
@@ -59,7 +62,6 @@ class TabJF {
 
     // Setting debug modes which keeps track of all called methods, arguments, scope and results
     if (debugMode) {
-      console.log("DebugMode");
       let methods    = Object.getOwnPropertyNames( TabJF.prototype );
       let properties = Object.getOwnPropertyNames( this );
 
@@ -587,6 +589,10 @@ class TabJF {
 
   remove = {
     _name : 'remove',
+    docEvents : () => {
+      if (!this.docEventsSet) return;
+      this.docEventsSet = false;
+    },
     selected : () => {
       const rev = this.selection.reverse;
       let startAnchor = rev ? this.pos.el     : this.selection.anchor;
@@ -761,6 +767,12 @@ class TabJF {
 
   set = {
     _name : 'set',
+    docEvents : () => {
+      if (this.docEventsSet) return;
+      document.addEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
+      document.addEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
+      this.docEventsSet = true;
+    },
     preciseMethodsProxy : ( scope, path ) => {
       if (path.length == 1) {
         scope[path[0]] = new Proxy(scope[path[0]], this._proxySaveHandle );
@@ -1010,11 +1022,17 @@ class TabJF {
       */
       this.clipboard = this.get.selectedNodes();
       document.execCommand('copy');
+      this.copiedHere = true;
     },
     paste : () => {
       let toDelete = [];
       this.remove.selected();
+      const splitedNode = this.getSplitNode();
+      this.pos.el.parentElement.insertBefore( splitedNode.pre, this.pos.el );
+      this.pos.el.parentElement.insertBefore( splitedNode.suf, this.pos.el );
 
+      this.pos.el.remove();
+      this.set.side(splitedNode.pre, 1);
       for (var i = 0; i < this.clipboard.length; i++) {
         let node = this.clipboard[i];
 
@@ -1048,8 +1066,7 @@ class TabJF {
       });
     },
     cut : () => {
-      this.clipboard = this.get.selectedNodes();
-      document.execCommand('copy');
+      this.action.copy();
       this.remove.selected();
     },
     undo : () => this._save.restore(),
@@ -1057,10 +1074,10 @@ class TabJF {
   }
 
   assignEvents() {
-    document   .addEventListener('keydown'  , this.key.bind         ? this.key        .bind(this) : this.key        );
     this.editor.addEventListener("mousedown", this.active.bind      ? this.active     .bind(this) : this.active     );
-    this.editor.addEventListener("keyup"    , this.key.bind         ? this.key        .bind(this) : this.key        );
     this.editor.addEventListener("mouseup"  , this.checkSelect.bind ? this.checkSelect.bind(this) : this.checkSelect);
+    this.editor.addEventListener("focusout" , this.deactive.bind    ? this.deactive   .bind(this) : this.deactive   );
+    this.set.docEvents();
   }
 
   checkSelect( e ) {
@@ -1094,7 +1111,7 @@ class TabJF {
     }
   }
 
-  active ( e ) {
+  active( e ) {
     if ( e.target == this.editor  ||  e.layerX < 0  ||  e.layerY < 0 ) return;
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[el.children.length - 1];
@@ -1111,6 +1128,12 @@ class TabJF {
     this.lastX      = this.get.realPos().x;
     this.caret.show();
     this.end.select();
+    this.editor.focus();
+  }
+
+  deactive( e ) {
+    this.remove.docEvents();
+    this.copiedHere = false;
   }
 
   updateSpecialKeys( e ) {
@@ -1229,9 +1252,7 @@ class TabJF {
         }
       },
       86 : ( e, type ) => { // v
-        if (this.pressed.ctrl) {
-          this.action.paste();
-        } else {
+        if (!this.pressed.ctrl) {
           this.insert( e.key );
         }
       },
@@ -1429,7 +1450,7 @@ class TabJF {
       this.lastX  = this.get.realPos().x;
     },
     moveY : ( dirY, dirX ) => {
-      const line = this.pos.line, textLen = this.pos.el.innerText.length;
+      const line = this.pos.line;
 
       if ( line + dirY <= -1 ) return;
 
@@ -1437,13 +1458,13 @@ class TabJF {
 
       let realLetters = this.get.realPos().x;
 
-      let newLine = this.get.lineInDirection(   this.pos.el.parentElement, dirY );
+      let newLine = this.get.lineInDirection( this.pos.el.parentElement, dirY );
 
       if ( !newLine ) return;
 
       if ( newLine.innerText.length < realLetters + dirX ) {
         this.pos.el = newLine.children[newLine.children.length - 1];
-        this.caret.setByChar( textLen, line + dirY );
+        this.caret.setByChar( this.pos.el.innerText.length, line + dirY );
         return;
       }
 
@@ -1460,7 +1481,7 @@ class TabJF {
       }
 
       this.pos.el = newLine.children[ newLine.children.length - 1];
-      this.caret.setByChar( textLen, line + dirY );
+      this.caret.setByChar( this.pos.el.innerText.length, line + dirY );
     }
   }
 
@@ -1582,5 +1603,46 @@ class TabJF {
 
     el.remove();
     return nodes;
+  }
+
+  catchClipboard(e) {
+    console.log("paste");
+    // If user used internal method action.copy to copy conctent of this editor
+    // don't transform the clipboard
+    if (this.copiedHere) {
+      this.action.paste();
+      return;
+    }
+
+    let paste = (event.clipboardData || window.clipboardData).getData('text');
+    if ( !paste.includes('\n') ) {
+      const span = document.createElement('span');
+      span.appendChild( document.createTextNode(paste) );
+      this.clipboard = [ span ];
+    }
+    this.clipboard = [];
+    let lines = paste.split('\n');
+    let span = document.createElement('span');
+    span.appendChild( document.createTextNode( lines[0] ) );
+    this.clipboard.push(span);
+    for (let i = 1; i < lines.length - 1; i++) {
+      if (i == 1) {
+        this.clipboard.push('_jump');
+      }
+
+      let newSpan = document.createElement("span");
+      newSpan.appendChild( document.createTextNode(lines[i]) );
+      this.clipboard.push(newSpan);
+      this.clipboard.push('_jump');
+    }
+    if (lines.length == 2) {
+      this.clipboard.push('_jump');
+    }
+
+    span = document.createElement('span');
+    span.appendChild( document.createTextNode( lines[ lines.length - 1 ] ) );
+    this.clipboard.push(span);
+
+    this.action.paste();
   }
 }
