@@ -448,7 +448,7 @@ class TabJF {
       });
 
       // Set caret focus on saved state
-      save.refocus(version[0].focus);
+      save.refocus(version[ version.length - 1 ].focus);
 
       save.version++;
     },
@@ -478,16 +478,18 @@ class TabJF {
 
       save.version--;
       const version = save.versions[save.version];
-      version.forEach(step => {
-        const remove = {};
+      version.reverse().forEach(step => {
         const keys = Object.keys(step.add)
-        remove.sLine = Math.min(...keys);
-        const max = Math.max(...keys);
-        remove.len = max - remove.sLine + 1;
+        const min = Math.min(...keys);
 
-        save.content.remove(remove);
+        save.content.remove({
+          sLine : min,
+          len : Math.max(...keys) - min + 1
+        });
+
         save.content.add(step.after);
       });
+      version.reverse();
       save.refocus(version[0].focusAfter);
 
     },
@@ -572,13 +574,14 @@ class TabJF {
     _name : 'end',
     select : () => {
       this.get.selection().empty();
-      this.selection.anchor   = null;
-      this.selection.offset   = -1;
-      this.selection.line     = -1;
-      this.selection.reverse  = false;
-      this.selection.active   = false;
-      this.selection.expanded = false;
-      this.pressed.shift      = false; // forcing the state, might not be the same as in real world
+      const sel = this.selection;
+      sel.anchor   = null;
+      sel.offset   = -1;
+      sel.line     = -1;
+      sel.reverse  = false;
+      sel.active   = false;
+      sel.expanded = false;
+      this.pressed.shift = false; // forcing the state, might not be the same as in real world
     }
   }
 
