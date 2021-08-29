@@ -66,7 +66,7 @@ class TabJF {
       ['remove', 'one'     ],
       ['remove', 'word'    ],
       ['action', 'paste'   ],
-      // ['action', 'cut'     ],
+      // ['action', 'undo'    ],
       ['newLine'           ],
       ['mergeLine'         ],
       ['insert'            ],
@@ -156,9 +156,7 @@ class TabJF {
       if (!oldInProggress) {
         save.methodsStack = [];
         save.inProgress = false;
-        console.log(save.tmp);
         save.moveToPending();
-        console.log(save.pending);
       }
 
       return results;
@@ -175,8 +173,14 @@ class TabJF {
         sLine : -1,
         len   : -1,
       },
+      after : {},
       add : {},
       focus : {
+        letter  : -1,
+        line    : -1,
+        childIndex : -1,
+      },
+      focusAfter : {
         letter  : -1,
         line    : -1,
         childIndex : -1,
@@ -197,6 +201,19 @@ class TabJF {
     },
 
     set : {
+      /**
+       * Gets current caret focus position
+       * @return {object} Focus object { line, childIndex, letter }
+       */
+      focus : () => {
+        const focus = {};
+        focus.letter = this.pos.letter;
+        focus.line   = this.pos.line  ;
+        let childIndex = this.get.childIndex(this.pos.el);
+        focus.childIndex = childIndex;
+        return focus;
+      },
+
       /**
        * One of two main methods for saving steps.
        * This one add or related lines before they are changed.
@@ -236,11 +253,9 @@ class TabJF {
 
         // Save function name, just for clarification when debugging
         tmp.fun_name = name;
+
         // Save where caret is focused
-        tmp.focus.letter = this.pos.letter;
-        tmp.focus.line   = this.pos.line  ;
-        let childIndex = this.get.childIndex(this.pos.el);
-        tmp.focus.childIndex = childIndex;
+        tmp.focus = this._save.set.focus();
 
         const line = this.get.lineByPos(this.pos.line);
         // Get and save current line if we haven't already saved her
@@ -307,6 +322,8 @@ class TabJF {
         const lines = Object.keys(tmp.add);
         if (lines.length == 0) return;
 
+        // @TODO: Take closer look at this \/ and improve
+
         // Get min and max of saved lines
         // as similar numbers will be deleted
         let minOrMax = this.pos.line;
@@ -334,6 +351,14 @@ class TabJF {
           tmp.remove.sLine--;
           tmp.remove.len++;
         }
+
+        // Add new/changed line so we can recall them later on undo
+        for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
+          tmp.after[i] = this.get.lineByPos(i)?.cloneNode(true);
+        }
+
+        // Save where caret is focused
+        tmp.focusAfter = this._save.set.focus();
       }
     },
 
@@ -357,7 +382,7 @@ class TabJF {
 
       this._save.squash(); // squash all "duplicated" steps
       // Move pending version to the start of array
-      this._save.versions.unshift( this._save.pending );
+      this._save.versions.unshift( this._save.pending.reverse() );
       // Clear pending
       this._save.pending = [];
     },
@@ -375,6 +400,8 @@ class TabJF {
         const step     = pending[i];      // Step Two
         const previous = pending[i - 1];  // Step One
         if ( this._save.checkStepsCompatibility(step, previous) ) {
+          previous.after = step.after;
+          previous.focusAfter = step.focusAfter;
           pending.splice(i, 1);
           i--;
         }
@@ -416,16 +443,22 @@ class TabJF {
       let version = this._save.versions[this._save.version];
       // Reverse steps and go through each of them and restore editor content
       // starting from removing new lines and replacing them with older one
-      version.reverse().forEach(step => {
-        this._save.content.remove(step);
-        this._save.content.add   (step);
+      version.forEach(step => {
+        this._save.content.remove(step.remove);
+        this._save.content.add   (step.add);
       });
 
-      // Reverse it to the original state
-      version.reverse()
-
       // Set caret focus on saved state
-      let focus = version[0].focus;
+      this._save.refocus(version[0].focus);
+
+      this._save.version++;
+    },
+
+    /**
+     * Refocuses the caret using focus object
+     * @param  {object} focus Focus object { line, childIndex, letter }
+     */
+    refocus : (focus) => {
       let line = this.get.lineByPos(focus?.line);
 
       if ( line ) {
@@ -433,8 +466,31 @@ class TabJF {
       } else {
         console.error("Line not found! Please refocus caret.");
       }
+    },
 
-      this._save.version++;
+    /**
+     * The oposite of restore, merges new version to editor (ctrl + Y)
+     */
+    recall : () => {
+      const save = this._save;
+      if (save.version <= 0) {
+        return;
+      }
+
+      save.version--;
+      const version = save.versions[save.version];
+      version.forEach(step => {
+        const remove = {};
+        const keys = Object.keys(step.add)
+        remove.sLine = Math.min(...keys);
+        const max = Math.max(...keys);
+        remove.len = max - remove.sLine + 1;
+
+        this._save.content.remove(remove);
+        this._save.content.add(step.after);
+      });
+      this._save.refocus(version[0].focusAfter);
+
     },
     content : {
 
@@ -442,11 +498,11 @@ class TabJF {
        * Remove lines using step instructions
        * @param {object} step Step
        */
-      remove : (step) => {
-        for (let i = step.remove.sLine; i < step.remove.len + step.remove.sLine; i++) {
+      remove : (remove) => {
+        for (let i = remove.sLine; i < remove.len + remove.sLine; i++) {
           // We always remove the line with position of sLine because after deletion
           // the order of line will be moved up by one, which means when removing 4th line 5th will become 4th etc.
-          let line = this.get.lineByPos(step.remove.sLine);
+          let line = this.get.lineByPos(remove.sLine);
           if ( line ) line.remove();
         }
       },
@@ -455,8 +511,8 @@ class TabJF {
        * Adds line using step instructions
        * @param {object} step Step
        */
-      add : (step) => {
-        const positions = Object.keys(step.add);
+      add : (add) => {
+        const positions = Object.keys(add);
         // Get first line to add
         let line = this.get.lineByPos(positions[0]);
         if (!line) {
@@ -466,7 +522,7 @@ class TabJF {
         }
 
         positions.forEach(linePos => {
-          this.editor.insertBefore(step.add[linePos].cloneNode(true), line);
+          this.editor.insertBefore(add[linePos].cloneNode(true), line);
         });
       },
     }
@@ -1036,6 +1092,7 @@ class TabJF {
       this._save.restore();
     },
     redo : () => {
+      this._save.recall();
       console.log("redo");
     }
   }
