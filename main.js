@@ -1,5 +1,4 @@
 class TabJF {
-  noParentTags = ["INPUT","TEXTAREA","BR","HR","IMG","AREA","BASE","EMBED","IFRAME","LINK","META","PARAM","SOURCE","TRACK"];
   editor;
   lastX     = 0;
   isActive  = false;
@@ -32,25 +31,9 @@ class TabJF {
     expanded : false,
   }
 
-  // [DEPRICATED]
-  methodsToSave = {
-    insert  : true,
-    newLine : true,
-    remove : {
-      one      : true,
-      selected : true,
-      word     : true,
-    },
-    action : {
-      paste : true,
-      cut   : true,
-    },
-  };
-
-  constructor( editor, set = {} ) {
-    if ( typeof editor.nodeType == 'undefined'         ) throw new Error('You can\'t construct Styles without passing node to lock on.');
-    if ( editor.nodeType != 1                          ) throw new Error('Editor node has to be of proper node type.'                  );
-    if ( this.noParentTags.includes( editor.nodeName ) ) throw new Error('Editor node has to be proper parent tag.'                    );
+  constructor( editor, set = {}, debugMode = false ) {
+    if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
+    if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
@@ -59,14 +42,13 @@ class TabJF {
     this.settings = set;
 
     this._save.debounce = this._hidden.debounce( this._save.publish, 500 );
-    this._save.resetTmp();
-    // Proxy for save
+
+    // Proxy for VC
     const methodsSave = [
       ['remove', 'selected'],
       ['remove', 'one'     ],
       ['remove', 'word'    ],
       ['action', 'paste'   ],
-      // ['action', 'undo'    ],
       ['newLine'           ],
       ['mergeLine'         ],
       ['insert'            ],
@@ -75,21 +57,28 @@ class TabJF {
       this.set.preciseMethodsProxy(this, path);
     });
 
-    // Proxy for all methods
-    let methods    = Object.getOwnPropertyNames( TabJF.prototype );
-    let properties = Object.getOwnPropertyNames( this );
+    // Setting debug modes which keeps track of all called methods, arguments, scope and results
+    if (debugMode) {
+      console.log("DebugMode");
+      let methods    = Object.getOwnPropertyNames( TabJF.prototype );
+      let properties = Object.getOwnPropertyNames( this );
 
-    let consIndex = methods.indexOf('constructor');
-    if ( consIndex > -1 ) methods.splice(consIndex, 1);
+      let consIndex = methods.indexOf('constructor');
+      if ( consIndex > -1 ) methods.splice(consIndex, 1);
 
-    let hiddenMethods = methods.concat(properties);
-    this.set.methodsProxy(this, hiddenMethods);
+      let hiddenMethods = methods.concat(properties);
+      this.set.methodsProxy(this, hiddenMethods);
+    }
 
     this.assignEvents();
     this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
   }
 
+  /**
+   * Object for keeping loose methods hidden
+   * before debug proxy
+   */
   _hidden = {
     debounce : (func, timeout = 300) => {
       let timer;
@@ -104,40 +93,50 @@ class TabJF {
     }
   }
 
+  /**
+   * Proxy handle object for debuging info
+   * Saves whole stack of methods, their arguments and results
+   */
   _proxyHandle = {
-    main : this,
+    main : this, // Saving `this` in current scope so can access the instance
     get : function (target, name, receiver) {
       // nothing for now
     },
     apply : function (target, scope, args) {
-      const name = scope?._name;
+      const stack = this.main.stack;
 
-      // changing scope
-      let methodsToSave = this.main.methodsToSave[name] ? this.main.methodsToSave[name] : this.main.methodsToSave;
-      let oldMaster = this.main.stack.open;
-      this.main.stack.open = false;
+      // Here we save the status of stack.open
+      // which indicates if the current function is master caller.
+      // Just after saving it we change its value to false so other
+      // methods will have oldMaster set to `false` which will disallow them
+      // finishing stack and moving it to trace
+      let oldMaster = stack.open;
+      stack.open = false;
 
       let results;
-      if (target.bind) {
-        results = target.bind(this.main)(...args);
-      } else {
-        results = target(...args);
-      }
-      this.main.stack.building.push({ name : target.name, args : args, res : results });
+      if (target.bind) results = target.bind(this.main)(...args);
+      else results = target(...args);
 
+      stack.building.push({ name : target.name, args, res : results });
+
+      // If oldMaster is set to true it means to master caller finished
+      // its cycle and we can move stack to trace and do clearing operations
       if ( oldMaster ) {
-        if (this.main.stack.trace.length == 100) this.main.stack.trace.shift();
-        this.main.stack.trace.push(this.main.stack.building);
-        this.main.stack.building = [];
-        this.main.stack.open = true;
+        if (stack.trace.length == 100) stack.trace.shift();
+        stack.trace.push(stack.building);
+        stack.building = [];
+        stack.open = true;
       }
 
       return results;
     }
   }
 
+  /**
+   * Proxy handle for VC
+   */
   _proxySaveHandle = {
-    main : this,
+    main : this, // Saving `this` in current scope so can access the instance
     apply : function (target, scope, args) {
       const save = this.main._save;
       save.debounce();
@@ -146,13 +145,16 @@ class TabJF {
       save.inProgress = true;
 
       const step = save.tmp.length;
-      save.methodsStack.push(target.name);
+      save.methodsStack.push(target.name); // Here we build methods stack so we can check what method called what
       const startLine = this.main.pos.line;
+
       save.set.add(target.name, args);
+
       const results = target.bind(this.main)(...args);
+
       save.set.remove(target.name, args, step, startLine);
 
-      // only move to pending if master function ended
+      // only move to pending if master function have finshed
       if (!oldInProggress) {
         save.methodsStack = [];
         save.inProgress = false;
@@ -163,6 +165,10 @@ class TabJF {
     }
   }
 
+  /**
+   * Save object which is hidden from debug
+   * and holds all related functionality to VC
+   */
   _save = {
     _name : 'save',
     debounce : undefined,   // Here we store debounce function
@@ -206,12 +212,11 @@ class TabJF {
        * @return {object} Focus object { line, childIndex, letter }
        */
       focus : () => {
-        const focus = {};
-        focus.letter = this.pos.letter;
-        focus.line   = this.pos.line  ;
-        let childIndex = this.get.childIndex(this.pos.el);
-        focus.childIndex = childIndex;
-        return focus;
+        return {
+          letter     : this.pos.letter,
+          line       : this.pos.line,
+          childIndex : this.get.childIndex(this.pos.el)
+        };
       },
 
       /**
@@ -223,9 +228,7 @@ class TabJF {
       add : ( name, args ) => {
         // Modifiers tells us if we need to get one more line and from which direction
         let modifiers = 0;
-        if (name == "mergeLine") {
-          modifiers = args[0];
-        }
+        if (name == "mergeLine") modifiers = args[0];
 
         // Create new tmp object from default
         const tmp = JSON.parse(JSON.stringify(this._save.tmpDefault));
@@ -235,16 +238,10 @@ class TabJF {
         if (sel.type.toLowerCase() == 'range') {
           // If so figure out which line is first and save selected lines
           let start = sel.anchorNode;
-          let end = this.pos.el;
-          if (this.selection.reverse) {
-            end = sel.focusNode;
-          }
+          let end = this.selection.reverse ? sel.focusNode : this.pos.el;
 
-          const startLine = this.get.line(start);
-          const startLinePos = this.get.linePos(startLine);
-
-          const endLine = this.get.line(end);
-          const endLinePos = this.get.linePos(endLine);
+          const startLinePos = this.get.linePos( this.get.line(start) );
+          const endLinePos   = this.get.linePos( this.get.line(end  ) );
 
           for (let i = startLinePos; i <= endLinePos; i++) {
             tmp.add[i] = this.get.lineByPos(i).cloneNode(true);
@@ -257,16 +254,16 @@ class TabJF {
         // Save where caret is focused
         tmp.focus = this._save.set.focus();
 
-        const line = this.get.lineByPos(this.pos.line);
+        const linePos = this.pos.line;
+        const line    = this.get.lineByPos(linePos);
+
         // Get and save current line if we haven't already saved her
-        if (!tmp.add[this.pos.line]) {
-          tmp.add[this.pos.line] = line.cloneNode(true);
-        }
+        if ( !tmp.add[linePos] ) tmp.add[linePos] = line.cloneNode(true);
 
         // Save line from modificators if we haven't already saved her
-        if ( modifiers != 0 && !tmp.add[this.pos.line + modifiers] ) {
+        if ( modifiers != 0 && !tmp.add[linePos + modifiers] ) {
           let nexLine = this.get.lineInDirection(line, modifiers);
-          if (nexLine) tmp.add[this.pos.line + modifiers] = nexLine.cloneNode(true);
+          if (nexLine) tmp.add[linePos + modifiers] = nexLine.cloneNode(true);
         }
 
         // Push created step to tmp
@@ -282,36 +279,36 @@ class TabJF {
        * @param  {integer} startLine The line where caret started before function was called
        */
       remove : ( name, args, step, startLine ) => {
-
+        const save = this._save;
+        const pos  = this.pos.line;
         // Remove not needed steps
         if (
-          name == "one"       && this._save.methodsStack[ this._save.methodsStack.length - 1 ] == "mergeLine" || // If the newest is mergeLine
-          name == "mergeLine" && this._save.methodsStack[ this._save.methodsStack.length - 2 ] == "selected"     // If previous is selected
+          name == "one"       && save.methodsStack[ save.methodsStack.length - 1 ] == "mergeLine" || // If the newest is mergeLine
+          name == "mergeLine" && save.methodsStack[ save.methodsStack.length - 2 ] == "selected"     // If previous is selected
         ) {
-          this._save.tmp.splice(step, 1);
+          save.tmp.splice(step, 1);
           return;
         }
 
         // Paste if pretty special as it uses a lot of existing functionality like newLine
         // which makes this solution get wierd out. So we have one whole exception for this method
         if ( name == "paste" ) {
-          let tmp = this._save.tmp[step]
-          this._save.tmp = [];
+          let tmp = save.tmp[step]
           tmp.remove = {
             sLine : startLine,
-            len : this.pos.line - startLine + 1
+            len : pos - startLine + 1
           };
-          this._save.tmp.push(tmp);
+          save.tmp = [tmp];
           return;
         }
 
         // Get step from current tmp
-        let tmp = this._save.tmp[step];
+        let tmp = save.tmp[step];
 
         // If step is not present in tmp it might have been pushed to
         // pending due to some clearing, try to get it from there
         if (!tmp) {
-          tmp = this._save.pending[ step ];
+          tmp = save.pending[ step ];
         }
 
         // Set name
@@ -326,17 +323,17 @@ class TabJF {
 
         // Get min and max of saved lines
         // as similar numbers will be deleted
-        let minOrMax = this.pos.line;
+        let minOrMax = pos;
         let max = Math.max(...lines);
         let min = Math.max(...lines);
 
         // Here we decide if out current position is the lowest or highest
         if (minOrMax < min) {
           min = minOrMax;
-          max = this.pos.line;
+          max = pos;
         } else if (minOrMax > max) {
           max = minOrMax;
-          min = this.pos.line;
+          min = pos;
         } else {
           max = minOrMax;
           min = minOrMax;
@@ -344,7 +341,7 @@ class TabJF {
 
         // Set start of lines to be removed and the length
         tmp.remove.sLine = min;
-        tmp.remove.len = max - min + 1;
+        tmp.remove.len   = max - min + 1;
 
         // Move lines to be deleted by one if be have created new line
         if ( name == "newLine") {
@@ -354,11 +351,11 @@ class TabJF {
 
         // Add new/changed line so we can recall them later on undo
         for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
-          tmp.after[i] = this.get.lineByPos(i)?.cloneNode(true);
+          tmp.after[i] = this.get.lineByPos(i).cloneNode(true);
         }
 
         // Save where caret is focused
-        tmp.focusAfter = this._save.set.focus();
+        tmp.focusAfter = save.set.focus();
       }
     },
 
@@ -369,22 +366,23 @@ class TabJF {
      * This makes it easier to understand as current version is at start of the array and dipper are the older ones.
      */
     publish : () => {
+      const save = this._save;
       // If we are publishing new version
       // and current counter is pointing to older version
       // remove previous one and set counter as the newest
-      if ( this._save.version > 0 ) {
-        this._save.versions.splice(0, this._save.version);
-        this._save.version = 0;
+      if ( save.version > 0 ) {
+        save.versions.splice(0, save.version);
+        save.version = 0;
       }
 
       // Don't add new version if pending is empty
-      if ( this._save.pending.length == 0 ) return;
+      if ( save.pending.length == 0 ) return;
 
-      this._save.squash(); // squash all "duplicated" steps
+      save.squash(); // squash all "duplicated" steps
       // Move pending version to the start of array
-      this._save.versions.unshift( this._save.pending.reverse() );
+      save.versions.unshift( save.pending.reverse() );
       // Clear pending
-      this._save.pending = [];
+      save.pending = [];
     },
 
     /**
@@ -400,7 +398,7 @@ class TabJF {
         const step     = pending[i];      // Step Two
         const previous = pending[i - 1];  // Step One
         if ( this._save.checkStepsCompatibility(step, previous) ) {
-          previous.after = step.after;
+          previous.after      = step.after;
           previous.focusAfter = step.focusAfter;
           pending.splice(i, 1);
           i--;
@@ -429,29 +427,30 @@ class TabJF {
      * Restore previous version and increase version counter.
      */
     restore : () => {
+      const save = this._save;
       // If debounce didn't end and last version wasn't published,
       // publish it and stop debouncing
-      if ( this._save.pending.length > 0 ) {
-        this._save.publish();
-        this._save.debounce('clear');
+      if ( save.pending.length > 0 ) {
+        save.publish();
+        save.debounce('clear');
       }
 
       // If we can't go back any further
-      if (this._save.versions.length == this._save.version) return;
+      if (save.versions.length == save.version) return;
 
       // Get previous version
-      let version = this._save.versions[this._save.version];
+      let version = save.versions[save.version];
       // Reverse steps and go through each of them and restore editor content
       // starting from removing new lines and replacing them with older one
       version.forEach(step => {
-        this._save.content.remove(step.remove);
-        this._save.content.add   (step.add);
+        save.content.remove(step.remove);
+        save.content.add   (step.add   );
       });
 
       // Set caret focus on saved state
-      this._save.refocus(version[0].focus);
+      save.refocus(version[0].focus);
 
-      this._save.version++;
+      save.version++;
     },
 
     /**
@@ -486,10 +485,10 @@ class TabJF {
         const max = Math.max(...keys);
         remove.len = max - remove.sLine + 1;
 
-        this._save.content.remove(remove);
-        this._save.content.add(step.after);
+        save.content.remove(remove);
+        save.content.add(step.after);
       });
-      this._save.refocus(version[0].focusAfter);
+      save.refocus(version[0].focusAfter);
 
     },
     content : {
@@ -586,25 +585,16 @@ class TabJF {
   remove = {
     _name : 'remove',
     selected : () => {
-      let startAnchor = this.selection.anchor;
-      let startOffset = this.selection.offset;
-      let startLine   = this.selection.line;
+      const rev = this.selection.reverse;
+      let startAnchor = rev ? this.pos.el     : this.selection.anchor;
+      let startOffset = rev ? this.pos.letter : this.selection.offset;
+      let startLine   = rev ? this.pos.line   : this.selection.line;
 
-      let endAnchor   = this.pos.el;
-      let endOffset   = this.pos.letter;
-      let endLine     = this.pos.line;
+      let endAnchor   = rev ? this.selection.anchor : this.pos.el;
+      let endOffset   = rev ? this.selection.offset : this.pos.letter;
+      let endLine     = rev ? this.selection.line   : this.pos.line;
 
       if (startAnchor == null  ||  endAnchor == null) return;
-
-      if (this.selection.reverse) {
-        startAnchor = this.pos.el;
-        startOffset = this.pos.letter;
-        startLine   = this.pos.line;
-
-        endAnchor   = this.selection.anchor;
-        endOffset   = this.selection.offset;
-        endLine     = this.selection.line;
-      }
 
       if (endAnchor == startAnchor) {
         let child = endAnchor.childNodes[0];
@@ -658,20 +648,18 @@ class TabJF {
         this.remove.one(dir);
         return;
       } else if ( newPos === -1 ) {
-        if ( dir < 0 && el.previousSibling ) {
-          this.remove.word(dir, el.previousSibling, el.previousSibling.innerText.length);
-        } else if ( dir > 0 && el.nextSibling ) {
-          this.remove.word(dir, el.nextSibling, 0);
+        const prev = el.previousSibling;
+        const next = el.nextSibling;
+        if ( dir < 0 && prev ) {
+          this.remove.word(dir, prev, prev.innerText.length);
+        } else if ( dir > 0 && next ) {
+          this.remove.word(dir, next, 0);
         }
 
         if ( dir < 0 ) newPos = 0;
         if ( dir > 0 ) newPos = text.length;
 
-      } else {
-
-        if ( dir < 0 ) newPos = text.length - newPos;
-
-      }
+      } else if ( dir < 0 ) newPos = text.length - newPos;
 
       if (dir < 0) {
         pre = text.substr(0, newPos);
@@ -682,52 +670,47 @@ class TabJF {
       }
       el.innerHTML = pre + suf;
 
-      if ( dir < 0 ) {
-        this.set.pos(el, newPos, this.pos.line);
-      }
-
+      if ( dir < 0 ) this.set.pos(el, newPos, this.pos.line);
     },
     one : ( dir ) => {
-      if ( this.pos.el.innerText.length == 0 ) {
-        this.remove.oneInSibling( this.pos.el, dir );
-        return ;
-      }
-      let pre, suf, text = this.pos.el.innerText;
+      const pos    = this.pos,
+            next   = pos.el.nextSibling,
+            prev   = pos.el.previousSibling;
 
-      if ( this.pos.el.innerText.length == 1 ) {
+      let pre, suf, text = pos.el.innerText;
+
+      if ( text.length == 0 ) {
+        this.remove.oneInSibling( pos.el, dir );
+        return;
+      }
+
+      if ( text.length == 1 ) {
         let res = this.remove.posElWithOnlyOneChar( dir );
         if ( res ) return;
       }
 
       if ( dir > 0 ) {
-        if ( this.pos.letter >= text.length ) {
-          this.remove.oneInSibling( this.pos.el.nextSibling, dir );
+        if ( pos.letter >= text.length ) {
+          this.remove.oneInSibling( next, dir );
           return;
         }
 
-        pre = text.substr( 0, this.pos.letter  );
-        suf = text.substr( this.pos.letter + 1 );
+        pre = text.substr( 0, pos.letter  );
+        suf = text.substr( pos.letter + 1 );
       } else {
-        if ( this.pos.letter - 1 < 0 ) {
-          this.remove.oneInSibling( this.pos.el.previousSibling, dir );
+        if ( pos.letter - 1 < 0 ) {
+          this.remove.oneInSibling( prev, dir );
           return;
         }
 
-        pre = text.substr( 0, this.pos.letter - 1 );
-        suf = text.substr( this.pos.letter        );
+        pre = text.substr( 0, pos.letter - 1 );
+        suf = text.substr( pos.letter        );
 
-        this.caret.setByChar( this.pos.letter - 1, this.pos.line );
+        this.caret.setByChar( pos.letter - 1, pos.line );
       }
-      this.pos.el.innerHTML = pre + suf;
+      pos.el.innerHTML = pre + suf;
     },
     oneInSibling : ( node, dir ) => {
-      /**
-       * Check if :
-       * - sibling exist
-       * - sibling is node and not text
-       * - sibling isn't empty
-       * - sibling would be empty after letter was removed
-       */
       if ( node == null ) {
         this.mergeLine( dir ); // If node is null merge next line
         return;
@@ -747,25 +730,25 @@ class TabJF {
       this.keys  .move( dir, 0   );
       this.remove.one ( dir * -1 );
     },
-    // pretty specific xd
     posElWithOnlyOneChar : ( dir ) => {
       if ( this.pos.letter == 0 && dir > 0   ||   this.pos.letter == 1 && dir < 0 ) {
-        let sibling = this.get.sibling( this.pos.el, dir );
+        const el = this.pos.el;
+        let sibling = this.get.sibling( el, dir );
         if ( sibling === null ) {
           dir *= -1;
-          sibling = this.get.sibling( this.pos.el, dir );
+          sibling = this.get.sibling( el, dir );
 
           if ( sibling === null ) {
             const span = document.createElement("span");
             const text = document.createTextNode('');
             span.appendChild(text);
-            this.pos.el.parentElement.insertBefore( span, this.pos.el );
+            this.pos.el.parentElement.insertBefore( span, el );
             sibling = span;
           }
 
         }
 
-        this.pos.el.remove();
+        el.remove();
         this.set.side( sibling, dir * -1 );
         return true;
       }
@@ -795,16 +778,17 @@ class TabJF {
       };
     },
     side : ( node, dirX, newLine = this.pos.line ) => {
+      let letter = this.pos.letter;
       this.pos.el = node;
-           if ( dirX > 0 ) this.pos.letter = node.innerText.length;
-      else if ( dirX < 0 ) this.pos.letter = 0;
-      this.caret.setByChar( this.pos.letter, newLine );
+           if ( dirX > 0 ) letter = node.innerText.length;
+      else if ( dirX < 0 ) letter = 0;
+      this.caret.setByChar( letter, newLine );
     },
     pos : ( node, letter, line ) => {
       this.pos.el     = node;
       this.pos.letter = letter;
       this.pos.line   = line;
-      this.caret.setByChar( this.pos.letter, this.pos.line );
+      this.caret.setByChar( letter, line );
     }
   }
 
@@ -815,17 +799,9 @@ class TabJF {
     },
     selectedLines : (sLine = null, eLine = null) => {
       if (!sLine || !eLine) {
-        const sel = this.get.selection();
-        let sNode = sel.anchorNode;
-        let eNode = sel.focusNode;
-
-        if ( this.selection.reverse && !this.selection.expanded ) {
-          sNode = sel.focusNode;
-          eNode = sel.anchorNode;
-        }
-
-        sLine = this.get.line(sNode);
-        eLine = this.get.line(eNode);
+        const sel = this.get.selection(), revCheck = this.selection.reverse && !this.selection.expanded;
+        sLine = this.get.line( revCheck ? sel.focusNode : sel.anchorNode );
+        eLine = this.get.line( revCheck ? sel.anchorNode : sel.focusNode );
       }
 
       if (!sLine || !eLine) throw new Error('Couldn\'t find lines');
@@ -839,19 +815,12 @@ class TabJF {
       return [node.cloneNode(true), ...this.get.selectedLinesRecursive(node.nextSibling, end)];
     },
     selectedNodes : () => {
-      let sel = this.get.selection();
+      const sel = this.get.selection(), revCheck = this.selection.reverse && !this.selection.expanded;;
       if ( sel.type == "Caret") return this.get.line( sel.anchorNode );
-      let startNode   = sel.anchorNode;
-      let startOffset = sel.anchorOffset;
-      let endNode     = sel.focusNode;
-      let endOffset   = sel.focusOffset;
-
-      if ( this.selection.reverse && !this.selection.expanded ) {
-        startNode   = sel.focusNode;
-        startOffset = sel.focusOffset;
-        endNode     = sel.anchorNode;
-        endOffset   = sel.anchorOffset;
-      }
+      let startNode   = revCheck ? sel.focusNode    : sel.anchorNode;
+      let startOffset = revCheck ? sel.focusOffset  : sel.anchorOffset;
+      let endNode     = revCheck ? sel.anchorNode   : sel.focusNode;
+      let endOffset   = revCheck ? sel.anchorOffset : sel.focusOffset;
 
       if ( startNode == endNode ) {
         let newNode = startNode.parentElement.cloneNode( true );
@@ -896,8 +865,7 @@ class TabJF {
     },
     elPos : ( el ) => {
       for ( let i = 0; i < el.parentElement.children.length; i++ ) {
-        let child = el.parentElement.children[i];
-        if ( child == el ) return i;
+        if ( el.parentElement.children[i] == el ) return i;
       }
       return false;
     },
@@ -907,9 +875,7 @@ class TabJF {
         let child = this.editor.children[i];
         if ( line == child ) return linePos;
         // we only increase if there was actual line in editor between our target
-        if (child.nodeName && child.nodeName == "P") {
-          linePos++;
-        }
+        if (child.nodeName && child.nodeName == "P") linePos++;
       }
       return false;
     },
@@ -965,8 +931,7 @@ class TabJF {
     },
     childIndex : ( el ) => {
       for (var i = 0; i < el.parentElement.childNodes.length; i++) {
-        let child = el.parentElement.childNodes[i];
-        if ( child == el ) return i;
+        if ( el.parentElement.childNodes[i] == el ) return i;
       }
       return false;
     }
@@ -980,12 +945,8 @@ class TabJF {
       let caretTop  = ( this.pos.line + 1 ) * this.settings.line;
       let yPos = caretTop - this.editor.offsetHeight > 0 ? caretTop - this.editor.offsetHeight : 0;
 
-      if ( caretLeft > this.editor.offsetWidth - ( this.settings.letter * 6 ) ) {
-        this.editor.scrollTo( caretLeft + ( this.settings.letter * 6 ) - this.editor.offsetWidth, yPos );
-      } else {
-        this.editor.scrollTo( 0, yPos );
-      }
-
+      if ( caretLeft > this.editor.offsetWidth - ( this.settings.letter * 6 ) ) this.editor.scrollTo( caretLeft + ( this.settings.letter * 6 ) - this.editor.offsetWidth, yPos );
+      else this.editor.scrollTo( 0, yPos );
     },
     set : ( x, y ) => {
       this.caret.el.style.top  = y + 'px' ;
@@ -1088,20 +1049,15 @@ class TabJF {
       document.execCommand('copy');
       this.remove.selected();
     },
-    undo : () => {
-      this._save.restore();
-    },
-    redo : () => {
-      this._save.recall();
-      console.log("redo");
-    }
+    undo : () => this._save.restore(),
+    redo : () => this._save.recall(),
   }
 
   assignEvents() {
-    document.addEventListener('keydown', this.key);
-    this.editor.addEventListener("mousedown", this.active     );
-    this.editor.addEventListener("keyup"    , this.key        );
-    this.editor.addEventListener("mouseup"  , this.checkSelect);
+    document   .addEventListener('keydown'  , this.key.bind         ? this.key        .bind(this) : this.key        );
+    this.editor.addEventListener("mousedown", this.active.bind      ? this.active     .bind(this) : this.active     );
+    this.editor.addEventListener("keyup"    , this.key.bind         ? this.key        .bind(this) : this.key        );
+    this.editor.addEventListener("mouseup"  , this.checkSelect.bind ? this.checkSelect.bind(this) : this.checkSelect);
   }
 
   checkSelect( e ) {
@@ -1363,11 +1319,8 @@ class TabJF {
         else                     this.remove.one (-1);
       } else {
         const sel = this.get.selection();
-        if (sel.type.toLowerCase() != "range") {
-          this.remove.one (-1);
-        } else {
-          this.remove.selected();
-        }
+        if (sel.type.toLowerCase() != "range") this.remove.one (-1);
+        else                                   this.remove.selected();
       }
     },
     tab : ( e ) => {
@@ -1387,9 +1340,7 @@ class TabJF {
       if ( !this.selection.active ) {
         if ( this.pressed.ctrl ) this.remove.word( 1 );
         else                     this.remove.one ( 1 );
-      } else {
-        this.remove.selected();
-      }
+      } else this.remove.selected();
     },
     moveCtrl : ( dir, el = this.pos.el, c_pos = this.pos.letter ) => {
       let newPos, text = el.innerText;
@@ -1402,22 +1353,20 @@ class TabJF {
       } else if ( newPos === c_pos && dir > 0 ) {
         c_pos++;
       } else if ( newPos === -1 ) {
-
-        if ( dir < 0 && el.previousSibling ) {
-          this.keys.moveCtrl( dir, el.previousSibling, el.previousSibling.innerText.length );
+        const prev = el.previousSibling, next = el.nextSibling;
+        if ( dir < 0 && prev ) {
+          this.keys.moveCtrl( dir, prev, prev.innerText.length );
           return;
-        } else if ( dir > 0 && el.nextSibling ) {
-          this.keys.moveCtrl( dir, el.nextSibling, 0 );
+        } else if ( dir > 0 && next ) {
+          this.keys.moveCtrl( dir, next, 0 );
           return;
         }
 
         this.set.side( el, dir );
         return;
       } else {
-
              if ( dir < 0 ) c_pos = text.length - newPos;
         else if ( dir > 0 ) c_pos = newPos;
-
       }
 
       this.set.pos( el, c_pos, this.pos.line );
@@ -1431,11 +1380,8 @@ class TabJF {
         else if ( dirX > 0 ) dirX = 0;
       }
 
-      if ( this.pressed.ctrl ) {
-        this.keys.moveCtrl( dirX );
-      } else if ( dirX != 0 ) {
-        this.keys.moveX( dirY, dirX );
-      }
+      if ( this.pressed.ctrl ) this.keys.moveCtrl( dirX );
+      else if ( dirX != 0 ) this.keys.moveX( dirY, dirX );
 
       if ( dirY != 0 ) this.keys.moveY( dirY, dirX );
 
@@ -1450,24 +1396,25 @@ class TabJF {
 
     },
     moveX : ( dirY, dirX ) => {
+      const el = this.pos.el, prev = el.previousSibling;
       if ( this.pos.letter + dirX <= -1 ) {
-        if ( this.pos.el.previousSibling && this.pos.el.previousSibling.nodeType == 1 ) {
-          this.pos.el = this.pos.el.previousSibling;
-          this.pos.letter = this.pos.el.innerText.length;
+        if ( prev && prev.nodeType == 1 ) {
+          this.pos.el = prev;
+          this.pos.letter = el.innerText.length;
         } else {
-          let previousLine = this.get.lineInDirection( this.pos.el.parentElement, -1 );
+          let previousLine = this.get.lineInDirection( el.parentElement, -1 );
           if ( !previousLine ) return;
           this.pos.el = previousLine.children[ previousLine.children.length - 1 ];
-          this.caret.setByChar( this.pos.el.innerText.length, this.pos.line - 1 );
+          this.caret.setByChar( el.innerText.length, this.pos.line - 1 );
           this.lastX = this.get.realPos().x;
           return;
         }
 
-      } else if ( this.pos.letter + dirX > this.pos.el.innerText.length && this.pos.el.nextSibling && this.pos.el.nextSibling.nodeType == 1 ) {
-        this.pos.el     = this.pos.el.nextSibling;
+      } else if ( this.pos.letter + dirX > el.innerText.length && el.nextSibling && el.nextSibling.nodeType == 1 ) {
+        this.pos.el     = el.nextSibling;
         this.pos.letter = 0;
-      } else if ( this.pos.letter + dirX > this.pos.el.innerText.length ) {
-        let nextLine = this.get.lineInDirection( this.pos.el.parentElement, 1 );
+      } else if ( this.pos.letter + dirX > el.innerText.length ) {
+        let nextLine = this.get.lineInDirection( el.parentElement, 1 );
         if ( !nextLine ) return;
         this.pos.el = nextLine.children[0];
         this.caret.setByChar( 0, this.pos.line + 1 );
@@ -1479,19 +1426,21 @@ class TabJF {
       this.lastX  = this.get.realPos().x;
     },
     moveY : ( dirY, dirX ) => {
-      if ( this.pos.line + dirY <= -1 ) return;
+      const line = this.pos.line, textLen = this.pos.el.innerText.length;
 
-      if ( this.pos.line + dirY >= this.editor.children.length - 1 ) return;
+      if ( line + dirY <= -1 ) return;
+
+      if ( line + dirY >= this.editor.children.length - 1 ) return;
 
       let realLetters = this.get.realPos().x;
 
-      let newLine = this.get.lineInDirection( this.pos.el.parentElement, dirY );
+      let newLine = this.get.lineInDirection(   this.pos.el.parentElement, dirY );
 
       if ( !newLine ) return;
 
       if ( newLine.innerText.length < realLetters + dirX ) {
         this.pos.el = newLine.children[newLine.children.length - 1];
-        this.caret.setByChar( this.pos.el.innerText.length, this.pos.line + dirY );
+        this.caret.setByChar( textLen, line + dirY );
         return;
       }
 
@@ -1502,26 +1451,26 @@ class TabJF {
         currentLetterCount += child.innerText.length;
         if ( currentLetterCount >= this.lastX ) {
           this.pos.el = child;
-          this.caret.setByChar( this.lastX - (currentLetterCount - child.innerText.length), this.pos.line + dirY );
+          this.caret.setByChar( this.lastX - (currentLetterCount - child.innerText.length), line + dirY );
           return;
         }
       }
 
       this.pos.el = newLine.children[ newLine.children.length - 1];
-      this.caret.setByChar( this.pos.el.innerText.length, this.pos.line + dirY );
+      this.caret.setByChar( textLen, line + dirY );
     }
   }
 
   newLine() {
-    let text = this.getSplitRow();
+    let el = this.pos.el, text = this.getSplitRow();
 
     if ( text.pre.innerText.length > 0 ) {
-      this.pos.el.parentElement.insertBefore( text.pre, this.pos.el );
-      this.pos.el.remove();
-      this.pos.el = text.pre;
+      el.parentElement.insertBefore( text.pre, el );
+      el.remove();
+      el = text.pre;
     } else {
-      this.pos.el.innerHTML = '';
-      this.pos.el.appendChild( document.createTextNode('') );
+      el.innerHTML = '';
+      el.appendChild( document.createTextNode('') );
     }
     let newLine = document.createElement("p");
 
@@ -1540,7 +1489,7 @@ class TabJF {
       appended.push( text.suf[0] );
     }
 
-    let line = this.get.line( this.pos.el );
+    let line = this.get.line( el );
     this.editor.insertBefore( newLine, line.nextSibling );
     this.pos.el = appended[0];
     this.caret.setByChar( 0, this.pos.line + 1 );
@@ -1548,7 +1497,7 @@ class TabJF {
 
   mergeLine( dir ) {
     let line = this.get.line( this.pos.el );
-    if ( line.nodeName != "P") Log.ElementRulesViolationException("Parent has wrong tag, can't merge lines");
+    if ( line.nodeName != "P") throw new Error("Parent has wrong tag, can't merge lines");
     if ( dir < 0 ) {
       let previous = this.get.lineInDirection( line, dir );
       if ( !previous ) return; // do nothing
