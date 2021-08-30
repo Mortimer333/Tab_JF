@@ -75,6 +75,7 @@ class TabJF {
     this.assignEvents();
     this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
+    this.font.createLab();
   }
 
   /**
@@ -300,6 +301,10 @@ class TabJF {
             sLine : startLine,
             len : pos - startLine + 1
           };
+          tmp.focusAfter = this._save.set.focus();
+          for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
+            tmp.after[i] = this.get.lineByPos(i).cloneNode(true);
+          }
           save.tmp = [tmp];
           return;
         }
@@ -531,6 +536,33 @@ class TabJF {
     }
   }
 
+  font = {
+    lab : null,
+    createLab : () => {
+      this.font.lab = document.createElement("span");
+      this.editor.insertBefore(this.font.lab, this.editor.childNodes[0]);
+    },
+    calculateWidth : (letters) => {
+      this.font.lab.innerText = letters.replace('\n','');
+      const width = this.font.lab.offsetWidth;
+      this.font.lab.innerHTML = '';
+      return width;
+    },
+    getLetterByWidth : (x, el) => {
+      x -= el.offsetLeft;
+      const text = el.innerText;
+      const lineWidth = this.font.calculateWidth( text );
+      let procent = x/lineWidth;
+      return Math.round(text.length * procent);
+    },
+    recursiveGuessWidth : (x, text, offset, last = null) => {
+      const width = this.font.calculateWidth( text.slice(0, offset) );
+      if ( width < x ) {
+        return this.font.recursiveGuessWidth(x, text, offset + (offset * .25), width)
+      }
+    }
+  }
+
   start = {
     _name : 'start',
     select : () => {
@@ -604,7 +636,6 @@ class TabJF {
       let endLine     = rev ? this.selection.line   : this.pos.line;
 
       if (startAnchor == null  ||  endAnchor == null) return;
-
       if (endAnchor == startAnchor) {
         let child = endAnchor.childNodes[0];
         child.nodeValue = child.nodeValue.slice(0, startOffset) + child.nodeValue.slice(endOffset);
@@ -908,11 +939,20 @@ class TabJF {
       return this.get.line( el.parentElement );
     },
     lineByPos : ( pos ) => {
-      let linePos = -1;
-      for (var i = 0; i < this.editor.children.length; i++) {
-        let line = this.editor.children[i];
-        if (line.nodeName == "P") linePos++;
-        if (linePos == pos) return line;
+      if (pos >= 0) {
+        let linePos = -1;
+        for (var i = 0; i < this.editor.children.length; i++) {
+          let line = this.editor.children[i];
+          if (line.nodeName == "P") linePos++;
+          if (linePos == pos) return line;
+        }
+      } else {
+        let linePos = 0;
+        for (var i = this.editor.children.length - 1; i > -1 ; i--) {
+          let line = this.editor.children[i];
+          if (line.nodeName == "P") linePos++;
+          if (linePos == pos * -1) return line;
+        }
       }
       return false;
     },
@@ -960,20 +1000,23 @@ class TabJF {
       let caretTop  = ( this.pos.line + 1 ) * this.settings.line;
       let yPos = caretTop - this.editor.offsetHeight > 0 ? caretTop - this.editor.offsetHeight : 0;
 
-      if ( caretLeft > this.editor.offsetWidth - ( this.settings.letter * 6 ) ) this.editor.scrollTo( caretLeft + ( this.settings.letter * 6 ) - this.editor.offsetWidth, yPos );
+      if ( caretLeft > this.editor.offsetWidth - 20 ) this.editor.scrollTo( caretLeft + 20 - this.editor.offsetWidth, yPos );
       else this.editor.scrollTo( 0, yPos );
     },
     set : ( x, y ) => {
-      this.caret.el.style.top  = y + 'px' ;
       this.caret.el.style.left = x + 'px';
+      this.caret.el.style.top  = y + 'px' ;
     },
     setByChar : ( letter, line ) => {
-      let posX = this.pos.el.offsetLeft + ( letter * this.settings.letter );
+      let posX = this.font.calculateWidth( this.pos.el.innerText.slice(0, letter) );
       this.pos.letter = letter;
       this.pos.line   = line  ;
 
-      this.caret.el.style.top  = ( ( line * this.settings.line ) + this.settings.top  ) + 'px' ;
-      this.caret.el.style.left = ( this.caret.pos.toX( posX + this.settings.left ) ) + 'px';
+      this.caret.set(
+        posX + this.settings.left + this.pos.el.offsetLeft,
+        ( line * this.settings.line ) + this.settings.top
+      );
+
       this.caret.scrollTo();
     },
     getPos : () => {
@@ -981,10 +1024,6 @@ class TabJF {
         top  : this.caret.el.style.top .replace('px',''),
         left : this.caret.el.style.left.replace('px',''),
       }
-    },
-    move : ( dirX, dirY ) => {
-      let pos = this.caret.getPos();
-      this.caret.set( pos.left + ( this.settings.letter * dirX ), pos.top + ( this.settings.line * dirY ));
     },
     create : ( parent ) => {
       const caret = document.createElement("div");
@@ -1071,6 +1110,31 @@ class TabJF {
     },
     undo : () => this._save.restore(),
     redo : () => this._save.recall(),
+    selectAll : () => {
+      const firstLine = this.get.lineByPos(0);
+      const lastLine = this.get.lineByPos(-1);
+
+      this.set.side(firstLine.children[0], -1, 0);
+      this.start.select();
+      let lastLineSpan = lastLine.children[ lastLine.children.length - 1 ];
+      let lastLinePos = this.get.linePos(lastLine);
+      this.set.side(lastLineSpan, 1, lastLinePos);
+
+      // Here we assume that the line structure is correct which means
+      // each line have only span as children and span have only textNodes as children
+      let firstNode = firstLine.children[0].childNodes[0];
+      if (!firstNode) {
+        firstNode = document.createTextNode("");
+        firstLine.children[0].appendChild(firstNode);
+      }
+      let lastNode = lastLineSpan.childNodes[ lastLineSpan.childNodes.length - 1 ];
+      const range = new Range();
+      range.setStart(firstNode, 0);
+      range.setEnd  (lastNode, lastNode.nodeValue.length);
+
+      this.get.selection().removeAllRanges();
+      this.get.selection().addRange(range);
+    },
   }
 
   assignEvents() {
@@ -1113,18 +1177,24 @@ class TabJF {
 
   active( e ) {
     if ( e.target == this.editor  ||  e.layerX < 0  ||  e.layerY < 0 ) return;
+
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[el.children.length - 1];
+
     let left = e.layerX;
     if ( el.offsetWidth + el.offsetLeft < left ) {
       left = el.offsetWidth + el.offsetLeft;
     }
-    let x = this.caret.pos.toX( left + this.settings.left );
+
     let y = this.caret.pos.toY( el.parentElement.offsetTop + this.settings.top );
-    this.caret.set( x, y );
-    this.pos.letter = Math.round( ( left - el.offsetLeft   ) / this.settings.letter );
-    this.pos.line   = Math.ceil ( ( y -  this.settings.top ) / this.settings.line   );
-    this.pos.el     = el;
+    let line = Math.ceil ( ( y -  this.settings.top ) / this.settings.line   );
+    this.pos.el = el;
+
+    this.caret.setByChar(
+      this.font.getLetterByWidth(left, el),
+      line
+    );
+
     this.lastX      = this.get.realPos().x;
     this.caret.show();
     this.end.select();
@@ -1243,6 +1313,14 @@ class TabJF {
 
       45 : ( e, type ) => {
         // Insert
+      },
+      65 : ( e, type ) => { // a
+        if (this.pressed.ctrl) {
+          e.preventDefault();
+          this.action.selectAll();
+        } else {
+          this.insert( e.key );
+        }
       },
       67 : ( e, type ) => { // c
         if (this.pressed.ctrl) {
@@ -1400,7 +1478,7 @@ class TabJF {
     move : ( dirX, dirY, recuresionCheck = false ) => {
 
       if ( this.selection.active && !this.pressed.shift ) {
-             if ( this.selection.reverse && !this.selection.expanded && dirX < 0 ) dirX = 0;
+        if ( this.selection.reverse && !this.selection.expanded && dirX < 0 ) dirX = 0;
         else if ( dirX > 0 ) dirX = 0;
       }
 
@@ -1420,7 +1498,7 @@ class TabJF {
 
     },
     moveX : ( dirY, dirX ) => {
-      const el = this.pos.el, prev = el.previousSibling;
+      let el = this.pos.el, prev = el.previousSibling;
       if ( this.pos.letter + dirX <= -1 ) {
         if ( prev && prev.nodeType == 1 ) {
           this.pos.el = prev;
@@ -1429,7 +1507,7 @@ class TabJF {
           let previousLine = this.get.lineInDirection( el.parentElement, -1 );
           if ( !previousLine ) return;
           this.pos.el = previousLine.children[ previousLine.children.length - 1 ];
-          this.caret.setByChar( el.innerText.length, this.pos.line - 1 );
+          this.caret.setByChar( this.pos.el.innerText.length, this.pos.line - 1 );
           this.lastX = this.get.realPos().x;
           return;
         }
@@ -1606,7 +1684,6 @@ class TabJF {
   }
 
   catchClipboard(e) {
-    console.log("paste");
     // If user used internal method action.copy to copy conctent of this editor
     // don't transform the clipboard
     if (this.copiedHere) {
