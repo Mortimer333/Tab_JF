@@ -5,7 +5,7 @@ Single Page Text Editor
 
 Simple editor which doesn't use `contenteditable`. Works with every font, all normal actions are supported (version control, special actions (ctrl + c, ctrl + v, ctrl + a etc.)).
 
-In time editor is gonna be upgraded but the idea is to have normal editor which doesn't depend on any deprecated API. Noting fancy but could be forked &#128540; to be fancier.
+In time editor will be be upgraded but the idea is to have normal editor which doesn't depend on any deprecated API. Noting fancy but could be forked &#128540; to be fancier.
 
 # How to use
 
