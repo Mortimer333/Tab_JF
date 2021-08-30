@@ -40,7 +40,6 @@ class TabJF {
     this.editor.setAttribute('tabindex', '-1');
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
-    set.letter    = ( set.letter  ||  8.8 ); //9.6333 );
     set.line      = ( set.line    ||  20  );
     this.settings = set;
 
@@ -149,7 +148,12 @@ class TabJF {
 
       const step = save.tmp.length;
       save.methodsStack.push(target.name); // Here we build methods stack so we can check what method called what
-      const startLine = this.main.pos.line;
+      let startLine = this.main.pos.line;
+      const sel = this.main.get.selection();
+      if (sel.type.toLowerCase() == 'range') {
+        const startNode = this.main.selection.reverse ? sel.focusNode : sel.anchorNode;
+        startLine = this.main.get.linePos(this.main.get.line(startNode));
+      }
 
       save.set.add(target.name, args);
 
