@@ -973,7 +973,11 @@ class TabJF {
     _name : 'remove',
     docEvents : () => {
       if (!this.docEventsSet) return;
+      document.removeEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
+      document.removeEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
+      document.removeEventListener('keyup'  , this.key.bind            ? this.key           .bind(this) : this.key           , true);
       this.docEventsSet = false;
+      this.caret.hide();
     },
     selected : () => {
       let start = this.get.clone(this.selection.start);
@@ -1620,7 +1624,6 @@ class TabJF {
     this.editor.addEventListener("mousedown", this.active.bind      ? this.active    .bind(this) : this.active    );
     this.editor.addEventListener("mouseup"  , this.stopSelect.bind  ? this.stopSelect.bind(this) : this.stopSelect);
     this.editor.addEventListener("focusout" , this.deactive.bind    ? this.deactive  .bind(this) : this.deactive  );
-    this.set.docEvents();
   }
 
   updateSelect( e ) {
@@ -1762,6 +1765,7 @@ class TabJF {
     );
     this.activated = true;
     this.resetPressed();
+    this.set.docEvents();
   }
 
   resetPressed() {
@@ -1771,6 +1775,7 @@ class TabJF {
   }
 
   deactive( e ) {
+    console.log("deactivate");
     this.remove.docEvents();
     this.copiedHere = false;
     this.activated  = false;
