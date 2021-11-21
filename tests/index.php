@@ -83,14 +83,12 @@
       <p><span>59. eeeeeeeeeee</span></p>
       <p><span>60. eeeeeeeeeee</span></p>
     </div>
-    <?php
-      $v = filemtime(dirname(__DIR__) . '/main.js');
-    ?>
     <script src="<?= cacheBurst('./../main.js'); ?>" charset="utf-8"></script>
     <script src="<?= cacheBurst('./base.js'); ?>" charset="utf-8"></script>
     <script src="<?= cacheBurst('./integration.js'); ?>" charset="utf-8"></script>
     <script src="<?= cacheBurst('./unit.js'); ?>" charset="utf-8"></script>
     <script type="text/javascript">
+      const editor = document.getElementById('editor');
       const tabEditor = new TabJF(editor, { left : 35 }, true);
       const tIntg = new Integration(tabEditor);
       const tUnit = new Unit(tabEditor);

@@ -3,13 +3,13 @@
   margin: 0;
 }
 
-@keyframes blink {
+@keyframes tabjf_blink {
   0%   { opacity: 1; }
   50%  { opacity: 0; }
   100% { opacity: 1; }
 }
 
-.editor-con {
+.tabjf_editor-con {
   --editor-bg : #3e3e3e;
   background-color : var(--editor-bg);
   max-height: calc( var(--max-height, 200) * 1px);
@@ -17,15 +17,15 @@
   margin-top: 50px;
 }
 
-#editor .caret {
+.tabjf_editor .caret {
   width     : 1px ;
   height    : 20px;
   position  : absolute   ;
   background-color : #FFF;
-  animation : blink 1s linear infinite;
+  animation : tabjf_blink 1s linear infinite;
 }
 
-#editor {
+.tabjf_editor {
   color       : #FFF;
   position    : relative;
   width       : calc(100% - 45px);
@@ -40,7 +40,7 @@
   min-width   : calc(100% - 35px - 10px);
 }
 
-#editor p {
+.tabjf_editor p {
   --color-grey : #bdc3c7 ;
   position     : relative;
   min-height   : 20px    ;
@@ -48,7 +48,7 @@
   display      : flex    ;
 }
 
-#editor p::before {
+.tabjf_editor p::before {
   position   : absolute;
   left       : -35px   ;
   top        : 0       ;
@@ -60,18 +60,18 @@
   counter-increment : editor-line   ;
 }
 
-#editor p::after {
+.tabjf_editor p::after {
   display : block;
   content : '█'  ;
   color   : var(--editor-bg);
 }
 
-#editor p span {
+.tabjf_editor p span {
   display: block;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-#editor p span:last-child {
+.tabjf_editor p span:last-child {
   margin-right: 10px;
 }

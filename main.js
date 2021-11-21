@@ -50,6 +50,7 @@ class TabJF {
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
     this.editor.setAttribute('tabindex', '-1');
+    this.editor.classList.add('tabjf_editor');
     set.left      = ( set.left    ||  0   );
     set.top       = ( set.top     ||  0   );
     set.line      = ( set.line    ||  20  );
@@ -208,7 +209,7 @@ class TabJF {
       this.render.linesLimit = Math.ceil(this.settings.height / this.settings.line) + 2;
       const overflow = document.createElement("div");
       overflow.addEventListener('scroll', this.render.fill.event, true);
-      overflow.className = "editor-con";
+      overflow.className = "tabjf_editor-con";
       overflow   .style.setProperty("--max-height", this.settings.height);
       this.render.update.minHeight();
       this.render.update.scrollWidth();
