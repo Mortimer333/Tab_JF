@@ -55,6 +55,7 @@ class TabJF {
     set.top       = ( set.top     ||  0   );
     set.line      = ( set.line    ||  20  );
     set.height    = ( set.height  ||  400 );
+    set.addCss    = ( set.addCss  ||  true );
     this.settings = set;
 
     this._save.debounce = this._hidden.debounce( this._save.publish, 500 );
@@ -90,6 +91,64 @@ class TabJF {
     this.caret.hide();
     this.font.createLab();
     this.render.init();
+
+    if (set.addCss) {
+      this.addRules();
+    }
+  }
+
+  addRules () {
+    const css = window.document.styleSheets[0];
+    const rules = [
+      `.tabjf_editor-con {
+        max-height: calc( var(--max-height, 200) * 1px);
+        overflow: auto;
+      }`,
+      `.tabjf_editor {
+        position    : relative;
+        min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
+        padding-top : calc( var(--paddingTop, 0) * 1px );
+        width       : calc(var(--scroll-width, 100%) * 1px + 5px );
+      }`,
+      `.tabjf_editor p {
+        position     : relative;
+        min-height   : 20px    ;
+        max-height   : 20px    ;
+        height       : 20px    ;
+        cursor       : text    ;
+        display      : flex    ;
+        margin : 0;
+        padding:0;
+      }`,
+      `.tabjf_editor p::after {
+        display : block;
+        content : '█'  ;
+        opacity : 0;
+      }`,
+      `.tabjf_editor p span {
+        display: block;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }`,
+      `@keyframes tabjf_blink {
+        0%   { opacity: 1; }
+        50%  { opacity: 0; }
+        100% { opacity: 1; }
+      }`,
+      `.tabjf_editor .caret {
+        width     : 1px ;
+        height    : 20px;
+        position  : absolute   ;
+        background-color : #000;
+        animation : tabjf_blink 1s linear infinite;
+      }`
+    ];
+    rules.forEach( rule => {
+      css.insertRule(
+        rule,
+        css.cssRules.length
+      );
+    });
   }
 
   /**
@@ -1392,7 +1451,7 @@ class TabJF {
     },
     create : ( parent ) => {
       const caret = document.createElement("div");
-      caret.setAttribute('class', 'caret');
+      caret.className = 'caret';
       parent.insertBefore( caret, parent.children[0] );
       return caret;
     },

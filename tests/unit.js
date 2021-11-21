@@ -94,16 +94,22 @@ class Unit extends Test {
     font : {
       calculateWidth : () => {
         const letters = "test";
+        const span = document.createElement("span");
+        span.innerHTML = letters;
+        document.body.appendChild(span);
+        const realWidth = span.offsetWidth;
+        span.remove();
         const width = this.instance.font.calculateWidth(letters);
         this.error(
-          width != 35,
+          width != realWidth,
           '[FONT:CALCULATEWIDTH] Failed',
           [letters, width]
         );
       },
       getLetterByWidth : () => {
         const letters = "test";
-        const x = 20;
+        const width = this.instance.font.calculateWidth(letters);
+        const x = (width/2) - 1;
         const el = document.createElement("span");
         el.appendChild(document.createTextNode(letters));
         const letter = this.instance.font.getLetterByWidth(x, el);
