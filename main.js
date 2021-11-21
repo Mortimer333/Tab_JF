@@ -6,7 +6,6 @@ class TabJF {
   copiedHere   = false;
   activated    = false;
 
-  // ### Stack commented, uncomment for debugging
   stack = {
     open      : true,
     building  : [], // currently building trace
@@ -101,34 +100,34 @@ class TabJF {
     const css = window.document.styleSheets[0];
     const rules = [
       `.tabjf_editor-con {
-        max-height: calc( var(--max-height, 200) * 1px);
-        overflow: auto;
+        max-height : calc( var(--max-height, 200) * 1px);
+        overflow   : auto;
       }`,
       `.tabjf_editor {
         position    : relative;
         min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
-        padding-top : calc( var(--paddingTop, 0) * 1px );
-        width       : calc(var(--scroll-width, 100%) * 1px + 5px );
+        padding-top : calc( var(--paddingTop, 0) * 1px )                        ;
+        width       : calc(var(--scroll-width, 100%) * 1px + 5px )              ;
       }`,
       `.tabjf_editor p {
-        position     : relative;
-        min-height   : 20px    ;
-        max-height   : 20px    ;
-        height       : 20px    ;
-        cursor       : text    ;
-        display      : flex    ;
-        margin : 0;
-        padding:0;
+        position   : relative;
+        min-height : 20px    ;
+        max-height : 20px    ;
+        height     : 20px    ;
+        cursor     : text    ;
+        display    : flex    ;
+        margin     : 0       ;
+        padding    : 0       ;
       }`,
       `.tabjf_editor p::after {
         display : block;
         content : '█'  ;
-        opacity : 0;
+        opacity : 0    ;
       }`,
       `.tabjf_editor p span {
-        display: block;
-        white-space: nowrap;
-        flex-shrink: 0;
+        display     : block ;
+        white-space : nowrap;
+        flex-shrink : 0     ;
       }`,
       `@keyframes tabjf_blink {
         0%   { opacity: 1; }
@@ -139,8 +138,8 @@ class TabJF {
         width     : 1px ;
         height    : 20px;
         position  : absolute   ;
-        background-color : #000;
         animation : tabjf_blink 1s linear infinite;
+        background-color : #000;
       }`
     ];
     rules.forEach( rule => {
@@ -198,10 +197,10 @@ class TabJF {
       // If oldMaster is set to true it means to master caller finished
       // its cycle and we can move stack to trace and do clearing operations
       if ( oldMaster ) {
-        if (stack.trace.length == 100) stack.trace.shift();
-        stack.trace.push(stack.building);
+        if ( stack.trace.length == 100 ) stack.trace.shift();
+        stack.trace.push( stack.building );
         stack.building = [];
-        stack.open = true;
+        stack.open     = true;
       }
 
       return results;
@@ -219,32 +218,31 @@ class TabJF {
       save.debounce();
 
       const oldInProggress = save.inProgress;
-      save.inProgress = true;
-
-      const step = save.tmp.length;
+      save.inProgress      = true;
+      const step           = save.tmp.length;
 
       // Here we build methods stack so we can check what method called what
       save.methodsStack.push(target.name);
 
       let startLine = main.pos.line;
-      const sel = main.get.selection();
-      if (sel.type.toLowerCase() == 'range') {
+      const sel     = main.get.selection();
+      if ( sel.type.toLowerCase() == 'range' ) {
         startLine = main.selection.start.line;
-        if (main.selection.start.line > main.selection.end.line) {
+        if ( main.selection.start.line > main.selection.end.line ) {
           startLine = main.selection.end.line;
         }
       }
 
-      save.set.add(target.name, args);
+      save.set.add( target.name, args );
 
-      const results = target.bind(main)(...args);
+      const results = target.bind( main )( ...args );
 
-      save.set.remove(target.name, args, step, startLine);
+      save.set.remove( target.name, args, step, startLine );
 
       // only move to pending if master function have finshed
-      if (!oldInProggress) {
+      if ( !oldInProggress ) {
         save.methodsStack = [];
-        save.inProgress = false;
+        save.inProgress   = false;
         save.moveToPending();
       }
 
@@ -253,19 +251,19 @@ class TabJF {
   }
 
   render = {
-    hidden : 0, // how many lines was hidden
-    content : null,
-    linesLimit : 80,
-    maxLineWidth : 0,
-    overflow : null,
-    focusLost : false, // if we have scrolled past caret
+    hidden       : 0    , // how many lines was hidden
+    content      : null ,
+    linesLimit   : 80   , // shown lines
+    maxLineWidth : 0    ,
+    overflow     : null ,
+    focusLost    : false, // if we have scrolled past caret
     removeScroll : () => {
       this.render.overflow.removeEventListener('scroll', this.render.fill.event, true);
     },
-    init : (importObj = false) => {
+    init : ( importObj = false ) => {
       if ( importObj ) this.render.content = importObj;
       else             this.render.content = this.truck.export(); // If we don't have saved state, save current state
-      this.render.linesLimit = Math.ceil(this.settings.height / this.settings.line) + 2;
+      this.render.linesLimit = Math.ceil( this.settings.height / this.settings.line ) + 2;
       const overflow = document.createElement("div");
       overflow.addEventListener('scroll', this.render.fill.event, true);
       overflow.className = "tabjf_editor-con";
@@ -273,19 +271,19 @@ class TabJF {
       this.render.update.minHeight();
       this.render.update.scrollWidth();
       this.editor.parentElement.insertBefore(overflow, this.editor);
-      overflow.appendChild(this.editor);
+      overflow.appendChild( this.editor );
       this.render.overflow = overflow;
-      this.truck.import(this.render.content, this.render.linesLimit);
+      this.truck.import( this.render.content, this.render.linesLimit );
     },
     fill : {
       event : ( e = null ) => {
         const selection = this.get.selection();
-        let top         = this.render.overflow.scrollTop; // how much was scrolled
+        let top         = this.render.overflow.scrollTop;       // how much was scrolled
         let startLine   = Math.floor(top / this.settings.line); // amount of line hidden - from which index get lines
 
         // Remove all rendered lines
         for (let i = 0; i < this.render.linesLimit; i++) {
-          let line = this.get.lineByPos(this.render.hidden);
+          let line = this.get.lineByPos( this.render.hidden );
           if (!line) {
             break;
           }
@@ -298,46 +296,46 @@ class TabJF {
       },
     },
     move : {
-      page : (offset = this.render.hidden, clear = true, reverse = false) => {
-        this.truck.import(this.render.content, this.render.linesLimit, offset, clear, reverse);
+      page : ( offset = this.render.hidden, clear = true, reverse = false ) => {
+        this.truck.import( this.render.content, this.render.linesLimit, offset, clear, reverse );
         this.render.hidden = offset;
-        this.editor.style.setProperty('--paddingTop', this.render.hidden * this.settings.line);
-        this.editor.style.setProperty('--counter-current', this.render.hidden);
+        this.editor.style.setProperty('--paddingTop', this.render.hidden * this.settings.line );
+        this.editor.style.setProperty('--counter-current', this.render.hidden );
         this.caret.refocus();
       },
-      overflow : (x, y) => {
+      overflow : ( x, y ) => {
         let top  = this.render.overflow.scrollTop;
         let left = this.render.overflow.scrollLeft;
-        this.render.overflow.scrollTo(left + x, top + y);
+        this.render.overflow.scrollTo( left + x, top + y );
       }
     },
     add : {
-      line : (line, pos) => {
-        this.render.content.splice( pos, 0, this.truck.exportLine(line) );
-        this.render.fill.event();
+      line : ( line, pos ) => {
+        this.render.content.splice( pos, 0, this.truck.exportLine( line ) );
+        this.render.fill  .event    ();
         this.render.update.minHeight();
       },
     },
     remove : {
-      line : (pos) => {
+      line : ( pos ) => {
         this.render.content.splice( pos, 1 );
-        this.render.fill.event();
+        this.render.fill  .event    ();
         this.render.update.minHeight();
       }
     },
     set : {
-      overflow : (x = null, y = null) => {
-        if (x === null) {
+      overflow : ( x = null, y = null ) => {
+        if ( x === null ) {
           x = this.render.overflow.scrollLeft;
         }
-        if (y === null) {
+        if ( y === null ) {
           y = this.render.overflow.scrollTop;
         }
-        this.render.overflow.scrollTo(x, y);
+        this.render.overflow.scrollTo( x, y );
       }
     },
     update : {
-      minHeight : (lines = this.render.content.length) => {
+      minHeight : ( lines = this.render.content.length ) => {
         lines = lines < this.render.linesLimit ? this.render.linesLimit : lines;
         this.editor.style.setProperty("--min-height", this.settings.line * lines);
       },
@@ -345,16 +343,14 @@ class TabJF {
         this.render.maxLineWidth = 0;
         this.render.content.forEach( line => {
           let text = '';
-          line.content.forEach(item => {
+          line.content.forEach( item => {
             text += item.content;
           });
 
-          const width = this.font.calculateWidth(text);
-          if (this.render.maxLineWidth < width) {
-            this.render.maxLineWidth = width;
-          }
+          const width = this.font.calculateWidth( text );
+          if ( this.render.maxLineWidth < width ) this.render.maxLineWidth = width;
         });
-        this.editor.style.setProperty("--scroll-width", this.render.maxLineWidth + this.settings.left);
+        this.editor.style.setProperty("--scroll-width", this.render.maxLineWidth + this.settings.left );
       }
     }
   }
@@ -362,25 +358,24 @@ class TabJF {
   truck = {
     export : ( html = null ) => {
       const exportAr = [];
-      if (!html) {
-        html = this.editor.children;
-      }
-      Object.values(html).forEach( function(p) {
-        let line = this.truck.exportLine(p);
-        if (line) {
-          exportAr.push(line);
+      if ( !html ) html = this.editor.children;
+
+      Object.values( html ).forEach( function( p ) {
+        let line = this.truck.exportLine( p );
+        if ( line ) {
+          exportAr.push( line );
         }
       }, this);
       return exportAr;
     },
     exportLine : ( p ) => {
-      if ( p.nodeName !== "P") return false;
+      if ( p.nodeName !== "P" ) return false;
 
       const lineContent = [];
-      Object.values(p.children).forEach( span => {
+      Object.values( p.children ).forEach( span => {
         lineContent.push({
-          attrs   : this.getAttributes(span),
-          content : this.replace.spaces(span.innerText),
+          attrs   : this.getAttributes ( span           ),
+          content : this.replace.spaces( span.innerText ),
         });
       });
       return {
@@ -395,7 +390,7 @@ class TabJF {
           content : [
             {
               attrs : [],
-              content : this.replace.spaces(text)
+              content : this.replace.spaces( text ),
             }
           ]
         });
@@ -412,33 +407,26 @@ class TabJF {
       replaceContent = true
     ) => {
       if ( clear && !container ) this.clear.editor();
-      if ( !container ) {
-        container = this.editor;
-      }
+      if ( !container          ) container = this.editor;
+
       let firstLine;
       for (let i = offset; i < importAr.length; i++) {
-        if (limit && i === limit + offset) break; // If we wanna import only part of the saved state
+        if ( limit && i === limit + offset ) break; // If we wanna import only part of the saved state
 
-        const line = importAr[i];
+        const line     = importAr[i];
         const lineNode = document.createElement("p");
         line.content.forEach( span => {
-          span.content = this.replace.spaces(span.content);
-          const spanNode = this.setAttributes( span.attrs, span.content );
-          if (spanNode.childNodes.length == 0) {
-            spanNode.appendChild(document.createTextNode(''));
-          }
+          span.content   = this.replace.spaces( span.content             );
+          const spanNode = this.setAttributes ( span.attrs, span.content );
+          if ( spanNode.childNodes.length == 0 ) spanNode.appendChild(document.createTextNode(''));
           lineNode.appendChild(spanNode);
         });
-        if (reverse) {
-          if (!firstLine) firstLine = this.get.lineByPos(0);
-          container.insertBefore(lineNode, firstLine);
-        } else {
-          container.appendChild(lineNode);
-        }
+        if ( reverse ) {
+          if ( !firstLine ) firstLine = this.get.lineByPos(0);
+          container.insertBefore( lineNode, firstLine );
+        } else container.appendChild( lineNode );
       }
-      if (replaceContent) {
-        this.render.content = importAr;
-      }
+      if ( replaceContent ) this.render.content = importAr;
     }
   }
 
@@ -461,14 +449,14 @@ class TabJF {
 
   update = {
     selection : {
-      start : (letter = this.pos.letter, line = this.pos.line, index = this.pos.childIndex) => {
-        const start = this.selection.start;
+      start : ( letter = this.pos.letter, line = this.pos.line, index = this.pos.childIndex ) => {
+        const start  = this.selection.start;
         start.letter = letter;
         start.line   = line;
         start.node   = index;
       },
-      end : (letter = this.pos.letter, line = this.pos.line, index = this.pos.childIndex) => {
-        const end = this.selection.end;
+      end : ( letter = this.pos.letter, line = this.pos.line, index = this.pos.childIndex ) => {
+        const end  = this.selection.end;
         end.letter = letter;
         end.line   = line;
         end.node   = index;
@@ -493,9 +481,9 @@ class TabJF {
    * and holds all related functionality to VC
    */
   _save = {
-    _name : 'save',
-    debounce : undefined,   // Here we store debounce function
-    version : 0,            // Version counter
+    _name      : 'save',
+    debounce   : undefined,   // Here we store debounce function
+    version    : 0,           // Version counter
     tmpDefault : {
       fun_name : false,
       remove : {
@@ -517,17 +505,17 @@ class TabJF {
         childIndex : -1,
       },
     },
-    tmp : [],            // Here we store steps which we are working on, later merged with pending as means to not overwrite them
-    pending : [],        // Here we store set of steps called version which gets updated until debounce stops and move them to versions
-    versions : [],       // Here we store versions
-    methodsStack : [],   // Save current methods stuck
-    inProgress : false,  // Tells us if maste function has ended and we can do cleanup operations
+    tmp          : [],     // Here we store steps which we are working on, later merged with pending as means to not overwrite them
+    pending      : [],     // Here we store set of steps called version which gets updated until debounce stops and move them to versions
+    versions     : [],     // Here we store versions
+    methodsStack : [],     // Save current methods stuck
+    inProgress   : false,  // Tells us if maste function has ended and we can do cleanup operations
 
     /**
      * Merges tmp with pending and resets it
      */
     moveToPending : () => {
-      this._save.pending = this._save.pending.concat(this._save.tmp);
+      this._save.pending = this._save.pending.concat( this._save.tmp );
       this._save.resetTmp();
     },
 
@@ -554,47 +542,45 @@ class TabJF {
       add : ( name, args ) => {
         // Modifiers tells us if we need to get one more line and from which direction
         let modifiers = 0;
-        if (name == "mergeLine") {
-          modifiers = args[0];
-        }
+        if ( name == "mergeLine") modifiers = args[0];
 
         // Create new tmp object from default
-        const tmp = this.get.clone(this._save.tmpDefault);
+        const tmp = this.get.clone( this._save.tmpDefault );
 
         // Get selection and check if something is selected
         const sel = this.get.selection();
-        if (sel.type.toLowerCase() == 'range') {
+        if ( sel.type.toLowerCase() == 'range') {
           // If so figure out which line is first and save selected lines
           const start = this.selection.start;
-          const end   = this.selection.end;
+          const end   = this.selection.end  ;
 
           const startLinePos = start.line > end.line ? end.line   : start.line;
           const endLinePos   = start.line > end.line ? start.line : end.line  ;
 
           for (let i = startLinePos; i <= endLinePos; i++) {
-            tmp.add[i] = this.get.clone(this.render.content[i]);
+            tmp.add[i] = this.get.clone( this.render.content[i] );
           }
         }
 
         // Save function name, just for clarification when debugging
-        tmp.fun_name = name;
+        tmp.fun_name  = name;
 
         // Save where caret is focused
-        tmp.focus = this._save.set.focus();
+        tmp.focus     = this._save.set.focus();
         const linePos = this.pos.line;
-        const line    = this.get.lineByPos(linePos);
+        const line    = this.get.lineByPos( linePos );
 
         // Get and save current line if we haven't already saved her
-        if ( !tmp.add[linePos] ) tmp.add[linePos] = this.truck.exportLine(line);
+        if ( !tmp.add[ linePos ] ) tmp.add[ linePos ] = this.truck.exportLine( line );
 
         // Save line from modificators if we haven't already saved her
-        if ( modifiers != 0 && !tmp.add[linePos + modifiers] ) {
-          let nexLine = this.get.lineInDirection(line, modifiers);
-          if (nexLine) tmp.add[linePos + modifiers] = this.render.content[linePos + modifiers];
+        if ( modifiers != 0 && !tmp.add[ linePos + modifiers ] ) {
+          let nexLine = this.get.lineInDirection( line, modifiers );
+          if ( nexLine ) tmp.add[ linePos + modifiers ] = this.render.content[ linePos + modifiers ];
         }
 
         // Push created step to tmp
-        this._save.tmp.push(tmp);
+        this._save.tmp.push( tmp );
       },
 
       /**
@@ -610,46 +596,51 @@ class TabJF {
         const pos  = this.pos.line;
         // Remove not needed steps
         if (
-          (name == "one" || name == "word") && save.methodsStack[ save.methodsStack.length - 1 ] == "mergeLine" || // If the newest is mergeLine
-          name == "mergeLine" && save.methodsStack[ save.methodsStack.length - 2 ] == "selected"     // If previous is selected
+          (
+            ( name == "one" || name == "word" )
+            && save.methodsStack[ save.methodsStack.length - 1 ] == "mergeLine"
+          )
+          || // If the newest is mergeLine
+          (
+            name == "mergeLine"
+            && save.methodsStack[ save.methodsStack.length - 2 ] == "selected"
+          ) // If previous is selected
         ) {
-          save.tmp.splice(step, 1);
+          save.tmp.splice( step, 1 );
           return;
         }
 
         // Paste if pretty special as it uses a lot of existing functionality like newLine
         // which makes this solution get wierd out. So we have one whole exception for this method
         if ( name == "paste" ) {
-          let tmp = save.tmp[step]
+          let tmp = save.tmp[ step ]
           tmp.remove = {
             sLine : startLine,
-            len : pos - startLine + 1
+            len   : pos - startLine + 1,
           };
           tmp.focusAfter = this._save.set.focus();
 
           for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
             tmp.after[i] = this.render.content[i];
           }
-          save.tmp = [tmp];
+          save.tmp = [ tmp ];
           return;
         }
 
         // Get step from current tmp
-        let tmp = save.tmp[step];
+        let tmp = save.tmp[ step ];
 
         // If step is not present in tmp it might have been pushed to
         // pending due to some clearing, try to get it from there
-        if (!tmp) {
-          tmp = save.pending[ step ];
-        }
+        if ( !tmp ) tmp = save.pending[ step ];
 
         // Set name
         tmp.fun_name = name;
 
         // Check if anything will be added
         // if not just skip this as this never happens
-        const lines = Object.keys(tmp.add);
-        if (lines.length == 0) return;
+        const lines = Object.keys( tmp.add );
+        if ( lines.length == 0 ) return;
 
         // @TODO: Take closer look at this \/ and improve
 
@@ -660,10 +651,10 @@ class TabJF {
         let min = Math.max(...lines);
 
         // Here we decide if out current position is the lowest or highest
-        if (minOrMax < min) {
+        if ( minOrMax < min ) {
           min = minOrMax;
           max = pos;
-        } else if (minOrMax > max) {
+        } else if ( minOrMax > max ) {
           max = minOrMax;
           min = pos;
         } else {
@@ -682,7 +673,7 @@ class TabJF {
         }
 
         // Add new/changed line so we can recall them later on undo
-        for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
+        for ( let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++ ) {
           tmp.after[i] = this.render.content[i];
         }
 
@@ -730,10 +721,10 @@ class TabJF {
       for (let i = 1; i < pending.length; i++) {
         const step     = pending[i];      // Step Two
         const previous = pending[i - 1];  // Step One
-        if ( this._save.checkStepsCompatibility(step, previous) ) {
+        if ( this._save.checkStepsCompatibility( step, previous ) ) {
           previous.after      = step.after;
           previous.focusAfter = step.focusAfter;
-          pending.splice(i, 1);
+          pending.splice( i, 1 );
           i--;
         }
       }
@@ -741,11 +732,11 @@ class TabJF {
 
     /**
      * Check if two steps where created by the same fuction, have the same lines to remove and to add
-     * @param {object} stepOne Step to compare
-     * @param {object} stepTwo Step to compare
+     * @param  {object} stepOne Step to compare
+     * @param  {object} stepTwo Step to compare
      * @return {boolean}         If the steps are identical except the lines content
      */
-    checkStepsCompatibility : (stepOne, stepTwo) => {
+    checkStepsCompatibility : ( stepOne, stepTwo ) => {
       return stepOne.fun_name == stepTwo.fun_name && stepOne.fun_name != 'mergeLine' &&
         Object.values(stepOne.remove).toString() == Object.values(stepTwo.remove).toString() &&
         Object.keys  (stepOne.add   ).toString() == Object.keys  (stepTwo.add   ).toString();
@@ -774,12 +765,12 @@ class TabJF {
       if (save.versions.length == save.version) return;
 
       // Get previous version
-      let version = save.versions[save.version];
+      let version = save.versions[ save.version ];
       // Reverse steps and go through each of them and restore editor content
       // starting from removing new lines and replacing them with older one
       version.forEach(step => {
-        save.content.remove(step.remove);
-        save.content.add   (step.add   );
+        save.content.remove( step.remove );
+        save.content.add   ( step.add    );
       });
       // this._save.slowVersion(version);
 
@@ -788,20 +779,23 @@ class TabJF {
       this.caret.refocus(
         focus.letter,
         focus.line,
-        focus.childIndex
+        focus.childIndex,
       );
 
-      if (!this.is.line.visible(focus.line)) {
-        this.render.move.page(focus.line - Math.floor(this.render.linesLimit/2));
+      if ( !this.is.line.visible( focus.line ) ) {
+        this.render.move.page( focus.line - Math.floor( this.render.linesLimit/2 ) );
       } else {
         this.render.move.page();
       }
 
-      this.render.overflow.scrollTo(this.render.overflow.scrollLeft, this.render.hidden * this.settings.line);
+      this.render.overflow.scrollTo(
+        this.render.overflow.scrollLeft,
+        this.render.hidden * this.settings.line
+      );
       save.version++;
     },
 
-    slowVersion : (version, i = 0) => {
+    slowVersion : ( version, i = 0 ) => {
       setTimeout(function() {
         let step = version[i];
         console.log("Step", i + 1, step.fun_name, "Remove", step.remove);
@@ -827,8 +821,8 @@ class TabJF {
      * Refocuses the caret using focus object
      * @param {object} focus Focus object { line, childIndex, letter }
      */
-    refocus : (focus) => {
-      let line = this.get.lineByPos(focus?.line);
+    refocus : ( focus ) => {
+      let line = this.get.lineByPos( focus?.line );
 
       if ( line ) {
         this.set.pos( line.childNodes[ focus.childIndex ], focus.letter, focus.line );
@@ -842,32 +836,32 @@ class TabJF {
      */
     recall : () => {
       const save = this._save;
-      if (save.version <= 0) {
-        return;
-      }
+      if ( save.version <= 0 ) return;
 
       save.version--;
-      const version = save.versions[save.version];
-      version.reverse().forEach(step => {
-        const keys = Object.keys(step.add)
-        const min = Math.min(...keys);
+      const version = save.versions[ save.version ];
+      version.reverse().forEach( step => {
+        const keys = Object.keys( step.add )
+        const min  = Math.min(...keys);
 
         save.content.remove({
           sLine : min,
-          len : Math.max(...keys) - min + 1
+          len   : Math.max(...keys) - min + 1,
         });
 
-        save.content.add(step.after);
+        save.content.add( step.after );
       });
       version.reverse();
       const focus = version[0].focusAfter;
 
-      if (!this.is.line.visible(focus.line)) {
-        this.render.move.page(focus.line - Math.floor(this.render.linesLimit/2));
-      } else {
+      if ( !this.is.line.visible( focus.line ) )
+        this.render.move.page( focus.line - Math.floor( this.render.linesLimit/2 ) );
+      else
         this.render.move.page();
-      }
-      this.render.overflow.scrollTo(this.render.overflow.scrollLeft, this.render.hidden * this.settings.line);
+      this.render.overflow.scrollTo(
+        this.render.overflow.scrollLeft,
+        this.render.hidden * this.settings.line,
+      );
       this.caret.refocus(
         focus.letter,
         focus.line,
@@ -880,18 +874,18 @@ class TabJF {
        * Remove lines using step instructions
        * @param {object} step Step
        */
-      remove : (remove) => {
-        this.render.content.splice(remove.sLine, remove.len);
+      remove : ( remove ) => {
+        this.render.content.splice( remove.sLine, remove.len );
       },
 
       /**
        * Adds line using step instructions
        * @param {object} step Step
        */
-      add : (add) => {
-        const positions = Object.keys(add);
-        positions.forEach(linePos => {
-          this.render.content.splice(linePos, 0, add[linePos]);
+      add : ( add ) => {
+        const positions = Object.keys( add );
+        positions.forEach( linePos => {
+          this.render.content.splice( linePos, 0, add[ linePos ] );
         });
       },
     }
@@ -901,36 +895,36 @@ class TabJF {
     lab : null,
     createLab : () => {
       this.font.lab = document.createElement("span");
-      this.editor.insertBefore(this.font.lab, this.editor.childNodes[0]);
+      this.editor.insertBefore( this.font.lab, this.editor.childNodes[0] );
     },
-    calculateWidth : (letters) => {
+    calculateWidth : ( letters ) => {
       this.font.lab.innerHTML = letters.replaceAll('\n','');
-      const width = this.font.lab.offsetWidth;
+      const width             = this.font.lab.offsetWidth;
       this.font.lab.innerHTML = '';
       return width;
     },
-    getLetterByWidth : (x, el) => {
-      x -= el.offsetLeft;
-      const text = el.innerText;
+    getLetterByWidth : ( x, el ) => {
+      x              -= el.offsetLeft;
+      const text      = el.innerText;
       const lineWidth = this.font.calculateWidth( text + '' );
-      let procent = 0;
+      let procent     = 0;
       if (lineWidth != 0) {
         procent = x/lineWidth;
       }
-      return Math.round(text.length * procent);
+      return Math.round( text.length * procent );
     }
   }
 
   expand = {
     _name : 'expand',
-    select : (stop = false) => {
+    select : ( stop = false ) => {
       this.selection.expanded = true;
-      const range = new Range();
+      const range            = new Range();
 
       // I have to do it like this because otherwise selection doesn't appear
       // but this create false data, as when we get selection even if it is reversed
       // the anchor node and focus node are correctly set
-      if (this.selection.reverse) {
+      if ( this.selection.reverse ) {
         range.setStart(this.pos.el          .childNodes[0], this.pos.letter      );
         range.setEnd  (this.selection.anchor.childNodes[0], this.selection.offset);
       } else {
@@ -939,7 +933,7 @@ class TabJF {
       }
 
       this.get.selection().removeAllRanges();
-      this.get.selection().addRange(range);
+      this.get.selection().addRange( range );
 
       if ( stop ) return;
       if ( this.get.selection().isCollapsed && !this.selection.reverse ) {
@@ -953,7 +947,7 @@ class TabJF {
   }
 
   end = {
-    _name : 'end',
+    _name  : 'end',
     select : () => {
       this.get.selection().empty();
       const sel    = this.selection;
@@ -972,7 +966,7 @@ class TabJF {
   remove = {
     _name : 'remove',
     docEvents : () => {
-      if (!this.docEventsSet) return;
+      if ( !this.docEventsSet ) return;
       document.removeEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
       document.removeEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
       document.removeEventListener('keyup'  , this.key.bind            ? this.key           .bind(this) : this.key           , true);
@@ -980,56 +974,61 @@ class TabJF {
       this.caret.hide();
     },
     selected : () => {
-      let start = this.get.clone(this.selection.start);
-      let end   = this.get.clone(this.selection.end);
+      let start = this.get.clone( this.selection.start );
+      let end   = this.get.clone( this.selection.end   );
 
       if (
         start.line > end.line
-        || (start.line == end.line && start.node > end.node)
-        || (start.line == end.line && start.node == end.node && start.letter > end.letter)
+        || ( start.line == end.line && start.node > end.node )
+        || ( start.line == end.line && start.node == end.node && start.letter > end.letter )
       ) {
         let tmp = start;
-        start = end;
-        end = tmp;
+        start   = end;
+        end     = tmp;
       }
       const sel = this.get.selection();
-      if (sel.type != 'Range') {
-        return;
-      }
+      if ( sel.type != 'Range' ) return;
 
-      if (start.line == end.line) {
-        if (start.node == end.node) {
-          let content = this.replace.spaceChars(this.render.content[start.line].content[start.node].content);
-          let pre     = this.replace.spaces(content.substr(0, start.letter));
-          let suf     = this.replace.spaces(content.substr(end.letter     ));
-          this.render.content[start.line].content[start.node].content = pre + suf;
+      if ( start.line == end.line ) {
+        if ( start.node == end.node ) {
+          let content = this.replace.spaceChars(
+            this.render.content[ start.line ].content[ start.node ].content
+          );
+          let pre     = this.replace.spaces( content.substr( 0, start.letter ));
+          let suf     = this.replace.spaces( content.substr( end.letter      ));
+          this.render.content[ start.line ].content[ start.node ].content = pre + suf;
         } else {
-          let startNode = this.render.content[start.line].content[start.node];
-          let endNode   = this.render.content[end.line  ].content[end.node  ];
-          startNode.content = this.replace.spaces(this.replace.spaceChars(startNode.content).substr(0, start.letter));
-          endNode.content   = this.replace.spaces(this.replace.spaceChars(endNode.content  ).substr(end.letter     ));
-          if (endNode.content.length == 0) {
-            end.node++;
-          }
-          this.render.content[start.line].content.splice(start.node + 1, end.node - 1);
+          let startNode = this.render.content[ start.line ].content[ start.node ];
+          let endNode   = this.render.content[ end.line   ].content[ end.node   ];
+          startNode.content = this.replace.spaces(
+            this.replace.spaceChars( startNode.content ).substr( 0, start.letter )
+          );
+          endNode.content   = this.replace.spaces(
+            this.replace.spaceChars( endNode.content   ).substr( end.letter      )
+          );
+          if ( endNode.content.length == 0 ) end.node++;
+
+          this.render.content[ start.line ].content.splice(
+            start.node + 1,
+            end.node - 1
+          );
         }
       } else {
-        let startLine = this.render.content[start.line];
-        startLine.content = startLine.content.slice(0, start.node + 1);
-        let startSpan = startLine.content[start.node];
+        let startLine = this.render.content[ start.line ];
+        startLine.content = startLine.content.slice( 0, start.node + 1 );
+        let startSpan = startLine.content[ start.node ];
         startSpan.content = startSpan.content.replaceAll('&nbsp;', ' ')
-                                              .substr(0, start.letter)
+                                              .substr( 0, start.letter )
                                               .replaceAll(' ', '&nbsp;');
-        let endLine   = this.render.content[end.line];
-        endLine.content = endLine.content.slice(end.node);
+        let endLine   = this.render.content[ end.line ];
+        endLine.content = endLine.content.slice( end.node );
         let endSpan = endLine.content[0];
         endSpan.content = endSpan.content.replaceAll('&nbsp;', ' ')
-                                         .substr(end.letter)
+                                         .substr( end.letter )
                                          .replaceAll(' ', '&nbsp;');
-        if (endSpan.content.length > 0) {
-          startLine.content = startLine.content.concat(endLine.content);
-        }
-        this.render.content.splice(start.line + 1, end.line - start.line);
+        if ( endSpan.content.length > 0 )
+          startLine.content = startLine.content.concat( endLine.content );
+        this.render.content.splice( start.line + 1, end.line - start.line );
         this.render.update.minHeight();
         this.render.update.scrollWidth();
       }
@@ -1037,7 +1036,7 @@ class TabJF {
       this.caret.refocus(
         start.letter,
         start.line,
-        start.node
+        start.node,
       );
       this.render.move.page();
       this.end.select();
@@ -1052,23 +1051,30 @@ class TabJF {
       if ( node == null ) {
         let line         = this.get.line( previous );
         let previousLine = this.get.lineInDirection( line, -1 );
-        this.remove.selectedRecursive(previousLine.children[ previousLine.children.length - 1], stopNode, true, true);
+        this.remove.selectedRecursive(
+          previousLine.children[ previousLine.children.length - 1],
+          stopNode,
+          true,
+          true,
+        );
         if ( removeLine ) line.remove();
         return;
       }
       this.remove.selectedRecursive( node, stopNode, removeLine );
       node.remove();
     },
-    validateMergeLineOnRemoveWord : (dir, el, c_pos) => {
-      return ( el.innerText.length == 0 && !el.nextSibling ) ||
-      ( dir < 0 && c_pos == 0 ) ||
-      ( dir > 0 && c_pos == el.innerText.length &&
-        el.parentElement.children[el.parentElement.children.length - 1] == el
-      );
+    validateMergeLineOnRemoveWord : ( dir, el, c_pos ) => {
+      return
+        ( el.innerText.length == 0 && !el.nextSibling )
+        || ( dir < 0 && c_pos == 0 )
+        || (
+          dir > 0 && c_pos == el.innerText.length
+          && el.parentElement.children[ el.parentElement.children.length - 1 ] == el
+        );
     },
     word : ( dir, el = this.pos.el, c_pos = this.pos.letter ) => {
-      if ( this.remove.validateMergeLineOnRemoveWord(dir, el, c_pos) ) {
-        this.mergeLine(dir);
+      if ( this.remove.validateMergeLineOnRemoveWord( dir, el, c_pos ) ) {
+        this.mergeLine( dir );
         return;
       }
 
@@ -1078,15 +1084,15 @@ class TabJF {
       else if ( dir > 0 ) newPos = text.indexOf('\u00A0', c_pos);
 
       if ( text.length - newPos === c_pos && dir < 0   ||   newPos === c_pos && dir > 0) {
-        this.remove.one(dir);
+        this.remove.one( dir );
         return;
       } else if ( newPos === -1 ) {
         const prev = el.previousSibling;
         const next = el.nextSibling;
         if ( dir < 0 && prev ) {
-          this.remove.word(dir, prev, prev.innerText.length);
+          this.remove.word( dir, prev, prev.innerText.length );
         } else if ( dir > 0 && next ) {
-          this.remove.word(dir, next, 0);
+          this.remove.word( dir, next, 0 );
         }
 
         if ( dir < 0 ) newPos = 0;
@@ -1094,16 +1100,16 @@ class TabJF {
 
       } else if ( dir < 0 ) newPos = text.length - newPos;
 
-      if (dir < 0) {
-        pre = text.substr(0, newPos);
-        suf = text.substr( c_pos );
+      if ( dir < 0 ) {
+        pre = text.substr( 0, newPos );
+        suf = text.substr( c_pos     );
       } else {
-        pre = text.substr(0, c_pos);
-        suf = text.substr( newPos );
+        pre = text.substr( 0, c_pos );
+        suf = text.substr( newPos   );
       }
       el.innerHTML = pre + suf;
 
-      if ( dir < 0 ) this.set.pos(el, newPos, this.pos.line);
+      if ( dir < 0 ) this.set.pos( el, newPos, this.pos.line );
     },
     one : ( dir ) => {
       const pos  = this.pos,
@@ -1174,7 +1180,7 @@ class TabJF {
           if ( sibling === null ) {
             const span = document.createElement("span");
             const text = document.createTextNode('');
-            span.appendChild(text);
+            span.appendChild( text );
             this.pos.el.parentElement.insertBefore( span, el );
             sibling = span;
           }
@@ -1192,28 +1198,27 @@ class TabJF {
   set = {
     _name : 'set',
     docEvents : () => {
-      if (this.docEventsSet) return;
+      if ( this.docEventsSet ) return;
       document.addEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
       document.addEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
       document.addEventListener('keyup'  , this.key.bind            ? this.key           .bind(this) : this.key           , true);
       this.docEventsSet = true;
     },
     preciseMethodsProxy : ( scope, path ) => {
-      if (path.length == 1) {
-        scope[path[0]] = new Proxy(scope[path[0]], this._proxySaveHandle );
-      } else {
-        this.set.preciseMethodsProxy(scope[path[0]], path.slice(1));
-      }
+      if (path.length == 1)
+        scope[ path[0] ] = new Proxy( scope[ path[0] ], this._proxySaveHandle );
+      else
+        this.set.preciseMethodsProxy( scope[ path[0] ], path.slice(1) );
     },
     methodsProxy : ( object, keys ) => {
       for (var i = 0; i < keys.length; i++) {
         let propertyName = keys[i];
-        const type = typeof object[propertyName];
+        const type = typeof object[ propertyName ];
         if ( type == 'function') {
-          if ( object[propertyName] == this.set.methodsProxy )  continue;
-          object[propertyName] = new Proxy( object[propertyName], this._proxyHandle );
-        } else if ( type == 'object' && object[propertyName] !== null && propertyName[0] != '_' ) {
-          this.set.methodsProxy( object[propertyName], Object.keys( object[propertyName] ) );
+          if ( object[ propertyName ] == this.set.methodsProxy )  continue;
+          object[ propertyName ] = new Proxy( object[ propertyName ], this._proxyHandle );
+        } else if ( type == 'object' && object[ propertyName ] !== null && propertyName[0] != '_' ) {
+          this.set.methodsProxy( object[ propertyName ], Object.keys( object[ propertyName ] ) );
         }
       };
     },
@@ -1233,78 +1238,85 @@ class TabJF {
 
   get = {
     _name : 'get',
-    clone : (obj) => {
-      return JSON.parse(JSON.stringify(obj));
+    clone : ( obj ) => {
+      return JSON.parse(JSON.stringify( obj ));
     },
     myself : () => {
       return this;
     },
-    selectedLines : (sLine = null, eLine = null) => {
-      if (!sLine || !eLine) {
+    selectedLines : ( sLine = null, eLine = null ) => {
+      if ( !sLine || !eLine ) {
         const sel = this.get.selection(), revCheck = this.selection.reverse && !this.selection.expanded;
         sLine = this.get.line( revCheck ? sel.focusNode : sel.anchorNode );
         eLine = this.get.line( revCheck ? sel.anchorNode : sel.focusNode );
       }
 
-      if (!sLine || !eLine) throw new Error('Couldn\'t find lines');
+      if ( !sLine || !eLine ) throw new Error('Couldn\'t find lines');
 
-      return [sLine.cloneNode(true), ...this.get.selectedLinesRecursive(sLine.nextSibling, eLine)];
+      return [
+        sLine.cloneNode(true),
+        ...this.get.selectedLinesRecursive( sLine.nextSibling, eLine )
+      ];
     },
-    selectedLinesRecursive : (node, end) => {
-      if (node === null) throw new Error('The node doesn\'t exist in this parent');
-      if (node == end) return [node.cloneNode(true)];
-      if (node.nodeName !== "P") return this.get.selectedLinesRecursive(node.nextSibling, end);
-      return [node.cloneNode(true), ...this.get.selectedLinesRecursive(node.nextSibling, end)];
+    selectedLinesRecursive : ( node, end ) => {
+      if ( node === null         ) throw new Error('The node doesn\'t exist in this parent');
+      if ( node == end           ) return [ node.cloneNode(true) ];
+      if ( node.nodeName !== "P" ) return this.get.selectedLinesRecursive( node.nextSibling, end );
+      return [ node.cloneNode(true), ...this.get.selectedLinesRecursive( node.nextSibling, end ) ];
     },
     selectedNodes : () => {
-      let start = this.get.clone(this.selection.start);
-      let end   = this.get.clone(this.selection.end);
+      let start = this.get.clone( this.selection.start );
+      let end   = this.get.clone( this.selection.end   );
       if (
         start.line > end.line
         || (start.line == end.line && start.node > end.node)
         || (start.line == end.line && start.node == end.node && start.letter > end.letter)
       ) {
         let tmp = start;
-        start = end;
-        end = tmp;
+        start   = end;
+        end     = tmp;
       }
-      const sel   = this.get.selection();
-      if (sel.type != 'Range') {
-        return;
-      }
+      const sel = this.get.selection();
+      if ( sel.type != 'Range') return;
 
-      if (start.line == end.line) {
-        const line = this.get.clone(this.render.content[start.line]);
-        if (start.node == end.node) {
-          let content = this.replace.spaceChars(line.content[start.node].content);
-          let text    = this.replace.spaces(content.substr(start.letter, end.letter - start.letter));
-          line.content[start.node].content = text;
-          return [line];
+      if ( start.line == end.line ) {
+        const line = this.get.clone( this.render.content[ start.line ] );
+        if ( start.node == end.node ) {
+          let content = this.replace.spaceChars( line.content[ start.node ].content );
+          let text    = this.replace.spaces( content.substr( start.letter, end.letter - start.letter ) );
+          line.content[ start.node ].content = text;
+          return [ line ];
         } else {
-          let startNode = line.content[start.node];
-          let endNode   = line.content[end.node  ];
-          startNode.content = this.replace.spaces(this.replace.spaceChars(startNode.content).substr(start.letter ));
-          endNode.content   = this.replace.spaces(this.replace.spaceChars(endNode.content  ).substr(0, end.letter));
-          line.content = [startNode].concat(line.content.slice(start.node + 1, end.node + 1) )
-          return [line];
+          let startNode = line.content[ start.node ];
+          let endNode   = line.content[ end.node   ];
+          startNode.content = this.replace.spaces(
+            this.replace.spaceChars( startNode.content ).substr( start.letter )
+          );
+          endNode.content   = this.replace.spaces(
+            this.replace.spaceChars( endNode.content   ).substr( 0, end.letter )
+          );
+          line.content = [ startNode ].concat(
+            line.content.slice( start.node + 1, end.node + 1 )
+          );
+          return [ line ];
         }
       }
-      let linesBetween = this.render.content.slice(start.line + 1, end.line);
-      let startLine = this.get.clone(this.render.content[start.line]);
-      let endLine = this.get.clone(this.render.content[end.line]);
-      endLine.content = endLine.content.slice(0, end.node + 1);
-      let endSpan = endLine.content[endLine.content.length - 1];
+      let linesBetween = this.render.content.slice( start.line + 1, end.line );
+      let startLine    = this.get.clone( this.render.content[ start.line ]);
+      let endLine      = this.get.clone( this.render.content[ end.line   ]);
+      endLine.content = endLine.content.slice( 0, end.node + 1 );
+      let endSpan = endLine.content[ endLine.content.length - 1 ];
 
       endSpan.content = endSpan.content.replaceAll('&nbsp;', ' ');
-      endSpan.content = endSpan.content.substr(0, end.letter);
+      endSpan.content = endSpan.content.substr( 0, end.letter );
       endSpan.content = endSpan.content.replaceAll(' ', '&nbsp;');
 
-      startLine.content = startLine.content.slice(start.node);
+      startLine.content = startLine.content.slice( start.node );
       let startNode = startLine.content[0];
       startNode.content = startNode.content.replaceAll('&nbsp;', ' ');
-      startNode.content = startNode.content.substr(start.letter);
+      startNode.content = startNode.content.substr( start.letter );
       startNode.content = startNode.content.replaceAll(' ', '&nbsp;');
-      return [startLine].concat(linesBetween, [endLine]);
+      return [ startLine ].concat( linesBetween, [ endLine ] );
     },
     elPos : ( el ) => {
       for ( let i = 0; i < el.parentElement.children.length; i++ ) {
@@ -1326,12 +1338,10 @@ class TabJF {
       return window.getSelection ? window.getSelection() : document.selection;
     },
     realPos : () => {
-      const children = Object.values(this.pos.el.parentElement.children);
+      const children = Object.values( this.pos.el.parentElement.children );
       let letters = 0;
-      for (let i = 0; i < children.length; i++) {
-        if (this.pos.el == children[i]) {
-          break;
-        }
+      for ( let i = 0; i < children.length; i++ ) {
+        if ( this.pos.el == children[i] ) break;
         letters += children[i].innerText.length;
       }
       letters += this.pos.letter;
@@ -1351,15 +1361,15 @@ class TabJF {
         let linePos = -1;
         for (var i = 0; i < this.editor.children.length; i++) {
           let line = this.editor.children[i];
-          if (line.nodeName == "P") linePos++;
-          if (linePos == pos) return line;
+          if ( line.nodeName == "P") linePos++;
+          if ( linePos == pos      ) return line;
         }
       } else {
         let linePos = 0;
         for (var i = this.editor.children.length - 1; i > -1 ; i--) {
           let line = this.editor.children[i];
-          if (line.nodeName == "P") linePos++;
-          if (linePos == pos * -1) return line;
+          if ( line.nodeName == "P") linePos++;
+          if ( linePos == pos * -1 ) return line;
         }
       }
       return false;
@@ -1412,9 +1422,9 @@ class TabJF {
       );
     },
     scrollTo : () => {
-      let caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
-      let caretTop  = ( this.pos.line + 1 ) * this.settings.line;
-      let yPos = caretTop - this.editor.offsetHeight > 0 ? caretTop - this.editor.offsetHeight : 0;
+      const caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
+      const caretTop  = ( this.pos.line + 1 ) * this.settings.line;
+      const yPos      = caretTop - this.editor.offsetHeight > 0 ? caretTop - this.editor.offsetHeight : 0;
 
       if ( caretLeft > this.editor.offsetWidth - 20 ) this.editor.scrollTo( caretLeft + 20 - this.editor.offsetWidth, yPos );
       else this.editor.scrollTo( 0, yPos );
@@ -1423,9 +1433,15 @@ class TabJF {
       const left = this.render.overflow.scrollLeft;
       const caretPos = this.caret.getPos();
       if ( this.render.overflow.offsetWidth + left - 10 - this.settings.left < caretPos.left ) {
-        this.render.move.overflow(caretPos.left - (this.render.overflow.offsetWidth + left - 10 - this.settings.left), 0);
+        this.render.move.overflow(
+          caretPos.left - (this.render.overflow.offsetWidth + left - 10 - this.settings.left),
+          0
+        );
       } else if ( caretPos.left < left + 10 + this.settings.left ) {
-        this.render.move.overflow( -(left + 10  + this.settings.left - caretPos.left), 0);
+        this.render.move.overflow(
+          -(left + 10  + this.settings.left - caretPos.left),
+          0
+         );
       }
     },
     set : ( x, y ) => {
@@ -1433,10 +1449,8 @@ class TabJF {
       this.caret.el.style.top  = y + 'px' ;
     },
     setByChar : ( letter, line, el = null ) => {
-      if (el) {
-        this.pos.el = el;
-      }
-      let posX = this.font.calculateWidth( this.pos.el.innerText.slice(0, letter) );
+      if ( el ) this.pos.el = el;
+      let posX = this.font.calculateWidth( this.pos.el.innerText.slice( 0, letter) );
       this.pos.letter = letter;
       this.pos.line   = line  ;
 
@@ -1462,7 +1476,11 @@ class TabJF {
     pos : {
       _name : 'pos',
       toY : ( pos ) => {
-        return ( Math.floor( (pos - this.settings.top  ) / this.settings.line   ) * this.settings.line    ) + this.settings.top
+        return (
+          Math.floor(
+            ( pos - this.settings.top ) / this.settings.line
+          ) * this.settings.line
+        ) + this.settings.top
       }
     },
     hide : () => {
@@ -1473,21 +1491,23 @@ class TabJF {
       if ( this.caret.el ) this.caret.el.style.display = "block";
       this.caret.isActive  = true;
     },
-    refocus : (letter = this.pos.letter, line = this.pos.line, childIndex = this.pos.childIndex) => {
+    refocus : ( letter = this.pos.letter, line = this.pos.line, childIndex = this.pos.childIndex ) => {
       this.pos.letter     = letter;
       this.pos.line       = line;
       this.pos.childIndex = childIndex;
-      if (!this.caret.isVisible()) {
-        return;
-      }
-      line = this.get.lineByPos(this.pos.line);
+      if ( !this.caret.isVisible() ) return;
+      line = this.get.lineByPos( this.pos.line );
       if (
-        this.pos.line <= this.render.hidden + this.render.linesLimit &&
-        this.pos.line >= this.render.hidden &&
-        line
+        this.pos.line <= this.render.hidden + this.render.linesLimit
+        && this.pos.line >= this.render.hidden
+        && line
       ) {
-        this.pos.el = line.childNodes[childIndex];
-        this.caret.setByChar(this.pos.letter, this.pos.line, line.childNodes[this.pos.childIndex]);
+        this.pos.el = line.childNodes[ childIndex ];
+        this.caret.setByChar(
+          this.pos.letter,
+          this.pos.line,
+          line.childNodes[ this.pos.childIndex ]
+        );
         return true;
       }
       return false;
@@ -1504,59 +1524,69 @@ class TabJF {
          - copy to cliboard plain text as this is supported
          - keep in our clipboard variable to proper stuff with styles and all
       */
-      this.clipboard = this.get.clone(this.get.selectedNodes());
-      this.truck.import(this.clipboard, false, 0, false, false, this.font.lab, false);
+      this.clipboard = this.get.clone( this.get.selectedNodes() );
+      this.truck.import(
+        this.clipboard,
+        false,
+        0,
+        false,
+        false,
+        this.font.lab,
+        false
+      );
       let firstText = this.font.lab.children[0].children[0].childNodes[0];
       let lastText  = this.font.lab.children[ this.font.lab.children.length - 1 ]
-      lastText      = lastText.children[ lastText.children.length - 1 ]
-      lastText      = lastText.childNodes[ lastText.childNodes.length - 1];
+      lastText      = lastText.children  [ lastText.children  .length - 1 ];
+      lastText      = lastText.childNodes[ lastText.childNodes.length - 1 ];
 
       const range = new Range();
-      range.setStart(firstText, 0);
-      range.setEnd  (lastText , lastText.nodeValue.length);
+      range.setStart( firstText, 0 );
+      range.setEnd  ( lastText , lastText.nodeValue.length );
       this.get.selection().removeAllRanges();
-      this.get.selection().addRange(range);
+      this.get.selection().addRange( range );
 
       // moving it to timeout as the exec copy appears to work on the end of stack
       // or something similar
-      setTimeout(function(){
+      setTimeout( function(){
         document.execCommand('copy');
-        this.copiedHere = true;
+        this.copiedHere         = true;
         this.font.lab.innerHTML = '';
         this.checkSelect();
-      }.bind(this), 0)
+      }.bind( this ), 0)
     },
     paste : () => {
       this.remove.selected();
-      const start = this.selection.start;
-      const end   = this.selection.end;
-      const clipboard = this.get.clone(this.clipboard);
-      const first = clipboard[0];
-      const last = clipboard[ clipboard.length - 1 ];
-      let firstLine = this.render.content[this.pos.line];
-      let firstLineSpan = firstLine.content[this.pos.childIndex];
-      let firstPreText = this.replace.spaceChars(firstLineSpan.content).substr(0, this.pos.letter);
-      let firstSufText = this.replace.spaceChars(firstLineSpan.content).substr(this.pos.letter);
+      const start     = this.selection.start;
+      const end       = this.selection.end;
+      const clipboard = this.get.clone( this.clipboard );
+      const first     = clipboard[0];
+      const last      = clipboard[ clipboard.length - 1 ];
+      let firstLine     = this.render.content[ this.pos.line ];
+      let firstLineSpan = firstLine  .content[ this.pos.childIndex ];
+      let firstPreText  = this.replace.spaceChars( firstLineSpan.content ).substr( 0, this.pos.letter );
+      let firstSufText  = this.replace.spaceChars( firstLineSpan.content ).substr( this.pos.letter    );
       // Set content to be prefix
       firstLineSpan.content = firstPreText;
       // cut the rest of spans
-      let firstLineSpans = firstLine.content.splice(start.node + 1);
+      let firstLineSpans = firstLine.content.splice( start.node + 1 );
       // add spans from the first copy line
-      firstLine.content = firstLine.content.concat(first.content);
+      firstLine.content  = firstLine.content.concat( first.content  );
 
       let middleLines = this.get.clone(clipboard.slice( 1, clipboard.length - 1 ));
       let lastLetter, lastChildIndex;
-      if (clipboard.length > 1) {
-        let lastLine = clipboard[clipboard.length - 1];
+      if ( clipboard.length > 1 ) {
+        let lastLine   = clipboard[clipboard.length - 1];
         lastChildIndex = lastLine.content.length - 1;
-        lastLetter = this.replace.spaceChars(lastLine.content[lastLine.content.length - 1].content).length;
+        lastLetter     = this.replace.spaceChars(
+          lastLine.content[lastLine.content.length - 1].content
+        ).length;
         lastLine.content[lastLine.content.length - 1].content += firstSufText;
-        lastLine.content = lastLine.content.concat(firstLineSpans);
-        middleLines = middleLines.concat([lastLine]);
+        lastLine.content = lastLine.content.concat( firstLineSpans );
+        middleLines = middleLines.concat( [ lastLine ] );
       } else {
         lastLetter = first.content[ first.content.length - 1 ].content.length;
         lastChildIndex = this.pos.childIndex + first.content.length;
-        firstLine.content[firstLine.content.length - 1].content += firstSufText;
+        firstLine.content[ firstLine.content.length - 1 ].content += firstSufText;
       }
       this.render.content.splice(
         this.pos.line + 1,
@@ -1598,10 +1628,10 @@ class TabJF {
       this.render.update.scrollWidth();
     },
     selectAll : () => {
-      this.update.selection.start(0, 0, 0);
-      const last = this.render.content[this.render.content.length - 1];
-      const lastSpan = last.content[last.content.length - 1];
-      const lastNode = this.replace.spaceChars(lastSpan.content);
+      this.update.selection.start( 0, 0, 0 );
+      const last     = this.render.content[ this.render.content.length - 1 ];
+      const lastSpan = last.content[ last.content.length - 1 ];
+      const lastNode = this.replace.spaceChars( lastSpan.content );
       this.update.selection.end(
         lastNode.length,
         this.render.content.length - 1,
@@ -1614,8 +1644,8 @@ class TabJF {
 
   is = {
     line : {
-      visible : (line) => {
-        return !(line < this.render.hidden || line > this.render.hidden + this.render.linesLimit);
+      visible : ( line ) => {
+        return !( line < this.render.hidden || line > this.render.hidden + this.render.linesLimit );
       }
     }
   }
@@ -1630,16 +1660,12 @@ class TabJF {
     this.selection.update = true;
     // If this was called then some selection appeared
     const selection = this.get.selection();
-    if (selection.type !== 'Range') {
-      return;
-    }
+    if (selection.type !== 'Range') return;
     this.selection.active = true;
-    if (selection.focusNode == this.editor) {
-      return;
-    }
+    if ( selection.focusNode == this.editor ) return;
     this.selection.end = {
-      line : this.get.linePos( this.get.line( selection.focusNode ) ) + this.render.hidden,
-      node : this.get.childIndex( selection.focusNode.parentElement ),
+      line   : this.get.linePos( this.get.line( selection.focusNode ) ) + this.render.hidden,
+      node   : this.get.childIndex( selection.focusNode.parentElement ),
       letter : selection.focusOffset,
     };
   }
@@ -1651,17 +1677,13 @@ class TabJF {
   }
 
   checkSelect() {
-    if (!this.selection.active) {
-      return;
-    }
+    if (!this.selection.active) return;
 
     const start  = this.selection.start;
     const end    = this.selection.end;
     let reversed = false;
 
-    if ( start.line < this.render.hidden && end.line < this.render.hidden ) {
-      return;
-    }
+    if ( start.line < this.render.hidden && end.line < this.render.hidden ) return;
 
     let lineEndPos          = end.line;
     let lineEndChildIndex   = end.node;
@@ -1731,7 +1753,7 @@ class TabJF {
   active( e ) {
     if ( e.target == this.editor  ||  e.layerX < 0  ||  e.layerY < 0 ) return;
     let el = e.target;
-    if ( el.nodeName === "P") el = el.children[el.children.length - 1];
+    if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
 
     let left = e.layerX;
     if ( el.offsetWidth + el.offsetLeft < left ) {
@@ -1740,23 +1762,23 @@ class TabJF {
 
     let y = this.caret.pos.toY( el.parentElement.offsetTop + this.settings.top );
     let line = Math.ceil ( ( y - this.settings.top ) / this.settings.line );
-    const letter = this.font.getLetterByWidth(left, el);
+    const letter = this.font.getLetterByWidth( left, el );
     this.caret.show();
-    const index = this.get.childIndex(el);
+    const index  = this.get.childIndex( el );
     this.caret.refocus(
       letter,
       line,
       index,
     );
 
-    if (line < this.render.hidden + 2 && this.render.hidden > 0) {
-      this.render.set.overflow(null, (line - 2) * this.settings.line);
-    } else if (line > this.render.hidden + this.render.linesLimit - 5) {
-      this.render.set.overflow(null, (line - (this.render.linesLimit - 5)) * this.settings.line);
+    if ( line < this.render.hidden + 2 && this.render.hidden > 0 ) {
+      this.render.set.overflow( null, ( line - 2 ) * this.settings.line );
+    } else if ( line > this.render.hidden + this.render.linesLimit - 5 ) {
+      this.render.set.overflow( null, ( line - ( this.render.linesLimit - 5 ) ) * this.settings.line );
     }
 
-    this.lastX = this.get.realPos().x;
-    this.selection.start = { line : line, letter, node : index };
+    this.lastX            = this.get.realPos().x;
+    this.selection.start  = { line : line, letter, node : index };
     this.selection.active = false;
     this.editor.addEventListener(
       'mousemove',
@@ -1782,16 +1804,16 @@ class TabJF {
 
   updateSpecialKeys( e ) {
     // Clicking Alt also triggers Ctrl ?????? wierd stuff man
-    if (!e.altKey) {
+    if ( !e.altKey ) {
       this.pressed.ctrl = e.ctrlKey;
     } else {
       this.pressed.ctrl = false;
     }
     // If shift key was just clicked
-    if (!this.pressed.shift && e.shiftKey) {
+    if ( !this.pressed.shift && e.shiftKey ) {
       this.selection.active = true;
       this.update.selection.start()
-    } else if (!e.shiftKey && this.get.selection().type != "Range") {
+    } else if ( !e.shiftKey && this.get.selection().type != "Range") {
       this.selection.active = false;
     }
     this.pressed.shift = e.shiftKey;
@@ -1910,7 +1932,7 @@ class TabJF {
         // Insert
       },
       65 : ( e, type ) => { // a
-        if (this.pressed.ctrl) {
+        if ( this.pressed.ctrl ) {
           e.preventDefault();
           this.action.selectAll();
         } else {
@@ -1918,33 +1940,33 @@ class TabJF {
         }
       },
       67 : ( e, type ) => { // c
-        if (this.pressed.ctrl) {
+        if ( this.pressed.ctrl ) {
           this.action.copy();
         } else {
           this.insert( e.key );
         }
       },
       86 : ( e, type ) => { // v
-        if (!this.pressed.ctrl) {
+        if ( !this.pressed.ctrl ) {
           this.insert( e.key );
         }
       },
       88 : ( e, type ) => { // x
-        if (this.pressed.ctrl) {
+        if ( this.pressed.ctrl ) {
           this.action.cut();
         } else {
           this.insert( e.key );
         }
       },
       89 : ( e, type ) => { // y
-        if (this.pressed.ctrl) {
+        if ( this.pressed.ctrl ) {
           this.action.redo();
         } else {
           this.insert( e.key );
         }
       },
       90 : ( e, type ) => { // z
-        if (this.pressed.ctrl) {
+        if ( this.pressed.ctrl ) {
           this.action.undo();
         } else {
           this.insert( e.key );
@@ -1984,17 +2006,25 @@ class TabJF {
 
     let selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
     const sel = this.get.selection();
-    if ( this.selection.active && !selDelSkip[e.key.toLowerCase()] && !this.pressed.ctrl &&  sel.type == "Range") {
-      if ( !!this.keys[e.key.toLowerCase()]  ||  e.key.length == 1 ) {
+    if (
+      this.selection.active
+      && !selDelSkip[ e.key.toLowerCase() ]
+      && !this.pressed.ctrl
+      && sel.type == "Range"
+    ) {
+      if ( !!this.keys[ e.key.toLowerCase() ]  ||  e.key.length == 1 ) {
         this.remove.selected();
       }
     }
 
-    if ( !keys[e.keyCode] && e.key.length == 1 ) {
+    if ( !keys[ e.keyCode ] && e.key.length == 1 ) {
       this.insert( e.key );
 
-      if (!this.caret.isVisible()) {
-        this.render.set.overflow(null, (this.pos.line - (this.render.linesLimit/2)) * this.settings.line);
+      if ( !this.caret.isVisible() ) {
+        this.render.set.overflow(
+          null,
+          (this.pos.line - (this.render.linesLimit/2)) * this.settings.line
+        );
       }
       return;
     }
@@ -2007,15 +2037,13 @@ class TabJF {
   updateCurrentLine() {
     const line = this.pos.line;
     // Line we want to save if hidden
-    if (!this.is.line.visible(line)) {
+    if ( !this.is.line.visible( line ) ) {
       return;
     }
     const exportedLine = this.truck.exportLine(
-      this.get.lineByPos(
-        line
-      )
+      this.get.lineByPos( line )
     );
-    this.render.content[line] = exportedLine;
+    this.render.content[ line ] = exportedLine;
   }
 
   toSide( dirX, dirY ) {
@@ -2023,30 +2051,30 @@ class TabJF {
     let letter = this.pos.letter;
     let node   = this.pos.childIndex;
 
-    if (dirY > 0) {
+    if ( dirY > 0 ) {
       line = this.render.content.length - 1;
-    } else if (dirY < 0) {
-      line   = 0;
+    } else if ( dirY < 0 ) {
+      line = 0;
     }
 
-    if (dirX > 0) {
-      let lineContent = this.render.content[line];
-      node = lineContent.content.length - 1;
-      let lastSpan = lineContent.content[lineContent.content.length - 1];
-      letter = lastSpan.content.length;
-    } else if (dirX < 0) {
+    if ( dirX > 0 ) {
+      let lineContent = this.render.content[ line ];
+      node            = lineContent.content.length - 1;
+      let lastSpan    = lineContent.content[ lineContent.content.length - 1 ];
+      letter          = lastSpan.content.length;
+    } else if ( dirX < 0 ) {
       letter = 0;
       node   = 0;
     }
 
     // Check if chosen line has needed amount of nodes and letters
-    const chosenLine = this.render.content[line];
-    if (chosenLine.content.length - 1 < node) {
+    const chosenLine = this.render.content[ line ];
+    if ( chosenLine.content.length - 1 < node ) {
       node = chosenLine.content.length - 1;
     }
 
-    if (chosenLine.content[node].content.length < letter) {
-      letter = chosenLine.content[node].content.length;
+    if ( chosenLine.content[ node ].content.length < letter) {
+      letter = chosenLine.content[ node ].content.length;
     }
 
     this.caret.refocus(
@@ -2067,8 +2095,8 @@ class TabJF {
         else                     this.remove.one (-1);
       } else {
         const sel = this.get.selection();
-        if (sel.type != "Range") this.remove.one (-1);
-        else                     this.remove.selected();
+        if ( sel.type != "Range") this.remove.one (-1);
+        else                      this.remove.selected();
       }
     },
     tab : ( e ) => {
@@ -2077,7 +2105,7 @@ class TabJF {
       for ( let i = 0; i < 2; i++ ) {
         tab += '&nbsp;';
       }
-      this.insert(tab);
+      this.insert( tab );
     },
     escape : ( e ) => {
       this.caret.hide();
@@ -2121,24 +2149,23 @@ class TabJF {
 
         // If caret is already on the end of line (no siblings in chosen direction idicates it) then
         // move it to the start or end of next/previous line
-        // console.log("Ne checks");
-        // console.log("left check", c_pos, '==', 0, '&&', this.pos.line, '>', 0, '&&', dir, '<', 0);
-        // console.log("left result", c_pos == 0, this.pos.line >= 0, dir < 0);
-        // console.log("right check", c_pos, '==', text.length, '&&', this.pos.line, '>=', 0, '&&', this.pos.line, '<', this.render.content.length - 1);
-        // console.log("right result",c_pos == text.length, this.pos.line >= 0, this.pos.line < this.render.content.length - 1);
         if (
-          c_pos == 0 && this.pos.line > 0 && dir < 0 // Going left
+            c_pos == 0
+            && this.pos.line > 0
+            && dir < 0 // Going left
           ||
-          c_pos == text.length && this.pos.line >= 0 && this.pos.line < this.render.content.length - 1 && dir > 0 // Going right
+            c_pos == text.length && this.pos.line >= 0
+            && this.pos.line < this.render.content.length - 1
+            && dir > 0 // Going right
         ) {
-          if (dir < 0) {
-            const line = this.get.lineByPos(this.pos.line - 1);
-            const el = line.childNodes[line.childNodes.length - 1];
+          if ( dir < 0 ) {
+            const line = this.get.lineByPos( this.pos.line - 1 );
+            const el   = line.childNodes[ line.childNodes.length - 1 ];
             this.set.side( el, dir * -1, this.pos.line - 1 );
             this.keys.moveCtrl( dir );
             return;
           } else {
-            const line = this.get.lineByPos(this.pos.line);
+            const line = this.get.lineByPos( this.pos.line );
             const el = line.childNodes[0];
             this.set.side( el, dir * -1, this.pos.line + 1 );
             this.keys.moveCtrl( dir );
@@ -2157,7 +2184,7 @@ class TabJF {
       }
 
       this.set.pos( el, c_pos, this.pos.line );
-      this.pos.childIndex = this.get.childIndex(el);
+      this.pos.childIndex = this.get.childIndex( el );
       this.lastX = this.get.realPos().x;
     },
     move : ( dirX, dirY, recuresionCheck = false ) => {
@@ -2184,7 +2211,8 @@ class TabJF {
       if (
         this.pos.el.innerText.length == 0 &&
         (
-          this.pos.el.previousSibling && dirX < 0 ||
+          this.pos.el.previousSibling && dirX < 0
+          ||
           this.pos.el.nextSibling && dirX > 0
         ) &&
         !recuresionCheck
@@ -2210,15 +2238,19 @@ class TabJF {
         } else {
           let previousLine = this.get.lineInDirection( el.parentElement, -1 );
           if ( !previousLine ) return;
-          this.pos.el = previousLine.children[ previousLine.children.length - 1 ];
+          this.pos.el         = previousLine.children[ previousLine.children.length - 1 ];
           this.pos.childIndex = previousLine.children.length - 1;
           this.caret.setByChar( this.pos.el.innerText.length, this.pos.line - 1 );
-          this.lastX = this.get.realPos().x;
+          this.lastX          = this.get.realPos().x;
           this.caret.scrollToX();
           return;
         }
 
-      } else if ( this.pos.letter + dirX > el.innerText.length && el.nextSibling && el.nextSibling.nodeType == 1 ) {
+      } else if (
+        this.pos.letter + dirX > el.innerText.length
+        && el.nextSibling
+        && el.nextSibling.nodeType == 1
+      ) {
         this.pos.el     = el.nextSibling;
         this.pos.letter = 0;
         this.pos.childIndex++;
@@ -2249,32 +2281,35 @@ class TabJF {
 
       if ( newLine.innerText.length < realLetters + dirX ) {
         this.pos.childIndex = newLine.children.length - 1;
-        this.pos.line   = line + dirY;
-        this.pos.letter = newLine.innerText.length;
+        this.pos.line       = line + dirY;
+        this.pos.letter     = newLine.innerText.length;
       } else {
 
         let currentLetterCount = 0;
 
         for ( let i = 0; i < newLine.children.length; i++ ) {
-          let child = newLine.children[i];
+          let child           = newLine.children[i];
           currentLetterCount += child.innerText.length;
           if ( currentLetterCount >= this.lastX ) {
             this.pos.childIndex = this.get.childIndex(child);
-            this.pos.line   = line + dirY;
-            this.pos.letter =  this.lastX - (currentLetterCount - child.innerText.length);
+            this.pos.line       = line + dirY;
+            this.pos.letter     = this.lastX - (currentLetterCount - child.innerText.length);
             break;
-          } else if (i + 1 == newLine.children.length) {
+          } else if ( i + 1 == newLine.children.length ) {
             this.pos.childIndex = newLine.children.length - 1;
             this.pos.line       = line + dirY;
-            this.pos.letter     =  child.innerText.length;
+            this.pos.letter     = child.innerText.length;
           }
         }
       }
 
-      if (dirY > 0 && this.pos.line + dirY + 3 >= this.render.linesLimit + this.render.hidden) {
-        this.render.move.overflow(0, this.settings.line)
-      } else if (dirY < 0 && this.pos.line + dirY <= this.render.hidden) {
-        this.render.move.overflow(0, -this.settings.line)
+      if (
+        dirY > 0
+        && this.pos.line + dirY + 3 >= this.render.linesLimit + this.render.hidden
+      ) {
+        this.render.move.overflow( 0, this.settings.line  );
+      } else if ( dirY < 0 && this.pos.line + dirY <= this.render.hidden ) {
+        this.render.move.overflow( 0, -this.settings.line );
       }
       this.caret.refocus();
     }
@@ -2290,9 +2325,8 @@ class TabJF {
       el.innerHTML = '';
       el.appendChild( document.createTextNode('') );
     }
-    this.render.content[this.pos.line] = this.truck.exportLine(el.parentElement);
-    let newLine = document.createElement("p");
-
+    this.render.content[ this.pos.line ] = this.truck.exportLine( el.parentElement );
+    let newLine  = document.createElement("p");
     let appended = [];
 
     text.suf.forEach( span => {
@@ -2306,14 +2340,21 @@ class TabJF {
       newLine.appendChild( text.suf[0] );
       appended.push( text.suf[0] );
     }
-    this.render.content.splice(this.pos.line + 1, 0, this.truck.exportLine(newLine));
-    if (this.pos.line + 1 > this.render.hidden + this.render.linesLimit - 6) {
-      this.render.set.overflow(null, (this.pos.line - (this.render.linesLimit - 6)) * this.settings.line);
-      this.render.move.page(this.pos.line - (this.render.linesLimit - 6));
+    this.render.content.splice(
+      this.pos.line + 1,
+      0,
+      this.truck.exportLine( newLine )
+    );
+    if ( this.pos.line + 1 > this.render.hidden + this.render.linesLimit - 6 ) {
+      this.render.set.overflow(
+        null,
+        ( this.pos.line - ( this.render.linesLimit - 6 ) ) * this.settings.line
+      );
+      this.render.move.page( this.pos.line - ( this.render.linesLimit - 6 ) );
     } else {
       this.render.move.page();
     }
-    this.caret.refocus(0, this.pos.line + 1, 0);
+    this.caret.refocus( 0, this.pos.line + 1, 0 );
   }
 
   mergeLine( dir ) {
@@ -2323,7 +2364,7 @@ class TabJF {
       let previous = this.get.lineInDirection( line, dir );
       if ( !previous ) return; // do nothing
 
-      let oldLast = previous.children[previous.children.length - 1];
+      let oldLast = previous.children[ previous.children.length - 1 ];
       for ( let i = line.children.length - 1; i >= 0 ; i-- ) {
         if ( line.children[0].innerText.length > 0 ) previous.appendChild( line.children[0] );
         else line.children[0].remove();
@@ -2349,14 +2390,16 @@ class TabJF {
   }
 
   insert( key ) {
-    let text = this.replace.spaceChars(this.render.content[this.pos.line].content[this.pos.childIndex].content);
+    let text = this.replace.spaceChars(
+      this.render.content[ this.pos.line ].content[ this.pos.childIndex ].content
+    );
     text = {
       pre : text.substr( 0, this.pos.letter ),
       suf : text.substr( this.pos.letter    )
     }
     this.pos.el.innerHTML = text.pre + key + text.suf;
-    this.render.content[this.pos.line].content[this.pos.childIndex].content = text.pre + key + text.suf;
-    this.caret.refocus( this.pos.letter + this.replace.spaceChars(key).length );
+    this.render.content[this.pos.line].content[ this.pos.childIndex ].content = text.pre + key + text.suf;
+    this.caret.refocus( this.pos.letter + this.replace.spaceChars( key ).length );
     this.lastX++;
   }
 
@@ -2381,7 +2424,7 @@ class TabJF {
   getSplitRow() {
     let local = this.getSplitNode();
     let nodes = this.getNextSiblignAndRemove( this.pos.el.nextSibling );
-    local.suf = [local.suf, ...nodes];
+    local.suf = [ local.suf, ...nodes ];
     return local;
   }
 
@@ -2407,9 +2450,9 @@ class TabJF {
 
     // If user used internal method action.copy to copy content of this editor
     // don't transform the clipboard
-    if (!this.copiedHere) {
-      let paste = (event.clipboardData || window.clipboardData).getData('text');
-      this.clipboard = this.truck.exportText(paste);
+    if ( !this.copiedHere ) {
+      let paste = ( event.clipboardData || window.clipboardData ).getData('text');
+      this.clipboard = this.truck.exportText( paste );
     }
 
     this.action.paste();
