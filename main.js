@@ -1775,7 +1775,6 @@ class TabJF {
   }
 
   deactive( e ) {
-    console.log("deactivate");
     this.remove.docEvents();
     this.copiedHere = false;
     this.activated  = false;
