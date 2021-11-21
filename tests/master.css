@@ -9,6 +9,14 @@
   100% { opacity: 1; }
 }
 
+.editor-con {
+  --editor-bg : #3e3e3e;
+  background-color : var(--editor-bg);
+  max-height: calc( var(--max-height, 200) * 1px);
+  overflow: auto;
+  margin-top: 50px;
+}
+
 #editor .caret {
   width     : 1px ;
   height    : 20px;
@@ -18,17 +26,18 @@
 }
 
 #editor {
-  --editor-bg : #3e3e3e;
-  color     : #FFF;
-  overflow  : auto;
-  position  : relative;
-  height    : 100vh   ;
-  width     : calc(100% - 45px);
+  color       : #FFF;
+  position    : relative;
+  width       : calc(100% - 45px);
+  min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
   padding-left  : 35px;
   padding-right : 10px;
   counter-reset : editor-line;
   font-family   : Consolas, monospace;
-  background-color : var(--editor-bg);
+  counter-set : editor-line var(--counter-current, 0);
+  padding-top : calc( var(--paddingTop, 0) * 1px );
+  width       : calc(var(--scroll-width, 100%) * 1px + 5px );
+  min-width   : calc(100% - 35px - 10px);
 }
 
 #editor p {
