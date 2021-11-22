@@ -50,10 +50,10 @@ class TabJF {
     this.editor   = editor;
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
-    set.left      = ( set.left    ||  0   );
-    set.top       = ( set.top     ||  0   );
-    set.line      = ( set.line    ||  20  );
-    set.height    = ( set.height  ||  400 );
+    set.left      = ( set.left    ||  0    );
+    set.top       = ( set.top     ||  0    );
+    set.line      = ( set.line    ||  20   );
+    set.height    = ( set.height  ||  400  );
     set.addCss    = ( set.addCss  ||  true );
     this.settings = set;
 
@@ -91,9 +91,7 @@ class TabJF {
     this.font.createLab();
     this.render.init();
 
-    if (set.addCss) {
-      this.addRules();
-    }
+    if ( set.addCss ) this.addRules();
   }
 
   addRules () {
@@ -137,7 +135,7 @@ class TabJF {
       `.tabjf_editor .caret {
         width     : 1px ;
         height    : 20px;
-        position  : absolute   ;
+        position  : absolute;
         animation : tabjf_blink 1s linear infinite;
         background-color : #000;
       }`
@@ -148,6 +146,23 @@ class TabJF {
         css.cssRules.length
       );
     });
+  }
+
+  event = {
+    dispatch : (name, details = {}) => {
+      details = Object.assign({ instance : this }, details);
+      const event = this.event.create(name, details);
+      this.editor.dispatchEvent(event);
+      return event;
+    },
+    create : (name, details) => {
+      return new CustomEvent(name, {
+        detail     : details,
+        bubbles    : true,
+        cancelable : true,
+        composed   : true,
+      });
+    }
   }
 
   /**
@@ -1241,6 +1256,11 @@ class TabJF {
     clone : ( obj ) => {
       return JSON.parse(JSON.stringify( obj ));
     },
+    clonedPos : () => {
+      const pos = Object.assign({}, this.pos);
+      pos.el = this.pos.el;
+      return pos;
+    },
     myself : () => {
       return this;
     },
@@ -1517,6 +1537,15 @@ class TabJF {
   action = {
     _name : 'action',
     copy : () => {
+      const clipboard = this.get.selectedNodes();
+
+      const event = this.event.dispatch('tabJFCopy', {
+        pos       : this.get.clonedPos(),
+        event     : null,
+        clipboard : this.get.clone( clipboard ),
+      });
+      if ( event.defaultPrevented ) return;
+
       /*
         As coping to clipboard sucks without https server -
         https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
@@ -1524,7 +1553,7 @@ class TabJF {
          - copy to cliboard plain text as this is supported
          - keep in our clipboard variable to proper stuff with styles and all
       */
-      this.clipboard = this.get.clone( this.get.selectedNodes() );
+      this.clipboard = this.get.clone( clipboard );
       this.truck.import(
         this.clipboard,
         false,
@@ -1552,9 +1581,17 @@ class TabJF {
         this.copiedHere         = true;
         this.font.lab.innerHTML = '';
         this.checkSelect();
-      }.bind( this ), 0)
+      }.bind( this ), 0);
     },
     paste : () => {
+
+      const event = this.event.dispatch('tabJFPaste', {
+        pos       : this.get.clonedPos(),
+        event     : null,
+        clipboard : this.get.clone(this.clipboard),
+      });
+      if ( event.defaultPrevented ) return;
+
       this.remove.selected();
       const start     = this.selection.start;
       const end       = this.selection.end;
@@ -1616,18 +1653,57 @@ class TabJF {
       this.remove.selected();
       this.render.update.minHeight();
       this.render.update.scrollWidth();
+
+      const event = this.event.dispatch('tabJFCut', {
+        pos       : this.get.clonedPos(),
+        event     : null,
+        clipboard : this.get.clone(this.clipboard),
+      });
+      if ( event.defaultPrevented ) return;
     },
     undo : () => {
+      const versionBefore = this.get.clone(this._save.versions[this._save.version]);
+      const versionNumberBefore = this._save.version;
+
+      const event = this.event.dispatch('tabJFUndo', {
+        pos           : this.get.clonedPos(),
+        event         : null,
+        versionNumber : this._save.version - 1,
+        version       : this.get.clone(this._save.versions[this._save.version - 1]),
+        versionNumberBefore,
+        versionBefore,
+      });
+      if ( event.defaultPrevented ) return;
+
       this._save.restore();
       this.render.update.minHeight();
       this.render.update.scrollWidth();
     },
     redo : () => {
+      const versionBefore = this.get.clone(this._save.versions[this._save.version]);
+      const versionNumberBefore = this._save.version;
+
+      const event = this.event.dispatch('tabJFRedo', {
+        pos           : this.get.clonedPos(),
+        event         : null,
+        versionNumber : this._save.version + 1,
+        version       : this.get.clone(this._save.versions[this._save.version + 1]),
+        versionNumberBefore,
+        versionBefore
+      });
+      if ( event.defaultPrevented ) return;
+
       this._save.recall();
       this.render.update.minHeight();
       this.render.update.scrollWidth();
     },
     selectAll : () => {
+      const event = this.event.dispatch('tabJFSelectAll', {
+        pos       : this.get.clonedPos(),
+        event     : null,
+      });
+      if ( event.defaultPrevented ) return;
+
       this.update.selection.start( 0, 0, 0 );
       const last     = this.render.content[ this.render.content.length - 1 ];
       const lastSpan = last.content[ last.content.length - 1 ];
@@ -1671,6 +1747,15 @@ class TabJF {
   }
 
   stopSelect( e ) {
+    if (this.get.selection().type == 'Range') {
+      const event = this.event.dispatch('tabJFSelectStop', {
+        pos       : this.get.clonedPos(),
+        event     : e,
+        selection : this.get.clone(this.selection),
+      });
+      if ( event.defaultPrevented ) return;
+    }
+
     this.selection.update = false;
     this.editor.removeEventListener('mousemove', this.updateSelect.bind ? this.updateSelect.bind(this) : this.updateSelect, true);
     this.checkSelect();
@@ -1751,6 +1836,12 @@ class TabJF {
   }
 
   active( e ) {
+    const event = this.event.dispatch('tabJFActivate', {
+      pos       : this.get.clonedPos(),
+      event     : e,
+    });
+    if ( event.defaultPrevented ) return;
+
     if ( e.target == this.editor  ||  e.layerX < 0  ||  e.layerY < 0 ) return;
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
@@ -1797,6 +1888,12 @@ class TabJF {
   }
 
   deactive( e ) {
+    const event = this.event.dispatch('tabJFDeactivate', {
+      pos       : this.get.clonedPos(),
+      event     : e,
+    });
+    if ( event.defaultPrevented ) return;
+
     this.remove.docEvents();
     this.copiedHere = false;
     this.activated  = false;
@@ -1821,8 +1918,23 @@ class TabJF {
   }
 
   key ( e ) {
-    this.updateSpecialKeys( e );
     const type = e.type;
+
+    if ( type == 'keydown' ) {
+      const event = this.event.dispatch('tabJFKeyDown', {
+        pos   : this.get.clonedPos(),
+        event : e,
+      });
+      if ( event.defaultPrevented ) return;
+    } else if ( type == 'keyup' ) {
+      const event = this.event.dispatch('tabJFKeyUp', {
+        pos   : this.get.clonedPos(),
+        event : e,
+      });
+      if ( event.defaultPrevented ) return;
+    }
+
+    this.updateSpecialKeys( e );
     if ( type == 'keyup' ) {
       return;
     }
@@ -1917,14 +2029,46 @@ class TabJF {
       // Move keys
       37 : ( e, type ) => {
         this.keys.move(-1, 0);
+        const event = this.event.dispatch('tabJFMove', {
+          pos       : this.get.clonedPos(),
+          event     : e,
+          selection : this.get.clone(this.selection),
+          x         : -1,
+          y         : 0,
+        });
+        if ( event.defaultPrevented ) return;
       },
       38 : ( e, type ) => {
+        const event = this.event.dispatch('tabJFMove', {
+          pos       : this.get.clonedPos(),
+          event     : e,
+          selection : this.get.clone(this.selection),
+          x         : 0,
+          y         : -1,
+        });
+        if ( event.defaultPrevented ) return;
         this.keys.move(0, -1);
       },
       39 : ( e, type ) => {
+        const event = this.event.dispatch('tabJFMove', {
+          pos       : this.get.clonedPos(),
+          event     : e,
+          selection : this.get.clone(this.selection),
+          x         : 1,
+          y         : 0,
+        });
+        if ( event.defaultPrevented ) return;
         this.keys.move(1, 0);
       },
       40 : ( e, type ) => {
+        const event = this.event.dispatch('tabJFMove', {
+          pos       : this.get.clonedPos(),
+          event     : e,
+          selection : this.get.clone(this.selection),
+          x         : 0,
+          y         : 1,
+        });
+        if ( event.defaultPrevented ) return;
         this.keys.move(0, 1);
       },
 
