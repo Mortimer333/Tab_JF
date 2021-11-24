@@ -10,7 +10,7 @@
         return $path . '?v=' . $v;
       }
     ?>
-    <link rel="stylesheet" href="<?= cacheBurst('./smaster.css'); ?>">
+    <link rel="stylesheet" href="<?= cacheBurst('./master.css'); ?>">
   </head>
   <body>
     <div id="editor">
@@ -89,7 +89,7 @@
     <script src="<?= cacheBurst('./unit.js'); ?>" charset="utf-8"></script>
     <script type="text/javascript">
       const editor = document.getElementById('editor');
-      const tabEditor = new TabJF(editor, { left : 0 }, true);
+      const tabEditor = new TabJF(editor, { left : 35, addCss : false }, true);
       const tIntg = new Integration(tabEditor);
       const tUnit = new Unit(tabEditor);
     </script>

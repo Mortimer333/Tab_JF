@@ -96,14 +96,14 @@ class Unit extends Test {
         const letters = "test";
         const span = document.createElement("span");
         span.innerHTML = letters;
-        document.body.appendChild(span);
+        this.instance.editor.appendChild(span);
         const realWidth = span.offsetWidth;
         span.remove();
         const width = this.instance.font.calculateWidth(letters);
         this.error(
           width != realWidth,
           '[FONT:CALCULATEWIDTH] Failed',
-          [letters, width]
+          [letters, width, realWidth]
         );
       },
       getLetterByWidth : () => {
