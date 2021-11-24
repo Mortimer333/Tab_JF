@@ -1662,14 +1662,14 @@ class TabJF {
       if ( event.defaultPrevented ) return;
     },
     undo : () => {
-      const versionBefore = this.get.clone(this._save.versions[this._save.version]);
+      const versionBefore = this.get.clone(this._save.versions[this._save.version] ?? {});
       const versionNumberBefore = this._save.version;
 
       const event = this.event.dispatch('tabJFUndo', {
         pos           : this.get.clonedPos(),
         event         : null,
         versionNumber : this._save.version - 1,
-        version       : this.get.clone(this._save.versions[this._save.version - 1]),
+        version       : this.get.clone(this._save.versions[this._save.version - 1] ?? {}),
         versionNumberBefore,
         versionBefore,
       });
@@ -1680,14 +1680,14 @@ class TabJF {
       this.render.update.scrollWidth();
     },
     redo : () => {
-      const versionBefore = this.get.clone(this._save.versions[this._save.version]);
+      const versionBefore = this.get.clone(this._save.versions[this._save.version] ?? {});
       const versionNumberBefore = this._save.version;
 
       const event = this.event.dispatch('tabJFRedo', {
         pos           : this.get.clonedPos(),
         event         : null,
         versionNumber : this._save.version + 1,
-        version       : this.get.clone(this._save.versions[this._save.version + 1]),
+        version       : this.get.clone(this._save.versions[this._save.version + 1] ?? {}),
         versionNumberBefore,
         versionBefore
       });
