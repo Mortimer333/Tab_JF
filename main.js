@@ -57,7 +57,7 @@ class TabJF {
     set.addCss    = ( set.addCss  ||  true );
     this.settings = set;
 
-    this.injectMethods();
+    this.inject();
 
     this._save.debounce = this._hidden.debounce( this._save.publish, 500 );
 
@@ -96,7 +96,7 @@ class TabJF {
     if ( set.addCss ) this.addRules();
   }
 
-  injectMethods () {
+  inject () {
     if ( !TabJF_Get ) {
       throw new Error('Get class not included');
     }
