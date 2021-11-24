@@ -1,0 +1,44 @@
+class TabJF_Set {
+  docEvents () {
+    if ( this.docEventsSet ) return;
+    document.addEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
+    document.addEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
+    document.addEventListener('keyup'  , this.key.bind            ? this.key           .bind(this) : this.key           , true);
+    this.docEventsSet = true;
+  }
+
+  preciseMethodsProxy ( scope, path ) {
+    if (path.length == 1)
+      scope[ path[0] ] = new Proxy( scope[ path[0] ], this._proxySaveHandle );
+    else {
+      this.set.preciseMethodsProxy( scope[ path[0] ], path.slice(1) );
+    }
+  }
+
+  methodsProxy ( object, keys ) {
+    for (var i = 0; i < keys.length; i++) {
+      let propertyName = keys[i];
+      const type = typeof object[ propertyName ];
+      if ( type == 'function') {
+        if ( object[ propertyName ] == this.set.methodsProxy )  continue;
+        object[ propertyName ] = new Proxy( object[ propertyName ], this._proxyHandle );
+      } else if ( type == 'object' && object[ propertyName ] !== null && propertyName[0] != '_' ) {
+        this.set.methodsProxy( object[ propertyName ], Object.keys( object[ propertyName ] ) );
+      }
+    };
+  }
+
+  side ( node, dirX, newLine = this.pos.line ) {
+    let letter = this.pos.letter;
+    this.pos.el = node;
+         if ( dirX > 0 ) letter = node.innerText.length;
+    else if ( dirX < 0 ) letter = 0;
+    this.caret.setByChar( letter, newLine );
+  }
+
+  pos ( node, letter, line ) {
+    this.pos.letter = letter;
+    this.pos.line   = line;
+    this.caret.setByChar( letter, line, node );
+  }
+}
