@@ -188,4 +188,46 @@ class TabJF_Get {
     }
     return false;
   }
+
+  attributes(el) {
+    const attrsObj = [];
+    for ( let att, i = 0, atts = el.attributes, n = atts.length; i < n; i++ ){
+      att = atts[i];
+      attrsObj.push({
+        nodeName  : att.nodeName,
+        nodeValue : att.nodeValue,
+      });
+    }
+    return attrsObj;
+  }
+
+  splitNode() {
+    let text = this.pos.el.innerText;
+    return {
+      pre : this.set.attributes( this.pos.el.attributes, text.substr( 0, this.pos.letter ) ),
+      suf : this.set.attributes( this.pos.el.attributes, text.substr( this.pos.letter    ) )
+    }
+  }
+
+  splitRow() {
+    let local = this.get.splitNode();
+    let nodes = this.get.nextSiblignAndRemove( this.pos.el.nextSibling );
+    local.suf = [ local.suf, ...nodes ];
+    return local;
+  }
+
+  nextSiblignAndRemove( el ) {
+    if ( el === null ) return [];
+    let nodes = [];
+
+    let span = this.set.attributes( el.attributes, el.innerText );
+    nodes.push( span );
+    if ( el.nextSibling ) {
+      let nextSpan = this.get.nextSiblignAndRemove( el.nextSibling );
+      nodes = nodes.concat( nextSpan );
+    }
+
+    el.remove();
+    return nodes;
+  }
 }

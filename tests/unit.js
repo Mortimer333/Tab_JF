@@ -79,18 +79,6 @@ class Unit extends Test {
         );
       }
     },
-    getAttributes : () => {
-      const span = document.createElement("span");
-      span.setAttribute('style','color:red;');
-      span.setAttribute('class','test class');
-      const attrs = this.instance.getAttributes(span);
-      this.error(
-        attrs[0].nodeName != 'style' || attrs[0].nodeValue != 'color:red;' ||
-        attrs[1].nodeName != 'class' || attrs[1].nodeValue != 'test class',
-        '[GET:ATTRIBUTES] Failed',
-        [span, attrs]
-      );
-    },
     font : {
       calculateWidth : () => {
         const letters = "test";
@@ -122,6 +110,18 @@ class Unit extends Test {
     },
 
     get : {
+      attributes : () => {
+        const span = document.createElement("span");
+        span.setAttribute('style','color:red;');
+        span.setAttribute('class','test class');
+        const attrs = this.instance.get.attributes(span);
+        this.error(
+          attrs[0].nodeName != 'style' || attrs[0].nodeValue != 'color:red;' ||
+          attrs[1].nodeName != 'class' || attrs[1].nodeValue != 'test class',
+          '[GET:ATTRIBUTES] Failed',
+          [span, attrs]
+        );
+      },
       clone : () => {
         let obj = {'test' : 'test'};
         this.error(

@@ -313,36 +313,10 @@ class TabJF {
     }
   }
 
-  getAttributes(el) {
-    const attrsObj = [];
-    for ( let att, i = 0, atts = el.attributes, n = atts.length; i < n; i++ ){
-      att = atts[i];
-      attrsObj.push({
-        nodeName  : att.nodeName,
-        nodeValue : att.nodeValue,
-      });
-    }
-    return attrsObj;
-  }
-
   assignEvents() {
     this.editor.addEventListener("mousedown", this.active.bind      ? this.active    .bind(this) : this.active    );
     this.editor.addEventListener("mouseup"  , this.stopSelect.bind  ? this.stopSelect.bind(this) : this.stopSelect);
     this.editor.addEventListener("focusout" , this.deactive.bind    ? this.deactive  .bind(this) : this.deactive  );
-  }
-
-  updateSelect( e ) {
-    this.selection.update = true;
-    // If this was called then some selection appeared
-    const selection = this.get.selection();
-    if (selection.type !== 'Range') return;
-    this.selection.active = true;
-    if ( selection.focusNode == this.editor ) return;
-    this.selection.end = {
-      line   : this.get.linePos( this.get.line( selection.focusNode ) ) + this.render.hidden,
-      node   : this.get.childIndex( selection.focusNode.parentElement ),
-      letter : selection.focusOffset,
-    };
   }
 
   stopSelect( e ) {
@@ -356,7 +330,7 @@ class TabJF {
     }
 
     this.selection.update = false;
-    this.editor.removeEventListener('mousemove', this.updateSelect.bind ? this.updateSelect.bind(this) : this.updateSelect, true);
+    this.editor.removeEventListener('mousemove', this.update.select.bind ? this.update.select.bind(this) : this.update.select, true);
     this.checkSelect();
   }
 
@@ -414,9 +388,6 @@ class TabJF {
       return;
     }
 
-    if (!firstText.children[ lineStartChildIndex ]) {
-      console.log(firstText, lineStartChildIndex);
-    }
     firstText = firstText.children[ lineStartChildIndex ].childNodes[0];
     lastText  = lastText .children[ lineEndChildIndex   ].childNodes[0];
     const range = new Range();
@@ -472,7 +443,7 @@ class TabJF {
     this.selection.active = false;
     this.editor.addEventListener(
       'mousemove',
-      this.updateSelect.bind ? this.updateSelect.bind(this) : this.updateSelect,
+      this.update.select.bind ? this.update.select.bind(this) : this.update.select,
       true
     );
     this.activated = true;
@@ -498,24 +469,6 @@ class TabJF {
     this.activated  = false;
   }
 
-  updateSpecialKeys( e ) {
-    // Clicking Alt also triggers Ctrl ?????? wierd stuff man
-    if ( !e.altKey ) {
-      this.pressed.ctrl = e.ctrlKey;
-    } else {
-      this.pressed.ctrl = false;
-    }
-    // If shift key was just clicked
-    if ( !this.pressed.shift && e.shiftKey ) {
-      this.selection.active = true;
-      this.update.selection.start()
-    } else if ( !e.shiftKey && this.get.selection().type != "Range") {
-      this.selection.active = false;
-    }
-    this.pressed.shift = e.shiftKey;
-    this.pressed.alt   = e.altKey  ;
-  }
-
   key ( e ) {
     const type = e.type;
 
@@ -533,7 +486,7 @@ class TabJF {
       if ( event.defaultPrevented ) return;
     }
 
-    this.updateSpecialKeys( e );
+    this.update.specialKeys( e );
     if ( type == 'keyup' ) {
       return;
     }
@@ -774,19 +727,7 @@ class TabJF {
 
     ( keys[e.keyCode]  ||  keys['default'] )( e, type );
 
-    this.updateCurrentLine();
-  }
-
-  updateCurrentLine() {
-    const line = this.pos.line;
-    // Line we want to save if hidden
-    if ( !this.is.line.visible( line ) ) {
-      return;
-    }
-    const exportedLine = this.truck.exportLine(
-      this.get.lineByPos( line )
-    );
-    this.render.content[ line ] = exportedLine;
+    this.update.currentLine();
   }
 
   toSide( dirX, dirY ) {
@@ -828,7 +769,7 @@ class TabJF {
   }
 
   newLine() {
-    let el = this.pos.el, text = this.getSplitRow();
+    let el = this.pos.el, text = this.get.splitRow();
     if ( text.pre.innerText.length > 0 ) {
       el.parentElement.insertBefore( text.pre, el );
       el.remove();
@@ -913,46 +854,6 @@ class TabJF {
     this.render.content[this.pos.line].content[ this.pos.childIndex ].content = text.pre + key + text.suf;
     this.caret.refocus( this.pos.letter + this.replace.spaceChars( key ).length );
     this.lastX++;
-  }
-
-  getSplitNode() {
-    let text = this.pos.el.innerText;
-    return {
-      pre : this.setAttributes( this.pos.el.attributes, text.substr( 0, this.pos.letter ) ),
-      suf : this.setAttributes( this.pos.el.attributes, text.substr( this.pos.letter    ) )
-    }
-  }
-
-  setAttributes(attributes, text) {
-    let newSpan = document.createElement("span");
-    for ( let att, i = 0, atts = attributes, n = atts.length; i < n; i++ ){
-      att = atts[i];
-      newSpan.setAttribute( att.nodeName, att.nodeValue );
-    }
-    newSpan.innerHTML = text;
-    return newSpan;
-  }
-
-  getSplitRow() {
-    let local = this.getSplitNode();
-    let nodes = this.getNextSiblignAndRemove( this.pos.el.nextSibling );
-    local.suf = [ local.suf, ...nodes ];
-    return local;
-  }
-
-  getNextSiblignAndRemove( el ) {
-    if ( el === null ) return [];
-    let nodes = [];
-
-    let span = this.setAttributes( el.attributes, el.innerText );
-    nodes.push( span );
-    if ( el.nextSibling ) {
-      let nextSpan = this.getNextSiblignAndRemove( el.nextSibling );
-      nodes = nodes.concat( nextSpan );
-    }
-
-    el.remove();
-    return nodes;
   }
 
   catchClipboard( e ) {

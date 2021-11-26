@@ -41,4 +41,14 @@ class TabJF_Set {
     this.pos.line   = line;
     this.caret.setByChar( letter, line, node );
   }
+
+  attributes(attributes, text) {
+    let newSpan = document.createElement("span");
+    for ( let att, i = 0, atts = attributes, n = atts.length; i < n; i++ ){
+      att = atts[i];
+      newSpan.setAttribute( att.nodeName, att.nodeValue );
+    }
+    newSpan.innerHTML = text;
+    return newSpan;
+  }
 }
