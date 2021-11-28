@@ -75,3 +75,4 @@ class TabJF_Truck {
     if ( replaceContent ) this.render.content = importAr;
   }
 }
+export { TabJF_Truck };

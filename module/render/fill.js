@@ -18,3 +18,4 @@ class TabJF_Render_Fill {
     this.checkSelect();
   }
 }
+export { TabJF_Render_Fill };

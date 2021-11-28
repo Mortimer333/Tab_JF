@@ -27,3 +27,4 @@ class TabJF_Expand {
     }
   }
 }
+export { TabJF_Expand };

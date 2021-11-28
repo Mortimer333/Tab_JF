@@ -1,4 +1,4 @@
-{
+let config; export default config = {
   "align": {
     "content": {
       "_": {
@@ -1723,7 +1723,7 @@
   },
   "left": {
     "_": {
-      "$up.bottom"
+      "ref" : "$up.bottom"
     }
   },
   "letter": {
@@ -1872,9 +1872,9 @@
   "marker": {
     "end": {
       "_": {
-        "values" : {
+        "values" : [
           "none"
-        },
+        ],
         "type": [
           "custom",
           "url"
@@ -1915,7 +1915,7 @@
         "border",
         "padding",
         "content",
-        "text"
+        "text",
 
         "repeat-x",
         "repeat-y",
@@ -2480,7 +2480,7 @@
           "auto",
           "none",
           "visiblePainted",
-          "visibleFill"
+          "visibleFill",
           "visibleStroke",
           "visible",
           "painted",
@@ -2531,7 +2531,7 @@
   },
   "right": {
     "_": {
-      "$up.bottom"
+      "ref" : "$up.bottom"
     }
   },
   "rotate": {
@@ -3257,8 +3257,7 @@
         "skew",
         "skewX",
         "skewY"
-      ],
-      "seperated"
+      ]
     },
     "box": {
       "_": {
@@ -3508,4 +3507,4 @@
       }
     }
   }
-}
+};

@@ -26,3 +26,4 @@ class TabJF_Render {
     this.truck.import( this.render.content, this.render.linesLimit );
   }
 }
+export { TabJF_Render };

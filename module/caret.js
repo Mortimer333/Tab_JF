@@ -100,3 +100,4 @@ class TabJF_Caret {
     return false;
   }
 }
+export { TabJF_Caret };

@@ -5,3 +5,4 @@ class TabJF_Render_Add {
     this.render.update.minHeight();
   }
 }
+export { TabJF_Render_Add };

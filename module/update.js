@@ -43,3 +43,4 @@ class TabJF_Update {
     this.render.content[ line ] = exportedLine;
   }
 }
+export { TabJF_Update };

@@ -5,3 +5,4 @@ class TabJF_Clear {
     });
   }
 }
+export { TabJF_Clear };

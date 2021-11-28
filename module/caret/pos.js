@@ -7,3 +7,4 @@ class TabJF_Caret_Pos {
     ) + this.settings.top
   }
 }
+export { TabJF_Caret_Pos };

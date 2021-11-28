@@ -21,3 +21,4 @@ class TabJF_Update_Selection {
     end.node   = index;
   }
 }
+export { TabJF_Update_Selection };

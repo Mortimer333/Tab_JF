@@ -83,34 +83,12 @@
       <p><span>59. eeeeeeeeeee</span></p>
       <p><span>60. eeeeeeeeeee</span></p>
     </div>
-
-    <?php
-      $url = "http://localhost/tab_jf";
-      $abs_path = 'E:\xampp\htdocs\tab_jf';
-      function includeModules($path)
-      {
-        global $abs_path, $url;
-        $dir = new \DirectoryIterator($path);
-        foreach ($dir as $file) {
-          if ($file->isDot()) {
-            continue;
-          }
-          if ($file->isDir()) {
-            includeModules($file->getPath() . '/' . $file->getFilename() );
-          } else if ($file->isFile()) {
-            ?>
-            <script src="<?= cacheBurst(str_replace($abs_path, $url, rtrim($path, '/')) . '/' . $file->getFilename() . ''); ?>" charset="utf-8"></script>
-            <?php
-          }
-        }
-      }
-      includeModules(dirname(__DIR__) . '/module');
-    ?>
-    <script src="<?= cacheBurst('./../main.js'); ?>" charset="utf-8"></script>
+    <script src="<?= cacheBurst('./../main.js'); ?>" charset="utf-8" type="module"></script>
     <script src="<?= cacheBurst('./base.js'); ?>" charset="utf-8"></script>
     <script src="<?= cacheBurst('./integration.js'); ?>" charset="utf-8"></script>
     <script src="<?= cacheBurst('./unit.js'); ?>" charset="utf-8"></script>
-    <script type="text/javascript">
+    <script type="module">
+      import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
       const tabEditor = new TabJF(editor, { left : 35, addCss : false }, true);
       const tIntg = new Integration(tabEditor);

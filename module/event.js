@@ -15,3 +15,4 @@ class TabJF_Event {
     });
   }
 }
+export { TabJF_Event };

@@ -9,3 +9,4 @@ class TabJF_Render_Set {
     this.render.overflow.scrollTo( x, y );
   }
 }
+export { TabJF_Render_Set };

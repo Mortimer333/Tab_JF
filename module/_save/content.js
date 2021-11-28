@@ -18,3 +18,4 @@ class TabJF_Save_Content {
     });
   }
 }
+export { TabJF_Save_Content };

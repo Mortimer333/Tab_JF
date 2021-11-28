@@ -1,3 +1,34 @@
+import { TabJF_Action } from './module/action.js';
+import { TabJF_Caret_Pos } from './module/caret/pos.js';
+import { TabJF_Caret } from './module/caret.js';
+import { TabJF_Clear } from './module/clear.js';
+import { TabJF_Color } from './module/color.js';
+import { TabJF_End } from './module/end.js';
+import { TabJF_Event } from './module/event.js';
+import { TabJF_Expand } from './module/expand.js';
+import { TabJF_Font } from './module/font.js';
+import { TabJF_Get } from './module/get.js';
+import { TabJF_Is_Line } from './module/is/line.js';
+import { TabJF_Is } from './module/is.js';
+import { TabJF_Keys } from './module/keys.js';
+import { TabJF_Remove } from './module/remove.js';
+import { TabJF_Render_Add } from './module/render/add.js';
+import { TabJF_Render_Fill } from './module/render/fill.js';
+import { TabJF_Render_Move } from './module/render/move.js';
+import { TabJF_Render_Remove } from './module/render/remove.js';
+import { TabJF_Render_Set } from './module/render/set.js';
+import { TabJF_Render_Update } from './module/render/update.js';
+import { TabJF_Render } from './module/render.js';
+import { TabJF_Replace } from './module/replace.js';
+import { TabJF_Set } from './module/set.js';
+import { TabJF_Truck } from './module/truck.js';
+import { TabJF_Update_Selection } from './module/update/selection.js';
+import { TabJF_Update } from './module/update.js';
+import { TabJF_Hidden } from './module/_hidden.js';
+import { TabJF_Save_Content } from './module/_save/content.js';
+import { TabJF_Save_Set } from './module/_save/set.js';
+import { TabJF_Save } from './module/_save.js';
+
 class TabJF {
   editor;
   lastX        = 0;
@@ -112,6 +143,7 @@ class TabJF {
         { instance : TabJF_Caret_Pos, var : 'pos' },
       ]},
       { instance : TabJF_Clear  , var : 'clear'   },
+      { instance : TabJF_Color  , var : 'color'   },
       { instance : TabJF_End    , var : 'end'     },
       { instance : TabJF_Event  , var : 'event'   },
       { instance : TabJF_Expand , var : 'expand'  },
@@ -871,3 +903,4 @@ class TabJF {
     this.action.paste();
   }
 }
+export { TabJF };

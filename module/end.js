@@ -13,3 +13,4 @@ class TabJF_End {
       sel.end = { line : -1, letter : -1, node : -1 };
     }
 }
+export { TabJF_End };

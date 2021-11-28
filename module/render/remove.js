@@ -5,3 +5,4 @@ class TabJF_Render_Remove {
     this.render.update.minHeight();
   }
 }
+export { TabJF_Render_Remove };

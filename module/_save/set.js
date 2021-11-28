@@ -160,3 +160,4 @@ class TabJF_Save_Set {
     tmp.focusAfter = save.set.focus();
   }
 }
+export { TabJF_Save_Set };

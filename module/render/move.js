@@ -6,10 +6,11 @@ class TabJF_Render_Move {
     this.editor.style.setProperty('--counter-current', this.render.hidden );
     this.caret.refocus();
   }
-  
+
   overflow ( x, y ) {
     let top  = this.render.overflow.scrollTop;
     let left = this.render.overflow.scrollLeft;
     this.render.overflow.scrollTo( left + x, top + y );
   }
 }
+export { TabJF_Render_Move };

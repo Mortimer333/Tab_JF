@@ -236,3 +236,4 @@ class TabJF_Keys {
     this.caret.refocus();
   }
 }
+export { TabJF_Keys };

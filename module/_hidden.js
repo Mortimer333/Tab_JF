@@ -11,3 +11,4 @@ class TabJF_Hidden {
     };
   }
 }
+export { TabJF_Hidden };

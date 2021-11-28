@@ -3,3 +3,4 @@ class TabJF_Is_Line {
     return !( line < this.render.hidden || line > this.render.hidden + this.render.linesLimit );
   }
 }
+export { TabJF_Is_Line };

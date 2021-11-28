@@ -185,3 +185,4 @@ class TabJF_Action {
     this.checkSelect();
   }
 }
+export { TabJF_Action };

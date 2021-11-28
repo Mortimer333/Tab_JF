@@ -231,3 +231,4 @@ class TabJF_Get {
     return nodes;
   }
 }
+export { TabJF_Get };

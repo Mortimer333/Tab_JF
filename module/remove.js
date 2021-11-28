@@ -101,8 +101,7 @@ class TabJF_Remove {
   }
 
   validateMergeLineOnRemoveWord ( dir, el, c_pos ) {
-    return
-      ( el.innerText.length == 0 && !el.nextSibling )
+    return ( el.innerText.length == 0 && !el.nextSibling )
       || ( dir < 0 && c_pos == 0 )
       || (
         dir > 0 && c_pos == el.innerText.length
@@ -235,3 +234,4 @@ class TabJF_Remove {
     return false;
   }
 }
+export { TabJF_Remove };

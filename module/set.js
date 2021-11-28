@@ -52,3 +52,4 @@ class TabJF_Set {
     return newSpan;
   }
 }
+export { TabJF_Set };

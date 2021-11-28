@@ -7,3 +7,4 @@ class TabJF_Replace {
     return string.replaceAll('&nbsp;', ' ');
   }
 }
+export { TabJF_Replace };

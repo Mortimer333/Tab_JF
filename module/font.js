@@ -24,3 +24,4 @@ class TabJF_Font {
     return Math.round( text.length * procent );
   }
 }
+export { TabJF_Font };
