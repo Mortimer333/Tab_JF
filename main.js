@@ -2,11 +2,11 @@ import { TabJF_Action } from './module/action.js';
 import { TabJF_Caret_Pos } from './module/caret/pos.js';
 import { TabJF_Caret } from './module/caret.js';
 import { TabJF_Clear } from './module/clear.js';
-import { TabJF_Color } from './module/color.js';
 import { TabJF_End } from './module/end.js';
 import { TabJF_Event } from './module/event.js';
 import { TabJF_Expand } from './module/expand.js';
 import { TabJF_Font } from './module/font.js';
+import { TabJF_Get_Css } from './module/get/css.js';
 import { TabJF_Get } from './module/get.js';
 import { TabJF_Is_Line } from './module/is/line.js';
 import { TabJF_Is } from './module/is.js';
@@ -21,6 +21,11 @@ import { TabJF_Render_Update } from './module/render/update.js';
 import { TabJF_Render } from './module/render.js';
 import { TabJF_Replace } from './module/replace.js';
 import { TabJF_Set } from './module/set.js';
+import { TabJF_Syntax_Check } from './module/syntax/check.js';
+import { TabJF_Syntax_Colorize } from './module/syntax/colorize.js';
+import { TabJF_Syntax_Create } from './module/syntax/create.js';
+import { TabJF_Syntax_Highlight } from './module/syntax/highlight.js';
+import { TabJF_Syntax } from './module/syntax.js';
 import { TabJF_Truck } from './module/truck.js';
 import { TabJF_Update_Selection } from './module/update/selection.js';
 import { TabJF_Update } from './module/update.js';
@@ -123,6 +128,8 @@ class TabJF {
     this.caret.hide();
     this.font.createLab();
     this.render.init();
+    this.syntax.init();
+    this.truck.import( this.render.content, this.render.linesLimit );
 
     if ( set.addCss ) this.addRules();
   }
@@ -143,12 +150,13 @@ class TabJF {
         { instance : TabJF_Caret_Pos, var : 'pos' },
       ]},
       { instance : TabJF_Clear  , var : 'clear'   },
-      { instance : TabJF_Color  , var : 'color'   },
       { instance : TabJF_End    , var : 'end'     },
       { instance : TabJF_Event  , var : 'event'   },
       { instance : TabJF_Expand , var : 'expand'  },
       { instance : TabJF_Font   , var : 'font'    },
-      { instance : TabJF_Get    , var : 'get'     },
+      { instance : TabJF_Get    , var : 'get', modules : [
+        { instance : TabJF_Get_Css, var : 'css' },
+      ]},
       { instance : TabJF_Is     , var : 'is', modules : [
         { instance : TabJF_Is_Line, var : 'line' },
       ]},
@@ -164,6 +172,12 @@ class TabJF {
       ]},
       { instance : TabJF_Replace, var : 'replace' },
       { instance : TabJF_Set    , var : 'set'     },
+      { instance : TabJF_Syntax , var : 'syntax', modules : [
+        { instance : TabJF_Syntax_Highlight, var : 'highlight' },
+        { instance : TabJF_Syntax_Create   , var : 'create'    },
+        { instance : TabJF_Syntax_Check    , var : 'check'     },
+        { instance : TabJF_Syntax_Colorize , var : 'colorize'  },
+      ]},
       { instance : TabJF_Truck  , var : 'truck'   },
       { instance : TabJF_Update , var : 'update', modules : [
         { instance : TabJF_Update_Selection, var : 'selection' },

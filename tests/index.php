@@ -14,6 +14,8 @@
   </head>
   <body>
     <div id="editor">
+      <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% auto s e;lo&nbsp; 'asda;a"s"d()dd' var(asd)</span></p>
+      <p></p>
       <p><span>1asd</span><span>|dsa</span><span>|dsa</span></p>
       <p><span>2asd</span><span>|dsa</span><span>|dsa</span></p>
       <p><span>3asd</span><span>|dsa</span><span>|dsa</span></p>
@@ -91,8 +93,9 @@
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
       const tabEditor = new TabJF(editor, { left : 35, addCss : false }, true);
-      const tIntg = new Integration(tabEditor);
-      const tUnit = new Unit(tabEditor);
+      // const tIntg = new Integration(tabEditor);
+      // const tUnit = new Unit(tabEditor);
+      console.log(tabEditor);
     </script>
   </body>
 </html>

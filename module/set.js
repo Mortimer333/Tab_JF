@@ -51,5 +51,14 @@ class TabJF_Set {
     newSpan.innerHTML = text;
     return newSpan;
   }
+
+  attributesFromContent(attributes, text) {
+    let newSpan = document.createElement("span");
+    Object.keys(attributes).forEach( name => {
+      newSpan.setAttribute( name, attributes[name] );
+    });
+    newSpan.innerHTML = text;
+    return newSpan;
+  }
 }
 export { TabJF_Set };

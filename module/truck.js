@@ -18,10 +18,16 @@ class TabJF_Truck {
     const lineContent = [];
     Object.values( p.children ).forEach( span => {
       lineContent.push({
-        attrs   : this.get.attributes ( span           ),
+        attrs   : this.get.attributes( span           ),
         content : this.replace.spaces( span.innerText ),
       });
     });
+    if (lineContent.length == 0) {
+      lineContent.push({
+        attrs   : {},
+        content : '',
+      });
+    }
     return {
       content : lineContent,
     };
@@ -63,7 +69,7 @@ class TabJF_Truck {
       const lineNode = document.createElement("p");
       line.content.forEach( span => {
         span.content   = this.replace.spaces( span.content             );
-        const spanNode = this.set.attributes ( span.attrs, span.content );
+        const spanNode = this.set.attributesFromContent( span.attrs, span.content );
         if ( spanNode.childNodes.length == 0 ) spanNode.appendChild(document.createTextNode(''));
         lineNode.appendChild(spanNode);
       });

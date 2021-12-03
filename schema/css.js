@@ -2,17 +2,17 @@ let config; export default config = {
   "align": {
     "content": {
       "_": {
-        "values": [
-          "stretch",
-          "center",
-          "flex-start",
-          "flex-end",
-          "space-between",
-          "space-around",
-          "space-evenly",
-          "initial",
-          "unset"
-        ]
+        "values": {
+          "stretch": true,
+          "center": true,
+          "flex-start": true,
+          "flex-end": true,
+          "space-between": true,
+          "space-around": true,
+          "space-evenly": true,
+          "initial": true,
+          "unset": true
+        }
       }
     },
     "items": {
@@ -29,38 +29,38 @@ let config; export default config = {
   "animation": {
     "delay": {
       "_": {
-        "type": [
-          "time"
-        ]
+        "type": {
+          "time": true
+        }
       }
     },
     "direction": {
       "_": {
-        "values": [
-          "normal",
-          "reverse",
-          "alternate",
-          "alternate-reverse"
-        ],
+        "values": {
+          "normal": true,
+          "reverse": true,
+          "alternate": true,
+          "alternate-reverse": true
+        },
         "multi": true
       }
     },
     "duration": {
       "_": {
-        "type": [
-          "time"
-        ]
+        "type": {
+          "time": true
+        }
       }
     },
     "fill": {
       "mode": {
         "_": {
-          "values": [
-            "none",
-            "forwards",
-            "backwords",
-            "both"
-          ],
+          "values": {
+            "none": true,
+            "forwards": true,
+            "backwords": true,
+            "both": true
+          },
           "multi": true
         }
       }
@@ -68,36 +68,36 @@ let config; export default config = {
     "iteration": {
       "count": {
         "_": {
-          "type": [
-            "number",
-            "custom"
-          ],
-          "values": [
-            "inifnite"
-          ],
+          "type": {
+            "number": true,
+            "custom": true
+          },
+          "values": {
+            "inifnite": true
+          },
           "multi": true
         }
       }
     },
     "name": {
       "_": {
-        "type": [
-          "string",
-          "custom"
-        ],
-        "values": [
-          "none"
-        ],
+        "type": {
+          "string": true,
+          "custom": true
+        },
+        "values": {
+          "none": true
+        },
         "multi": true
       }
     },
     "play": {
       "state": {
         "_": {
-          "values": [
-            "running",
-            "paused"
-          ],
+          "values": {
+            "running": true,
+            "paused": true
+          },
           "multi": true
         }
       }
@@ -105,15 +105,15 @@ let config; export default config = {
     "timing": {
       "function": {
         "_": {
-          "values": [
-            "ease",
-            "ease-in",
-            "ease-out",
-            "ease-in-out",
-            "linear",
-            "step-start",
-            "step-end"
-          ],
+          "values": {
+            "ease": true,
+            "ease-in": true,
+            "ease-out": true,
+            "ease-in-out": true,
+            "linear": true,
+            "step-start": true,
+            "step-end": true
+          },
           "multi": true
         }
       }
@@ -121,124 +121,124 @@ let config; export default config = {
   },
   "appearance": {
     "_": {
-      "values": [
-        "auto",
-        "textfield",
-        "menulist-button"
-      ]
+      "values": {
+        "auto": true,
+        "textfield": true,
+        "menulist-button": true
+      }
     }
   },
   "aspect": {
     "ratio": {
       "_": {
-        "type": [
-          "ratio"
-        ]
+        "type": {
+          "ratio": true
+        }
       }
     }
   },
   "backface": {
     "visibility": {
       "_": {
-        "values": [
-          "visible",
-          "hidden"
-        ]
+        "values": {
+          "visible": true,
+          "hidden": true
+        }
       }
     }
   },
   "background": {
     "attachment": {
       "_": {
-        "values": [
-          "scroll",
-          "fixed",
-          "local"
-        ]
+        "values": {
+          "scroll": true,
+          "fixed": true,
+          "local": true
+        }
       }
     },
     "blend": {
       "mode": {
         "_": {
-          "values": [
-            "normal",
-            "multiply",
-            "screen",
-            "overlay",
-            "darken",
-            "lighten",
-            "color-dodge",
-            "color-saturation",
-            "color",
-            "saturation",
-            "luminosity"
-          ],
+          "values": {
+            "normal": true,
+            "multiply": true,
+            "screen": true,
+            "overlay": true,
+            "darken": true,
+            "lighten": true,
+            "color-dodge": true,
+            "color-saturation": true,
+            "color": true,
+            "saturation": true,
+            "luminosity": true
+          },
           "multi": true
         }
       }
     },
     "clip": {
       "_": {
-        "values": [
-          "border-box",
-          "padding-box",
-          "content-box",
-          "text"
-        ]
+        "values": {
+          "border-box": true,
+          "padding-box": true,
+          "content-box": true,
+          "text": true
+        }
       }
     },
     "color": {
       "_": {
-        "type": [
-          "string",
-          "custom"
-        ],
-        "values": [
-          "transparent",
-          "currentColor"
-        ]
+        "type": {
+          "string": true,
+          "custom": true
+        },
+        "values": {
+          "transparent": true,
+          "currentColor": true
+        }
       }
     },
     "image": {
       "_": {
-        "type": [
-          "image",
-          "custom"
-        ],
-        "values": [
-          "none"
-        ]
+        "type": {
+          "image": true,
+          "custom": true
+        },
+        "values": {
+          "none": true
+        }
       }
     },
     "origin": {
       "_": {
-        "values": [
-          "border-box",
-          "padding-box",
-          "content-box"
-        ]
+        "values": {
+          "border-box": true,
+          "padding-box": true,
+          "content-box": true
+        }
       }
     },
     "position": {
       "_": {
-        "type": [
-          "position"
-        ],
-        "separated" : true,
-        "multi" : true
+        "type": {
+          "position": true
+        },
+        "separated": true,
+        "multi": true
       },
       "x": {
         "_": {
-          "type": [
-            "custom",
-            "length"
-          ],
-          "values": [
-            "left",
-            "center",
-            "right",
-          ],
-          "separated" : true
+          "type": {
+            "custom": true,
+            "length": true
+          },
+          "values": {
+            "left": true,
+            "center": true,
+            "right": true
+          },
+          "separated": true
         }
       },
       "y": {
@@ -249,53 +249,51 @@ let config; export default config = {
     },
     "repeat": {
       "_": {
-        "values": [
-          "repeat-x",
-          "repeat-y",
-          "repeat",
-          "space",
-          "round",
-          "no-repeat"
-        ],
-        "type": [
-          "string"
-        ],
-        "separated" : true
+        "values": {
+          "repeat-x": true,
+          "repeat-y": true,
+          "repeat": true,
+          "space": true,
+          "round": true,
+          "no-repeat": true
+        },
+        "type": {
+          "string": true
+        },
+        "separated": true
       }
     },
     "size": {
       "_": {
-        "values": [
-          "auto",
-          "cover",
-          "contain"
-        ],
-        "type": [
-          "length",
-          "procent",
-          "custom"
-        ]
+        "values": {
+          "auto": true,
+          "cover": true,
+          "contain": true
+        },
+        "type": {
+          "length": true,
+          "procent": true,
+          "custom": true
+        }
       }
     }
   },
   "block": {
     "size": {
       "_": {
-        "values": [
-          "auto",
-          "fit-content",
-          "min-content",
-          "fit-content",
-          "max-content",
-          "border-box",
-          "max-content",
-          "available"
-        ],
-        "type": [
-          "length",
-          "custom"
-        ],
-        "separated" : true
+        "values": {
+          "auto": true,
+          "fit-content": true,
+          "min-content": true,
+          "max-content": true,
+          "border-box": true,
+          "available": true
+        },
+        "type": {
+          "length": true,
+          "custom": true
+        },
+        "separated": true
       }
     }
   },
@@ -304,67 +302,67 @@ let config; export default config = {
       "end": {
         "color": {
           "_": {
-            "type": [
-              "string",
-              "hex",
-              "rgb",
-              "hsl"
-            ]
+            "type": {
+              "string": true,
+              "hex": true,
+              "rgb": true,
+              "hsl": true
+            }
           }
         },
         "style": {
           "_": {
-            "values": [
-              "dashed",
-              "dotted",
-              "groove"
-            ]
+            "values": {
+              "dashed": true,
+              "dotted": true,
+              "groove": true
+            }
           }
         },
         "width": {
           "_": {
-            "values": [
-              "thick"
-            ],
-            "type": [
-              "unit",
-              "custom"
-            ],
-            "units": [
-              "px"
-            ]
+            "values": {
+              "thick": true
+            },
+            "type": {
+              "unit": true,
+              "custom": true
+            },
+            "units": {
+              "px": true
+            }
           }
         }
       },
       "start": {
-        "ref" : "$up.end"
+        "ref": "$up.end"
       }
     },
     "bottom": {
       "color": {
         "_": {
-          "values": [
-            "transparent"
-          ],
-          "type": [
-            "custom",
-            "string",
-            "hex",
-            "rgb",
-            "hsl"
-          ]
+          "values": {
+            "transparent": true
+          },
+          "type": {
+            "custom": true,
+            "string": true,
+            "hex": true,
+            "rgb": true,
+            "hsl": true
+          }
         }
       },
       "left": {
         "radius": {
           "_": {
-            "type": [
-              "unit",
-              "procent"
-            ],
-            "units": [
-              "px"
-            ]
+            "type": {
+              "unit": true,
+              "procent": true
+            },
+            "units": {
+              "px": true
+            }
           }
         }
       },
@@ -377,41 +375,41 @@ let config; export default config = {
       },
       "style": {
         "_": {
-          "values": [
-            "none",
-            "dashed",
-            "dotted",
-            "solid",
-            "hidden",
-            "double"
-          ],
-          "separated" : true
+          "values": {
+            "none": true,
+            "dashed": true,
+            "dotted": true,
+            "solid": true,
+            "hidden": true,
+            "double": true
+          },
+          "separated": true
         }
       },
       "width": {
         "_": {
-          "type": [
-            "length"
-          ],
-          "separated" : true
+          "type": {
+            "length": true
+          },
+          "separated": true
         }
       }
     },
     "collapse": {
       "_": {
-        "values": [
-          "collapse",
-          "separate"
-        ]
+        "values": {
+          "collapse": true,
+          "separate": true
+        }
       }
     },
     "end": {
       "end": {
         "radius": {
           "_": {
-            "type": [
-              "length"
-            ]
+            "type": {
+              "length": true
+            }
           }
         }
       },
@@ -426,58 +424,58 @@ let config; export default config = {
     "image": {
       "outset": {
         "_": {
-          "type": [
-            "unit"
-          ],
-          "units": [
-            "",
-            "px"
-          ],
-          "separated" : true
+          "type": {
+            "unit": true
+          },
+          "units": {
+            "": true,
+            "px": true
+          },
+          "separated": true
         }
       },
       "repeat": {
         "_": {
-          "values": [
-            "stretch",
-            "repeat",
-            "round",
-            "space"
-          ]
+          "values": {
+            "stretch": true,
+            "repeat": true,
+            "round": true,
+            "space": true
+          }
         }
       },
       "slice": {
         "_": {
-          "type": [
-            "custom",
-            "unit",
-            "procent"
-          ],
-          "values": [
-            "fill"
-          ],
-          "units": [
-            ""
-          ]
+          "type": {
+            "custom": true,
+            "unit": true,
+            "procent": true
+          },
+          "values": {
+            "fill": true
+          },
+          "units": {
+            "": true
+          }
         }
       },
       "source": {
         "_": {
-          "type": [
-            "url"
-          ]
+          "type": {
+            "url": true
+          }
         }
       },
       "width": {
         "_": {
-          "values": [
-            "auto"
-          ],
-          "type": [
-            "custom",
-            "length",
-            "procent"
-          ]
+          "values": {
+            "auto": true
+          },
+          "type": {
+            "custom": true,
+            "length": true,
+            "procent": true
+          }
         }
       }
     },
@@ -485,38 +483,38 @@ let config; export default config = {
       "end": {
         "color": {
           "_": {
-            "type": [
-              "color"
-            ]
+            "type": {
+              "color": true
+            }
           }
         },
         "style": {
           "_": {
-            "values": [
-              "none",
-              "dashed",
-              "dotted",
-              "solid",
-              "hidden",
-              "double"
-            ],
-            "separated" : true
+            "values": {
+              "none": true,
+              "dashed": true,
+              "dotted": true,
+              "solid": true,
+              "hidden": true,
+              "double": true
+            },
+            "separated": true
           }
         },
         "width": {
           "_": {
-            "values": [
-              "thick"
-            ],
-            "type": [
-              "length",
-              "custom"
-            ]
+            "values": {
+              "thick": true
+            },
+            "type": {
+              "length": true,
+              "custom": true
+            }
           }
         }
       },
       "start": {
-        "ref" : "$up.end"
+        "ref": "$up.end"
       }
     },
     "left": {
@@ -537,86 +535,86 @@ let config; export default config = {
       }
     },
     "right": {
-      "ref" : "$up.left"
+      "ref": "$up.left"
     },
     "spacing": {
       "_": {
-        "type": [
-          "length"
-        ],
-        "separated" : true
+        "type": {
+          "length": true
+        },
+        "separated": true
       }
     },
     "start": {
-      "ref" : "$up.end"
+      "ref": "$up.end"
     },
     "top": {
-      "ref" : "$up.bottom"
+      "ref": "$up.bottom"
     }
   },
   "bottom": {
     "_": {
-      "values": [
-        "auto"
-      ],
-      "type": [
-        "length",
-        "procent",
-        "custom"
-      ]
+      "values": {
+        "auto": true
+      },
+      "type": {
+        "length": true,
+        "procent": true,
+        "custom": true
+      }
     }
   },
   "box": {
     "decoration": {
       "break": {
         "_": {
-          "values": [
-            "slice",
-            "clone"
-          ]
+          "values": {
+            "slice": true,
+            "clone": true
+          }
         }
       }
     },
     "shadow": {
       "_": {
-        "values": [
-          "inset"
-        ],
-        "type": [
-          "color",
-          "custom"
-        ],
+        "values": {
+          "inset": true
+        },
+        "type": {
+          "color": true,
+          "custom": true
+        },
         "multi": true,
-        "separated" : true
+        "separated": true
       }
     },
     "sizing": {
       "_": {
-        "values": [
-          "content-box",
-          "border-box"
-        ]
+        "values": {
+          "content-box": true,
+          "border-box": true
+        }
       }
     }
   },
   "break": {
     "after": {
       "_": {
-        "values": [
-          "auto",
-          "always",
-          "left",
-          "right",
-          "recto",
-          "verso",
-          "page",
-          "column",
-          "region",
-          "avoid",
-          "avoid-page",
-          "avoid-column",
-          "avoid-region"
-        ]
+        "values": {
+          "auto": true,
+          "always": true,
+          "left": true,
+          "right": true,
+          "recto": true,
+          "verso": true,
+          "page": true,
+          "column": true,
+          "region": true,
+          "avoid": true,
+          "avoid-page": true,
+          "avoid-column": true,
+          "avoid-region": true
+        }
       }
     },
     "before": {
@@ -626,116 +624,116 @@ let config; export default config = {
     },
     "inside": {
       "_": {
-        "values": [
-          "auto",
-          "avoid",
-          "avoid-page",
-          "avoid-column",
-          "avoid-region"
-        ]
+        "values": {
+          "auto": true,
+          "avoid": true,
+          "avoid-page": true,
+          "avoid-column": true,
+          "avoid-region": true
+        }
       }
     }
   },
   "caption": {
     "side": {
       "_": {
-        "values": [
-          "top",
-          "bottom",
-          "left",
-          "right",
-          "top-outside",
-          "bottom-outside"
-        ]
+        "values": {
+          "top": true,
+          "bottom": true,
+          "left": true,
+          "right": true,
+          "top-outside": true,
+          "bottom-outside": true
+        }
       }
     }
   },
   "caret": {
     "color": {
       "_": {
-        "values": [
-          "auto"
-        ],
-        "type": [
-          "color",
-          "custom"
-        ]
+        "values": {
+          "auto": true
+        },
+        "type": {
+          "color": true,
+          "custom": true
+        }
       }
     }
   },
   "clear": {
     "_": {
-      "values": [
-        "none",
-        "left",
-        "right",
-        "both",
-        "inline-start",
-        "inline-end"
-      ]
+      "values": {
+        "none": true,
+        "left": true,
+        "right": true,
+        "both": true,
+        "inline-start": true,
+        "inline-end": true
+      }
     }
   },
   "clip": {
     "_": {
-      "values": [
-        "auto"
-      ],
-      "type": [
-        "custom",
-        "shape"
-      ]
+      "values": {
+        "auto": true
+      },
+      "type": {
+        "custom": true,
+        "shape": true
+      }
     },
     "path": {
       "_": {
-        "values": [
-          "none",
-          "fill-box",
-          "stroke-box",
-          "view-box",
-          "margin-box",
-          "border-box",
-          "padding-box",
-          "content-box"
-        ],
-        "type": [
-          "ulr",
-          "custom",
-          "geometry"
-        ],
-        "separated" : true
+        "values": {
+          "none": true,
+          "fill-box": true,
+          "stroke-box": true,
+          "view-box": true,
+          "margin-box": true,
+          "border-box": true,
+          "padding-box": true,
+          "content-box": true
+        },
+        "type": {
+          "ulr": true,
+          "custom": true,
+          "geometry": true
+        },
+        "separated": true
       }
     },
     "rule": {
       "_": {
-        "values": [
-          "nonzero",
-          "evenodd"
-        ]
+        "values": {
+          "nonzero": true,
+          "evenodd": true
+        }
       }
     }
   },
   "color": {
     "_": {
-      "type": [
-        "color"
-      ]
+      "type": {
+        "color": true
+      }
     },
     "adjust": {
       "_": {
-        "values": [
-          "economy",
-          "exact"
-        ]
+        "values": {
+          "economy": true,
+          "exact": true
+        }
       }
     },
     "interpolation": {
       "filters": {
         "_": {
-          "value": [
-            "auto",
-            "sRGB",
-            "linearRGB"
-          ]
+          "value": {
+            "auto": true,
+            "sRGB": true,
+            "linearRGB": true
+          }
         }
       }
     }
@@ -743,139 +741,139 @@ let config; export default config = {
   "column": {
     "count": {
       "_": {
-        "values": [
-          "auto"
-        ],
-        "type": [
-          "number",
-          "custom"
-        ]
+        "values": {
+          "auto": true
+        },
+        "type": {
+          "number": true,
+          "custom": true
+        }
       }
     },
     "fill": {
       "_": {
-        "values": [
-          "auto",
-          "balance",
-          "balance-all"
-        ]
+        "values": {
+          "auto": true,
+          "balance": true,
+          "balance-all": true
+        }
       }
     },
     "gap": {
       "_": {
-        "values": [
-          "normal"
-        ],
-        "types": [
-          "custom",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "normal": true
+        },
+        "types": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        }
       }
     },
     "rule": {
       "color": {
         "_": {
-          "types": [
-            "color"
-          ]
+          "types": {
+            "color": true
+          }
         }
       },
       "style": {
         "_": {
-          "values": [
-            "none",
-            "hidden",
-            "dotted",
-            "dashed",
-            "solid",
-            "double",
-            "groove",
-            "ridge",
-            "inset",
-            "outset"
-          ]
+          "values": {
+            "none": true,
+            "hidden": true,
+            "dotted": true,
+            "dashed": true,
+            "solid": true,
+            "double": true,
+            "groove": true,
+            "ridge": true,
+            "inset": true,
+            "outset": true
+          }
         }
       },
       "width": {
         "_": {
-          "values": [
-            "thin",
-            "medium",
-            "thick"
-          ],
-          "types": [
-            "custom",
-            "length"
-          ]
+          "values": {
+            "thin": true,
+            "medium": true,
+            "thick": true
+          },
+          "types": {
+            "custom": true,
+            "length": true
+          }
         }
       }
     },
     "span": {
       "_": {
-        "values": [
-          "none",
-          "all"
-        ]
+        "values": {
+          "none": true,
+          "all": true
+        }
       }
     },
     "width": {
       "_": {
-        "values": [
-          "auto"
-        ],
-        "types": [
-          "custom",
-          "length"
-        ]
+        "values": {
+          "auto": true
+        },
+        "types": {
+          "custom": true,
+          "length": true
+        }
       }
     }
   },
   "contain": {
     "_": {
-      "values": [
-        "none",
-        "strict",
-        "content",
-        "size",
-        "layout",
-        "style",
-        "paint"
-      ],
-      "separated" : true
+      "values": {
+        "none": true,
+        "strict": true,
+        "content": true,
+        "size": true,
+        "layout": true,
+        "style": true,
+        "paint": true
+      },
+      "separated": true
     }
   },
   "content": {
     "_": {
-      "values": [
-        "normal",
-        "none",
-        "open-quote",
-        "close-quote",
-        "no-open-quote",
-        "no-close-quote"
-      ],
-      "type": [
-        "custom",
-        "string",
-        "url",
-        "attr",
-        "variable"
-      ],
-      "separated" : true
+      "values": {
+        "normal": true,
+        "none": true,
+        "open-quote": true,
+        "close-quote": true,
+        "no-open-quote": true,
+        "no-close-quote": true
+      },
+      "type": {
+        "custom": true,
+        "string": true,
+        "url": true,
+        "attr": true,
+        "variable": true
+      },
+      "separated": true
     }
   },
   "counter": {
     "increment": {
       "_": {
-        "values": [
-          "none"
-        ],
-        "types": [
-          "variable",
-          "number"
-        ],
-        "separated" : true
+        "values": {
+          "none": true
+        },
+        "types": {
+          "variable": true,
+          "number": true
+        },
+        "separated": true
       }
     },
     "reset": {
@@ -891,54 +889,54 @@ let config; export default config = {
   },
   "cursor": {
     "_": {
-      "values": [
-        "alias",
-        "all-scroll",
-        "auto",
-        "cell",
-        "context-menu",
-        "col-resize",
-        "copy",
-        "crosshair",
-        "default",
-        "e-resize",
-        "ew-resize",
-        "grab",
-        "grabbing",
-        "help",
-        "move",
-        "n-resize",
-        "ne-resize",
-        "nesw-resize",
-        "ns-resize",
-        "nw-resize",
-        "nwse-resize",
-        "no-drop",
-        "none",
-        "not-allowed",
-        "pointer",
-        "progress",
-        "row-resize",
-        "s-resize",
-        "se-resize",
-        "sw-resize",
-        "text",
-        "w-resize",
-        "wait",
-        "zoom-in",
-        "zoom-out"
-      ],
-      "type": [
-        "custom",
-        "url"
-      ]
+      "values": {
+        "alias": true,
+        "all-scroll": true,
+        "auto": true,
+        "cell": true,
+        "context-menu": true,
+        "col-resize": true,
+        "copy": true,
+        "crosshair": true,
+        "default": true,
+        "e-resize": true,
+        "ew-resize": true,
+        "grab": true,
+        "grabbing": true,
+        "help": true,
+        "move": true,
+        "n-resize": true,
+        "ne-resize": true,
+        "nesw-resize": true,
+        "ns-resize": true,
+        "nw-resize": true,
+        "nwse-resize": true,
+        "no-drop": true,
+        "none": true,
+        "not-allowed": true,
+        "pointer": true,
+        "progress": true,
+        "row-resize": true,
+        "s-resize": true,
+        "se-resize": true,
+        "sw-resize": true,
+        "text": true,
+        "w-resize": true,
+        "wait": true,
+        "zoom-in": true,
+        "zoom-out": true
+      },
+      "type": {
+        "custom": true,
+        "url": true
+      }
     }
   },
   "cx": {
     "_": {
-      "type": [
-        "number"
-      ]
+      "type": {
+        "number": true
+      }
     }
   },
   "cy": {
@@ -948,79 +946,79 @@ let config; export default config = {
   },
   "direction": {
     "_": {
-      "values": [
-        "ltr",
-        "rtl"
-      ]
+      "values": {
+        "ltr": true,
+        "rtl": true
+      }
     }
   },
   "display": {
     "_": {
-      "values": [
-        "block",
-        "inline",
-        "inline-block",
-        "flex",
-        "inline-flex",
-        "grid",
-        "inline-grid",
-        "flow-root",
-        "table",
-        "table-row",
-        "list-item",
-        "inline-table"
-      ],
-      "separated" : true
+      "values": {
+        "block": true,
+        "inline": true,
+        "inline-block": true,
+        "flex": true,
+        "inline-flex": true,
+        "grid": true,
+        "inline-grid": true,
+        "flow-root": true,
+        "table": true,
+        "table-row": true,
+        "list-item": true,
+        "inline-table": true
+      },
+      "separated": true
     }
   },
   "dominant": {
     "baseline": {
       "_": {
-        "values": [
-          "auto",
-          "middle",
-          "hanging"
-        ]
+        "values": {
+          "auto": true,
+          "middle": true,
+          "hanging": true
+        }
       }
     }
   },
   "empty": {
     "cells": {
       "_": {
-        "values": [
-          "show",
-          "hide"
-        ]
+        "values": {
+          "show": true,
+          "hide": true
+        }
       }
     }
   },
   "fill": {
     "_": {
-      "type": [
-        "color"
-      ]
+      "type": {
+        "color": true
+      }
     },
     "opacity": {
       "_": {
-        "type": [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     },
     "rule": {
       "_": {
-        "values": [
-          "evenodd",
-          "nonzero"
-        ]
+        "values": {
+          "evenodd": true,
+          "nonzero": true
+        }
       }
     }
   },
   "filter": {
     "_": {
-      "type": [
-        "function"
-      ],
+      "type": {
+        "function": true
+      },
       "functions": {
         "url": "string",
         "blur": "length",
@@ -1037,428 +1035,428 @@ let config; export default config = {
   "flex": {
     "basis": {
       "_": {
-        "values": [
-          "auto",
-          "fill",
-          "max-content",
-          "min-content",
-          "fit-content",
-          "content"
-        ],
-        "type": [
-          "custom",
-          "length"
-        ]
+        "values": {
+          "auto": true,
+          "fill": true,
+          "max-content": true,
+          "min-content": true,
+          "fit-content": true,
+          "content": true
+        },
+        "type": {
+          "custom": true,
+          "length": true
+        }
       }
     },
     "direction": {
       "_": {
-        "values": [
-          "row",
-          "row-reverse",
-          "column",
-          "cloumn-reverse"
-        ]
+        "values": {
+          "row": true,
+          "row-reverse": true,
+          "column": true,
+          "cloumn-reverse": true
+        }
       }
     },
     "grow": {
       "_": {
-        "type": [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     },
     "shrink": {
       "_": {
-        "type": [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     },
     "wrap": {
       "_": {
-        "values": [
-          "nowrap",
-          "wrap",
-          "wrap-reverse"
-        ]
+        "values": {
+          "nowrap": true,
+          "wrap": true,
+          "wrap-reverse": true
+        }
       }
     }
   },
   "float": {
     "_": {
-      "values": [
-        "left",
-        "right",
-        "none",
-        "inline-start",
-        "inline-end"
-      ]
+      "values": {
+        "left": true,
+        "right": true,
+        "none": true,
+        "inline-start": true,
+        "inline-end": true
+      }
     }
   },
   "flood": {
     "color": {
       "_": {
-        "type": [
-          "color"
-        ]
+        "type": {
+          "color": true
+        }
       }
     },
     "opacity": {
       "_": {
-        "type": [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     }
   },
   "font": {
     "family": {
       "_": {
-        "values": [
-          "serif",
-          "sans-serif",
-          "monospace",
-          "cursive",
-          "fantasy",
-          "system-ui",
-          "ui-serif",
-          "ui-sans-serif",
-          "ui-monospace",
-          "ui-rounded",
-          "emoji",
-          "math",
-          "fangsong"
-        ],
-        "type": [
-          "custom",
-          "style"
-        ]
+        "values": {
+          "serif": true,
+          "sans-serif": true,
+          "monospace": true,
+          "cursive": true,
+          "fantasy": true,
+          "system-ui": true,
+          "ui-serif": true,
+          "ui-sans-serif": true,
+          "ui-monospace": true,
+          "ui-rounded": true,
+          "emoji": true,
+          "math": true,
+          "fangsong": true
+        },
+        "type": {
+          "custom": true,
+          "style": true
+        }
       }
     },
     "feature": {
       "settings": {
         "_": {
-          "values": [
-            "liga",
-            "dlig",
-            "onum",
-            "lnum",
-            "tnum",
-            "zero",
-            "frac",
-            "sups",
-            "subs",
-            "smpc",
-            "c2sc",
-            "case",
-            "hlig",
-            "calt",
-            "swsh",
-            "hist",
-            "ss**",
-            "kern",
-            "locl",
-            "rlig",
-            "medi",
-            "init",
-            "isol",
-            "fina",
-            "mark",
-            "mkmk"
-          ],
-          "type": [
-            "custom",
-            "number"
-          ],
+          "values": {
+            "liga": true,
+            "dlig": true,
+            "onum": true,
+            "lnum": true,
+            "tnum": true,
+            "zero": true,
+            "frac": true,
+            "sups": true,
+            "subs": true,
+            "smpc": true,
+            "c2sc": true,
+            "case": true,
+            "hlig": true,
+            "calt": true,
+            "swsh": true,
+            "hist": true,
+            "ss**": true,
+            "kern": true,
+            "locl": true,
+            "rlig": true,
+            "medi": true,
+            "init": true,
+            "isol": true,
+            "fina": true,
+            "mark": true,
+            "mkmk": true
+          },
+          "type": {
+            "custom": true,
+            "number": true
+          },
           "multi": true,
-          "separated" : true
+          "separated": true
         }
       }
     },
     "kerning": {
       "_": {
-        "values": [
-          "auto",
-          "normal",
-          "none"
-        ]
+        "values": {
+          "auto": true,
+          "normal": true,
+          "none": true
+        }
       }
     },
     "language": {
       "override": {
         "_": {
-          "values": [
-            "none"
-          ],
-          "type": [
-            "custom",
-            "string"
-          ]
+          "values": {
+            "none": true
+          },
+          "type": {
+            "custom": true,
+            "string": true
+          }
         }
       }
     },
     "optical": {
       "sizing": {
         "_": {
-          "values": [
-            "auto",
-            "none"
-          ]
+          "values": {
+            "auto": true,
+            "none": true
+          }
         }
       }
     },
     "size": {
       "_": {
-        "values": [
-          "xx-small",
-          "x-small",
-          "small",
-          "medium",
-          "large",
-          "x-large",
-          "xx-large",
-          "larger",
-          "smaller"
-        ],
-        "type": [
-          "custom",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "xx-small": true,
+          "x-small": true,
+          "small": true,
+          "medium": true,
+          "large": true,
+          "x-large": true,
+          "xx-large": true,
+          "larger": true,
+          "smaller": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        }
       },
       "adjust": {
         "_": {
-          "values": [
-            "none"
-          ],
-          "type": [
-            "custom",
-            "number"
-          ]
+          "values": {
+            "none": true
+          },
+          "type": {
+            "custom": true,
+            "number": true
+          }
         }
       }
     },
     "stretch": {
       "_": {
-        "values": [
-          "normal",
-          "semi-condensed",
-          "condensed",
-          "extra-condensed",
-          "ultra-condensed",
-          "semi-expanded",
-          "expanded",
-          "extra-expanded",
-          "ultra-expanded"
-        ],
-        "type": [
-          "custom",
-          "procent"
-        ]
+        "values": {
+          "normal": true,
+          "semi-condensed": true,
+          "condensed": true,
+          "extra-condensed": true,
+          "ultra-condensed": true,
+          "semi-expanded": true,
+          "expanded": true,
+          "extra-expanded": true,
+          "ultra-expanded": true
+        },
+        "type": {
+          "custom": true,
+          "procent": true
+        }
       }
     },
     "style": {
       "_": {
-        "values": [
-          "normal",
-          "italic",
-          "oblique"
-        ],
-        "type": [
-          "custom",
-          "degree"
-        ],
-        "separated" : true
+        "values": {
+          "normal": true,
+          "italic": true,
+          "oblique": true
+        },
+        "type": {
+          "custom": true,
+          "degree": true
+        },
+        "separated": true
       }
     },
     "synthesis": {
       "_": {
-        "values": [
-          "none",
-          "weight",
-          "style"
-        ],
-        "separated" : true
+        "values": {
+          "none": true,
+          "weight": true,
+          "style": true
+        },
+        "separated": true
       }
     },
     "variant": {
       "_": {
-        "values" : [
-          "normal",
-          "none",
-          "common-ligatures",
-          "no-common-ligatures",
-          "discretionary-ligatures",
-          "no-discretionary-ligatures",
-          "historical-ligatures",
-          "no-historical-ligatures",
-          "contextual",
-          "no-contextual",
-          "historical-forms",
-          "small-caps",
-          "all-small-caps",
-          "petite-caps",
-          "all-petite-caps",
-          "unicase",
-          "titling-caps",
-          "lining-nums",
-          "oldstyle-nums",
-          "proportional-nums",
-          "tabular-nums",
-          "diagonal-fractions",
-          "stacked-fractions",
-          "ordinal",
-          "slashed-zero",
-          "jis78",
-          "jis83",
-          "jis90",
-          "jis04",
-          "simplified",
-          "traditional",
-          "full-width",
-          "proportional-width",
-          "ruby"
-        ],
-        "functions" : [
-          "stylistic",
-          "styleset",
-          "character-variant",
-          "swash",
-          "ornaments",
-          "annotation"
-        ],
-        "type": [
-          "custom",
-          "functions"
-        ],
-        "separated" : true
+        "values": {
+          "normal": true,
+          "none": true,
+          "common-ligatures": true,
+          "no-common-ligatures": true,
+          "discretionary-ligatures": true,
+          "no-discretionary-ligatures": true,
+          "historical-ligatures": true,
+          "no-historical-ligatures": true,
+          "contextual": true,
+          "no-contextual": true,
+          "historical-forms": true,
+          "small-caps": true,
+          "all-small-caps": true,
+          "petite-caps": true,
+          "all-petite-caps": true,
+          "unicase": true,
+          "titling-caps": true,
+          "lining-nums": true,
+          "oldstyle-nums": true,
+          "proportional-nums": true,
+          "tabular-nums": true,
+          "diagonal-fractions": true,
+          "stacked-fractions": true,
+          "ordinal": true,
+          "slashed-zero": true,
+          "jis78": true,
+          "jis83": true,
+          "jis90": true,
+          "jis04": true,
+          "simplified": true,
+          "traditional": true,
+          "full-width": true,
+          "proportional-width": true,
+          "ruby": true
+        },
+        "functions": {
+          "stylistic": true,
+          "styleset": true,
+          "character-variant": true,
+          "swash": true,
+          "ornaments": true,
+          "annotation": true
+        },
+        "type": {
+          "custom": true,
+          "functions": true
+        },
+        "separated": true
       },
       "alternates": {
         "_": {
-          "values" : [
-            "normal",
-            "historical-forms"
-          ],
-          "functions" : [
-            "stylistic",
-            "styleset",
-            "character-variant",
-            "swash",
-            "ornaments",
-            "annotation"
-          ],
-          "type": [
-            "custom",
-            "functions"
-          ],
-          "separated" : true
+          "values": {
+            "normal": true,
+            "historical-forms": true
+          },
+          "functions": {
+            "stylistic": true,
+            "styleset": true,
+            "character-variant": true,
+            "swash": true,
+            "ornaments": true,
+            "annotation": true
+          },
+          "type": {
+            "custom": true,
+            "functions": true
+          },
+          "separated": true
         }
       },
       "caps": {
         "_": {
-          "values" : [
-            "normal",
-            "small-caps",
-            "all-small-caps",
-            "petite-caps",
-            "all-petite-caps",
-            "unicase",
-            "titling-caps"
-          ]
+          "values": {
+            "normal": true,
+            "small-caps": true,
+            "all-small-caps": true,
+            "petite-caps": true,
+            "all-petite-caps": true,
+            "unicase": true,
+            "titling-caps": true
+          }
         }
       },
       "east": {
         "asian": {
           "_": {
-            "values" : [
-              "jis78",
-              "jis83",
-              "jis90",
-              "jis04",
-              "simplified",
-              "traditional",
-              "full-width",
-              "proportional-width",
-              "ruby"
-            ],
-            "separated" : true
+            "values": {
+              "jis78": true,
+              "jis83": true,
+              "jis90": true,
+              "jis04": true,
+              "simplified": true,
+              "traditional": true,
+              "full-width": true,
+              "proportional-width": true,
+              "ruby": true
+            },
+            "separated": true
           }
         }
       },
       "ligatures": {
         "_": {
-          "values" : [
-            "normal",
-            "none",
-            "common-ligatures",
-            "no-common-ligatures",
-            "discretionary-ligatures",
-            "no-discretionary-ligatures",
-            "historical-ligatures",
-            "no-historical-ligatures",
-            "contextual",
-            "no-contextual"
-          ]
+          "values": {
+            "normal": true,
+            "none": true,
+            "common-ligatures": true,
+            "no-common-ligatures": true,
+            "discretionary-ligatures": true,
+            "no-discretionary-ligatures": true,
+            "historical-ligatures": true,
+            "no-historical-ligatures": true,
+            "contextual": true,
+            "no-contextual": true
+          }
         }
       },
       "numeric": {
         "_": {
-          "values" : [
-            "normal",
-            "lining-nums",
-            "oldstyle-nums",
-            "proportional-nums",
-            "tabular-nums",
-            "diagonal-fractions",
-            "stacked-fractions",
-            "ordinal",
-            "slashed-zero"
-          ],
-          "separated" : true
+          "values": {
+            "normal": true,
+            "lining-nums": true,
+            "oldstyle-nums": true,
+            "proportional-nums": true,
+            "tabular-nums": true,
+            "diagonal-fractions": true,
+            "stacked-fractions": true,
+            "ordinal": true,
+            "slashed-zero": true
+          },
+          "separated": true
         }
       },
       "position": {
         "_": {
-          "values" : [
-            "normal",
-            "sub",
-            "super"
-          ]
+          "values": {
+            "normal": true,
+            "sub": true,
+            "super": true
+          }
         }
       }
     },
     "variation": {
       "settings": {
         "_": {
-          "values" : [
-            "normal",
-            "wght",
-            "wdth",
-            "slnt",
-            "ital",
-            "opsz"
-          ],
-          "type" : [
-            "custom",
-            "number"
-          ],
-          "separated" : true
+          "values": {
+            "normal": true,
+            "wght": true,
+            "wdth": true,
+            "slnt": true,
+            "ital": true,
+            "opsz": true
+          },
+          "type": {
+            "custom": true,
+            "number": true
+          },
+          "separated": true
         }
       }
     },
     "weight": {
       "_": {
-        "values" : [
-          "normal",
-          "bold",
-          "lighter",
-          "bolder"
-        ],
-        "type" : [
-          "custom",
-          "number"
-        ]
+        "values": {
+          "normal": true,
+          "bold": true,
+          "lighter": true,
+          "bolder": true
+        },
+        "type": {
+          "custom": true,
+          "number": true
+        }
       }
     }
   },
@@ -1466,176 +1464,176 @@ let config; export default config = {
     "auto": {
       "columns": {
         "_": {
-          "values" : [
-            "auto",
-            "min-content",
-            "max-content"
-          ],
-          "type" : [
-            "length",
-            "procent",
-            "unit",
-            "function"
-          ],
-          "units" : [
-            "fr"
-          ],
-          "functions" : [
-            "minmax",
-            "fit-content"
-          ],
-          "separated" : true
+          "values": {
+            "auto": true,
+            "min-content": true,
+            "max-content": true
+          },
+          "type": {
+            "length": true,
+            "procent": true,
+            "unit": true,
+            "function": true
+          },
+          "units": {
+            "fr": true
+          },
+          "functions": {
+            "minmax": true,
+            "fit-content": true
+          },
+          "separated": true
         }
       },
       "flow": {
         "_": {
-          "values" : [
-            "row",
-            "column",
-            "dense"
-          ],
-          "separated" : true
+          "values": {
+            "row": true,
+            "column": true,
+            "dense": true
+          },
+          "separated": true
         }
       },
       "rows": {
         "_": {
-          "ref" : "$up.columns"
+          "ref": "$up.columns"
         }
       }
     },
     "column": {
       "end": {
         "_": {
-          "values" : [
-            "auto",
-            "span"
-          ],
-          "type" : [
-            "custom",
-            "number",
-            "string"
-          ],
-          "seperated" : true
+          "values": {
+            "auto": true,
+            "span": true
+          },
+          "type": {
+            "custom": true,
+            "number": true,
+            "string": true
+          },
+          "seperated": true
         }
       },
       "start": {
         "_": {
-          "ref" : "$up.end"
+          "ref": "$up.end"
         }
       }
     },
     "row": {
       "end": {
         "_": {
-          "ref" : "$up.$up.end"
+          "ref": "$up.$up.end"
         }
       },
       "start": {
         "_": {
-          "ref" : "$up.$up.end"
+          "ref": "$up.$up.end"
         }
       }
     },
     "template": {
       "areas": {
         "_": {
-          "type" : [
-            "string"
-          ],
-          "seperated" : true
+          "type": {
+            "string": true
+          },
+          "seperated": true
         }
       },
       "columns": {
         "_": {
-          "custom" : [
-            "min-content",
-            "max-content"
-          ],
-          "type" : [
-            "custom",
-            "unit",
-            "length",
-            "procent",
-            "function",
-            "linename"
-          ],
-          "units" : [
-            "fr"
-          ],
-          "functions" : [
-            "minmax",
-            "fit-content",
-            "repeat",
-            "subgrid",
-            "masonery"
-          ],
-          "seperated" : true
+          "custom": {
+            "min-content": true,
+            "max-content": true
+          },
+          "type": {
+            "custom": true,
+            "unit": true,
+            "length": true,
+            "procent": true,
+            "function": true,
+            "linename": true
+          },
+          "units": {
+            "fr": true
+          },
+          "functions": {
+            "minmax": true,
+            "fit-content": true,
+            "repeat": true,
+            "subgrid": true,
+            "masonery": true
+          },
+          "seperated": true
         }
       },
       "rows": {
         "_": {
-          "ref" : "$up.columns"
+          "ref": "$up.columns"
         }
       }
     }
   },
   "height": {
     "_": {
-      "values" : [
-        "auto",
-        "max-content",
-        "min-content"
-      ],
-      "type": [
-        "custom",
-        "length",
-        "procent",
-        "function"
-      ],
-      "function" : [
-        "fit-content"
-      ]
+      "values": {
+        "auto": true,
+        "max-content": true,
+        "min-content": true
+      },
+      "type": {
+        "custom": true,
+        "length": true,
+        "procent": true,
+        "function": true
+      },
+      "function": {
+        "fit-content": true
+      }
     }
   },
   "hyphens": {
     "_": {
-      "values" : [
-        "none",
-        "manual",
-        "auto"
-      ]
+      "values": {
+        "none": true,
+        "manual": true,
+        "auto": true
+      }
     }
   },
   "image": {
     "orientation": {
       "_": {
-        "depricated" : true
+        "depricated": true
       }
     },
     "rendering": {
       "_": {
-        "values" : [
-          "auto",
-          "crisp-edges",
-          "pixelated",
-          "smooth",
-          "high-quality",
-          ""
-        ]
+        "values": {
+          "auto": true,
+          "crisp-edges": true,
+          "pixelated": true,
+          "smooth": true,
+          "high-quality": true,
+          "": true
+        }
       }
     }
   },
   "ime": {
     "mode": {
       "_": {
-        "depricated" : true
+        "depricated": true
       }
     }
   },
   "inline": {
     "size": {
       "_": {
-        "ref" : "/.width"
+        "ref": "/.width"
       }
     }
   },
@@ -1643,134 +1641,134 @@ let config; export default config = {
     "block": {
       "end": {
         "_": {
-          "values" : [
-            "auto"
-          ],
-          "type" : [
-            "custom",
-            "length",
-            "procent"
-          ]
+          "values": {
+            "auto": true
+          },
+          "type": {
+            "custom": true,
+            "length": true,
+            "procent": true
+          }
         }
       },
       "start": {
         "_": {
-          "ref" : "$up.end"
+          "ref": "$up.end"
         }
       }
     },
     "inline": {
       "end": {
         "_": {
-          "ref" : "$up.$up.end"
+          "ref": "$up.$up.end"
         }
       },
       "start": {
         "_": {
-          "ref" : "$up.$up.end"
+          "ref": "$up.$up.end"
         }
       }
     }
   },
   "isolation": {
     "_": {
-      "values": [
-        "auto",
-        "isolate"
-      ]
+      "values": {
+        "auto": true,
+        "isolate": true
+      }
     }
   },
   "justify": {
     "content": {
       "_": {
-        "values" : [
-          "center",
-          "start",
-          "end",
-          "flex-start",
-          "flex-end",
-          "left",
-          "right",
-          "normal",
-          "space-between",
-          "space-around",
-          "space-evenly",
-          "stratch",
-          "safe",
-          "unsafe",
-          "baseline",
-          "first",
-          "last"
-        ],
-        "seperated" : true
+        "values": {
+          "center": true,
+          "start": true,
+          "end": true,
+          "flex-start": true,
+          "flex-end": true,
+          "left": true,
+          "right": true,
+          "normal": true,
+          "space-between": true,
+          "space-around": true,
+          "space-evenly": true,
+          "stratch": true,
+          "safe": true,
+          "unsafe": true,
+          "baseline": true,
+          "first": true,
+          "last": true
+        },
+        "seperated": true
       }
     },
     "items": {
       "_": {
-        "ref" : "$up.content",
-        "add" : {
-          "values" : [
-            "legacy"
-          ]
+        "ref": "$up.content",
+        "add": {
+          "values": {
+            "legacy": true
+          }
         }
       }
     },
     "self": {
       "_": {
-        "ref" : "$up.content"
+        "ref": "$up.content"
       }
     }
   },
   "left": {
     "_": {
-      "ref" : "$up.bottom"
+      "ref": "$up.bottom"
     }
   },
   "letter": {
     "spacing": {
       "_": {
-        "values" : [
-          "normal"
-        ],
-        "type" : [
-          "custom",
-          "length"
-        ]
+        "values": {
+          "normal": true
+        },
+        "type": {
+          "custom": true,
+          "length": true
+        }
       }
     }
   },
   "lighting": {
     "color": {
       "_": {
-        "type" : [
-          "color"
-        ]
+        "type": {
+          "color": true
+        }
       }
     }
   },
   "line": {
     "break": {
       "_": {
-        "values" : [
-          "auto",
-          "loose",
-          "normal",
-          "strict",
-          "anywhere"
-        ]
+        "values": {
+          "auto": true,
+          "loose": true,
+          "normal": true,
+          "strict": true,
+          "anywhere": true
+        }
       }
     },
     "height": {
       "_": {
-        "values" : [
-          "normal"
-        ],
-        "type" : [
-          "custom",
-          "numeric",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "normal": true
+        },
+        "type": {
+          "custom": true,
+          "numeric": true,
+          "length": true,
+          "procent": true
+        }
       }
     }
   },
@@ -1778,597 +1776,68 @@ let config; export default config = {
     "style": {
       "image": {
         "_": {
-          "type" : [
-            "custom",
-            "image"
-          ],
-          "values" : [
-            "none"
-          ]
+          "type": {
+            "custom": true,
+            "image": true
+          },
+          "values": {
+            "none": true
+          }
         }
       },
       "position": {
         "_": {
-          "values" : [
-            "inside",
-            "outside"
-          ]
+          "values": {
+            "inside": true,
+            "outside": true
+          }
         }
       },
       "type": {
         "_": {
-          "values" : [
-            "disc",
-            "circle",
-            "square",
-            "decimal",
-            "georgian",
-            "trad-chinese-informal",
-            "kannada",
-            "none"
-          ],
-          "type" : [
-            "custom",
-            "string",
-            "value-string"
-          ]
+          "values": {
+            "disc": true,
+            "circle": true,
+            "square": true,
+            "decimal": true,
+            "georgian": true,
+            "trad-chinese-informal": true,
+            "kannada": true,
+            "none": true
+          },
+          "type": {
+            "custom": true,
+            "string": true,
+            "value-string": true
+          }
         }
       }
     }
   },
   "margin": {
+    "_": {
+      "type": {
+        "custom": true,
+        "length": true,
+        "procent": true
+      },
+      "values": {
+        "auto": true
+      },
+      "multi": true,
+      "max": 4
+    },
     "block": {
       "end": {
         "_": {
-          "values" : [
-            "auto"
-          ],
-          "type" : [
-            "custom",
-            "length",
-            "procent"
-          ]
-        }
-      },
-      "start": {
-        "_": {
-          "ref" : "$up.end"
-        }
-      }
-    },
-    "bottom": {
-      "_": {
-        "ref" : "$up.block.end"
-      }
-    },
-    "inline": {
-      "end": {
-        "_": {
-          "ref" : "$up.$up.block.end"
-        }
-      },
-      "start": {
-        "_": {
-          "ref" : "$up.$up.block.end"
-        }
-      }
-    },
-    "left": {
-      "_": {
-        "ref" : "$up.block.end"
-      }
-    },
-    "right": {
-      "_": {
-        "ref" : "$up.block.end"
-      }
-    },
-    "top": {
-      "_": {
-        "ref" : "$up.block.end"
-      }
-    }
-  },
-  "marker": {
-    "end": {
-      "_": {
-        "values" : [
-          "none"
-        ],
-        "type": [
-          "custom",
-          "url"
-        ]
-      }
-    },
-    "mid": {
-      "_": {
-        "ref" : "$up.end"
-      }
-    },
-    "start": {
-      "_": {
-        "ref" : "$up.end"
-      }
-    }
-  },
-  "mask": {
-    "_": {
-      "type" : [
-        "image",
-        "custom"
-      ],
-      "values" : [
-        "add",
-        "subtract",
-        "intersect",
-        "exclude",
-
-        "content-box",
-        "padding-box",
-        "border-box",
-        "margin-box",
-        "fill-box",
-        "stroke-box",
-        "view-box",
-        "no-clip",
-        "border",
-        "padding",
-        "content",
-        "text",
-
-        "repeat-x",
-        "repeat-y",
-        "repeat",
-        "space",
-        "round",
-        "no-repeat",
-
-        "cover",
-        "contain",
-
-        "auto",
-        "none",
-
-        "alpha",
-        "luminance",
-        "match-source",
-
-        "top",
-        "right",
-        "left",
-        "bottom",
-        "center",
-
-        "length",
-        "procent"
-      ],
-      "multi" : true,
-      "seperated" : true
-    },
-    "clip": {
-      "_": {
-        "values" : [
-          "content-box",
-          "padding-box",
-          "border-box",
-          "margin-box",
-          "fill-box",
-          "stroke-box",
-          "view-box",
-          "no-clip",
-          "border",
-          "padding",
-          "content",
-          "text"
-        ],
-        "multi" : true,
-        "seperated" : true
-      }
-    },
-    "composite": {
-      "_": {
-        "values" : [
-          "add",
-          "subtract",
-          "intersect",
-          "exclude"
-        ]
-      }
-    },
-    "image": {
-      "_": {
-        "type" : [
-          "image",
-          "custom"
-        ],
-        "values" : [
-          "none"
-        ]
-      }
-    },
-    "mode": {
-      "_": {
-        "values" : [
-          "alpha",
-          "luminance",
-          "match-source"
-        ],
-        "multi" : true
-      }
-    },
-    "origin": {
-      "_": {
-        "values" : [
-          "content-box",
-          "padding-box",
-          "border-box",
-          "margin-box",
-          "fill-box",
-          "stroke-box",
-          "view-box",
-          "border",
-          "padding",
-          "content"
-        ],
-        "multi" : true
-      }
-    },
-    "position": {
-      "_": {
-        "type" : [
-          "position"
-        ],
-        "seperated" : true,
-        "multi" : true
-      }
-    },
-    "repeat": {
-      "_": {
-        "values" : [
-          "repeat-x",
-          "repeat-y",
-          "repeat",
-          "space",
-          "round",
-          "no-repeat"
-        ],
-        "multi" : true,
-        "seperated" : true
-      }
-    },
-    "size": {
-      "_": {
-        "values" : [
-          "cover",
-          "contain",
-          "auto"
-        ],
-        "type" : [
-          "custom",
-          "length",
-          "procent"
-        ],
-        "multi" : true,
-        "seperated" : true
-      }
-    },
-    "type": {
-      "_": {
-        "values" : [
-          "luminance",
-          "alpha"
-        ]
-      }
-    }
-  },
-  "max": {
-    "block": {
-      "size": {
-        "_": {
-          "ref" : "/.max.height"
-        }
-      }
-    },
-    "height": {
-      "_": {
-        "values" : [
-          "max-content",
-          "min-content",
-          "auto"
-        ],
-        "type" : [
-          "custom",
-          "function",
-          "length",
-          "procent"
-        ],
-        "functions" : [
-          "fit-content"
-        ]
-      }
-    },
-    "inline": {
-      "size": {
-        "_": {
-          "ref" : "/.max.height"
-        }
-      }
-    },
-    "width": {
-      "_": {
-        "ref" : "/.max.height"
-      }
-    }
-  },
-  "min": {
-    "block": {
-      "size": {
-        "_": {
-          "ref" : "/.max.height"
-        }
-      }
-    },
-    "height": {
-      "_": {
-        "ref" : "/.max.height"
-      }
-    },
-    "inline": {
-      "size": {
-        "_": {
-          "ref" : "/.max.height"
-        }
-      }
-    },
-    "width": {
-      "_": {
-        "ref" : "/.max.height"
-      }
-    }
-  },
-  "mix": {
-    "blend": {
-      "mode": {
-        "_": {
-          "values" : [
-            "normal",
-            "multiply",
-            "screen",
-            "overlay",
-            "darken",
-            "lighten",
-            "color-dodge",
-            "color-burn",
-            "hard-light",
-            "soft-light",
-            "difference",
-            "exclusion",
-            "hue",
-            "saturation",
-            "color",
-            "luminosity"
-          ]
-        }
-      }
-    }
-  },
-  "object": {
-    "fit": {
-      "_": {
-        "values" : [
-          "fill",
-          "contain",
-          "cover",
-          "none",
-          "scale-down"
-        ]
-      }
-    },
-    "position": {
-      "_": {
-        "type": [
-          "position"
-        ]
-      }
-    }
-  },
-  "offset": {
-    "anchor": {
-      "_": {
-        "type": [
-          "position"
-        ]
-      }
-    },
-    "distance": {
-      "_": {
-        "type" : [
-          "length",
-          "procent"
-        ]
-      }
-    },
-    "path": {
-      "_": {
-        "values" : [
-          "none",
-          "margin-box",
-          "stroke-box"
-        ],
-        "type" : [
-          "custom",
-          "image"
-        ]
-      }
-    },
-    "rotate": {
-      "_": {
-        "values" : [
-          "auto",
-          "reverse"
-        ],
-        "type" : [
-          "custom",
-          "degree"
-        ],
-        "seperated" : true
-      }
-    }
-  },
-  "opacity": {
-    "_": {
-      "type" : [
-        "number"
-      ]
-    }
-  },
-  "order": {
-    "_": {
-      "type" : [
-        "number"
-      ]
-    }
-  },
-  "outline": {
-    "color": {
-      "_": {
-        "values" : [
-          "invert"
-        ],
-        "type" : [
-          "custom",
-          "color"
-        ]
-      }
-    },
-    "offset": {
-      "_": {
-        "type" : [
-          "length"
-        ]
-      }
-    },
-    "style": {
-      "_": {
-        "values" : [
-          "auto",
-          "none",
-          "dotted",
-          "dashed",
-          "solid",
-          "groove",
-          "double",
-          "ridge",
-          "inset",
-          "outset"
-        ]
-      }
-    },
-    "width": {
-      "_": {
-        "values" : [
-          "thin",
-          "medium",
-          "thick"
-        ],
-        "type" : [
-          "custom",
-          "length"
-        ]
-      }
-    }
-  },
-  "overflow": {
-    "_": {
-      "values" : [
-        "visible",
-        "hidden",
-        "clip",
-        "scroll",
-        "auto"
-      ],
-      "seperated" : true
-    },
-    "anchor": {
-      "_": {
-        "values" : [
-          "auto",
-          "none"
-        ]
-      }
-    },
-    "block": {
-      "_": {
-        "values" : [
-          "visible",
-          "hidden",
-          "scroll",
-          "auto"
-        ]
-      }
-    },
-    "inline": {
-      "_": {
-        "ref" : "$up.block"
-      }
-    },
-    "wrap": {
-      "_": {
-        "values" : [
-          "normal",
-          "break-word",
-          "anywhere"
-        ]
-      }
-    },
-    "x": {
-      "_": {
-        "ref" : "/.overflow"
-      }
-    },
-    "y": {
-      "_": {
-        "ref" : "/.overflow"
-      }
-    }
-  },
-  "overscroll": {
-    "behavior": {
-      "block": {
-        "_": {
-          "values" : [
-            "auto",
-            "contain",
-            "none"
-          ]
-        }
-      },
-      "inline": {
-        "_": {
-          "ref" : "$up.block"
-        }
-      },
-      "x": {
-        "_": {
-          "ref" : "$up.block"
-        }
-      },
-      "y": {
-        "_": {
-          "ref" : "$up.block"
-        }
-      }
-    }
-  },
-  "padding": {
-    "block": {
-      "end": {
-        "_": {
-          "type" : [
-            "length",
-            "procent"
-          ]
+          "values": {
+            "auto": true
+          },
+          "type": {
+            "custom": true,
+            "length": true,
+            "procent": true
+          }
         }
       },
       "start": {
@@ -2379,10 +1848,544 @@ let config; export default config = {
     },
     "bottom": {
       "_": {
-        "type" : [
-          "length",
-          "procent"
-        ]
+        "ref": "$up.block.end"
+      }
+    },
+    "inline": {
+      "end": {
+        "_": {
+          "ref": "$up.$up.block.end"
+        }
+      },
+      "start": {
+        "_": {
+          "ref": "$up.$up.block.end"
+        }
+      }
+    },
+    "left": {
+      "_": {
+        "ref": "$up.block.end"
+      }
+    },
+    "right": {
+      "_": {
+        "ref": "$up.block.end"
+      }
+    },
+    "top": {
+      "_": {
+        "ref": "$up.block.end"
+      }
+    }
+  },
+  "marker": {
+    "end": {
+      "_": {
+        "values": {
+          "none": true
+        },
+        "type": {
+          "custom": true,
+          "url": true
+        }
+      }
+    },
+    "mid": {
+      "_": {
+        "ref": "$up.end"
+      }
+    },
+    "start": {
+      "_": {
+        "ref": "$up.end"
+      }
+    }
+  },
+  "mask": {
+    "_": {
+      "type": {
+        "image": true,
+        "custom": true
+      },
+      "values": {
+        "add": true,
+        "subtract": true,
+        "intersect": true,
+        "exclude": true,
+        "content-box": true,
+        "padding-box": true,
+        "border-box": true,
+        "margin-box": true,
+        "fill-box": true,
+        "stroke-box": true,
+        "view-box": true,
+        "no-clip": true,
+        "border": true,
+        "padding": true,
+        "content": true,
+        "text": true,
+        "repeat-x": true,
+        "repeat-y": true,
+        "repeat": true,
+        "space": true,
+        "round": true,
+        "no-repeat": true,
+        "cover": true,
+        "contain": true,
+        "auto": true,
+        "none": true,
+        "alpha": true,
+        "luminance": true,
+        "match-source": true,
+        "top": true,
+        "right": true,
+        "left": true,
+        "bottom": true,
+        "center": true,
+        "length": true,
+        "procent": true
+      },
+      "multi": true,
+      "seperated": true
+    },
+    "clip": {
+      "_": {
+        "values": {
+          "content-box": true,
+          "padding-box": true,
+          "border-box": true,
+          "margin-box": true,
+          "fill-box": true,
+          "stroke-box": true,
+          "view-box": true,
+          "no-clip": true,
+          "border": true,
+          "padding": true,
+          "content": true,
+          "text": true
+        },
+        "multi": true,
+        "seperated": true
+      }
+    },
+    "composite": {
+      "_": {
+        "values": {
+          "add": true,
+          "subtract": true,
+          "intersect": true,
+          "exclude": true
+        }
+      }
+    },
+    "image": {
+      "_": {
+        "type": {
+          "image": true,
+          "custom": true
+        },
+        "values": {
+          "none": true
+        }
+      }
+    },
+    "mode": {
+      "_": {
+        "values": {
+          "alpha": true,
+          "luminance": true,
+          "match-source": true
+        },
+        "multi": true
+      }
+    },
+    "origin": {
+      "_": {
+        "values": {
+          "content-box": true,
+          "padding-box": true,
+          "border-box": true,
+          "margin-box": true,
+          "fill-box": true,
+          "stroke-box": true,
+          "view-box": true,
+          "border": true,
+          "padding": true,
+          "content": true
+        },
+        "multi": true
+      }
+    },
+    "position": {
+      "_": {
+        "type": {
+          "position": true
+        },
+        "seperated": true,
+        "multi": true
+      }
+    },
+    "repeat": {
+      "_": {
+        "values": {
+          "repeat-x": true,
+          "repeat-y": true,
+          "repeat": true,
+          "space": true,
+          "round": true,
+          "no-repeat": true
+        },
+        "multi": true,
+        "seperated": true
+      }
+    },
+    "size": {
+      "_": {
+        "values": {
+          "cover": true,
+          "contain": true,
+          "auto": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        },
+        "multi": true,
+        "seperated": true
+      }
+    },
+    "type": {
+      "_": {
+        "values": {
+          "luminance": true,
+          "alpha": true
+        }
+      }
+    }
+  },
+  "max": {
+    "block": {
+      "size": {
+        "_": {
+          "ref": "/.max.height"
+        }
+      }
+    },
+    "height": {
+      "_": {
+        "values": {
+          "max-content": true,
+          "min-content": true,
+          "auto": true
+        },
+        "type": {
+          "custom": true,
+          "function": true,
+          "length": true,
+          "procent": true
+        },
+        "functions": {
+          "fit-content": true
+        }
+      }
+    },
+    "inline": {
+      "size": {
+        "_": {
+          "ref": "/.max.height"
+        }
+      }
+    },
+    "width": {
+      "_": {
+        "ref": "/.max.height"
+      }
+    }
+  },
+  "min": {
+    "block": {
+      "size": {
+        "_": {
+          "ref": "/.max.height"
+        }
+      }
+    },
+    "height": {
+      "_": {
+        "ref": "/.max.height"
+      }
+    },
+    "inline": {
+      "size": {
+        "_": {
+          "ref": "/.max.height"
+        }
+      }
+    },
+    "width": {
+      "_": {
+        "ref": "/.max.height"
+      }
+    }
+  },
+  "mix": {
+    "blend": {
+      "mode": {
+        "_": {
+          "values": {
+            "normal": true,
+            "multiply": true,
+            "screen": true,
+            "overlay": true,
+            "darken": true,
+            "lighten": true,
+            "color-dodge": true,
+            "color-burn": true,
+            "hard-light": true,
+            "soft-light": true,
+            "difference": true,
+            "exclusion": true,
+            "hue": true,
+            "saturation": true,
+            "color": true,
+            "luminosity": true
+          }
+        }
+      }
+    }
+  },
+  "object": {
+    "fit": {
+      "_": {
+        "values": {
+          "fill": true,
+          "contain": true,
+          "cover": true,
+          "none": true,
+          "scale-down": true
+        }
+      }
+    },
+    "position": {
+      "_": {
+        "type": {
+          "position": true
+        }
+      }
+    }
+  },
+  "offset": {
+    "anchor": {
+      "_": {
+        "type": {
+          "position": true
+        }
+      }
+    },
+    "distance": {
+      "_": {
+        "type": {
+          "length": true,
+          "procent": true
+        }
+      }
+    },
+    "path": {
+      "_": {
+        "values": {
+          "none": true,
+          "margin-box": true,
+          "stroke-box": true
+        },
+        "type": {
+          "custom": true,
+          "image": true
+        }
+      }
+    },
+    "rotate": {
+      "_": {
+        "values": {
+          "auto": true,
+          "reverse": true
+        },
+        "type": {
+          "custom": true,
+          "degree": true
+        },
+        "seperated": true
+      }
+    }
+  },
+  "opacity": {
+    "_": {
+      "type": {
+        "number": true
+      }
+    }
+  },
+  "order": {
+    "_": {
+      "type": {
+        "number": true
+      }
+    }
+  },
+  "outline": {
+    "color": {
+      "_": {
+        "values": {
+          "invert": true
+        },
+        "type": {
+          "custom": true,
+          "color": true
+        }
+      }
+    },
+    "offset": {
+      "_": {
+        "type": {
+          "length": true
+        }
+      }
+    },
+    "style": {
+      "_": {
+        "values": {
+          "auto": true,
+          "none": true,
+          "dotted": true,
+          "dashed": true,
+          "solid": true,
+          "groove": true,
+          "double": true,
+          "ridge": true,
+          "inset": true,
+          "outset": true
+        }
+      }
+    },
+    "width": {
+      "_": {
+        "values": {
+          "thin": true,
+          "medium": true,
+          "thick": true
+        },
+        "type": {
+          "custom": true,
+          "length": true
+        }
+      }
+    }
+  },
+  "overflow": {
+    "_": {
+      "values": {
+        "visible": true,
+        "hidden": true,
+        "clip": true,
+        "scroll": true,
+        "auto": true
+      },
+      "seperated": true
+    },
+    "anchor": {
+      "_": {
+        "values": {
+          "auto": true,
+          "none": true
+        }
+      }
+    },
+    "block": {
+      "_": {
+        "values": {
+          "visible": true,
+          "hidden": true,
+          "scroll": true,
+          "auto": true
+        }
+      }
+    },
+    "inline": {
+      "_": {
+        "ref": "$up.block"
+      }
+    },
+    "wrap": {
+      "_": {
+        "values": {
+          "normal": true,
+          "break-word": true,
+          "anywhere": true
+        }
+      }
+    },
+    "x": {
+      "_": {
+        "ref": "/.overflow"
+      }
+    },
+    "y": {
+      "_": {
+        "ref": "/.overflow"
+      }
+    }
+  },
+  "overscroll": {
+    "behavior": {
+      "block": {
+        "_": {
+          "values": {
+            "auto": true,
+            "contain": true,
+            "none": true
+          }
+        }
+      },
+      "inline": {
+        "_": {
+          "ref": "$up.block"
+        }
+      },
+      "x": {
+        "_": {
+          "ref": "$up.block"
+        }
+      },
+      "y": {
+        "_": {
+          "ref": "$up.block"
+        }
+      }
+    }
+  },
+  "padding": {
+    "block": {
+      "end": {
+        "_": {
+          "type": {
+            "length": true,
+            "procent": true
+          }
+        }
+      },
+      "start": {
+        "_": {
+          "ref": "$up.end"
+        }
+      }
+    },
+    "bottom": {
+      "_": {
+        "type": {
+          "length": true,
+          "procent": true
+        }
       }
     },
     "inline": {
@@ -2417,15 +2420,15 @@ let config; export default config = {
     "break": {
       "after": {
         "_": {
-          "values" : [
-            "auto",
-            "always",
-            "avoid",
-            "left",
-            "right",
-            "recto",
-            "verso"
-          ]
+          "values": {
+            "auto": true,
+            "always": true,
+            "avoid": true,
+            "left": true,
+            "right": true,
+            "recto": true,
+            "verso": true
+          }
         }
       },
       "before": {
@@ -2438,248 +2441,248 @@ let config; export default config = {
   "paint": {
     "order": {
       "_": {
-        "values" : [
-          "normal",
-          "stroke",
-          "fill",
-          "markers"
-        ]
+        "values": {
+          "normal": true,
+          "stroke": true,
+          "fill": true,
+          "markers": true
+        }
       }
     }
   },
   "perspective": {
     "_": {
-      "values" : [
-        "none"
-      ],
-      "type" : [
-        "custom",
-        "length"
-      ]
+      "values": {
+        "none": true
+      },
+      "type": {
+        "custom": true,
+        "length": true
+      }
     },
     "origin": {
       "_": {
-        "values" : [
-          "left",
-          "right",
-          "center"
-        ],
-        "type" : [
-          "custom",
-          "length",
-          "procent"
-        ],
-        "seperated" : true
+        "values": {
+          "left": true,
+          "right": true,
+          "center": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        },
+        "seperated": true
       }
     }
   },
   "pointer": {
     "events": {
       "_": {
-        "values" : [
-          "auto",
-          "none",
-          "visiblePainted",
-          "visibleFill",
-          "visibleStroke",
-          "visible",
-          "painted",
-          "fill",
-          "stroke",
-          "all"
-        ]
+        "values": {
+          "auto": true,
+          "none": true,
+          "visiblePainted": true,
+          "visibleFill": true,
+          "visibleStroke": true,
+          "visible": true,
+          "painted": true,
+          "fill": true,
+          "stroke": true,
+          "all": true
+        }
       }
     }
   },
   "position": {
     "_": {
-      "type" : [
-        "position"
-      ]
+      "type": {
+        "position": true
+      }
     }
   },
   "quotes": {
     "_": {
-      "values" : [
-        "none"
-      ],
-      "type" : [
-        "value-string"
-      ],
-      "seperated" : true
+      "values": {
+        "none": true
+      },
+      "type": {
+        "value-string": true
+      },
+      "seperated": true
     }
   },
   "r": {
     "_": {
-      "type": [
-        "number",
-        "procent"
-      ]
+      "type": {
+        "number": true,
+        "procent": true
+      }
     }
   },
   "resize": {
     "_": {
-      "values": [
-        "none",
-        "both",
-        "horizontal",
-        "vertical",
-        "block",
-        "inline"
-      ]
+      "values": {
+        "none": true,
+        "both": true,
+        "horizontal": true,
+        "vertical": true,
+        "block": true,
+        "inline": true
+      }
     }
   },
   "right": {
     "_": {
-      "ref" : "$up.bottom"
+      "ref": "$up.bottom"
     }
   },
   "rotate": {
     "_": {
-      "values": [
-        "none",
-        "x",
-        "y",
-        "z"
-      ],
-      "type": [
-        "custom",
-        "degree",
-        "unit"
-      ],
-      "units": [
-        "turn",
-        "rad"
-      ],
-      "seperated" : true
+      "values": {
+        "none": true,
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "type": {
+        "custom": true,
+        "degree": true,
+        "unit": true
+      },
+      "units": {
+        "turn": true,
+        "rad": true
+      },
+      "seperated": true
     }
   },
   "row": {
     "gap": {
       "_": {
-        "type" : [
-          "length",
-          "procent"
-        ]
+        "type": {
+          "length": true,
+          "procent": true
+        }
       }
     }
   },
   "ruby": {
     "align": {
       "_": {
-        "values" : [
-          "start",
-          "center",
-          "space-between",
-          "space-around"
-        ]
+        "values": {
+          "start": true,
+          "center": true,
+          "space-between": true,
+          "space-around": true
+        }
       }
     },
     "position": {
       "_": {
-        "values" : [
-          "over",
-          "under",
-          "inter-character",
-          "alternate"
-        ]
+        "values": {
+          "over": true,
+          "under": true,
+          "inter-character": true,
+          "alternate": true
+        }
       }
     }
   },
   "rx": {
     "_": {
-      "type" : [
-        "number"
-      ]
+      "type": {
+        "number": true
+      }
     }
   },
   "ry": {
     "_": {
-      "type" : [
-        "number"
-      ]
+      "type": {
+        "number": true
+      }
     }
   },
   "scale": {
     "_": {
-      "values" : [
-        "none"
-      ],
-      "type" : [
-        "custom",
-        "number"
-      ],
-      "seperated" : true
+      "values": {
+        "none": true
+      },
+      "type": {
+        "custom": true,
+        "number": true
+      },
+      "seperated": true
     }
   },
   "scroll": {
     "behavior": {
       "_": {
-        "values" : [
-          "auto",
-          "smooth"
-        ]
+        "values": {
+          "auto": true,
+          "smooth": true
+        }
       }
     },
     "margin": {
       "block": {
         "end": {
           "_": {
-            "type" : [
-              "length"
-            ]
+            "type": {
+              "length": true
+            }
           }
         },
         "start": {
           "_": {
-            "type" : [
-              "length"
-            ]
+            "type": {
+              "length": true
+            }
           }
         }
       },
       "bottom": {
         "_": {
-          "type" : [
-            "length"
-          ]
+          "type": {
+            "length": true
+          }
         }
       },
       "inline": {
         "end": {
           "_": {
-            "type" : [
-              "length"
-            ]
+            "type": {
+              "length": true
+            }
           }
         },
         "start": {
           "_": {
-            "type" : [
-              "length"
-            ]
+            "type": {
+              "length": true
+            }
           }
         }
       },
       "left": {
         "_": {
-          "type" : [
-            "length"
-          ]
+          "type": {
+            "length": true
+          }
         }
       },
       "right": {
         "_": {
-          "type" : [
-            "length"
-          ]
+          "type": {
+            "length": true
+          }
         }
       },
       "top": {
         "_": {
-          "type" : [
-            "length"
-          ]
+          "type": {
+            "length": true
+          }
         }
       }
     },
@@ -2687,14 +2690,14 @@ let config; export default config = {
       "block": {
         "end": {
           "_": {
-            "values" : [
-              "auto"
-            ],
-            "type" : [
-              "custom",
-              "length",
-              "procent"
-            ]
+            "values": {
+              "auto": true
+            },
+            "type": {
+              "custom": true,
+              "length": true,
+              "procent": true
+            }
           }
         },
         "start": {
@@ -2711,18 +2714,18 @@ let config; export default config = {
       "inline": {
         "end": {
           "_": {
-            "values" : [
-              "auto"
-            ],
-            "type" : [
-              "custom",
-              "length"
-            ]
+            "values": {
+              "auto": true
+            },
+            "type": {
+              "custom": true,
+              "length": true
+            }
           }
         },
         "start": {
           "_": {
-            "ref" : "$up.end"
+            "ref": "$up.end"
           }
         }
       },
@@ -2745,28 +2748,28 @@ let config; export default config = {
     "snap": {
       "align": {
         "_": {
-          "values" : [
-            "none",
-            "start",
-            "end",
-            "center"
-          ],
-          "seperated" : true
+          "values": {
+            "none": true,
+            "start": true,
+            "end": true,
+            "center": true
+          },
+          "seperated": true
         }
       },
       "type": {
         "_": {
-          "values" : [
-            "none",
-            "x",
-            "y",
-            "block",
-            "inline",
-            "both",
-            "mandatory",
-            "proximity"
-          ],
-          "seperated" : true
+          "values": {
+            "none": true,
+            "x": true,
+            "y": true,
+            "block": true,
+            "inline": true,
+            "both": true,
+            "mandatory": true,
+            "proximity": true
+          },
+          "seperated": true
         }
       }
     }
@@ -2774,25 +2777,25 @@ let config; export default config = {
   "scrollbar": {
     "color": {
       "_": {
-        "values" : [
-          "auto",
-          "dark",
-          "light"
-        ],
-        "type" : [
-          "custom",
-          "color"
-        ],
-        "seperated" : true
+        "values": {
+          "auto": true,
+          "dark": true,
+          "light": true
+        },
+        "type": {
+          "custom": true,
+          "color": true
+        },
+        "seperated": true
       }
     },
     "width": {
       "_": {
-        "values" : [
-          "auto",
-          "thin",
-          "none"
-        ]
+        "values": {
+          "auto": true,
+          "thin": true,
+          "none": true
+        }
       }
     }
   },
@@ -2800,711 +2803,711 @@ let config; export default config = {
     "image": {
       "threshold": {
         "_": {
-          "type" : [
-            "number"
-          ]
+          "type": {
+            "number": true
+          }
         }
       }
     },
     "margin": {
       "_": {
-        "type" : [
-          "length",
-          "procent"
-        ]
+        "type": {
+          "length": true,
+          "procent": true
+        }
       }
     },
     "outside": {
       "_": {
-        "values" : [
-          "none",
-          "margin-box",
-          "content-box",
-          "border-box",
-          "padding-box"
-        ],
-        "type" : [
-          "custom",
-          "image"
-        ]
+        "values": {
+          "none": true,
+          "margin-box": true,
+          "content-box": true,
+          "border-box": true,
+          "padding-box": true
+        },
+        "type": {
+          "custom": true,
+          "image": true
+        }
       }
     },
     "rendering": {
       "_": {
-        "values" : [
-          "auto",
-          "optimizeSpeed",
-          "crispEdges",
-          "geometricPrecision"
-        ]
+        "values": {
+          "auto": true,
+          "optimizeSpeed": true,
+          "crispEdges": true,
+          "geometricPrecision": true
+        }
       }
     }
   },
   "stop": {
     "color": {
       "_": {
-        "type" : [
-          "color"
-        ]
+        "type": {
+          "color": true
+        }
       }
     },
     "opacity": {
       "_": {
-        "type" : [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     }
   },
   "stroke": {
     "_": {
-      "values" : [
-        "none",
-        "context-fill",
-        "context-stroke"
-      ],
-      "type" :[
-        "custom",
-        "color",
-        "function"
-      ],
-      "functions" : [
-        "url"
-      ]
+      "values": {
+        "none": true,
+        "context-fill": true,
+        "context-stroke": true
+      },
+      "type": {
+        "custom": true,
+        "color": true,
+        "function": true
+      },
+      "functions": {
+        "url": true
+      }
     },
     "dasharray": {
       "_": {
-        "type" : [
-          "number"
-        ],
-        "seperated" : true
+        "type": {
+          "number": true
+        },
+        "seperated": true
       }
     },
     "dashoffset": {
       "_": {
-        "type" : [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     },
     "linecap": {
       "_": {
-        "values" : [
-          "butt",
-          "round",
-          "square"
-        ]
+        "values": {
+          "butt": true,
+          "round": true,
+          "square": true
+        }
       }
     },
     "linejoin": {
       "_": {
-        "values" : [
-          "arcs",
-          "bevel",
-          "miter",
-          "miter-clip",
-          "round"
-        ]
+        "values": {
+          "arcs": true,
+          "bevel": true,
+          "miter": true,
+          "miter-clip": true,
+          "round": true
+        }
       }
     },
     "miterlimit": {
       "_": {
-        "type" : [
-          "numeric"
-        ]
+        "type": {
+          "numeric": true
+        }
       }
     },
     "opacity": {
       "_": {
-        "type" : [
-          "numeric",
-          "procent"
-        ]
+        "type": {
+          "numeric": true,
+          "procent": true
+        }
       }
     },
     "width": {
       "_": {
-        "type" : [
-          "numeric",
-          "length",
-          "procent"
-        ]
+        "type": {
+          "numeric": true,
+          "length": true,
+          "procent": true
+        }
       }
     }
   },
   "table": {
     "layout": {
       "_": {
-        "values" : [
-          "auto",
-          "fixed"
-        ]
+        "values": {
+          "auto": true,
+          "fixed": true
+        }
       }
     }
   },
   "text": {
     "align": {
       "_": {
-        "values" : [
-          "left",
-          "right",
-          "center",
-          "justify",
-          "justify-all",
-          "start",
-          "end",
-          "match-parent"
-        ]
+        "values": {
+          "left": true,
+          "right": true,
+          "center": true,
+          "justify": true,
+          "justify-all": true,
+          "start": true,
+          "end": true,
+          "match-parent": true
+        }
       },
       "last": {
         "_": {
-          "values" : [
-            "auto",
-            "start",
-            "end",
-            "left",
-            "right",
-            "center",
-            "justify"
-          ]
+          "values": {
+            "auto": true,
+            "start": true,
+            "end": true,
+            "left": true,
+            "right": true,
+            "center": true,
+            "justify": true
+          }
         }
       }
     },
     "anchor": {
       "_": {
-        "values" : [
-          "start",
-          "middle",
-          "end"
-        ]
+        "values": {
+          "start": true,
+          "middle": true,
+          "end": true
+        }
       }
     },
     "combine": {
       "upright": {
         "_": {
-          "values" : [
-            "none",
-            "all",
-            "digits"
-          ],
-          "type" : [
-            "custom",
-            "numeric"
-          ],
-          "seperated" : true
+          "values": {
+            "none": true,
+            "all": true,
+            "digits": true
+          },
+          "type": {
+            "custom": true,
+            "numeric": true
+          },
+          "seperated": true
         }
       }
     },
     "decoration": {
       "_": {
-        "join" : [
-          "$up.line",
-          "$up.color",
-          "$up.style",
-          "$up.thickness"
-        ]
+        "join": {
+          "$up.line": true,
+          "$up.color": true,
+          "$up.style": true,
+          "$up.thickness": true
+        }
       },
       "color": {
         "_": {
-          "type" : [
-            "color"
-          ]
+          "type": {
+            "color": true
+          }
         }
       },
       "line": {
         "_": {
-          "values" : [
-            "none",
-            "underline",
-            "overline",
-            "line-through",
-            "blink"
-          ],
-          "seperated" : true
+          "values": {
+            "none": true,
+            "underline": true,
+            "overline": true,
+            "line-through": true,
+            "blink": true
+          },
+          "seperated": true
         }
       },
       "skip": {
         "ink": {
           "_": {
-            "values" : [
-              "auto",
-              "all",
-              "none"
-            ]
+            "values": {
+              "auto": true,
+              "all": true,
+              "none": true
+            }
           }
         }
       },
       "style": {
         "_": {
-          "values" : [
-            "solid",
-            "double",
-            "dotted",
-            "dashed",
-            "wavy"
-          ]
+          "values": {
+            "solid": true,
+            "double": true,
+            "dotted": true,
+            "dashed": true,
+            "wavy": true
+          }
         }
       },
       "thickness": {
         "_": {
-          "values" : [
-            "auto",
-            "from-font"
-          ],
-          "type" : [
-            "custom",
-            "length",
-            "procent"
-          ]
+          "values": {
+            "auto": true,
+            "from-font": true
+          },
+          "type": {
+            "custom": true,
+            "length": true,
+            "procent": true
+          }
         }
       }
     },
     "emphasis": {
       "color": {
         "_": {
-          "type" : [
-            "color"
-          ]
+          "type": {
+            "color": true
+          }
         }
       },
       "position": {
         "_": {
-          "values" : [
-            "over",
-            "under",
-            "right",
-            "left"
-          ],
-          "seperated" : true
+          "values": {
+            "over": true,
+            "under": true,
+            "right": true,
+            "left": true
+          },
+          "seperated": true
         }
       },
       "style": {
         "_": {
-          "values" : [
-            "none",
-            "filled",
-            "open",
-            "dot",
-            "circle",
-            "double-circle",
-            "triangle",
-            "sesame"
-          ],
-          "type" : [
-            "custom",
-            "value-string"
-          ]
+          "values": {
+            "none": true,
+            "filled": true,
+            "open": true,
+            "dot": true,
+            "circle": true,
+            "double-circle": true,
+            "triangle": true,
+            "sesame": true
+          },
+          "type": {
+            "custom": true,
+            "value-string": true
+          }
         }
       }
     },
     "indent": {
       "_": {
-        "values" : [
-          "each-line",
-          "hanging"
-        ],
-        "type" : [
-          "custom",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "each-line": true,
+          "hanging": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        }
       }
     },
     "justify": {
       "_": {
-        "values" : [
-          "none",
-          "auto",
-          "inter-word",
-          "inter-character",
-          "distribute"
-        ]
+        "values": {
+          "none": true,
+          "auto": true,
+          "inter-word": true,
+          "inter-character": true,
+          "distribute": true
+        }
       }
     },
     "orientation": {
       "_": {
-        "values" : [
-          "mixed",
-          "upright",
-          "sideways-right",
-          "sideways",
-          "use-glyph-orientation"
-        ]
+        "values": {
+          "mixed": true,
+          "upright": true,
+          "sideways-right": true,
+          "sideways": true,
+          "use-glyph-orientation": true
+        }
       }
     },
     "overflow": {
       "_": {
-        "values" : [
-          "clip",
-          "ellipsis",
-          "fade"
-        ],
-        "type" : [
-          "custom",
-          "value-string"
-        ]
+        "values": {
+          "clip": true,
+          "ellipsis": true,
+          "fade": true
+        },
+        "type": {
+          "custom": true,
+          "value-string": true
+        }
       }
     },
     "rendering": {
       "_": {
-        "values" : [
-          "auto",
-          "optimizeSpeed",
-          "optimizeLegibility",
-          "geometricPrecision"
-        ]
+        "values": {
+          "auto": true,
+          "optimizeSpeed": true,
+          "optimizeLegibility": true,
+          "geometricPrecision": true
+        }
       }
     },
     "shadow": {
       "_": {
-        "type" : [
-          "length",
-          "color"
-        ],
-        "seperated" : true,
-        "multi" : true
+        "type": {
+          "length": true,
+          "color": true
+        },
+        "seperated": true,
+        "multi": true
       }
     },
     "transform": {
       "_": {
-        "values" : [
-          "none",
-          "capitalize",
-          "uppercase",
-          "lowercase",
-          "full-width",
-          "full-size-kana"
-        ]
+        "values": {
+          "none": true,
+          "capitalize": true,
+          "uppercase": true,
+          "lowercase": true,
+          "full-width": true,
+          "full-size-kana": true
+        }
       }
     },
     "underline": {
       "offset": {
         "_": {
-          "values" : [
-            "auto"
-          ],
-          "type" : [
-            "custom",
-            "length",
-            "procent"
-          ]
+          "values": {
+            "auto": true
+          },
+          "type": {
+            "custom": true,
+            "length": true,
+            "procent": true
+          }
         }
       },
       "position": {
         "_": {
-          "values" : [
-            "auto",
-            "under",
-            "left",
-            "right"
-          ],
-          "seperated" : true
+          "values": {
+            "auto": true,
+            "under": true,
+            "left": true,
+            "right": true
+          },
+          "seperated": true
         }
       }
     }
   },
   "top": {
     "_": {
-      "ref" : "/.bottom"
+      "ref": "/.bottom"
     }
   },
   "touch": {
     "action": {
       "_": {
-        "values" : [
-          "auto",
-          "none",
-          "pan-x",
-          "pan-left",
-          "pan-right",
-          "pan-y",
-          "pan-up",
-          "pan-down",
-          "pinch-zoom",
-          "manipulation"
-        ]
+        "values": {
+          "auto": true,
+          "none": true,
+          "pan-x": true,
+          "pan-left": true,
+          "pan-right": true,
+          "pan-y": true,
+          "pan-up": true,
+          "pan-down": true,
+          "pinch-zoom": true,
+          "manipulation": true
+        }
       }
     }
   },
   "transform": {
     "_": {
-      "values" : [
-        "none"
-      ],
-      "type" : [
-        "custom",
-        "function"
-      ],
-      "functions" : [
-        "matrix",
-        "matrix3d",
-        "perspective",
-        "rotate",
-        "rotate3d",
-        "rotateX",
-        "rotateY",
-        "rotateZ",
-        "translate",
-        "translate3d",
-        "translateX",
-        "translateY",
-        "translateZ",
-        "scale",
-        "scale3d",
-        "scaleX",
-        "scaleY",
-        "scaleZ",
-        "skew",
-        "skewX",
-        "skewY"
-      ]
+      "values": {
+        "none": true
+      },
+      "type": {
+        "custom": true,
+        "function": true
+      },
+      "functions": {
+        "matrix": true,
+        "matrix3d": true,
+        "perspective": true,
+        "rotate": true,
+        "rotate3d": true,
+        "rotateX": true,
+        "rotateY": true,
+        "rotateZ": true,
+        "translate": true,
+        "translate3d": true,
+        "translateX": true,
+        "translateY": true,
+        "translateZ": true,
+        "scale": true,
+        "scale3d": true,
+        "scaleX": true,
+        "scaleY": true,
+        "scaleZ": true,
+        "skew": true,
+        "skewX": true,
+        "skewY": true
+      }
     },
     "box": {
       "_": {
-        "values" : [
-          "content-box",
-          "border-box",
-          "fill-box",
-          "stroke-box",
-          "view-box"
-        ]
+        "values": {
+          "content-box": true,
+          "border-box": true,
+          "fill-box": true,
+          "stroke-box": true,
+          "view-box": true
+        }
       }
     },
     "origin": {
       "_": {
-        "type" : [
-          "position"
-        ]
+        "type": {
+          "position": true
+        }
       }
     },
     "style": {
       "_": {
-        "values" : [
-          "flat",
-          "preserve-3d"
-        ]
+        "values": {
+          "flat": true,
+          "preserve-3d": true
+        }
       }
     }
   },
   "transition": {
     "delay": {
       "_": {
-        "type" : [
-          "time"
-        ],
-        "multi" : true
+        "type": {
+          "time": true
+        },
+        "multi": true
       }
     },
     "duration": {
       "_": {
-        "ref" : "$up.delay"
+        "ref": "$up.delay"
       }
     },
     "property": {
       "_": {
-        "values" : [
-          "none",
-          "all"
-        ],
-        "type" : [
-          "custom",
-          "string"
-        ]
+        "values": {
+          "none": true,
+          "all": true
+        },
+        "type": {
+          "custom": true,
+          "string": true
+        }
       }
     },
     "timing": {
       "function": {
         "_": {
-          "values" : [
-            "ease",
-            "ease-in",
-            "ease-out",
-            "ease-in-out",
-            "linear",
-            "step-start",
-            "step-end"
-          ],
-          "type" : [
-            "custom",
-            "function"
-          ],
-          "functions" : [
-            "cubic-bezier",
-            "steps"
-          ]
+          "values": {
+            "ease": true,
+            "ease-in": true,
+            "ease-out": true,
+            "ease-in-out": true,
+            "linear": true,
+            "step-start": true,
+            "step-end": true
+          },
+          "type": {
+            "custom": true,
+            "function": true
+          },
+          "functions": {
+            "cubic-bezier": true,
+            "steps": true
+          }
         }
       }
     }
   },
   "translate": {
     "_": {
-      "type" : [
-        "length",
-        "procent"
-      ],
-      "seperated" : true
+      "type": {
+        "length": true,
+        "procent": true
+      },
+      "seperated": true
     }
   },
   "unicode": {
     "bidi": {
       "_": {
-        "values" : [
-          "normal",
-          "embed",
-          "isolate",
-          "bidi-override",
-          "isolate-override",
-          "plaintext"
-        ]
+        "values": {
+          "normal": true,
+          "embed": true,
+          "isolate": true,
+          "bidi-override": true,
+          "isolate-override": true,
+          "plaintext": true
+        }
       }
     }
   },
   "user": {
     "select": {
       "_": {
-        "values" : [
-          "none",
-          "auto",
-          "text",
-          "contain",
-          "all"
-        ]
+        "values": {
+          "none": true,
+          "auto": true,
+          "text": true,
+          "contain": true,
+          "all": true
+        }
       }
     }
   },
   "vector": {
     "effect": {
       "_": {
-        "values" : [
-          "none",
-          "non-scaling-stroke",
-          "non-scaling-size",
-          "non-rotation",
-          "fixed-position"
-        ]
+        "values": {
+          "none": true,
+          "non-scaling-stroke": true,
+          "non-scaling-size": true,
+          "non-rotation": true,
+          "fixed-position": true
+        }
       }
     }
   },
   "vertical": {
     "align": {
       "_": {
-        "values" : [
-          "baseline",
-          "sub",
-          "super",
-          "text-top",
-          "text-bottom",
-          "middle",
-          "top",
-          "bottom"
-        ],
-        "type" : [
-          "custom",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "baseline": true,
+          "sub": true,
+          "super": true,
+          "text-top": true,
+          "text-bottom": true,
+          "middle": true,
+          "top": true,
+          "bottom": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        }
       }
     }
   },
   "visibility": {
     "_": {
-      "values" : [
-        "visible",
-        "hidden",
-        "collapse"
-      ]
+      "values": {
+        "visible": true,
+        "hidden": true,
+        "collapse": true
+      }
     }
   },
   "white": {
     "space": {
       "_": {
-        "values" : [
-          "normal",
-          "nowrap",
-          "pre",
-          "pre-wrap",
-          "pre-line",
-          "break-spaces"
-        ]
+        "values": {
+          "normal": true,
+          "nowrap": true,
+          "pre": true,
+          "pre-wrap": true,
+          "pre-line": true,
+          "break-spaces": true
+        }
       }
     }
   },
   "width": {
     "_": {
-      "ref" : "/.height"
+      "ref": "/.height"
     }
   },
   "will": {
     "change": {
       "_": {
-        "values" : [
-          "auto",
-          "scroll-position",
-          "contents"
-        ],
-        "type" : [
-          "custom",
-          "string"
-        ],
-        "multi" : true
+        "values": {
+          "auto": true,
+          "scroll-position": true,
+          "contents": true
+        },
+        "type": {
+          "custom": true,
+          "string": true
+        },
+        "multi": true
       }
     }
   },
   "word": {
     "break": {
       "_": {
-        "values" : [
-          "normal",
-          "break-all",
-          "kepp-all"
-        ]
+        "values": {
+          "normal": true,
+          "break-all": true,
+          "kepp-all": true
+        }
       }
     },
     "spacing": {
       "_": {
-        "values" : [
-          "normal"
-        ],
-        "type" : [
-          "custom",
-          "length",
-          "procent"
-        ]
+        "values": {
+          "normal": true
+        },
+        "type": {
+          "custom": true,
+          "length": true,
+          "procent": true
+        }
       }
     }
   },
   "writing": {
     "mode": {
       "_": {
-        "values" : [
-          "horizontal-tb",
-          "vertical-rl",
-          "vertical-lr"
-        ]
+        "values": {
+          "horizontal-tb": true,
+          "vertical-rl": true,
+          "vertical-lr": true
+        }
       }
     }
   },
   "x": {
     "_": {
-      "type" : [
-        "number"
-      ]
+      "type": {
+        "number": true
+      }
     }
   },
   "y": {
     "_": {
-      "type" : [
-        "number"
-      ]
+      "type": {
+        "number": true
+      }
     }
   },
   "z": {
     "index": {
       "_": {
-        "type" : [
-          "number"
-        ]
+        "type": {
+          "number": true
+        }
       }
     }
   }
-};
+}

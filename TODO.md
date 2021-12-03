@@ -9,3 +9,8 @@
 7. Move debug tool to other project, improve it and implement back as 3rd party service
 8. Server driven rendering (infinite loading), so we can open files of GB in size
 9. Add Y rendering (for very long lines like min.js)
+
+
+## Thinkers
+
+Maybe I should have create a guide line for colorizing? Like this should have this syntax "[var] : [value]" etc. instead of creating custom one by hand? With that I could just change guidelines not modules. 

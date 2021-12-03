@@ -230,5 +230,37 @@ class TabJF_Get {
     el.remove();
     return nodes;
   }
+
+  sentence( line ) {
+    let words = '';
+    line.content.forEach( span => {
+      words += span.content;
+    });
+    return this.replace.spaceChars(words);
+  }
+
+  words( sentence ) {
+
+    let word = '';
+    words = [];
+    let spaces = false;
+
+    if ( this.is.space( sentence[0] ) ) spaces = true;
+
+    for (let i = 0; i < sentence.length; i++) {
+      const letter  = sentence[i];
+      const isSpace = this.is.space(letter);
+
+      if ( isSpace && spaces == false || !isSpace && spaces == true ) {
+        words.push(word);
+        word = letter;
+      } else word += letter;
+
+      if ( isSpace ) spaces = true;
+      else           spaces = false;
+    }
+    words.push( word );
+    return words;
+  }
 }
 export { TabJF_Get };
