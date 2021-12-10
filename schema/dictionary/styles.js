@@ -1,4 +1,4 @@
-let config; export default config = {
+let rules; export default rules = {
   "align": {
     "content": {
       "_": {

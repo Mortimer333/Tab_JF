@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="<?= cacheBurst('./master.css'); ?>">
   </head>
   <body>
-    <div id="editor">
+    <div id="editor" name="aa">
+      <p><span>tag #id .color @method {</span></p>
       <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% auto s e;lo&nbsp; 'asda;a"s"d()dd' var(asd)</span></p>
       <p></p>
       <p><span>1asd</span><span>|dsa</span><span>|dsa</span></p>
@@ -92,6 +93,7 @@
     <script type="module">
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
+      console.log(editor);
       const tabEditor = new TabJF(editor, { left : 35, addCss : false }, true);
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);

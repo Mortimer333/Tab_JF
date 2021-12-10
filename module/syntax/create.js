@@ -26,5 +26,33 @@ class TabJF_Syntax_Create {
       content : text,
     }
   }
+
+  class( text ) {
+    return {
+      attrs : { class : 'class' },
+      content : text,
+    }
+  }
+
+  id( text ) {
+    return {
+      attrs : { class : 'id' },
+      content : text,
+    }
+  }
+
+  method( text ) {
+    return {
+      attrs : { class : 'method' },
+      content : text,
+    }
+  }
+
+  tag( text ) {
+    return {
+      attrs : { class : 'tag' },
+      content : text,
+    }
+  }
 }
 export { TabJF_Syntax_Create };

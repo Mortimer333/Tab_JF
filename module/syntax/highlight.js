@@ -74,5 +74,38 @@ class TabJF_Syntax_Highlight {
     }
     return spans;
   }
+
+  ruleset( chunks ) {
+    const spans = [];
+    const notAllowedRegex = new RegExp(/[()$!\"'`%\/\\]/);
+    let syntaxBreak = false;
+    const classes = {
+      '.' : 'class',
+      '#' : 'id',
+      '@' : 'method',
+      default : 'tag'
+    };
+    for (let i = 0; i < chunks.length; i++) {
+      const chunk = chunks[i];
+
+      if (!syntaxBreak && notAllowedRegex.test(chunk)) {
+        syntaxBreak = true;
+      }
+
+      if ( syntaxBreak ) {
+        spans.push(this.syntax.create.mistake( chunk ));
+        continue;
+      }
+
+      if ( this.is.space(chunk[0]) ) {
+        spans.push(this.syntax.create.space( chunk ));
+        continue;
+      }
+
+      spans.push(this.syntax.create[( classes[chunk[0]] || classes['default'] )]( chunk ));
+
+    }
+    return spans;
+  }
 }
 export { TabJF_Syntax_Highlight };

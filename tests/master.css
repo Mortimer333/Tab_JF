@@ -40,7 +40,7 @@
   min-width   : calc(100% - 35px - 10px);
 }
 
-.tabjf_editor p {
+ .tabjf_editor p {
   --color-grey : #bdc3c7 ;
   position     : relative;
   min-height   : 20px    ;
@@ -76,19 +76,34 @@
   margin-right: 10px;
 }
 
-.tabjf_editor p .rule {
+.tabjf_editor p .class {
   color : rgb(255, 167, 53);
 }
 
-.tabjf_editor p .semicolon, .tabjf_editor p .proper {
+.tabjf_editor p .id {
+  color : #7796B0;
+}
+
+.tabjf_editor p .method {
+  color : #B294BB;
+}
+
+.tabjf_editor p .tag {
+  color : #CC6666;
+}
+
+.tabjf_editor p .proper {
+  color : rgb(255, 167, 53);
+}
+
+.tabjf_editor p .semicolon, .tabjf_editor p .rule {
   color : #FFF;
   text-decoration: underline; /* remove later */
 }
 
 .tabjf_editor p .spaces {
-  /* --space-width : 8.8; */
   color: red;
-  background-image: url("data:image/svg+xml,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%206.4%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3Bopacity%3A0.5%3B%7D.cls-2%7Bopacity%3A0%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Crect%20class%3D%22cls-1%22%20x%3D%222.74%22%20y%3D%222.74%22%20width%3D%224.53%22%20height%3D%224.53%22%20transform%3D%22translate(5%20-3.87)%20rotate(45)%22%2F%3E%3Crect%20class%3D%22cls-2%22%20y%3D%221.16%22%20width%3D%220.27%22%20height%3D%224.09%22%2F%3E%3Crect%20class%3D%22cls-2%22%20x%3D%229.73%22%20y%3D%221.16%22%20width%3D%220.27%22%20height%3D%224.09%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%206.4%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3Bopacity%3A0.2%3B%7D.cls-2%7Bopacity%3A0%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Crect%20class%3D%22cls-1%22%20x%3D%222.74%22%20y%3D%222.74%22%20width%3D%224.53%22%20height%3D%224.53%22%20transform%3D%22translate(5%20-3.87)%20rotate(45)%22%2F%3E%3Crect%20class%3D%22cls-2%22%20y%3D%221.16%22%20width%3D%220.27%22%20height%3D%224.09%22%2F%3E%3Crect%20class%3D%22cls-2%22%20x%3D%229.73%22%20y%3D%221.16%22%20width%3D%220.27%22%20height%3D%224.09%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: repeat-x;
   background-position: center left;
   background-size: calc(var(--space-width) * 1px) auto;

@@ -34,5 +34,13 @@ class TabJF_Syntax_Colorize {
     newLine.content = newLine.content.concat(spans);
     return newLine;
   }
+
+  ruleset ( line ) {
+    const sentence = this.get.sentence( line );
+    const words    = this.get.css.words( sentence );
+    const newLine = this.get.clone( line );
+    newLine.content = this.syntax.highlight.ruleset( words );
+    return [newLine, !!~sentence.indexOf('{')];
+  }
 }
 export { TabJF_Syntax_Colorize };
