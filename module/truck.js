@@ -40,7 +40,7 @@ class TabJF_Truck {
       conAr.push({
         content : [
           {
-            attrs : [],
+            attrs : {},
             content : this.replace.spaces( text ),
           }
         ]

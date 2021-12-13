@@ -1,6 +1,6 @@
 class TabJF_Is {
-  space(letter) {
-    return letter == " " || letter == "\u00A0";
+  space(word) {
+    return word == " " || word == "\u00A0" || word == '&nbsp;';
   }
 }
 export { TabJF_Is };

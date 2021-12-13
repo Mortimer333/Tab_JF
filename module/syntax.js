@@ -1,6 +1,14 @@
 import schema from '../schema/rules/paths.js';
 class TabJF_Syntax {
   rulesetOpen = false;
+  groups = [];
+  ends   = [];
+  dict   = {
+    value : false,
+    name : {
+      active : false
+    }
+  }
 
   /**
    * How I want it to work:
@@ -15,52 +23,132 @@ class TabJF_Syntax {
 
   init () {
     const start = this.render.hidden;             // Start line
-    const end   = start + this.render.linesLimit; // End Line
+    let end     = start + this.render.linesLimit; // End Line
+    if (end > this.render.content.length) {
+      end = this.render.content.length;
+    }
 
     // We need to get all lines from start to currently shown
     const lines = this.render.content.slice(0, end);
 
+    this.syntax.groups = [schema];
+    this.syntax.ends   = [ null ];
+    this.syntax.dicts  = [ null ];
+    console.log("line end", end);
     for (let i = 0; i < end; i++) {
       const line = lines[i];
-      const res = this.syntax.paint(line);
-      this.render.content[i + start].content = res;
-      console.log(res);
-      // if (!this.syntax.rulesetOpen) {
-      //   console.log(res);
-      //   this.render.content[i + start] = res[0];
-      //   this.syntax.rulesetOpen = res[1];
-      // } else {
-      //   this.render.content[i + start] = this.syntax.check.rule(line);
-      // }
+      console.log("=== New Line", line);
+      const sentence = this.get.sentence( line );
+      const res = this.syntax.validateResults(this.syntax.paint( sentence ));
+      this.render.content[i + start].content = res.words;
+      console.log("=== Line End");
+      console.log();
     }
   }
 
-  paint( line, group = schema, end = null ) {
-    let sentence = this.get.sentence( line );
-    console.log("Start paintintg sentence: ", sentence);
-    const words = [];
+  validateResults ( res, rec = false ) {
+    if ( res.sentence.length > 0 ) {
+      return {
+        words : res.words.concat(
+          this.syntax.validateResults(
+            this.syntax.paint( res.sentence ),
+            true
+          ).words
+        ),
+        sentence : ''
+      };
+    }
+    return res;
+  }
+
+  paint( sentence, oldGroup = null, oldEnd = null, debug = '\t' ) {
+    const group = this.syntax.groups[0];
+    const end   = this.syntax.ends[0];
+    let words          = [];
+    let dictValueStart = 0;
+
     for (var i = 0; i < sentence.length; i++) {
       const letter = sentence[i];
-      console.log("Letter: `" + letter + '`');
-      if (group.sets[letter]) {
-        console.log("\tHis set", group.sets[letter]);
-        // Even if sentence if bonkers long with this we might
-        // escape int overflow
-        let word = sentence.substring(0, i );
-        console.log("\tCut Word!", '`' + word + '`');
-        sentence = sentence.substring(i );
-        if ( word.length == 0 ) continue;
-        i = 0;
-        let wordSet = group.sets[word[0]] || group.sets['default'] || { color : '#FFF' };
-        console.log("\tWord set", wordSet);
-        words.push(this.syntax.create.span({ 'style' : 'color:' + wordSet.color }, word));
-        if (wordSet?.subset) {
-          console.log("\tsubset");
+
+      if ( group?.sets && group?.sets[letter] ) {
+        const letterSet = group?.sets[letter];
+
+        // Even if sentence if bonkers long with this we might escape int overflow
+        let word = sentence.substring( 0, i );
+
+        if (word.length != 0) {
+          let wordSet = group.sets[word[0]] || group.sets['default'] || { attrs : { style : 'color:#FFF;' } };
+          words.push(this.syntax.create.span( wordSet.attrs,  word));
+        }
+
+        // What I want to do with dictionary?
+        // - When name is active then wait for it to be finished (nameEnd trigger) and then try to find
+        //   its value
+        //   - if it has trim set to true then ignor spaces (might set it that its true for default)
+        //   - if it has joiners then cut it into `directions` (an array of made of names of values to go by)
+        //   - find the value by using `directions`
+        //   - each direction has additional step `_` which is just a container for values
+        // - With value we can start validating chunks of it
+        //   - each value will have a type which indicates how to validate it (types will have to be explained in
+        //     `functions`)
+        //   - if type is not specified then the { custom : true } is used
+        //   - some of values might have `ref` key word which means to copy some else setting and merge with this one
+
+        // name : value ;
+        // const name = value ;
+        // public const name = value;
+
+        if ( group?.name && group.name.end == letter && this.syntax.dict.name.active ) {
+          this.syntax.dict.name.active = false;
+          words = this.syntax.dictionary.getValue(words, group);
+          dictValueStart = words.length + 1;
+        } else if ( group?.name && group.name.start == letter && !this.syntax.dict.name.active ) {
+          this.syntax.dict.name.active = true;
+          let newValues = this.syntax.dictionary.validateValue(words.splice(dictValueStart), group);
+          words = words.concat( newValues );
+        }
+
+        if (letterSet?.single || group.dictionary) {
+          words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( i, i + 1 )));
+          i++;
+        }
+        sentence = sentence.substring( i );
+
+        if (letterSet?.single || group.dictionary) i = -1;
+        else                                       i = 0;
+
+        if ( group.sets[letter]?.subset ) {
+
+          if ( group.sets[letter].subset?.dictionary ) this.syntax.dict.name.active = true;
+
+          words.push(this.syntax.create.span( group.sets[letter].attrs,  letter));
+          this.syntax.groups.unshift( group.sets[letter].subset );
+          this.syntax.ends  .unshift( group.sets[letter].end );
+          const res = this.syntax.paint( sentence.substr( 1 ), group, end, debug + '\t' );
+          words = words.concat( res.words );
+          sentence = res.sentence;
         }
       }
+
+      if ( letter == end ) {
+        if ( group?.dictionary ) this.syntax.dict.name.active = false;
+        this.syntax.groups.shift();
+        this.syntax.ends  .shift();
+        return { words, sentence };
+      }
     }
-    words.push(this.syntax.create.span({ 'style' : 'color:#FFF;' }, sentence))
-    return words;
+
+    if ( sentence.length > 0 ) {
+      const first = sentence[0];
+      if (group?.sets && group?.sets[first]) {
+        words.push(this.syntax.create.span( group.sets[first].attrs,  sentence));
+      } else {
+        words.push(this.syntax.create.span({ 'style' : 'color:#FFF;' }, sentence))
+      }
+      sentence = '';
+    }
+
+    return { words, sentence };
   }
 
   chainSearch( chunks ) {

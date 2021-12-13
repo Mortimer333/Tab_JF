@@ -15,7 +15,7 @@ class TabJF_Syntax_Create {
 
   mistake( text ) {
     return {
-      attrs : { class : 'mistake' },
+      attrs : { class : 'mistake', style : 'color:#FFF;' },
       content : text,
     }
   }

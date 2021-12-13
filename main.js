@@ -25,6 +25,7 @@ import { TabJF_Syntax_Check } from './module/syntax/check.js';
 import { TabJF_Syntax_Colorize } from './module/syntax/colorize.js';
 import { TabJF_Syntax_Create } from './module/syntax/create.js';
 import { TabJF_Syntax_Highlight } from './module/syntax/highlight.js';
+import { TabJF_Syntax_Dictionary } from './module/syntax/dictionary.js';
 import { TabJF_Syntax } from './module/syntax.js';
 import { TabJF_Truck } from './module/truck.js';
 import { TabJF_Update_Selection } from './module/update/selection.js';
@@ -41,6 +42,7 @@ class TabJF {
   docEventsSet = false;
   copiedHere   = false;
   activated    = false;
+  spaceUChar   = '\u00A0';
 
   stack = {
     open      : true,
@@ -173,10 +175,11 @@ class TabJF {
       { instance : TabJF_Replace, var : 'replace' },
       { instance : TabJF_Set    , var : 'set'     },
       { instance : TabJF_Syntax , var : 'syntax', modules : [
-        { instance : TabJF_Syntax_Highlight, var : 'highlight' },
-        { instance : TabJF_Syntax_Create   , var : 'create'    },
-        { instance : TabJF_Syntax_Check    , var : 'check'     },
-        { instance : TabJF_Syntax_Colorize , var : 'colorize'  },
+        { instance : TabJF_Syntax_Highlight , var : 'highlight' },
+        { instance : TabJF_Syntax_Create    , var : 'create'    },
+        { instance : TabJF_Syntax_Check     , var : 'check'     },
+        { instance : TabJF_Syntax_Dictionary, var : 'dictionary'     },
+        { instance : TabJF_Syntax_Colorize  , var : 'colorize'  },
       ]},
       { instance : TabJF_Truck  , var : 'truck'   },
       { instance : TabJF_Update , var : 'update', modules : [

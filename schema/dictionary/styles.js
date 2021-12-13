@@ -1,4 +1,4 @@
-let rules; export default rules = {
+let dictionary; export default dictionary = {
   "align": {
     "content": {
       "_": {

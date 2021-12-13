@@ -190,13 +190,10 @@ class TabJF_Get {
   }
 
   attributes(el) {
-    const attrsObj = [];
+    const attrsObj = {};
     for ( let att, i = 0, atts = el.attributes, n = atts.length; i < n; i++ ){
       att = atts[i];
-      attrsObj.push({
-        nodeName  : att.nodeName,
-        nodeValue : att.nodeValue,
-      });
+      attrsObj[att.nodeName] = att.nodeValue;
     }
     return attrsObj;
   }
