@@ -36,6 +36,8 @@ class TabJF_Get {
   }
 
   selectedNodes () {
+    const sel = this.get.selection();
+    if ( sel.type != 'Range') return;
     let start = this.get.clone( this.selection.start );
     let end   = this.get.clone( this.selection.end   );
     if (
@@ -47,15 +49,15 @@ class TabJF_Get {
       start   = end;
       end     = tmp;
     }
-    const sel = this.get.selection();
-    if ( sel.type != 'Range') return;
 
     if ( start.line == end.line ) {
       const line = this.get.clone( this.render.content[ start.line ] );
+      delete line.ends;
+      delete line.groupPath;
       if ( start.node == end.node ) {
         let content = this.replace.spaceChars( line.content[ start.node ].content );
         let text    = this.replace.spaces( content.substr( start.letter, end.letter - start.letter ) );
-        line.content[ start.node ].content = text;
+        line.content = [ this.syntax.create.span({}, text)];
         return [ line ];
       } else {
         let startNode = line.content[ start.node ];

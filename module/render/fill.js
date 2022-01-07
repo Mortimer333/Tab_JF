@@ -10,11 +10,11 @@ class TabJF_Render_Fill {
       if (!line) {
         break;
       }
-      this.render.content[this.render.hidden + i] = this.truck.exportLine(line);
+      this.render.content[this.render.hidden + i].content = this.truck.exportLine(line).content;
       line.remove();
     }
 
-    this.render.move.page(startLine, false);
+    this.render.move.page({ offset : startLine, clear : false });
     this.checkSelect();
   }
 }

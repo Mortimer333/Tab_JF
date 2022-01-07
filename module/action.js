@@ -1,7 +1,6 @@
 class TabJF_Action {
   copy () {
     const clipboard = this.get.selectedNodes();
-
     const event = this.event.dispatch('tabJFCopy', {
       pos       : this.get.clonedPos(),
       event     : null,
@@ -48,7 +47,6 @@ class TabJF_Action {
   }
 
   paste () {
-
     const event = this.event.dispatch('tabJFPaste', {
       pos       : this.get.clonedPos(),
       event     : null,
@@ -57,8 +55,6 @@ class TabJF_Action {
     if ( event.defaultPrevented ) return;
 
     this.remove.selected();
-    const start     = this.selection.start;
-    const end       = this.selection.end;
     const clipboard = this.get.clone( this.clipboard );
     const first     = clipboard[0];
     const last      = clipboard[ clipboard.length - 1 ];
@@ -66,10 +62,13 @@ class TabJF_Action {
     let firstLineSpan = firstLine  .content[ this.pos.childIndex ];
     let firstPreText  = this.replace.spaceChars( firstLineSpan.content ).substr( 0, this.pos.letter );
     let firstSufText  = this.replace.spaceChars( firstLineSpan.content ).substr( this.pos.letter    );
+
     // Set content to be prefix
     firstLineSpan.content = firstPreText;
+
     // cut the rest of spans
-    let firstLineSpans = firstLine.content.splice( start.node + 1 );
+    let firstLineSpans = firstLine.content.splice( this.pos.childIndex + 1 );
+
     // add spans from the first copy line
     firstLine.content  = firstLine.content.concat( first.content  );
 
@@ -88,7 +87,9 @@ class TabJF_Action {
       lastLetter = first.content[ first.content.length - 1 ].content.length;
       lastChildIndex = this.pos.childIndex + first.content.length;
       firstLine.content[ firstLine.content.length - 1 ].content += firstSufText;
+      firstLine.content = firstLine.content.concat( firstLineSpans );
     }
+
     this.render.content.splice(
       this.pos.line + 1,
       0,
@@ -108,9 +109,12 @@ class TabJF_Action {
       this.pos.line + clipboard.length - 1,
       lastChildIndex
     );
+    this.lastX = this.get.realPos().x;
     this.render.update.minHeight();
     this.render.update.scrollWidth();
     this.update.selection.start();
+    // update page, because pasting happens at the end of cycle
+    this.update.page()
   }
 
   cut () {
@@ -142,6 +146,7 @@ class TabJF_Action {
     if ( event.defaultPrevented ) return;
 
     this._save.restore();
+    this.lastX = this.get.realPos().x;
     this.render.update.minHeight();
     this.render.update.scrollWidth();
   }
@@ -161,6 +166,8 @@ class TabJF_Action {
     if ( event.defaultPrevented ) return;
 
     this._save.recall();
+    console.log(this.get.realPos().x);
+    this.lastX = this.get.realPos().x;
     this.render.update.minHeight();
     this.render.update.scrollWidth();
   }

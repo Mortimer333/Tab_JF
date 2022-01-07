@@ -15,8 +15,11 @@
   <body>
     <div id="editor" name="aa">
       <p><span>tag #id .color @method [name="a"] {</span></p>
-      <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% auto s e;lo&nbsp; 'asda;a"s"d()dd' var(asd)</span></p>
+      <p><span>margin : 20px 2% 2em 4rem 5%;</span></p>
+      <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% e auto s e;margin-bottom:&nbsp; calc(2px + </span></p>
+      <p><span>var(--asd, var(aa, "bas"))) 'asda;padding : 10px;a"s"d()dd' var(asd)</span></p>
       <p><span>} sss</span></p>
+      <p><span>margin:aa;</span></p>
       <p><span>.anama1asd</span><span>|dsa</span><span>|dsa</span></p>
       <!-- <p><span>2asd</span><span>|dsa</span><span>|dsa</span></p>
       <p><span>3asd</span><span>|dsa</span><span>|dsa</span></p>

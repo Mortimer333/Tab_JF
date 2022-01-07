@@ -28,7 +28,6 @@ class Test {
 
   error (check, mes, params = []) {
     if (check) {
-      console.info(...params);
       throw new Error('FAILED [' + this.constructor.name + '] ' + mes);
     }
   }

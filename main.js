@@ -10,7 +10,7 @@ import { TabJF_Get_Css } from './module/get/css.js';
 import { TabJF_Get } from './module/get.js';
 import { TabJF_Is_Line } from './module/is/line.js';
 import { TabJF_Is } from './module/is.js';
-import { TabJF_Keys } from './module/keys.js';
+import { TabJF_Keys } from './module/keys.js?v=2';
 import { TabJF_Remove } from './module/remove.js';
 import { TabJF_Render_Add } from './module/render/add.js';
 import { TabJF_Render_Fill } from './module/render/fill.js';
@@ -88,11 +88,17 @@ class TabJF {
     this.editor   = editor;
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
-    set.left      = ( set.left    ||  0    );
-    set.top       = ( set.top     ||  0    );
-    set.line      = ( set.line    ||  20   );
-    set.height    = ( set.height  ||  400  );
-    set.addCss    = ( set.addCss  ||  true );
+    const required = {
+      'left' : 0,
+      'top' : 0,
+      'line' : 20,
+      'height' : 400,
+      'addCss' : true
+    }
+    Object.keys(required).forEach( attr => {
+      set[attr] = typeof set[attr] == 'undefined' ? required[attr] : set[attr];
+    });
+
     this.settings = set;
 
     this.inject();
@@ -133,7 +139,9 @@ class TabJF {
     this.syntax.init();
     this.truck.import( this.render.content, this.render.linesLimit );
 
-    if ( set.addCss ) this.addRules();
+    if ( set.addCss ) {
+      this.addRules();
+    }
   }
 
   inject () {
@@ -227,7 +235,12 @@ class TabJF {
   }
 
   addRules () {
-    const css = window.document.styleSheets[0];
+    let css = window.document.styleSheets[0];
+    if (!css) {
+      var styleEl = document.createElement('style');
+      document.head.appendChild(styleEl);
+      css = styleEl.sheet;
+    }
     const rules = [
       `.tabjf_editor-con {
         max-height : calc( var(--max-height, 200) * 1px);
@@ -384,8 +397,7 @@ class TabJF {
   }
 
   checkSelect() {
-    if (!this.selection.active) return;
-
+    if ( !this.selection.active ) return;
     const start  = this.selection.start;
     const end    = this.selection.end;
     let reversed = false;
@@ -416,11 +428,16 @@ class TabJF {
       firstLinePos = start.line;
     }
 
+
     if (firstLinePos < this.render.hidden || (this.selection.update && firstLinePos >= this.render.hidden + this.render.linesLimit)) {
       firstLinePos        = this.render.hidden;
       startLetter         = 0;
       lineStartChildIndex = 0;
       endLetter           = end.letter;
+    }
+
+    if ( endLetter < 0 ) {
+      return;
     }
 
     if (lineEndPos >= this.render.hidden + this.render.linesLimit) {
@@ -442,12 +459,8 @@ class TabJF {
     const range = new Range();
     const firstTextLength = firstText.nodeValue.length;
     const lastTextLength = lastText.nodeValue.length;
-    if (firstTextLength < startLetter) {
-      startLetter = firstTextLength;
-    }
-    if (lastTextLength < endLetter) {
-      endLetter = lastTextLength;
-    }
+    if ( firstTextLength < startLetter ) startLetter = firstTextLength;
+    if ( lastTextLength  < endLetter   ) endLetter   = lastTextLength;
     range.setStart(firstText, startLetter);
     range.setEnd  (lastText , endLetter  );
     this.get.selection().removeAllRanges();
@@ -461,11 +474,10 @@ class TabJF {
     });
     if ( event.defaultPrevented ) return;
 
-    if ( e.target == this.editor  ||  e.layerX < 0  ||  e.layerY < 0 ) return;
+    if ( e.target == this.editor  ||  e.x < 0  ||  e.y < 0 ) return;
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
-
-    let left = e.layerX;
+    let left = e.x - this.settings.left;
     if ( el.offsetWidth + el.offsetLeft < left ) {
       left = el.offsetWidth + el.offsetLeft;
     }
@@ -629,7 +641,6 @@ class TabJF {
 
       // Move keys
       37 : ( e, type ) => {
-        this.keys.move(-1, 0);
         const event = this.event.dispatch('tabJFMove', {
           pos       : this.get.clonedPos(),
           event     : e,
@@ -638,6 +649,7 @@ class TabJF {
           y         : 0,
         });
         if ( event.defaultPrevented ) return;
+        this.keys.move(-1, 0);
       },
       38 : ( e, type ) => {
         const event = this.event.dispatch('tabJFMove', {
@@ -748,35 +760,37 @@ class TabJF {
         throw new Error('Unknow special key', e.keyCode);
       }
     };
-
     let selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
     const sel = this.get.selection();
+
     if (
       this.selection.active
       && !selDelSkip[ e.key.toLowerCase() ]
       && !this.pressed.ctrl
       && sel.type == "Range"
+      && (
+        !!this.keys[ e.key.toLowerCase() ]
+        || e.key.length == 1
+      )
     ) {
-      if ( !!this.keys[ e.key.toLowerCase() ]  ||  e.key.length == 1 ) {
-        this.remove.selected();
-      }
+      this.remove.selected();
     }
 
     if ( !keys[ e.keyCode ] && e.key.length == 1 ) {
       this.insert( e.key );
-
       if ( !this.caret.isVisible() ) {
         this.render.set.overflow(
           null,
           (this.pos.line - (this.render.linesLimit/2)) * this.settings.line
         );
       }
-      return;
+    } else {
+      ( keys[e.keyCode] || keys['default'] )( e, type );
     }
 
-    ( keys[e.keyCode]  ||  keys['default'] )( e, type );
+    const skipUpdate = { 86 : true }
 
-    this.update.currentLine();
+    if ( !skipUpdate[ e.keyCode ] ) this.update.page()
   }
 
   toSide( dirX, dirY ) {
@@ -827,7 +841,7 @@ class TabJF {
       el.innerHTML = '';
       el.appendChild( document.createTextNode('') );
     }
-    this.render.content[ this.pos.line ] = this.truck.exportLine( el.parentElement );
+    this.render.content[ this.pos.line ].content = this.truck.exportLine( el.parentElement ).content;
     let newLine  = document.createElement("p");
     let appended = [];
 
@@ -852,11 +866,12 @@ class TabJF {
         null,
         ( this.pos.line - ( this.render.linesLimit - 6 ) ) * this.settings.line
       );
-      this.render.move.page( this.pos.line - ( this.render.linesLimit - 6 ) );
+      this.render.move.page({ offset : this.pos.line - ( this.render.linesLimit - 6 ) });
     } else {
       this.render.move.page();
     }
     this.caret.refocus( 0, this.pos.line + 1, 0 );
+    this.lastX = 0;
   }
 
   mergeLine( dir ) {
@@ -866,16 +881,18 @@ class TabJF {
       let previous = this.get.lineInDirection( line, dir );
       if ( !previous ) return; // do nothing
 
-      let oldLast = previous.children[ previous.children.length - 1 ];
+
+      this.pos.line--;
+      this.toSide(1, 0);
+
       for ( let i = line.children.length - 1; i >= 0 ; i-- ) {
         if ( line.children[0].innerText.length > 0 ) previous.appendChild( line.children[0] );
         else line.children[0].remove();
       }
+
       line.remove();
-      this.pos.line = this.pos.line - 1;
-      this.toSide(1, 0);
+      this.render.remove.line(this.pos.line + 1);
       this.lastX = this.get.realPos().x;
-      this.render.remove.line(this.pos.line);
 
     } else if ( dir > 0 ) { // Delete
       let next = this.get.lineInDirection( line, dir );
@@ -899,10 +916,11 @@ class TabJF {
       pre : text.substr( 0, this.pos.letter ),
       suf : text.substr( this.pos.letter    )
     }
-    this.pos.el.innerHTML = text.pre + key + text.suf;
-    this.render.content[this.pos.line].content[ this.pos.childIndex ].content = text.pre + key + text.suf;
+    text = this.replace.spaces(text.pre) + key + this.replace.spaces(text.suf);
+    // this.pos.el.innerHTML = text;
+    this.render.content[ this.pos.line ].content[ this.pos.childIndex ].content = text;
     this.caret.refocus( this.pos.letter + this.replace.spaceChars( key ).length );
-    this.lastX++;
+    this.lastX = this.get.realPos().x;
   }
 
   catchClipboard( e ) {

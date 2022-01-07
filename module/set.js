@@ -28,15 +28,17 @@ class TabJF_Set {
     };
   }
 
-  side ( node, dirX, newLine = this.pos.line ) {
+  side ( node, dirX, newLine = this.pos.line, childIndex = this.pos.childIndex ) {
     let letter = this.pos.letter;
+    this.pos.childIndex = childIndex;
     this.pos.el = node;
          if ( dirX > 0 ) letter = node.innerText.length;
     else if ( dirX < 0 ) letter = 0;
     this.caret.setByChar( letter, newLine );
   }
 
-  pos ( node, letter, line ) {
+  pos ( node, letter, line, childIndex ) {
+    this.pos.childIndex = childIndex;
     this.pos.letter = letter;
     this.pos.line   = line;
     this.caret.setByChar( letter, line, node );
@@ -53,6 +55,9 @@ class TabJF_Set {
   }
 
   attributesFromContent(attributes, text) {
+    if (!attributes) {
+      return;
+    }
     let newSpan = document.createElement("span");
     Object.keys(attributes).forEach( name => {
       newSpan.setAttribute( name, attributes[name] );

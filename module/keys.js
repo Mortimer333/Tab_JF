@@ -12,6 +12,7 @@ class TabJF_Keys {
       if ( sel.type != "Range") this.remove.one (-1);
       else                      this.remove.selected();
     }
+    this.update.currentLine();
   }
 
   tab ( e ) {
@@ -37,6 +38,7 @@ class TabJF_Keys {
       if ( this.pressed.ctrl ) this.remove.word( 1 );
       else                     this.remove.one ( 1 );
     } else this.remove.selected();
+    this.update.currentLine();
   }
 
   moveCtrl ( dir, el = this.pos.el, c_pos = this.pos.letter ) {
@@ -102,8 +104,7 @@ class TabJF_Keys {
       else if ( dir > 0 ) c_pos = newPos;
     }
 
-    this.set.pos( el, c_pos, this.pos.line );
-    this.pos.childIndex = this.get.childIndex( el );
+    this.set.pos( el, c_pos, this.pos.line, this.get.childIndex( el ) );
     this.lastX = this.get.realPos().x;
   }
 
@@ -129,13 +130,12 @@ class TabJF_Keys {
     if ( dirY != 0 ) this.keys.moveY( dirY, dirX );
 
     if (
-      this.pos.el.innerText.length == 0 &&
-      (
+      this.pos.el.innerText.length == 0
+      && (
         this.pos.el.previousSibling && dirX < 0
-        ||
-        this.pos.el.nextSibling && dirX > 0
-      ) &&
-      !recuresionCheck
+        || this.pos.el.nextSibling && dirX > 0
+      )
+      && !recuresionCheck
     ) {
       let temp = this.pos.el;
       this.keys.move(dirX, 0, true);
@@ -191,20 +191,18 @@ class TabJF_Keys {
   }
 
   moveY ( dirY, dirX ) {
-
     const line = this.pos.line;
     if ( line + dirY <= -1 ) return;
     if ( line + dirY >= this.render.content.length ) return;
 
     let realLetters = this.get.realPos().x;
-
-    let newLine = this.get.lineInDirection( this.pos.el.parentElement, dirY );
+    this.pos.line   = line + dirY;
+    let newLine = this.get.lineByPos( line + dirY );
     if ( !newLine ) return;
 
     if ( newLine.innerText.length < realLetters + dirX ) {
       this.pos.childIndex = newLine.children.length - 1;
-      this.pos.line       = line + dirY;
-      this.pos.letter     = newLine.innerText.length;
+      this.pos.letter     = newLine.children[this.pos.childIndex].innerText.length;
     } else {
 
       let currentLetterCount = 0;
@@ -214,12 +212,10 @@ class TabJF_Keys {
         currentLetterCount += child.innerText.length;
         if ( currentLetterCount >= this.lastX ) {
           this.pos.childIndex = this.get.childIndex(child);
-          this.pos.line       = line + dirY;
           this.pos.letter     = this.lastX - (currentLetterCount - child.innerText.length);
           break;
         } else if ( i + 1 == newLine.children.length ) {
           this.pos.childIndex = newLine.children.length - 1;
-          this.pos.line       = line + dirY;
           this.pos.letter     = child.innerText.length;
         }
       }

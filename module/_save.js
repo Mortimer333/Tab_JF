@@ -145,7 +145,7 @@ class TabJF_Save {
     );
 
     if ( !this.is.line.visible( focus.line ) ) {
-      this.render.move.page( focus.line - Math.floor( this.render.linesLimit/2 ) );
+      this.render.move.page({ offset : focus.line - Math.floor( this.render.linesLimit/2 ) });
     } else {
       this.render.move.page();
     }
@@ -164,14 +164,14 @@ class TabJF_Save {
       const save = this._save;
       save.content.remove(step.remove);
       const focus = step.focus;
-      this.render.move.page(focus.topLine);
+      this.render.move.page({ offset : focus.topLine });
       setTimeout(function(){
         let step = version[i];
         console.log("Step", i + 1, step.fun_name, "Add", step.add);
         const focus = step.focus;
         const save = this._save;
         save.content.add(step.add);
-        this.render.move.page(focus.topLine);
+        this.render.move.page({ offset : focus.topLine });
         if (version.length > i + 1) {
           this._save.slowVersion(version, i + 1);
         }
@@ -187,7 +187,7 @@ class TabJF_Save {
     let line = this.get.lineByPos( focus?.line );
 
     if ( line ) {
-      this.set.pos( line.childNodes[ focus.childIndex ], focus.letter, focus.line );
+      this.set.pos( line.childNodes[ focus.childIndex ], focus.letter, focus.line, focus.childIndex );
     } else {
       console.error("Line not found! Please refocus caret.");
     }
@@ -217,7 +217,7 @@ class TabJF_Save {
     const focus = version[0].focusAfter;
 
     if ( !this.is.line.visible( focus.line ) )
-      this.render.move.page( focus.line - Math.floor( this.render.linesLimit/2 ) );
+      this.render.move.page({ offset : focus.line - Math.floor( this.render.linesLimit/2 ) });
     else
       this.render.move.page();
     this.render.overflow.scrollTo(

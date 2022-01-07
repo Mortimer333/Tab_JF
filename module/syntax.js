@@ -3,23 +3,7 @@ class TabJF_Syntax {
   rulesetOpen = false;
   groups = [];
   ends   = [];
-  dict   = {
-    value : false,
-    name : {
-      active : false
-    }
-  }
-
-  /**
-   * How I want it to work:
-   * First is mapping (it always makes for less iteration):
-   * - map words
-   * - during mapping mark them based on given Reaction Chain
-   * - mark groups... actually during mapping we could just paint them as we go
-   * - okay so we will iterate over each letter and set grouping
-   * - can I during grouping set highlight? Yea I think I can just I have to get just entered word
-   *
-   */
+  groupPath = [];
 
   init () {
     const start = this.render.hidden;             // Start line
@@ -33,17 +17,56 @@ class TabJF_Syntax {
 
     this.syntax.groups = [schema];
     this.syntax.ends   = [ null ];
-    this.syntax.dicts  = [ null ];
-    console.log("line end", end);
-    for (let i = 0; i < end; i++) {
-      const line = lines[i];
-      console.log("=== New Line", line);
+    this.syntax.highlightLines(lines, start);
+  }
+
+  highlightLines(lines, start) {
+    for (let i = 0; i < lines.length; i++) {
+      this.render.content[i + start].ends      = this.get.clone( this.syntax.ends      );
+      this.render.content[i + start].groupPath = this.get.clone( this.syntax.groupPath );
+      const line     = lines[i];
       const sentence = this.get.sentence( line );
-      const res = this.syntax.validateResults(this.syntax.paint( sentence ));
+      const res      = this.syntax.validateResults(this.syntax.paint( sentence ));
+      if ( res.words.length == 0 ) {
+        res.words.push(this.syntax.create.span({}, ''));
+      }
       this.render.content[i + start].content = res.words;
-      console.log("=== Line End");
-      console.log();
     }
+  }
+
+  update() {
+    let start  = this.pos.line;
+    start = this.syntax.getGroupPathLineNumber(start);
+    const aStart = this.render.hidden;
+    const end    = this.settings.line;
+    const lines  = this.render.content.slice(start, aStart + end);
+    this.syntax.groups = this.syntax.createGroups(
+      this.get.clone(this.render.content[start].groupPath),
+      schema
+    );
+    this.syntax.groups.push(schema);
+    this.syntax.ends      = this.render.content[start].ends;
+    this.syntax.groupPath = this.render.content[start].groupPath;
+    this.syntax.highlightLines(lines, start);
+  }
+
+  getGroupPathLineNumber(start) {
+    for (let i = start; i >= 0; i--) {
+      if (this.render.content[i].groupPath) {
+        return i;
+      }
+    }
+    throw new Error('Group Path was not found on any line');
+  }
+
+  createGroups( directions, schemats, groups = [] ) {
+    if (directions.length == 0) {
+      return groups;
+    }
+    const schemat = schemats.subset.sets[directions[0]];
+    groups.unshift(schemat);
+    directions.shift();
+    return this.syntax.createGroups(directions, schemat, groups);
   }
 
   validateResults ( res, rec = false ) {
@@ -61,94 +84,145 @@ class TabJF_Syntax {
     return res;
   }
 
-  paint( sentence, oldGroup = null, oldEnd = null, debug = '\t' ) {
-    const group = this.syntax.groups[0];
-    const end   = this.syntax.ends[0];
-    let words          = [];
-    let dictValueStart = 0;
+  paint( sentence, words = [], debug = '\t' ) {
+    const group  = this.syntax.groups[0];
+    const subset = group.subset;
+    const end    = this.syntax.ends[0];
 
     for (var i = 0; i < sentence.length; i++) {
-      const letter = sentence[i];
+      let letter = sentence[i];
 
-      if ( group?.sets && group?.sets[letter] ) {
-        const letterSet = group?.sets[letter];
-
-        // Even if sentence if bonkers long with this we might escape int overflow
-        let word = sentence.substring( 0, i );
-
-        if (word.length != 0) {
-          let wordSet = group.sets[word[0]] || group.sets['default'] || { attrs : { style : 'color:#FFF;' } };
-          words.push(this.syntax.create.span( wordSet.attrs,  word));
-        }
-
-        // What I want to do with dictionary?
-        // - When name is active then wait for it to be finished (nameEnd trigger) and then try to find
-        //   its value
-        //   - if it has trim set to true then ignor spaces (might set it that its true for default)
-        //   - if it has joiners then cut it into `directions` (an array of made of names of values to go by)
-        //   - find the value by using `directions`
-        //   - each direction has additional step `_` which is just a container for values
-        // - With value we can start validating chunks of it
-        //   - each value will have a type which indicates how to validate it (types will have to be explained in
-        //     `functions`)
-        //   - if type is not specified then the { custom : true } is used
-        //   - some of values might have `ref` key word which means to copy some else setting and merge with this one
-
-        // name : value ;
-        // const name = value ;
-        // public const name = value;
-
-        if ( group?.name && group.name.end == letter && this.syntax.dict.name.active ) {
-          this.syntax.dict.name.active = false;
-          words = this.syntax.dictionary.getValue(words, group);
-          dictValueStart = words.length + 1;
-        } else if ( group?.name && group.name.start == letter && !this.syntax.dict.name.active ) {
-          this.syntax.dict.name.active = true;
-          let newValues = this.syntax.dictionary.validateValue(words.splice(dictValueStart), group);
-          words = words.concat( newValues );
-        }
-
-        if (letterSet?.single || group.dictionary) {
-          words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( i, i + 1 )));
-          i++;
-        }
-        sentence = sentence.substring( i );
-
-        if (letterSet?.single || group.dictionary) i = -1;
-        else                                       i = 0;
-
-        if ( group.sets[letter]?.subset ) {
-
-          if ( group.sets[letter].subset?.dictionary ) this.syntax.dict.name.active = true;
-
-          words.push(this.syntax.create.span( group.sets[letter].attrs,  letter));
-          this.syntax.groups.unshift( group.sets[letter].subset );
-          this.syntax.ends  .unshift( group.sets[letter].end );
-          const res = this.syntax.paint( sentence.substr( 1 ), group, end, debug + '\t' );
-          words = words.concat( res.words );
-          sentence = res.sentence;
-        }
+      if ( subset?.sets && subset?.sets[letter] ) {
+        const results = this.syntax.splitWord( subset, i, letter, words, sentence, '\t' + debug );
+        words    = results.words;
+        sentence = results.sentence;
+        i = results.i;
+        letter = sentence[0];
+      } else if ( group?.selfref && letter == group?.start ) {
+        let oldOne = { 'subset' : { 'sets' : { [group.start] : group } } };
+        const resultsFirstWord = this.syntax.splitWord( subset, i, letter, words, sentence.slice(0, i), '\t' + debug );
+        words    = resultsFirstWord.words;
+        const results = this.syntax.splitWord( oldOne.subset, 0, letter, words, sentence.slice(i), '\t' + debug );
+        words    = results.words;
+        sentence = results.sentence;
+        letter = sentence[0];
+        i = results.i;
       }
 
-      if ( letter == end ) {
-        if ( group?.dictionary ) this.syntax.dict.name.active = false;
+      if ( end !== null && letter == end ) {
+        let word = sentence.substring( 0, i );
+
+        if ( word.length != 0 ) {
+          let wordSet = this.syntax.getSet(subset, word);
+          words.push( this.syntax.create.span(
+              this.syntax.getAttrsFromSet(
+                wordSet,
+                word,
+                words,
+                letter,
+                sentence,
+                subset
+              ),
+              word
+          ));
+        }
+
+        sentence = sentence.substring( i );
         this.syntax.groups.shift();
         this.syntax.ends  .shift();
-        return { words, sentence };
+        this.syntax.groupPath.pop();
+        return { words, sentence, i : -1 };
       }
     }
 
     if ( sentence.length > 0 ) {
-      const first = sentence[0];
-      if (group?.sets && group?.sets[first]) {
-        words.push(this.syntax.create.span( group.sets[first].attrs,  sentence));
-      } else {
-        words.push(this.syntax.create.span({ 'style' : 'color:#FFF;' }, sentence))
-      }
+      let attr = this.syntax.getAttrsFromSet(
+        this.syntax.getSet(subset, sentence),
+        sentence,
+        words,
+        '',
+        sentence,
+        subset
+      );
+      words.push(this.syntax.create.span(attr, sentence));
       sentence = '';
     }
-
     return { words, sentence };
+  }
+
+  splitWord( subset, i, letter, words, sentence, debug ) {
+    const letterSet = subset?.sets[letter];
+    // Even if sentence if bonkers long with this we might escape int overflow
+    let word = sentence.substring( 0, i );
+
+    if ( word.length != 0 ) {
+      let wordSet = this.syntax.getSet(subset, word);
+      let attrs = wordSet.attrs;
+      if ( wordSet?.ignore ) wordSet = { attrs : { style : 'color:#FFF;' } };
+      if ( wordSet?.run ) {
+        const results = wordSet.run.bind( wordSet );
+        attrs = results( word, words, letter, sentence, subset.sets );
+      }
+      words.push(this.syntax.create.span( attrs, word ));
+    }
+
+    if ( letterSet?.single && !subset.sets[letter]?.subset ) {
+      words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( i, i + 1 )));
+      i++;
+    }
+    sentence = sentence.substring( i );
+    if ( letterSet?.single ) i = -1;
+    else i = 0;
+    if ( subset.sets[letter]?.subset ) {
+      words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( 0, 1 )));
+      this.syntax.groupPath.push(letter);
+      const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(1), debug, subset);
+      words = res.words;
+      sentence = res.sentence;
+    }
+
+    return {
+      words,
+      sentence,
+      i
+    };
+  }
+
+  startNewSubset(letter, letterSet, word, words, sentence, debug, subset) {
+    if ( !letterSet?.single && !subset.sets[letter]?.subset ) {
+      words.push(this.syntax.create.span( subset.sets[letter].attrs, letter));
+    }
+    this.syntax.groups.unshift( subset.sets[letter] );
+    this.syntax.ends  .unshift( subset.sets[letter].end );
+    const res = this.syntax.paint( sentence, words, debug + '\t' );
+    // Subset end trigger
+    if (subset.sets[letter]?.triggers) {
+      const triggers = subset.sets[letter].triggers;
+      if (triggers?.end) {
+        triggers?.end.bind(subset.sets[letter])( word, words, letter, sentence, subset.sets[letter].subset.sets );
+      }
+    }
+    words = res.words;
+    sentence = res.sentence;
+    return {
+      words,
+      sentence
+    }
+  }
+
+  getSet(group, word) {
+    return group.sets[word[0]] || group.sets[word] || group.sets['default'] || { attrs : { style : 'color:#FFF;' } };
+  }
+
+  getAttrsFromSet(set, word, words, letter, sentence, group) {
+    let attrs = set.attrs;
+    if (set?.ignore) set = { attrs : { style : 'color:#FFF;' } };
+
+    if (set?.run) {
+      const results = set.run.bind(set);
+      attrs = results( word, words, letter, sentence, group.sets );
+    }
+    return attrs;
   }
 
   chainSearch( chunks ) {

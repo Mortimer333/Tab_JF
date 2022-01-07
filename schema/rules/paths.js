@@ -1,6 +1,5 @@
 import styles from '../dictionary/styles.js';
 import functions from '../functions/styles.js';
-console.log(functions);
 let paths; export default paths = {
   // I need to describe
   // what part of the word I need
@@ -8,146 +7,294 @@ let paths; export default paths = {
   // color
   // what starts a word
   // what ends a word
-  sets : {
-    '.' : {
-      // valid : /-?[_a-zA-Z]+[_a-zA-Z0-9-]*/,
-      // end : /[^\a-zA-z0-9/-_]/,
-      attrs : {
-        style : 'color:#F00;'
-      }
-    },
-    '#' : {
-      // valid : /-?[_a-zA-Z]+[_a-zA-Z0-9-]*/,
-      // end : /[^\a-zA-z0-9/-_]/,
-      attrs : {
-        style : 'color:#0F0;'
-      }
-    },
-    ']' : {
-      attrs : {
-        style : 'color:#00F;'
-      }
-    },
-    '[' : {
-      // valid : /-?[_a-zA-Z]+[_a-zA-Z0-9-]*/,
-      attrs : {
-        style : 'color:#00F;'
+  subset : {
+    sets : {
+      '.' : {
+        attrs : {
+          style : 'color:#F00;'
+        }
       },
-      end : ']',
-      subset : {
-        sets : {
-          '=' : {
-            attrs : {
-              style : 'color:#0FF;'
-            }
-          },
-          '"' : {
-            attrs : {
-              style : 'color:#FF0;'
-            }
-          },
-          "'" : {
-            attrs : {
-              style : 'color:#FF0;'
-            }
-          },
-          default : {
-            attrs : {
-              style : 'color:#ABC;'
+      '#' : {
+        attrs : {
+          style : 'color:#0F0;'
+        }
+      },
+      ']' : {
+        attrs : {
+          style : 'color:#00F;'
+        }
+      },
+      '[' : {
+        attrs : {
+          style : 'color:#00F;'
+        },
+        end : ']',
+        subset : {
+          sets : {
+            '=' : {
+              attrs : {
+                style : 'color:#0FF;'
+              }
+            },
+            '"' : {
+              attrs : {
+                style : 'color:#FF0;'
+              }
+            },
+            "'" : {
+              attrs : {
+                style : 'color:#FF0;'
+              }
+            },
+            default : {
+              attrs : {
+                style : 'color:#ABC;'
+              }
             }
           }
         }
-      }
-    },
-    '{' : {
-      attrs : {
-        style : 'color:#AEE;'
       },
-      end : '}',
-      subset : {
-        dictionary : {
-          rules : styles,
-          styles : {
-            name : {
-              style : 'color:#0DA'
+      '{' : {
+        attrs : {
+          style : 'color:#AEE;'
+        },
+        end : '}',
+        subset : {
+          sets : {
+            'calc' : {
+              attrs : {
+                style : 'text-decoration:underline;'
+              }
             },
-            value : {
-              style : 'color:#F00'
-            }
-          }
-        },
-        functions : functions,
-        trim : true,
-        joiners : {
-          '-' : true
-        },
-        value : {
-          seperators : {
-            max : ' ',
-            reset : ','
-          }
-        },
-        name : {
-          start : ';',
-          end : ':'
-        },
-        sets : {
-          ':' : {
-            attrs : {
-              style : 'color:#AEE;'
-            }
-          },
-          ';' : {
-            attrs : {
-              style : 'color:#AEE;'
-            }
-          },
-          ',' : {
-            attrs : {
-              style : 'color:#F00;'
-            }
-          },
-          ' ' : {
-            attrs : {
-              class : 'spaces'
+            ':' : {
+              attrs : {
+                style : 'color:#AEE;'
+              },
+              end : ';',
+              single : true,
+              triggers : {
+                end : function (word, words, letter, sentence, sets) {
+                  sets.default.wordCount = 0;
+                }
+              },
+              subset : {
+                sets : {
+                  ' ' : {
+                    single : true,
+                    attrs : {
+                      class : 'spaces'
+                    },
+                  },
+                  ',' : {
+                    single : true,
+                    run : function (word, words, letter, sentence, sets) {
+                      sets.default.wordCount = 0;
+                      return { style : 'color:#F00;' };
+                    }
+                  },
+                  '(' : {
+                    attrs : {
+                      style : 'color:#F00;'
+                    },
+                    end : ')',
+                    start : '(',
+                    selfref : true,
+                    subset : {
+                      sets : {
+                        ')' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        ',' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        '+' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        '-' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        '*' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        '/' : {
+                          single : true,
+                          attrs : {
+                            style : 'color:#F00;'
+                          }
+                        },
+                        ' ' : {
+                          single : true,
+                          attrs : {
+                            class : 'spaces'
+                          }
+                        },
+                        '"' : {
+                          attrs : {
+                            style : 'color:#0F0;'
+                          },
+                          end : '"',
+                          subset : {
+                            sets : {
+                              ' ' : {
+                                single : true,
+                                attrs : {
+                                  class : 'spaces'
+                                }
+                              },
+                              default : {
+                                attrs : {
+                                  style : 'color:#0F0;'
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "'" : {
+                          attrs : {
+                            style : 'color:#0F0;'
+                          },
+                          end : "'",
+                          subset : {
+                            sets : {
+                              ' ' : {
+                                single : true,
+                                attrs : {
+                                  class : 'spaces'
+                                }
+                              },
+                              default : {
+                                attrs : {
+                                  style : 'color:#0F0;'
+                                }
+                              }
+                            }
+                          }
+                        },
+                        default : {
+                          functions : functions,
+                          validation : {
+                            type : {
+                              functions : true,
+                              length : true,
+                              procent : true,
+                              varName : true
+                            },
+                            functions : {
+                              calc : true,
+                              var : true
+                            }
+                          },
+                          run : function (word, words, letter, sentence, sets) {
+                            return this.functions.validateValue(word, this.validation, words);
+                          }
+                        }
+                      }
+                    }
+                  },
+                  ')' : {
+                    single : true,
+                    attrs : {
+                      style : 'color:#F00;'
+                    }
+                  },
+                  default : {
+                    validation : null,
+                    wordCount : 0,
+                    functions : functions,
+                    run : function (word, words, letter, sentence, sets) {
+                      this.wordCount++;
+                      return this.functions.validateValue(word, this.validation, words, this.wordCount);
+                    }
+                  }
+                }
+              }
             },
-            // @TODO for now leave it be. It means to create a subset only for spaces, if anything else then space
-            // will appear then stop subset and add this word with class spaces
-            // subset : {
-            //   regex : true,
-            //   rules : {
-            //     '[^ ]' : {
-            //       end : true
-            //     }
-            //   }
-            // }
+            ';' : {
+              attrs : {
+                style : 'color:#AEE;'
+              },
+              single : true
+            },
+            ',' : {
+              attrs : {
+                style : 'color:#F00;'
+              }
+            },
+            ' ' : {
+              single : true,
+              attrs : {
+                class : 'spaces'
+              },
+              // @TODO for now leave it be. It means to create a subset only for spaces, if anything else then space
+              // will appear then stop subset and add this word with class spaces
+              // subset : {
+              //   regex : true,
+              //   rules : {
+              //     '[^ ]' : {
+              //       end : true
+              //     }
+              //   }
+              // }
+            },
+            default : {
+              rules : styles,
+              functions : functions,
+              run : function (word, words, letter, sentence, sets) {
+                let rules = this.functions.getValue.bind(this.functions)(word, this.rules);
+                if (!rules) {
+                  sets[':'].subset.sets.default.validation = null;
+                  return { style : 'color:#FFF', class : 'mistake' };
+                }
+
+                rules = this.functions.mergeDefaultRules.bind(this.functions)( rules );
+                sets[':'].subset.sets.default.validation = rules;
+                return { style : 'color:#0DA' };
+              },
+
+            }
           }
         }
-      }
-    },
-    '}' : {
-      attrs : {
-        style : 'color:#AEE;'
-      }
-    },
-    ':' : {
-      attrs : {
-        style : 'color:#FEE;'
-      }
-    },
-    '@' : {
-      attrs : {
-        style : 'color:#EBE;'
-      }
-    },
-    ' ' : {
-      attrs : {
-        style : 'color:#DDD;'
-      }
-    },
-    default : {
-      attrs : {
-        style : 'color:#ECB;'
+      },
+      '}' : {
+        attrs : {
+          style : 'color:#AEE;'
+        }
+      },
+      ':' : {
+        attrs : {
+          style : 'color:#FEE;'
+        }
+      },
+      '@' : {
+        attrs : {
+          style : 'color:#EBE;'
+        }
+      },
+      ' ' : {
+        attrs : {
+          class : 'spaces'
+        },
+        single : true
+      },
+      default : {
+        attrs : {
+          style : 'color:#ECB;'
+        }
       }
     }
   }

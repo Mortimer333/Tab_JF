@@ -146,7 +146,8 @@ class TabJF_Remove {
     }
     el.innerHTML = pre + suf;
 
-    if ( dir < 0 ) this.set.pos( el, newPos, this.pos.line );
+    if ( dir < 0 ) this.set.pos( el, newPos, this.pos.line, this.get.childIndex(el) );
+    this.lastX = this.get.realPos().x;
   }
 
   one ( dir ) {
@@ -186,6 +187,7 @@ class TabJF_Remove {
       this.caret.setByChar( pos.letter - 1, pos.line );
     }
     pos.el.innerHTML = pre + suf;
+    this.lastX = this.get.realPos().x;
   }
 
   oneInSibling ( node, dir ) {
@@ -205,33 +207,37 @@ class TabJF_Remove {
       return;
     }
 
-    this.keys  .move( dir, 0   );
-    this.remove.one ( dir * -1 );
+    this.keys  .move( dir, 0 );
+    this.keys  .move( dir * -1, 0 );
+    this.remove.one ( dir );
+    this.lastX = this.get.realPos().x;
   }
 
   posElWithOnlyOneChar ( dir ) {
-    if ( this.pos.letter == 0 && dir > 0   ||   this.pos.letter == 1 && dir < 0 ) {
-      const el = this.pos.el;
-      let sibling = this.get.sibling( el, dir );
+    if ( !(this.pos.letter == 0 && dir > 0   ||   this.pos.letter == 1 && dir < 0) ) {
+      return false;
+    }
+
+    const el = this.pos.el;
+    let sibling = this.get.sibling( el, dir );
+    if ( sibling === null ) {
+      dir *= -1;
+      sibling = this.get.sibling( el, dir );
+
       if ( sibling === null ) {
-        dir *= -1;
-        sibling = this.get.sibling( el, dir );
-
-        if ( sibling === null ) {
-          const span = document.createElement("span");
-          const text = document.createTextNode('');
-          span.appendChild( text );
-          this.pos.el.parentElement.insertBefore( span, el );
-          sibling = span;
-        }
-
+        const span = document.createElement("span");
+        const text = document.createTextNode('');
+        span.appendChild( text );
+        this.pos.el.parentElement.insertBefore( span, el );
+        sibling = span;
       }
 
-      el.remove();
-      this.set.side( sibling, dir * -1 );
-      return true;
     }
-    return false;
+
+    el.remove();
+    this.set.side( sibling, dir * -1, this.pos.line, this.get.childIndex(sibling));
+    this.lastX = this.get.realPos().x;
+    return true;
   }
 }
 export { TabJF_Remove };

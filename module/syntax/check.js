@@ -4,7 +4,6 @@ class TabJF_Syntax_Check {
     // Later seperate sentence by ; to apply the same color to all the parts
     // and join them by it
     const words    = this.get.css.words( sentence );
-    console.log(words);
     const newLine  = this.get.clone( line );
     newLine.content = [];
 
@@ -20,7 +19,6 @@ class TabJF_Syntax_Check {
     // Check for spaces
     const chunks = word.split('-');
     const syntax = this.syntax.chainSearch(chunks);
-    console.log(syntax);
     if ( syntax ) {
       return this.syntax.colorize.rule( newLine, syntax, wordIndex, words, word );
     }

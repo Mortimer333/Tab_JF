@@ -1,4 +1,12 @@
 class TabJF_Update {
+  page () {
+    this.syntax.update();
+    this.render.move.page({ refocus : false });
+    this.checkSelect();
+    this.caret.recalculatePos();
+    this.caret.refocus();
+  }
+
   select( e ) {
     this.selection.update = true;
     // If this was called then some selection appeared
@@ -40,7 +48,7 @@ class TabJF_Update {
     const exportedLine = this.truck.exportLine(
       this.get.lineByPos( line )
     );
-    this.render.content[ line ] = exportedLine;
+    this.render.content[ line ].content = exportedLine.content;
   }
 }
 export { TabJF_Update };

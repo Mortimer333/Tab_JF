@@ -2365,6 +2365,9 @@ let dictionary; export default dictionary = {
     }
   },
   "padding": {
+    "_": {
+      "ref" : "$up.margin"
+    },
     "block": {
       "end": {
         "_": {

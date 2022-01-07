@@ -20,11 +20,8 @@ class TabJF_Syntax_Dictionary {
 
     let value = this.syntax.dictionary.directToValue( route, group.dictionary.rules );
     if ( !value ) {
-      words[i].attrs.style  = words[i].attrs.style ?? '';
-      words[i].attrs.style += 'color:#d0d0d0;';
-
-      words[i].attrs.class  = words[i].attrs.class + ' ' ?? '';
-      words[i].attrs.class += 'error'  ;
+      words[i].attrs.style = 'color:#d0d0d0;';
+      words[i].attrs.class = 'error'         ;
     } else {
       words[i].attrs = group.dictionary.styles.name;
       if ( value._?.ref ) {
@@ -83,20 +80,27 @@ class TabJF_Syntax_Dictionary {
   }
 
   validateValue ( words, group ) {
-    console.log("New Validate value", words, group);
     let error     = false;
     let wordCount = 0;
     const value = this.syntax.dict.value;
+    if (!value) {
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        if ( this.is.space(word.content) ) {
+          words[i] = this.syntax.create.space( word.content );
+          continue;
+        }
+        words[i] = this.syntax.create.mistake(word.content);
+      }
+      return words;
+    }
     const typeKeys = Object.keys(value.type);
 
-    wordIter :
     for (let i = 0; i < words.length; i++) {
       let validated = false;
       const word = words[i];
-      console.log("New Word", word);
 
       if ( this.is.space(word.content) ) {
-        console.log("\tIsSpace");
         words[i] = this.syntax.create.space( word.content );
         continue;
       }
@@ -104,7 +108,6 @@ class TabJF_Syntax_Dictionary {
       wordCount++;
 
       if ( word.content == group.value.seperators.reset ) {
-        console.log("\tReset max");
         wordCount = 0;
         error = false;
         words[i] = this.syntax.create.span(
@@ -118,21 +121,17 @@ class TabJF_Syntax_Dictionary {
         wordCount > 1 && !value.multi
         || value.multi && value.max && value.max < wordCount
       ) {
-        console.log("\tError true");
         error = true;
       }
 
       if ( error ) {
-        console.log("\tError add");
         words[i] = this.syntax.create.mistake(word.content);
         continue;
       }
 
       for (var j = 0; j < typeKeys.length; j++) {
         const key = typeKeys[j];
-        console.log("\tKey", key);
         if (group.functions[ key ]( value, word.content )) {
-          console.log("\tKey Validated");
           words[i] = this.syntax.create.span( group.dictionary.styles.value, word.content );
           validated = true;
           break;
@@ -141,8 +140,6 @@ class TabJF_Syntax_Dictionary {
 
       if ( validated ) continue;
 
-
-      console.log("\tAdd mistake");
       words[i] = this.syntax.create.mistake(word.content);
     }
 

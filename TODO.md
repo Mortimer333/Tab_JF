@@ -5,12 +5,14 @@
 3. Add Rendering [DONE]
 4. Check how we handle focusout on the editor [DONE]
 5. More customization and triggers [DONE]
-6. Add code coloring
+6. Add code coloring [DONE]
+7. Make coloring optional, and possible to add your own style sheet
 7. Move debug tool to other project, improve it and implement back as 3rd party service
 8. Server driven rendering (infinite loading), so we can open files of GB in size
 9. Add Y rendering (for very long lines like min.js)
 
 
-## Thinkers
+## Bugs:
+- undoing paste which holded at least 2 lines replicates line
 
-Maybe I should have create a guide line for colorizing? Like this should have this syntax "[var] : [value]" etc. instead of creating custom one by hand? With that I could just change guidelines not modules. 
+## Thinkers

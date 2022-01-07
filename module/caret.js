@@ -99,5 +99,41 @@ class TabJF_Caret {
     }
     return false;
   }
+
+  recalculatePos ( first = true ) {
+    const line = this.get.lineByPos( this.pos.line );
+    if (!line) throw new Error('Line not found when recalculating caret position');
+
+    // If its first iteration then reset letter to lastX and childIndex to 0
+    // to properly recalculate position
+    if ( first ) {
+      this.pos.letter     = this.lastX;
+      this.pos.childIndex = 0;
+    }
+
+    // if child was not found then it means that more then one element was
+    // deleted/merged so we have to lower childIndex by one. It should not
+    // be possible for more then 2 elements to disappear at once
+    if (!line.children[this.pos.childIndex] && first) {
+      this.pos.childIndex--;
+    }
+    this.pos.el = line.children[this.pos.childIndex];
+
+    const text = this.pos.el.innerText;
+    if ( text.length < this.pos.letter ) {
+      if ( this.pos.childIndex == line.children.length - 1 ) {
+        this.pos.letter = text.length;
+        return;
+      }
+
+      this.pos.letter -= text.length;
+      if ( this.pos.childIndex < line.children.length - 1 ) {
+        this.pos.childIndex++;
+      }
+
+      this.caret.recalculatePos( false );
+      return;
+    }
+  }
 }
 export { TabJF_Caret };

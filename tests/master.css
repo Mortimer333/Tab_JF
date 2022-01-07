@@ -111,4 +111,15 @@
 
 .tabjf_editor p .mistake {
   color : #d0d0d0;
+  position: relative;
+}
+
+.tabjf_editor-con .mistake::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #F00;
+  top: 100%;
+  left: 0;
 }

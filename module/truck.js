@@ -64,11 +64,10 @@ class TabJF_Truck {
     let firstLine;
     for (let i = offset; i < importAr.length; i++) {
       if ( limit && i === limit + offset ) break; // If we wanna import only part of the saved state
-
       const line     = importAr[i];
       const lineNode = document.createElement("p");
-      line.content.forEach( span => {
-        span.content   = this.replace.spaces( span.content             );
+      line.content.forEach( (span, i) => {
+        span.content   = this.replace.spaces( span.content );
         const spanNode = this.set.attributesFromContent( span.attrs, span.content );
         if ( spanNode.childNodes.length == 0 ) spanNode.appendChild(document.createTextNode(''));
         lineNode.appendChild(spanNode);
