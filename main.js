@@ -34,6 +34,7 @@ import { TabJF_Hidden } from './module/_hidden.js';
 import { TabJF_Save_Content } from './module/_save/content.js';
 import { TabJF_Save_Set } from './module/_save/set.js';
 import { TabJF_Save } from './module/_save.js';
+import schema from './schema/rules/paths.js';
 
 class TabJF {
   editor;
@@ -89,12 +90,14 @@ class TabJF {
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
     const required = {
-      'left' : 0,
-      'top' : 0,
-      'line' : 20,
-      'height' : 400,
-      'addCss' : true
-    }
+      left   : 0,
+      top    : 0,
+      line   : 20,
+      height : 400,
+      addCss : true,
+      syntax : schema
+    };
+
     Object.keys(required).forEach( attr => {
       set[attr] = typeof set[attr] == 'undefined' ? required[attr] : set[attr];
     });
@@ -124,8 +127,18 @@ class TabJF {
       let methods    = Object.getOwnPropertyNames( TabJF.prototype );
       let properties = Object.getOwnPropertyNames( this );
 
-      let consIndex = methods.indexOf('constructor');
-      if ( consIndex > -1 ) methods.splice(consIndex, 1);
+      const removeMethods = ['constructor'];
+      const removeProps = ['settings'];
+
+      removeMethods.forEach( name => {
+        let consIndex = methods.indexOf(name);
+        if ( consIndex > -1 ) methods.splice(consIndex, 1);
+      });
+
+      removeProps.forEach( name => {
+        let consIndex = properties.indexOf(name);
+        if ( consIndex > -1 ) properties.splice(consIndex, 1);
+      });
 
       let hiddenMethods = methods.concat(properties);
       this.set.methodsProxy(this, hiddenMethods);
@@ -136,7 +149,7 @@ class TabJF {
     this.caret.hide();
     this.font.createLab();
     this.render.init();
-    this.syntax.init();
+    if ( this.settings.syntax ) this.syntax.init();
     this.truck.import( this.render.content, this.render.linesLimit );
 
     if ( set.addCss ) {

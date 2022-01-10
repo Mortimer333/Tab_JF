@@ -1,6 +1,6 @@
 class TabJF_Update {
   page () {
-    this.syntax.update();
+    if ( this.settings.syntax ) this.syntax.update();
     this.render.move.page({ refocus : false });
     this.checkSelect();
     this.caret.recalculatePos();

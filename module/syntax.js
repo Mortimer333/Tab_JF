@@ -1,4 +1,3 @@
-import schema from '../schema/rules/paths.js';
 class TabJF_Syntax {
   rulesetOpen = false;
   groups = [];
@@ -15,7 +14,7 @@ class TabJF_Syntax {
     // We need to get all lines from start to currently shown
     const lines = this.render.content.slice(0, end);
 
-    this.syntax.groups = [schema];
+    this.syntax.groups = [ this.settings.syntax ];
     this.syntax.ends   = [ null ];
     this.syntax.highlightLines(lines, start);
   }
@@ -42,9 +41,9 @@ class TabJF_Syntax {
     const lines  = this.render.content.slice(start, aStart + end);
     this.syntax.groups = this.syntax.createGroups(
       this.get.clone(this.render.content[start].groupPath),
-      schema
+      this.settings.syntax
     );
-    this.syntax.groups.push(schema);
+    this.syntax.groups.push( this.settings.syntax );
     this.syntax.ends      = this.render.content[start].ends;
     this.syntax.groupPath = this.render.content[start].groupPath;
     this.syntax.highlightLines(lines, start);
@@ -227,9 +226,9 @@ class TabJF_Syntax {
 
   chainSearch( chunks ) {
     const chunk = chunks[0];
-    if (schema[chunk]) {
+    if ( this.settings.syntax[chunk] ) {
       if (chunks.length == 1) {
-        return schema[chunk];
+        return this.settings.syntax[chunk];
       } else {
         this.syntax.chainSearch(chunks.slice(1));
       }
