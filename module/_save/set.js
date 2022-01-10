@@ -50,7 +50,7 @@ class TabJF_Save_Set {
     const line    = this.get.lineByPos( linePos );
 
     // Get and save current line if we haven't already saved her
-    if ( !tmp.add[ linePos ] ) tmp.add[ linePos ] = this.truck.exportLine( line );
+    if ( !tmp.add[ linePos ] ) tmp.add[ linePos ] = this.get.clone( this.render.content[ linePos ] );
 
     // Save line from modificators if we haven't already saved her
     if ( modifiers != 0 && !tmp.add[ linePos + modifiers ] ) {

@@ -28,11 +28,13 @@ class TabJF_Update {
     } else {
       this.pressed.ctrl = false;
     }
+
+    const type =  this.get.selection().type;
     // If shift key was just clicked
-    if ( !this.pressed.shift && e.shiftKey ) {
+    if ( !this.pressed.shift && e.shiftKey && type != "Range" ) {
       this.selection.active = true;
       this.update.selection.start()
-    } else if ( !e.shiftKey && this.get.selection().type != "Range") {
+    } else if ( !e.shiftKey && type != "Range" ) {
       this.selection.active = false;
     }
     this.pressed.shift = e.shiftKey;

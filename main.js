@@ -340,6 +340,7 @@ class TabJF {
     apply : function (target, scope, args) {
       const main = this.main;
       const save = main._save;
+      const name = target.name.replace('bound ', '');
       save.debounce();
 
       const oldInProggress = save.inProgress;
@@ -347,7 +348,7 @@ class TabJF {
       const step           = save.tmp.length;
 
       // Here we build methods stack so we can check what method called what
-      save.methodsStack.push(target.name);
+      save.methodsStack.push(name);
 
       let startLine = main.pos.line;
       const sel     = main.get.selection();
@@ -358,11 +359,11 @@ class TabJF {
         }
       }
 
-      save.set.add( target.name, args );
+      save.set.add( name, args );
 
       const results = target.bind( main )( ...args );
 
-      save.set.remove( target.name, args, step, startLine );
+      save.set.remove( name, args, step, startLine );
 
       // only move to pending if master function have finshed
       if ( !oldInProggress ) {
@@ -444,7 +445,7 @@ class TabJF {
       lineEndPos = this.render.hidden + this.render.linesLimit - 1;
       let endLine = this.get.lineByPos(lineEndPos);
       let endChild = endLine.children[ endLine.children.length - 1 ];
-      lineEndChildIndex = endChild.childNodes.length - 1;
+      lineEndChildIndex = endChild.childNGodes.length - 1;
       endLetter = endChild.childNodes[ endChild.childNodes.length - 1 ].nodeValue.length;
     }
 
@@ -500,7 +501,8 @@ class TabJF {
     }
 
     this.lastX            = this.get.realPos().x;
-    this.selection.start  = { line : line, letter, node : index };
+    this.selection.start  = { line : line, letter     , node : index };
+    this.selection.end    = { line : -1  , letter : -1, node : -1    };
     this.selection.active = false;
     this.editor.addEventListener(
       'mousemove',
@@ -756,28 +758,40 @@ class TabJF {
       183 : ( e, type ) => {
         // AudioVolumeUp
       },
+      192 : ( e, type ) => {
+        if ( this.pressed.shift ) this.insert('~');
+        else                      this.insert('`');
+      },
       default : ( e, type ) => {
         throw new Error('Unknow special key', e.keyCode);
       }
     };
-    let selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
+    const selDelSkip = { 'delete' : true, 'backspace' : true, 'escape' : true };
     const sel = this.get.selection();
+    const replaceKey = {
+      192 : ( key ) => {
+        return this.pressed.shift ? '~' : '`';
+      },
+      default : ( key ) => key
+    }
+
+    const key = ( replaceKey[ e.keyCode ] || replaceKey['default'] )( e.key );
 
     if (
       this.selection.active
-      && !selDelSkip[ e.key.toLowerCase() ]
+      && !selDelSkip[ key.toLowerCase() ]
       && !this.pressed.ctrl
       && sel.type == "Range"
       && (
-        !!this.keys[ e.key.toLowerCase() ]
-        || e.key.length == 1
+        !!this.keys[ key.toLowerCase() ]
+        || key.length == 1
       )
     ) {
       this.remove.selected();
     }
 
-    if ( !keys[ e.keyCode ] && e.key.length == 1 ) {
-      this.insert( e.key );
+    if ( !keys[ e.keyCode ] && key.length == 1 ) {
+      this.insert( key );
       if ( !this.caret.isVisible() ) {
         this.render.set.overflow(
           null,
@@ -789,7 +803,6 @@ class TabJF {
     }
 
     const skipUpdate = { 86 : true }
-
     if ( !skipUpdate[ e.keyCode ] ) this.update.page()
   }
 

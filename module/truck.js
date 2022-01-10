@@ -13,6 +13,7 @@ class TabJF_Truck {
   }
 
   exportLine ( p ) {
+    console.trace("export line");
     if ( p.nodeName !== "P" ) return false;
 
     const lineContent = [];

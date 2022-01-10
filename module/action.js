@@ -166,7 +166,7 @@ class TabJF_Action {
     if ( event.defaultPrevented ) return;
 
     this._save.recall();
-    console.log(this.get.realPos().x);
+
     this.lastX = this.get.realPos().x;
     this.render.update.minHeight();
     this.render.update.scrollWidth();

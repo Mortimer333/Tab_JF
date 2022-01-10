@@ -13,6 +13,5 @@
 
 
 ## Bugs:
-- undoing paste which holded at least 2 lines replicates line
 
 ## Thinkers
