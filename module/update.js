@@ -3,8 +3,10 @@ class TabJF_Update {
     if ( this.settings.syntax ) this.syntax.update();
     this.render.move.page({ refocus : false });
     this.checkSelect();
-    this.caret.recalculatePos();
-    this.caret.refocus();
+    if ( this.caret.isVisible() ) {
+      this.caret.recalculatePos();
+      this.caret.refocus();
+    }
   }
 
   select( e ) {
@@ -41,16 +43,8 @@ class TabJF_Update {
     this.pressed.alt   = e.altKey  ;
   }
 
-  currentLine() {
-    const line = this.pos.line;
-    // Line we want to save if hidden
-    if ( !this.is.line.visible( line ) ) {
-      return;
-    }
-    const exportedLine = this.truck.exportLine(
-      this.get.lineByPos( line )
-    );
-    this.render.content[ line ].content = exportedLine.content;
+  currentSpanContent ( text ) {
+    this.render.content[this.pos.line].content[this.pos.childIndex].content = this.replace.spaces(text);
   }
 }
 export { TabJF_Update };

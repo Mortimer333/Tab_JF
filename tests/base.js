@@ -20,14 +20,19 @@ class Test {
   instance;
   testData = [{"content":[{"attrs":[],"content":"1asd"},{"attrs":[],"content":" | dsa"},{"attrs":[],"content":" | dsa"}]},{"content":[{"attrs":[],"content":"2asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]},{"content":[{"attrs":[],"content":"3asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]},{"content":[{"attrs":[],"content":"4asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]}];
 
-  constructor() {
+  constructor( instance ) {
     if (this.constructor === Test) {
       throw new Error('This is abstract class, can\'t be instantiated');
+    }
+    this.instance = instance;
+    if (JSON.stringify(this.instance.render.content) != JSON.stringify(this.testData)) {
+      this.instance.truck.import(this.testData);
     }
   }
 
   error (check, mes, params = []) {
     if (check) {
+      console.info(params);
       throw new Error('FAILED [' + this.constructor.name + '] ' + mes);
     }
   }
@@ -37,7 +42,8 @@ class Test {
       const e = {
         target : this.instance.get.lineByPos(0).children[0]
       };
-      e.layerX = e.layerY = 0;
+      e.x = this.instance.settings.left;
+      e.y = this.instance.settings.top;
       return e;
     },
     keyDummyEvent : (e = {}) => {

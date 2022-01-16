@@ -21,11 +21,7 @@ import { TabJF_Render_Update } from './module/render/update.js';
 import { TabJF_Render } from './module/render.js';
 import { TabJF_Replace } from './module/replace.js';
 import { TabJF_Set } from './module/set.js';
-import { TabJF_Syntax_Check } from './module/syntax/check.js';
-import { TabJF_Syntax_Colorize } from './module/syntax/colorize.js';
 import { TabJF_Syntax_Create } from './module/syntax/create.js';
-import { TabJF_Syntax_Highlight } from './module/syntax/highlight.js';
-import { TabJF_Syntax_Dictionary } from './module/syntax/dictionary.js';
 import { TabJF_Syntax } from './module/syntax.js';
 import { TabJF_Truck } from './module/truck.js';
 import { TabJF_Update_Selection } from './module/update/selection.js';
@@ -158,10 +154,6 @@ class TabJF {
   }
 
   inject () {
-    if ( !TabJF_Get ) {
-      throw new Error('Get class not included');
-    }
-
     const classes = [
       { instance : TabJF_Hidden , var : '_hidden' },
       { instance : TabJF_Save   , var : '_save', modules : [
@@ -196,11 +188,7 @@ class TabJF {
       { instance : TabJF_Replace, var : 'replace' },
       { instance : TabJF_Set    , var : 'set'     },
       { instance : TabJF_Syntax , var : 'syntax', modules : [
-        { instance : TabJF_Syntax_Highlight , var : 'highlight' },
-        { instance : TabJF_Syntax_Create    , var : 'create'    },
-        { instance : TabJF_Syntax_Check     , var : 'check'     },
-        { instance : TabJF_Syntax_Dictionary, var : 'dictionary'     },
-        { instance : TabJF_Syntax_Colorize  , var : 'colorize'  },
+        { instance : TabJF_Syntax_Create, var : 'create' },
       ]},
       { instance : TabJF_Truck  , var : 'truck'   },
       { instance : TabJF_Update , var : 'update', modules : [
@@ -458,7 +446,7 @@ class TabJF {
       lineEndPos = this.render.hidden + this.render.linesLimit - 1;
       let endLine = this.get.lineByPos(lineEndPos);
       let endChild = endLine.children[ endLine.children.length - 1 ];
-      lineEndChildIndex = endChild.childNGodes.length - 1;
+      lineEndChildIndex = endChild.childNodes.length - 1;
       endLetter = endChild.childNodes[ endChild.childNodes.length - 1 ].nodeValue.length;
     }
 
@@ -805,18 +793,30 @@ class TabJF {
 
     if ( !keys[ e.keyCode ] && key.length == 1 ) {
       this.insert( key );
-      if ( !this.caret.isVisible() ) {
-        this.render.set.overflow(
-          null,
-          (this.pos.line - (this.render.linesLimit/2)) * this.settings.line
-        );
-      }
     } else {
       ( keys[e.keyCode] || keys['default'] )( e, type );
     }
 
-    const skipUpdate = { 86 : true }
-    if ( !skipUpdate[ e.keyCode ] ) this.update.page()
+    if ( !this.caret.isVisible() ) {
+      this.render.set.overflow(
+        null,
+        (this.pos.line - (this.render.linesLimit/2)) * this.settings.line
+      );
+    }
+
+    const skipUpdate = {
+      86 : () => {
+        if ( !this.pressed.ctrl ) return false;
+        return true;
+      },
+      default : () => false
+    };
+
+    if (
+      !( skipUpdate[ e.keyCode ]
+      || skipUpdate[ 'default' ] )()
+    ) this.update.page()
+
   }
 
   toSide( dirX, dirY ) {
@@ -834,7 +834,7 @@ class TabJF {
       let lineContent = this.render.content[ line ];
       node            = lineContent.content.length - 1;
       let lastSpan    = lineContent.content[ lineContent.content.length - 1 ];
-      letter          = lastSpan.content.length;
+      letter          = this.replace.spaceChars(lastSpan.content).length;
     } else if ( dirX < 0 ) {
       letter = 0;
       node   = 0;
@@ -846,8 +846,8 @@ class TabJF {
       node = chosenLine.content.length - 1;
     }
 
-    if ( chosenLine.content[ node ].content.length < letter) {
-      letter = chosenLine.content[ node ].content.length;
+    if ( this.replace.spaceChars(chosenLine.content[ node ].content).length < letter) {
+      letter = this.replace.spaceChars(chosenLine.content[ node ].content).length;
     }
 
     this.caret.refocus(
@@ -855,6 +855,8 @@ class TabJF {
       line,
       node
     );
+
+    this.lastX = this.get.realPos().x;
   }
 
   newLine() {
@@ -903,34 +905,27 @@ class TabJF {
   mergeLine( dir ) {
     let line = this.get.line( this.pos.el );
     if ( line.nodeName != "P") throw new Error("Parent has wrong tag, can't merge lines");
+
     if ( dir < 0 ) { // Backspace
-      let previous = this.get.lineInDirection( line, dir );
-      if ( !previous ) return; // do nothing
-
-
       this.pos.line--;
       this.toSide(1, 0);
 
-      for ( let i = line.children.length - 1; i >= 0 ; i-- ) {
-        if ( line.children[0].innerText.length > 0 ) previous.appendChild( line.children[0] );
-        else line.children[0].remove();
-      }
+      this.render.content[this.pos.line].content =
+        this.render.content[this.pos.line].content.concat(
+          this.render.content[ this.pos.line + 1 ].content
+        );
 
-      line.remove();
-      this.render.remove.line(this.pos.line + 1);
+      this.render.content.splice( this.pos.line + 1, 1 );
       this.lastX = this.get.realPos().x;
 
     } else if ( dir > 0 ) { // Delete
-      let next = this.get.lineInDirection( line, dir );
-      if ( !next ) return; // do nothing
 
-      for ( let i = next.children.length - 1; i >= 0 ; i-- ) {
-        if ( next.children[0].innerText.length > 0 ) line.appendChild( next.children[0] );
-        else                                         next.children[0].remove();
-      }
+      this.render.content[this.pos.line].content =
+        this.render.content[this.pos.line].content.concat(
+          this.render.content[ this.pos.line + 1 ].content
+        );
 
-      next.remove();
-      this.render.remove.line(this.pos.line + 1);
+      this.render.content.splice( this.pos.line + 1, 1 );
     }
   }
 

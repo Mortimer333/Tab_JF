@@ -261,5 +261,17 @@ class TabJF_Get {
     words.push( word );
     return words;
   }
+
+  currentSpanContent () {
+    return this.replace.spaceChars(this.render.content[this.pos.line].content[this.pos.childIndex].content);
+  }
+
+  spaceIndex ( text, start = 0 ) {
+    const char = text.indexOf('\u00A0', start);
+    if ( char !== -1 ) {
+      return char;
+    }
+    return  text.indexOf(' ', start);
+  }
 }
 export { TabJF_Get };

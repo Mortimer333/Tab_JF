@@ -34,7 +34,7 @@ class TabJF_Syntax {
   }
 
   update() {
-    let start  = this.pos.line;
+    let start  = this.activated ? this.pos.line : this.render.hidden;
     start = this.syntax.getGroupPathLineNumber(start);
     const aStart = this.render.hidden;
     const end    = this.settings.line;
@@ -90,7 +90,6 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
-
       if ( subset?.sets && subset?.sets[letter] ) {
         const results = this.syntax.splitWord( subset, i, letter, words, sentence, '\t' + debug );
         words    = results.words;
@@ -166,7 +165,12 @@ class TabJF_Syntax {
     }
 
     if ( letterSet?.single && !subset.sets[letter]?.subset ) {
-      words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( i, i + 1 )));
+      let attrs = letterSet.attrs ?? { style : 'color:#FFF;' };
+      if ( letterSet?.run ) {
+        const results = letterSet.run.bind( letterSet );
+        attrs = results( word, words, letter, sentence, subset.sets );
+      }
+      words.push(this.syntax.create.span( attrs, sentence.substring( i, i + 1 )));
       i++;
     }
     sentence = sentence.substring( i );

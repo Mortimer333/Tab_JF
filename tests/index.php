@@ -19,6 +19,10 @@
       <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% e auto s e;margin-bottom:&nbsp; calc(2px + </span></p>
       <p><span>var(--asd, var(aa, "bas"))) 'asda;padding : 10px;a"s"d()dd' var(asd)</span></p>
       <p><span>} sss</span></p>
+      <p><span></span></p>
+      <p><span>.test {</span></p>
+      <p><span>&nbsp;&nbsp;margin:20px;</span></p>
+      <p><span>}</span></p>
       <p><span>margin:aa;</span></p>
       <p><span>.anama1asd</span><span>|dsa</span><span>|dsa</span></p>
       <p><span>2asd</span><span>|dsa</span><span>|dsa</span></p>
@@ -97,11 +101,11 @@
       import schema from '../schema/rules/paths.js';
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
-      console.log(editor);
-      const tabEditor = new TabJF(editor, { left : 35, addCss : false, syntax : schema }, true);
+      console.info(editor);
+      const tabEditor = new TabJF(editor, { left : 35, addCss : false, syntax : false /*schema*/ }, true);
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
-      console.log(tabEditor);
+      console.info(tabEditor);
     </script>
   </body>
 </html>

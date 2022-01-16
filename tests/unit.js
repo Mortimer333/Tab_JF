@@ -1,9 +1,8 @@
 class Unit extends Test {
-  expected = '[{"content":[{"attrs":[],"content":"test"}]},{"content":[{"attrs":[],"content":"test"}]}]';
+  expected = '[{"content":[{"attrs":{},"content":"test"}]},{"content":[{"attrs":{},"content":"test"}]}]';
 
   constructor(instance) {
-    super();
-    this.instance = instance;
+    super(instance);
     this.init();
   }
 
@@ -18,7 +17,7 @@ class Unit extends Test {
 
   init () {
     this.iterateTests(this.tests);
-    console.log("SUCCESS UNIT");
+    console.info("SUCCESS UNIT");
   }
 
   iterateTests (tests) {
@@ -39,8 +38,8 @@ class Unit extends Test {
           this.createLine(),
           this.createLine()
         ];
-
         const result = this.instance.truck.export(html);
+
         this.error(
           JSON.stringify(result) != this.expected,
           '[TRUCK:EXPORT] Failed',
@@ -116,8 +115,8 @@ class Unit extends Test {
         span.setAttribute('class','test class');
         const attrs = this.instance.get.attributes(span);
         this.error(
-          attrs[0].nodeName != 'style' || attrs[0].nodeValue != 'color:red;' ||
-          attrs[1].nodeName != 'class' || attrs[1].nodeValue != 'test class',
+          !attrs?.style || attrs.style != 'color:red;' ||
+          !attrs?.class || attrs.class != 'test class',
           '[GET:ATTRIBUTES] Failed',
           [span, attrs]
         );

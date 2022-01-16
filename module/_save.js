@@ -160,14 +160,14 @@ class TabJF_Save {
   slowVersion ( version, i = 0 ) {
     setTimeout(function() {
       let step = version[i];
-      console.log("Step", i + 1, step.fun_name, "Remove", step.remove);
+      console.info("Step", i + 1, step.fun_name, "Remove", step.remove);
       const save = this._save;
       save.content.remove(step.remove);
       const focus = step.focus;
       this.render.move.page({ offset : focus.topLine });
       setTimeout(function(){
         let step = version[i];
-        console.log("Step", i + 1, step.fun_name, "Add", step.add);
+        console.info("Step", i + 1, step.fun_name, "Add", step.add);
         const focus = step.focus;
         const save = this._save;
         save.content.add(step.add);

@@ -33,36 +33,43 @@ class TabJF_Remove {
         let suf     = this.replace.spaces( content.substr( end.letter      ));
         this.render.content[ start.line ].content[ start.node ].content = pre + suf;
       } else {
+
         let startNode = this.render.content[ start.line ].content[ start.node ];
         let endNode   = this.render.content[ end.line   ].content[ end.node   ];
+
         startNode.content = this.replace.spaces(
           this.replace.spaceChars( startNode.content ).substr( 0, start.letter )
         );
         endNode.content   = this.replace.spaces(
           this.replace.spaceChars( endNode.content   ).substr( end.letter      )
         );
+
         if ( endNode.content.length == 0 ) end.node++;
 
         this.render.content[ start.line ].content.splice(
           start.node + 1,
-          end.node - 1
+          end.node - (start.node + 1)
         );
       }
     } else {
       let startLine = this.render.content[ start.line ];
       startLine.content = startLine.content.slice( 0, start.node + 1 );
       let startSpan = startLine.content[ start.node ];
-      startSpan.content = startSpan.content.replaceAll('&nbsp;', ' ')
-                                            .substr( 0, start.letter )
-                                            .replaceAll(' ', '&nbsp;');
+
+      startSpan.content = this.replace.spaceChars( startSpan.content )
+                                      .substr( 0, start.letter );
+      startSpan.content = this.replace.spaces( startSpan.content );
+
       let endLine   = this.render.content[ end.line ];
       endLine.content = endLine.content.slice( end.node );
       let endSpan = endLine.content[0];
-      endSpan.content = endSpan.content.replaceAll('&nbsp;', ' ')
-                                       .substr( end.letter )
-                                       .replaceAll(' ', '&nbsp;');
-      if ( endSpan.content.length > 0 )
-        startLine.content = startLine.content.concat( endLine.content );
+
+      endSpan.content = this.replace.spaceChars( endSpan.content )
+                                    .substr( end.letter );
+      endSpan.content = this.replace.spaces( endSpan.content );
+
+      if ( endSpan.content.length > 0 || endLine.content.length > 0 ) startLine.content = startLine.content.concat( endLine.content );
+
       this.render.content.splice( start.line + 1, end.line - start.line );
       this.render.update.minHeight();
       this.render.update.scrollWidth();
@@ -73,171 +80,166 @@ class TabJF_Remove {
       start.line,
       start.node,
     );
+    this.lastX = this.get.realPos().x;
     this.render.move.page();
     this.end.select();
   }
 
-  selectedRecursive ( previous, stopNode, removeLine = false, isPrevious = false ) {
-    // previous is anchor node, and we want to work on its previous sibling
-    let node = previous.previousSibling;
+  word ( dir, childIndex = this.pos.childIndex, c_pos = this.pos.letter ) {
+    const text       = this.get.currentSpanContent();
+    const spanLength = text.length;
+    const letter     = this.pos.letter;
+    const line       = this.render.content[this.pos.line];
+    let pos = {
+      letter     : this.pos.letter,
+      childIndex : this.pos.childIndex,
+      text : ''
+    };
 
-    if ( isPrevious       ) node = previous;
-    if ( node == stopNode ) return;
-
-    if ( node == null ) {
-      let line         = this.get.line( previous );
-      let previousLine = this.get.lineInDirection( line, -1 );
-      this.remove.selectedRecursive(
-        previousLine.children[ previousLine.children.length - 1],
-        stopNode,
-        true,
-        true,
-      );
-      if ( removeLine ) line.remove();
-      return;
-    }
-    this.remove.selectedRecursive( node, stopNode, removeLine );
-    node.remove();
-  }
-
-  validateMergeLineOnRemoveWord ( dir, el, c_pos ) {
-    return ( el.innerText.length == 0 && !el.nextSibling )
-      || ( dir < 0 && c_pos == 0 )
-      || (
-        dir > 0 && c_pos == el.innerText.length
-        && el.parentElement.children[ el.parentElement.children.length - 1 ] == el
-      );
-  }
-
-  word ( dir, el = this.pos.el, c_pos = this.pos.letter ) {
-    if ( this.remove.validateMergeLineOnRemoveWord( dir, el, c_pos ) ) {
+    if (
+      letter == 0 && this.pos.childIndex == 0 && dir < 0
+      || letter == text.length && this.pos.childIndex == line.content.length - 1 && dir > 0
+    ) {
       this.mergeLine( dir );
       return;
     }
 
-    let pre, suf, newPos, text = el.innerText;
-
-         if ( dir < 0 ) newPos = text.split("").reverse().indexOf('\u00A0', text.length - c_pos);
-    else if ( dir > 0 ) newPos = text.indexOf('\u00A0', c_pos);
-
-    if ( text.length - newPos === c_pos && dir < 0   ||   newPos === c_pos && dir > 0) {
-      this.remove.one( dir );
-      return;
-    } else if ( newPos === -1 ) {
-      const prev = el.previousSibling;
-      const next = el.nextSibling;
-      if ( dir < 0 && prev ) {
-        this.remove.word( dir, prev, prev.innerText.length );
-      } else if ( dir > 0 && next ) {
-        this.remove.word( dir, next, 0 );
+    let nextSymbol = '';
+    if ( dir < 0 ) {
+      if ( letter == 0 ) {
+        const previous = this.replace.spaceChars(line.content[ this.pos.childIndex - 1 ].content);
+        nextSymbol = previous[previous.length - 1];
+      } else {
+        nextSymbol = this.replace.spaceChars(text[letter - 1]);
       }
 
-      if ( dir < 0 ) newPos = 0;
-      if ( dir > 0 ) newPos = text.length;
+    } else if ( dir > 0 ) {
+      if ( letter == text.length ) {
+        const next = this.replace.spaceChars(line.content[ this.pos.childIndex + 1 ].content);
+        nextSymbol = next[0];
+      } else {
+        nextSymbol = this.replace.spaceChars(text[letter]);
+      }
 
-    } else if ( dir < 0 ) newPos = text.length - newPos;
+    }
+
+    if ( this.is.space(nextSymbol) ) {
+      this.remove.one(dir);
+      return;
+    }
 
     if ( dir < 0 ) {
-      pre = text.substr( 0, newPos );
-      suf = text.substr( c_pos     );
-    } else {
-      pre = text.substr( 0, c_pos );
-      suf = text.substr( newPos   );
-    }
-    el.innerHTML = pre + suf;
+      for (let i = this.pos.childIndex; i >= 0; i--) {
+        const textSpan = this.replace.spaceChars(line.content[i].content);
+        let index    = this.get.spaceIndex(textSpan.split("").reverse(), textSpan.length - pos.letter);
+        if ( index != -1 ) {
+          pos.letter = textSpan.length - index;
+          pos.text = textSpan;
+          break;
+        }
+        if ( i != 0 ) {
+          pos.childIndex--;
+          pos.letter = this.replace.spaceChars(line.content[pos.childIndex].content).length;
+        }
+      }
 
-    if ( dir < 0 ) this.set.pos( el, newPos, this.pos.line, this.get.childIndex(el) );
+      line.content[this.pos.childIndex].content = text.substr(letter);
+      line.content.splice(pos.childIndex + 1, this.pos.childIndex - pos.childIndex - 1);
+      line.content[pos.childIndex].content = pos.text.substr(0, pos.letter);
+      this.pos.childIndex = pos.childIndex;
+      this.pos.letter = pos.letter;
+      if (line.content[this.pos.childIndex].content.length == 0) {
+        this.pos.letter = 0;
+      }
+    } else if ( dir > 0 ) {
+      for (let i = this.pos.childIndex; i < line.content.length; i++) {
+        const textSpan = this.replace.spaceChars(line.content[i].content);
+        let index    = this.get.spaceIndex(textSpan, pos.letter);
+        if ( index != -1 ) {
+          pos.letter = index;
+          pos.text = textSpan;
+          break;
+        }
+        if ( i + 1 !== line.content.length) {
+          pos.childIndex++;
+          pos.letter = 0;
+        }
+      }
+      line.content[pos.childIndex].content = pos.text.substr(0, pos.letter + 1);
+      line.content.splice(this.pos.childIndex + 1, pos.childIndex - this.pos.childIndex - 1);
+      line.content[this.pos.childIndex].content = text.substr(0, this.pos.letter );
+    }
+    this.caret.refocus();
     this.lastX = this.get.realPos().x;
   }
 
   one ( dir ) {
-    const pos  = this.pos,
-          next = pos.el.nextSibling,
-          prev = pos.el.previousSibling;
+    const text       = this.get.currentSpanContent();
+    const spanLength = text.length;
+    const letter     = this.pos.letter;
+    const line       = this.render.content[this.pos.line];
 
-    let pre, suf, text = pos.el.innerText;
-
-    if ( text.length == 0 ) {
-      this.remove.oneInSibling( pos.el, dir );
+    if (
+      letter == 0 && this.pos.childIndex == 0 && dir < 0
+      || letter == text.length && this.pos.childIndex == line.content.length - 1 && dir > 0
+    ) {
+      this.mergeLine( dir );
       return;
     }
 
-    if ( text.length == 1 ) {
-      let res = this.remove.posElWithOnlyOneChar( dir );
-      if ( res ) return;
-    }
+    /**
+     * Cases:
+     * - last letter in span will be deleted
+     * - letter pos is 0 and we have to go to the previous one
+     * - letter pos is max and we have to go to next one
+     * - normal delete one
+     */
 
     if ( dir > 0 ) {
-      if ( pos.letter >= text.length ) {
-        this.remove.oneInSibling( next, dir );
+      if ( text.length == 1 && letter == 0 ) {
+        if ( line.content.length != 1 ) {
+          line.content.splice(this.pos.childIndex, 1);
+        } else {
+          this.update.currentSpanContent('');
+        }
+        this.pos.letter = 0;
+      } else if ( text.length == letter ) {
+        this.pos.childIndex++;
+        this.pos.letter = 0;
+        this.remove.one( dir );
         return;
+      } else {
+        const pre = text.substr( 0, letter  );
+        const suf = text.substr( letter + 1 );
+        this.update.currentSpanContent(pre + suf);
       }
-
-      pre = text.substr( 0, pos.letter  );
-      suf = text.substr( pos.letter + 1 );
-    } else {
-      if ( pos.letter - 1 < 0 ) {
-        this.remove.oneInSibling( prev, dir );
+    } else if ( dir < 0 ) {
+      if ( text.length == 1 && letter == 1 ) {
+        if ( line.content.length != 1 ) {
+          line.content.splice(this.pos.childIndex, 1);
+        } else {
+          this.update.currentSpanContent('');
+        }
+        if ( this.pos.childIndex == 0 ) {
+          this.pos.letter = 0;
+        } else {
+          this.pos.childIndex--;
+          this.pos.letter = this.replace.spaceChars(line.content[this.pos.childIndex].content).length;
+        }
+      } else if ( letter == 0 ) {
+        this.pos.childIndex--;
+        this.pos.letter = this.replace.spaceChars(line.content[this.pos.childIndex].content).length;
+        this.remove.one( dir );
         return;
+      } else {
+        const pre = text.substr( 0, letter - 1 );
+        const suf = text.substr( letter );
+        this.pos.letter--;
+        this.update.currentSpanContent(pre + suf);
       }
-
-      pre = text.substr( 0, pos.letter - 1 );
-      suf = text.substr( pos.letter        );
-
-      this.caret.setByChar( pos.letter - 1, pos.line );
+      this.caret.refocus();
+      this.lastX = this.get.realPos().x;
     }
-    pos.el.innerHTML = pre + suf;
-    this.lastX = this.get.realPos().x;
-  }
-
-  oneInSibling ( node, dir ) {
-    if ( node == null ) {
-      this.mergeLine( dir ); // If node is null merge next line
-      return;
-    }
-
-    if ( node.innerText.length == 1 ) {
-      let res = this.remove.posElWithOnlyOneChar( dir );
-      if ( res ) return;
-    }
-
-    if ( node.nodeType != 1   ||   node.innerText.length == 0 ) {
-      let sibling = this.get.sibling(node, dir);
-      this.remove.oneInSibling(sibling, dir);
-      return;
-    }
-
-    this.keys  .move( dir, 0 );
-    this.keys  .move( dir * -1, 0 );
-    this.remove.one ( dir );
-    this.lastX = this.get.realPos().x;
-  }
-
-  posElWithOnlyOneChar ( dir ) {
-    if ( !(this.pos.letter == 0 && dir > 0   ||   this.pos.letter == 1 && dir < 0) ) {
-      return false;
-    }
-
-    const el = this.pos.el;
-    let sibling = this.get.sibling( el, dir );
-    if ( sibling === null ) {
-      dir *= -1;
-      sibling = this.get.sibling( el, dir );
-
-      if ( sibling === null ) {
-        const span = document.createElement("span");
-        const text = document.createTextNode('');
-        span.appendChild( text );
-        this.pos.el.parentElement.insertBefore( span, el );
-        sibling = span;
-      }
-
-    }
-
-    el.remove();
-    this.set.side( sibling, dir * -1, this.pos.line, this.get.childIndex(sibling));
-    this.lastX = this.get.realPos().x;
-    return true;
   }
 }
 export { TabJF_Remove };

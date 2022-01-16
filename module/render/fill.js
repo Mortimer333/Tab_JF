@@ -1,21 +1,17 @@
 class TabJF_Render_Fill {
   event ( e = null ) {
-    const selection = this.get.selection();
-    let top         = this.render.overflow.scrollTop;       // how much was scrolled
-    let startLine   = Math.floor(top / this.settings.line); // amount of line hidden - from which index get lines
-
-    // Remove all rendered lines
-    for (let i = 0; i < this.render.linesLimit; i++) {
-      let line = this.get.lineByPos( this.render.hidden );
-      if (!line) {
-        break;
-      }
-      this.render.content[this.render.hidden + i].content = this.truck.exportLine(line).content;
-      line.remove();
+    try {
+      const selection = this.get.selection();
+      let top         = this.render.overflow.scrollTop;       // how much was scrolled
+      let startLine   = Math.floor(top / this.settings.line); // amount of line hidden - from which index get lines
+      this.render.move.page({ offset : startLine, clear : false });
+    } catch (e) {
+      // somtimes we can't caught up with the speed of scroll, then we have some error from setting cursor on
+      // not existing line, we can omit it by just updating page and again setting cursor
+    } finally {
+      this.update.page()
     }
 
-    this.render.move.page({ offset : startLine, clear : false });
-    this.checkSelect();
   }
 }
 export { TabJF_Render_Fill };

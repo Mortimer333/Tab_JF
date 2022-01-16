@@ -15,7 +15,7 @@ class TabJF_Render_Move {
     this.render.hidden = offset;
     this.editor.style.setProperty('--paddingTop', this.render.hidden * this.settings.line );
     this.editor.style.setProperty('--counter-current', this.render.hidden );
-    if ( refocus ) this.caret.refocus();
+    if ( refocus && this.caret.isVisible() ) this.caret.refocus();
   }
 
   overflow ( x, y ) {

@@ -1,10 +1,9 @@
 class Integration extends Test {
 
   constructor(instance) {
-    super();
-    this.instance = instance;
+    super(instance);
+    console.info(this.instance);
     const e = this.get.activeDummyEvent();
-    this.instance.truck.import(this.testData);
     this.instance.active(e);
     this.init();
   }
@@ -20,7 +19,7 @@ class Integration extends Test {
     this.tests.insert();
     /*** ACTIONS ***/
     this.tests.actions();
-    console.log("SUCCESS INTEGRATION");
+    console.info("SUCCESS INTEGRATION");
   }
 
   move = {
@@ -137,8 +136,8 @@ class Integration extends Test {
       /** KEYS **/
       // TAB
       let posNow = this.get.pos();
-      let posEl = this.get.posEl();
       this.insert('Tab', 9);
+      let posEl = this.get.posEl();
       let posAfter = this.get.pos();
 
       let tab = posEl.innerText.substr(posNow.letter, posAfter.letter - posNow.letter);
@@ -223,6 +222,7 @@ class Integration extends Test {
         1,
         0
       );
+      this.instance.lastX = this.instance.get.realPos().x;
       // <p><span>1as|d</span><span> | dsa</span><span | dsa</span></p>
 
       posNow = this.get.pos();
@@ -252,13 +252,14 @@ class Integration extends Test {
         1,
         0
       );
+      this.instance.lastX = this.instance.get.realPos().x;
       // <p><span>[caret]1asd</span><span> | dsa</span><span | dsa</span></p>
       // Checking merge line from the start of the line
 
       posNow = this.get.pos();
-      lastLine = this.instance.render.content[posNow.line - 1];
+      lastLine = this.instance.get.clone(this.instance.render.content[posNow.line - 1]);
       lastSpan = lastLine.content[lastLine.content.length - 1];
-      let lastText = lastSpan.content;
+      let lastText = this.instance.replace.spaceChars(lastSpan.content);
       this.insert('Backspace', 8);
       posAfter = this.get.pos();
 

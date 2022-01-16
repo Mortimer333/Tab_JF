@@ -102,7 +102,6 @@ let paths; export default paths = {
                     subset : {
                       sets : {
                         ')' : {
-                          single : true,
                           attrs : {
                             style : 'color:#F00;'
                           }

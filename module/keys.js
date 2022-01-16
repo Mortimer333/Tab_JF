@@ -12,7 +12,6 @@ class TabJF_Keys {
       if ( sel.type != "Range") this.remove.one (-1);
       else                      this.remove.selected();
     }
-    this.update.currentLine();
   }
 
   tab ( e ) {
@@ -38,7 +37,6 @@ class TabJF_Keys {
       if ( this.pressed.ctrl ) this.remove.word( 1 );
       else                     this.remove.one ( 1 );
     } else this.remove.selected();
-    this.update.currentLine();
   }
 
   moveCtrl ( dir, el = this.pos.el, c_pos = this.pos.letter ) {

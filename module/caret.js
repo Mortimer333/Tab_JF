@@ -83,6 +83,7 @@ class TabJF_Caret {
     this.pos.line       = line;
     this.pos.childIndex = childIndex;
     if ( !this.caret.isVisible() ) return;
+
     line = this.get.lineByPos( this.pos.line );
     if (
       this.pos.line <= this.render.hidden + this.render.linesLimit
@@ -101,7 +102,7 @@ class TabJF_Caret {
   }
 
   recalculatePos ( first = true ) {
-    const line = this.get.lineByPos( this.pos.line );
+    const line = this.get.lineByPos( this.activated ? this.pos.line : this.render.hidden );
     if (!line) throw new Error('Line not found when recalculating caret position');
 
     // If its first iteration then reset letter to lastX and childIndex to 0
