@@ -102,10 +102,11 @@
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 35, addCss : false, syntax : false /*schema*/ }, true);
+      const tabEditor = new TabJF(editor, { left : 35, addCss : false, syntax : schema }, true);
+      console.info(tabEditor);
+      // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
-      console.info(tabEditor);
     </script>
   </body>
 </html>

@@ -1,12 +1,6 @@
 import styles from '../dictionary/styles.js';
 import functions from '../functions/styles.js';
 let paths; export default paths = {
-  // I need to describe
-  // what part of the word I need
-  // how this part must look like (rules)
-  // color
-  // what starts a word
-  // what ends a word
   subset : {
     sets : {
       '.' : {
@@ -239,16 +233,6 @@ let paths; export default paths = {
               attrs : {
                 class : 'spaces'
               },
-              // @TODO for now leave it be. It means to create a subset only for spaces, if anything else then space
-              // will appear then stop subset and add this word with class spaces
-              // subset : {
-              //   regex : true,
-              //   rules : {
-              //     '[^ ]' : {
-              //       end : true
-              //     }
-              //   }
-              // }
             },
             default : {
               rules : styles,
