@@ -1,23 +1,22 @@
-# TAB JF - just text editor
-Single Page Text Editor
+# TAB JF
+Single Page Text Editor with content rendering and syntax highlighting.
 
 # Overview
 
-Simple text editor which doesn't use `contenteditable`.
-
-In time editor will be upgraded but the idea is to have normal editor which doesn't depend on any deprecated API. Noting fancy but could be forked &#128540; to be fancier.
+Text editor which doesn't use `contenteditable`.
 
 # How to use
 
 Just create instance of it:
 ```js
-new TabJF(document.getElementById('id'));
+const editor = document.getElementById('someEditorID');
+new TabJF(editor);
 ```
 and you are done!
 
 ## Padding
 
-If you have added some stylization to your editor (for example, to add line numbering) which required padding you can specify it by passing amount of pagination (script does care for top and left pagination only):
+If you have added some stylization to your editor (for example, you have line numbers added) which required padding the editor node, you can specify it by passing amount of pagination (script does care only for top and left pagination):
 
 ```js
 new TabJF(editor, { left : 35, top : 10 });
@@ -33,9 +32,9 @@ new TabJF(editor, { left : 35, top : 10, line : 20 });
 
 ## Events
 
-Editor offers handful of events which you can stop and substitute with your own functionality.
+Editor offers handful of events which can be stopped with `stopDefault()` and replaced with your own functionality:
 
-Each editor returns additional information in `detail` attribute:
+Each `event` returns additional information in `detail` attribute:
 - `tabJFCopy` - Fired before part of editor was copied. Details:
   - `pos` - current position of caret
   - `instance` - the instance of the editor
@@ -100,13 +99,16 @@ Each editor returns additional information in `detail` attribute:
   - `x` - direction where cursor will go on X axis
   - `Y` - direction where cursor will go on Y axis
 
-Each event can be stopped with `stopDefault()` and replaced with your own function:
+Example:
 
 ```js
 const TabJFEditor = new TabJF(editor, { left : 35, top : 10, line : 20 });
 editor.addEventListener("tabJFDeactivate", e => {
-  // underlineButton here is a example button which applies underline to the selected nodes
-  // and which clicked shouldn't remove focus out of editor
+  // The variable `underlineButton` is an example of a button
+  // which applies underline to the selected nodes.
+  const underlineButton = document.getElementById('underline');
+
+  // Here we are stopping editor deactivation when underline button was pressed.
   if (e.target == underlineButton) {
     e.preventDefault();
   }
@@ -124,7 +126,6 @@ new TabJF(editor, { left : 35, top : 10, line : 20 }, true);
 To enable it pass `true` as third parameter and check `editor.stack.trace` to view methods.
 
 ### Planned features (_in a order they will be implemented_):
-  - some code coloring (_CSS for now_) (_there will be separate version for this_)
   - server driven rendering (_for viewing GB file without having to send them to the client_)
   - Y Rendering (_for files which are made of one big line ( any min.js for example)_)
   - [OPTIONAL] font stylization (_bold/italic/underline_) (_class/inline CSS_) (_might be done by following menu_)
