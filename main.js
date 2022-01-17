@@ -30,7 +30,7 @@ import { TabJF_Hidden } from './module/_hidden.js';
 import { TabJF_Save_Content } from './module/_save/content.js';
 import { TabJF_Save_Set } from './module/_save/set.js';
 import { TabJF_Save } from './module/_save.js';
-import schema from './schema/rules/paths.js';
+import styles from './schema/styles.js';
 
 class TabJF {
   editor;
@@ -40,12 +40,6 @@ class TabJF {
   copiedHere   = false;
   activated    = false;
   spaceUChar   = '\u00A0';
-
-  stack = {
-    open      : true,
-    building  : [], // currently building trace
-    trace     : [], // array of seperate builds (each time a function was called this contain debug info about it, with arguments)
-  };
 
   pressed = {
     shift : false,
@@ -79,7 +73,7 @@ class TabJF {
     },
   }
 
-  constructor( editor, set = {}, debugMode = false ) {
+  constructor( editor, set = {} ) {
     if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
@@ -90,8 +84,8 @@ class TabJF {
       top    : 0,
       line   : 20,
       height : 400,
-      addCss : true,
-      syntax : schema
+      addCss : false,
+      syntax : false
     };
 
     Object.keys(required).forEach( attr => {
@@ -117,28 +111,6 @@ class TabJF {
     methodsSave.forEach(path => {
       this.set.preciseMethodsProxy(this, path);
     });
-
-    // Setting debug modes which keeps track of all called methods, arguments, scope and results
-    if (debugMode) {
-      let methods    = Object.getOwnPropertyNames( TabJF.prototype );
-      let properties = Object.getOwnPropertyNames( this );
-
-      const removeMethods = ['constructor'];
-      const removeProps = ['settings'];
-
-      removeMethods.forEach( name => {
-        let consIndex = methods.indexOf(name);
-        if ( consIndex > -1 ) methods.splice(consIndex, 1);
-      });
-
-      removeProps.forEach( name => {
-        let consIndex = properties.indexOf(name);
-        if ( consIndex > -1 ) properties.splice(consIndex, 1);
-      });
-
-      let hiddenMethods = methods.concat(properties);
-      this.set.methodsProxy(this, hiddenMethods);
-    }
 
     this.assignEvents();
     this.caret.el = this.caret.create( this.editor );
@@ -239,98 +211,17 @@ class TabJF {
     let css = window.document.styleSheets[0];
     if (!css) {
       var styleEl = document.createElement('style');
-      document.head.appendChild(styleEl);
+      styleEl.setAttribute('name', "TabJF Styles");
+      document.head.insertBefore(styleEl, document.head.children[0]);
       css = styleEl.sheet;
     }
-    const rules = [
-      `.tabjf_editor-con {
-        max-height : calc( var(--max-height, 200) * 1px);
-        overflow   : auto;
-      }`,
-      `.tabjf_editor {
-        position    : relative;
-        min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
-        padding-top : calc( var(--paddingTop, 0) * 1px )                        ;
-        width       : calc(var(--scroll-width, 100%) * 1px + 5px )              ;
-      }`,
-      `.tabjf_editor p {
-        position   : relative;
-        min-height : 20px    ;
-        max-height : 20px    ;
-        height     : 20px    ;
-        cursor     : text    ;
-        display    : flex    ;
-        margin     : 0       ;
-        padding    : 0       ;
-      }`,
-      `.tabjf_editor p::after {
-        display : block;
-        content : '█'  ;
-        opacity : 0    ;
-      }`,
-      `.tabjf_editor p span {
-        display     : block ;
-        white-space : nowrap;
-        flex-shrink : 0     ;
-      }`,
-      `@keyframes tabjf_blink {
-        0%   { opacity: 1; }
-        50%  { opacity: 0; }
-        100% { opacity: 1; }
-      }`,
-      `.tabjf_editor .caret {
-        width     : 1px ;
-        height    : 20px;
-        position  : absolute;
-        animation : tabjf_blink 1s linear infinite;
-        background-color : #000;
-      }`
-    ];
-    rules.forEach( rule => {
+    // Using styles schema
+    styles.forEach( rule => {
       css.insertRule(
         rule,
         css.cssRules.length
       );
     });
-  }
-
-  /**
-   * Proxy handle object for debuging info
-   * Saves whole stack of methods, their arguments and results
-   */
-  _proxyHandle = {
-    main : this, // Saving `this` in current scope so can access the instance
-    get : function (target, name, receiver) {
-      // nothing for now
-    },
-    apply : function (target, scope, args) {
-      const stack = this.main.stack;
-
-      // Here we save the status of stack.open
-      // which indicates if the current function is master caller.
-      // Just after saving it we change its value to false so other
-      // methods will have oldMaster set to `false` which will disallow them
-      // finishing stack and moving it to trace
-      let oldMaster = stack.open;
-      stack.open = false;
-
-      let results;
-      stack.building.push({ name : target.name, args, res : results });
-      if (target.bind) results = target.bind(this.main)(...args);
-      else results = target(...args);
-      stack.building[ stack.building.length - 1 ].res = results;
-
-      // If oldMaster is set to true it means to master caller finished
-      // its cycle and we can move stack to trace and do clearing operations
-      if ( oldMaster ) {
-        if ( stack.trace.length == 100 ) stack.trace.shift();
-        stack.trace.push( stack.building );
-        stack.building = [];
-        stack.open     = true;
-      }
-
-      return results;
-    }
   }
 
   /**

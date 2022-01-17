@@ -18,7 +18,6 @@ class TabJF_Render {
     overflow.addEventListener('scroll', this.render.fill.event, true);
     overflow.className = "tabjf_editor-con";
     overflow   .style.setProperty("--max-height", this.settings.height);
-    this.render.update.spaceWidth();
     this.render.update.minHeight();
     this.render.update.scrollWidth();
     this.editor.parentElement.insertBefore(overflow, this.editor);

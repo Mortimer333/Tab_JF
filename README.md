@@ -1,13 +1,10 @@
-# TAB JF
-Single Page Text Editor with content rendering and syntax highlighting.
-
 # Overview
 
-Text editor which doesn't use `contenteditable`.
+Text editor which doesn't use `contenteditable`, does render only visible part of text onto the page and has option of creating your own custom syntax highlighting. Currently half supports CSS which can be found in `/schema/rules/css.js`.
 
 # How to use
 
-Just create instance of it:
+Create instance:
 ```js
 const editor = document.getElementById('someEditorID');
 new TabJF(editor);
@@ -29,6 +26,53 @@ For now line height is static (_default is 20_) and can be changed by passing it
 ```js
 new TabJF(editor, { left : 35, top : 10, line : 20 });
 ```
+
+## Styles
+
+This editor is included with some basic styles which are disabled by default. They can be added to the page by passing `addCss` to the instance:
+
+```js
+new TabJF(editor, { left : 35, top : 10, line : 20, addCss : true });
+```
+
+But if you want to add your own styles you have to remember about few things:
+- It has few classes on its own:
+  - `tabjf_editor-con` - editors container
+  - `tabjf_editor-con tabjf_editor` - editor
+  - `tabjf_editor-con tabjf_editor caret` - the text cursor class
+  - `.tabjf_editor-con .tabjf_editor p .spaces` - class for showing spaces when syntax enabled
+- And few variables that must be used for editor to work properly:
+  - `--min-height` - editors min height
+  - `--paddingTop` - editors padding top
+  - `--counter-current` - the line counter (optional, if you don't have lines)
+  - `--scroll-width` - scroll width, the maximum of Y axis scroll
+
+And I mean used - not defined, you have to include them in your classes. Example:
+
+```css
+.tabjf_editor-con .tabjf_editor {
+  min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
+  counter-set : editor-line var(--counter-current, 0); /* OPTIONAL */
+  padding-top : calc( var(--paddingTop, 0) * 1px );
+  width       : calc(var(--scroll-width, 100%) * 1px + 5px );
+}
+```
+
+Remember to add this class when you are setting your own styles otherwise editor will start to behave weirdly.
+
+## Syntax
+
+Editor has a feature for highlighting syntax. Right now it has config file for CSS (functionality is tested but this config might be lacking for some cases) so you can use it as reference. To add your own syntax configuration pass it in `schema`:
+
+```js
+import cssDefaultStyles from `./schema/rules/css.js`; // Actual path for the default configuration
+import jsConfig from './path/to/config.js';           // Your custom path to the file
+
+const defaultCss   = new TabJF(editor , { left : 35, top : 10, line : 20, addCss : true, schema : cssDefaultStyles });
+const customEditor = new TabJF(editor2, { left : 35, top : 10, line : 20, addCss : true, schema : jsConfig         });
+```
+
+More on syntax in `HOWTOSYNTAX.md`.
 
 ## Events
 
@@ -97,7 +141,7 @@ Each `event` returns additional information in `detail` attribute:
   - `event` - Key Down event
   - `selection` - currently selected editors content
   - `x` - direction where cursor will go on X axis
-  - `Y` - direction where cursor will go on Y axis
+  - `y` - direction where cursor will go on Y axis
 
 Example:
 
@@ -109,21 +153,12 @@ editor.addEventListener("tabJFDeactivate", e => {
   const underlineButton = document.getElementById('underline');
 
   // Here we are stopping editor deactivation when underline button was pressed.
-  if (e.target == underlineButton) {
+  // The `e` contains attribute `detail` which have the real focusOut event in `event`
+  if (e.detail.event.target == underlineButton) {
     e.preventDefault();
   }
 })
 ```
-
-## Debug mode - only in dev version
-
-Editor has simple `debug mode` which lets checking the order the methods were called, with what arguments and what they returned.
-
-```js
-new TabJF(editor, { left : 35, top : 10, line : 20 }, true);
-```
-
-To enable it pass `true` as third parameter and check `editor.stack.trace` to view methods.
 
 ### Planned features (_in a order they will be implemented_):
   - server driven rendering (_for viewing GB file without having to send them to the client_)

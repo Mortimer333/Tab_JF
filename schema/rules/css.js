@@ -1,5 +1,5 @@
-import styles from '../dictionary/styles.js';
-import functions from '../functions/styles.js';
+import styles from '../dictionary/css.js';
+import functions from '../functions/css.js';
 let paths; export default paths = {
   subset : {
     sets : {

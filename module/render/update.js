@@ -17,10 +17,5 @@ class TabJF_Render_Update {
     });
     this.editor.style.setProperty("--scroll-width", this.render.maxLineWidth + this.settings.left );
   }
-
-  spaceWidth() {
-    const width = this.font.calculateWidth('\u00A0');
-    this.editor.style.setProperty("--space-width", width );
-  }
 }
 export { TabJF_Render_Update };
