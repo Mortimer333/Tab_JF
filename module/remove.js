@@ -1,13 +1,4 @@
 class TabJF_Remove {
-  docEvents () {
-    if ( !this.docEventsSet ) return;
-    document.removeEventListener('paste'  , this.catchClipboard.bind ? this.catchClipboard.bind(this) : this.catchClipboard, true);
-    document.removeEventListener('keydown', this.key.bind            ? this.key           .bind(this) : this.key           , true);
-    document.removeEventListener('keyup'  , this.key.bind            ? this.key           .bind(this) : this.key           , true);
-    this.docEventsSet = false;
-    this.caret.hide();
-  }
-
   selected () {
     let start = this.get.clone( this.selection.start );
     let end   = this.get.clone( this.selection.end   );

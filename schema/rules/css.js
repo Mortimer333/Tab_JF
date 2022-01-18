@@ -185,7 +185,8 @@ let paths; export default paths = {
                               functions : true,
                               length : true,
                               procent : true,
-                              varName : true
+                              varName : true,
+                              number : true
                             },
                             functions : {
                               calc : true,

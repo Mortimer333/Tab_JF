@@ -21,7 +21,8 @@
       <p><span>} sss</span></p>
       <p><span></span></p>
       <p><span>.test {</span></p>
-      <p><span>&nbsp;&nbsp;margin:20px;</span></p>
+        <p><span>&nbsp;&nbsp;margin:20px;</span></p>
+      <p><span>&nbsp;&nbsp;background: rgb(0,0,0) center;</span></p>
       <p><span>}</span></p>
       <p><span>margin:aa;</span></p>
       <p><span>.anama1asd</span><span>|dsa</span><span>|dsa</span></p>

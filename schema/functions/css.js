@@ -1,3 +1,4 @@
+import colorsDictionary from '../dictionary/colors.js';
 let functions; export default functions = {
   default : function ( group, value, words, key ) {
     console.error('Unknow validation function was used ', key);
@@ -57,6 +58,46 @@ let functions; export default functions = {
   procent : function ( group, value ) {
     return new RegExp(/\d%/).test(value);
   },
+  number : function ( group, value) {
+    return !isNaN(value);
+  },
+  time : function ( group, value ) {
+    if (
+      value[ value.length - 1 ] != 's'
+      || isNaN(value.substr( 0, value.length - 1 ))
+    ) return false;
+    return true;
+  },
+  firstName : function ( group, value, words ) {
+
+    for (var i = words.length - 1; i >= 0; i--) {
+      if (
+        words[i].content == ','
+        || words[i].content == ':'
+      ) break;
+      if ( words[i].content != '&nbsp;') return false;
+    }
+
+    if (
+      value.substr(0, 2) == '--'
+      || (!isNaN(value[0]) && value[0] != '-')
+      || value[0] == '_'
+      || !/^[0-9A-Za-z_-\s\-]+$/.test(value)
+    ) return false;
+
+    return true;
+  },
+  color : function ( group, value ) {
+    var el = document.createElement('div');
+    el.style.backgroundColor = value;
+    if ( !!el.style.backgroundColor ) return true;
+    const colorFuncs = ["rgb", "rgba", "hsl", "hsla"];
+    return colorFuncs.indexOf(value) !== -1;
+  },
+  image : function ( group, value ) {
+    const imageFuncs = ["linear-gradient", "url"];
+    return imageFuncs.indexOf(value) !== -1;
+  },
   length : function ( group, value ) {
     const units = {
       px : true,
@@ -88,12 +129,22 @@ let functions; export default functions = {
   getValue : function ( name, rules ) {
     let route = this.createRoute( name, {'-' : true} );
     let value = this.directToValue( route, rules );
-    if ( value?.ref ) {
+    while (value?.ref) {
       route = this.redirect( route, value.ref.split('.') );
       value = this.directToValue( route, rules );
     }
+
+    if (value?.combine) {
+      value.combine.forEach( direction => {
+        let newRoute = this.redirect( [...route], direction.split('.') );
+        let newValue = this.directToValue( newRoute, rules );
+        value = this.mergeObjects(value, newValue);
+      });
+    }
+
     return value;
   },
+
 
   redirect: function ( route, directions ) {
     const actions = {
@@ -145,6 +196,10 @@ let functions; export default functions = {
         return { class : 'spaces' };
       }
       return { class : 'mistake', style : 'color:#FFF;' };
+    }
+
+    if (validation?.combine) {
+
     }
 
     const typeKeys = Object.keys(validation.type);

@@ -27,6 +27,28 @@ let dictionary; export default dictionary = {
     }
   },
   "animation": {
+    "_" : {
+      "type": {
+        "time": true,
+        "number": true,
+        "custom": true,
+        firstName : true
+      },
+      "values": {
+        "infinite": true,
+        "normal": true,
+        "reverse": true,
+        "alternate": true,
+        "alternate-reverse": true,
+        "none": true,
+        "forwards": true,
+        "backwords": true,
+        "both": true
+      },
+      multi : true,
+      seperated : true,
+      max : 5
+    },
     "delay": {
       "_": {
         "type": {
@@ -42,7 +64,7 @@ let dictionary; export default dictionary = {
           "alternate": true,
           "alternate-reverse": true
         },
-        "multi": true
+        "seperated": true
       }
     },
     "duration": {
@@ -61,7 +83,7 @@ let dictionary; export default dictionary = {
             "backwords": true,
             "both": true
           },
-          "multi": true
+          "seperated": true
         }
       }
     },
@@ -73,9 +95,9 @@ let dictionary; export default dictionary = {
             "custom": true
           },
           "values": {
-            "inifnite": true
+            "infinite": true
           },
-          "multi": true
+          "seperated": true
         }
       }
     },
@@ -88,7 +110,7 @@ let dictionary; export default dictionary = {
         "values": {
           "none": true
         },
-        "multi": true
+        "seperated": true
       }
     },
     "play": {
@@ -148,6 +170,20 @@ let dictionary; export default dictionary = {
     }
   },
   "background": {
+    "_" : {
+      combine : [
+        "attachment",
+        "clip",
+        "color",
+        "image",
+        "origin",
+        "position",
+        "repeat",
+        "size"
+      ],
+      multi : true,
+      max : 7
+    },
     "attachment": {
       "_": {
         "values": {
@@ -173,7 +209,7 @@ let dictionary; export default dictionary = {
             "saturation": true,
             "luminosity": true
           },
-          "multi": true
+          "seperated": true
         }
       }
     },
@@ -190,7 +226,7 @@ let dictionary; export default dictionary = {
     "color": {
       "_": {
         "type": {
-          "string": true,
+          "color": true,
           "custom": true
         },
         "values": {
@@ -222,10 +258,20 @@ let dictionary; export default dictionary = {
     "position": {
       "_": {
         "type": {
-          "position": true
+          "length": true,
+          "procent": true,
+          custom : true
+        },
+        values : {
+          left : true,
+          right : true,
+          bottom : true,
+          center : true,
+          top : true
         },
         "separated": true,
-        "multi": true
+        "multi": true,
+        max : 4
       },
       "x": {
         "_": {
@@ -243,7 +289,16 @@ let dictionary; export default dictionary = {
       },
       "y": {
         "_": {
-          "ref": "$up.x"
+          "type": {
+            "custom": true,
+            "length": true
+          },
+          "values": {
+            "top": true,
+            "center": true,
+            "bottom": true
+          },
+          "separated": true
         }
       }
     },
@@ -257,10 +312,7 @@ let dictionary; export default dictionary = {
           "round": true,
           "no-repeat": true
         },
-        "type": {
-          "string": true
-        },
-        "separated": true
+        "multi": true
       }
     },
     "size": {
@@ -298,6 +350,11 @@ let dictionary; export default dictionary = {
     }
   },
   "border": {
+    "_": {
+      ""
+      multi : true,
+      max : 3
+    },
     "block": {
       "end": {
         "color": {
@@ -346,10 +403,7 @@ let dictionary; export default dictionary = {
           },
           "type": {
             "custom": true,
-            "string": true,
-            "hex": true,
-            "rgb": true,
-            "hsl": true
+            color : true
           }
         }
       },
@@ -357,11 +411,8 @@ let dictionary; export default dictionary = {
         "radius": {
           "_": {
             "type": {
-              "unit": true,
+              "length": true,
               "procent": true
-            },
-            "units": {
-              "px": true
             }
           }
         }
@@ -383,7 +434,8 @@ let dictionary; export default dictionary = {
             "hidden": true,
             "double": true
           },
-          "separated": true
+          "multi": true,
+          max : 4
         }
       },
       "width": {
@@ -391,7 +443,8 @@ let dictionary; export default dictionary = {
           "type": {
             "length": true
           },
-          "separated": true
+          "multi": true,
+          max : 4
         }
       }
     },
@@ -425,13 +478,9 @@ let dictionary; export default dictionary = {
       "outset": {
         "_": {
           "type": {
-            "unit": true
+            length : true
           },
-          "units": {
-            "": true,
-            "px": true
-          },
-          "separated": true
+          "multi": true
         }
       },
       "repeat": {
@@ -448,14 +497,11 @@ let dictionary; export default dictionary = {
         "_": {
           "type": {
             "custom": true,
-            "unit": true,
+            "length": true,
             "procent": true
           },
           "values": {
             "fill": true
-          },
-          "units": {
-            "": true
           }
         }
       },
@@ -498,7 +544,7 @@ let dictionary; export default dictionary = {
               "hidden": true,
               "double": true
             },
-            "separated": true
+            "multi": true
           }
         },
         "width": {
@@ -514,28 +560,47 @@ let dictionary; export default dictionary = {
         }
       },
       "start": {
-        "ref": "$up.end"
+        "end": {
+          "ref": "$up.$up.end.end"
+        },
+        "start": {
+          "ref": "$up.$up.end.start"
+        }
       }
     },
     "left": {
       "color": {
         "_": {
-          "ref": "$up.bottom.color"
+          "ref": "$up.$up.bottom.color"
         }
       },
       "style": {
         "_": {
-          "ref": "$up.bottom.style"
+          "ref": "$up.$up.bottom.style"
         }
       },
       "width": {
         "_": {
-          "ref": "$up.bottom.width"
+          "ref": "$up.$up.bottom.width"
         }
       }
     },
     "right": {
-      "ref": "$up.left"
+      "color": {
+        "_": {
+          "ref": "$up.$up.bottom.color"
+        }
+      },
+      "style": {
+        "_": {
+          "ref": "$up.$up.bottom.style"
+        }
+      },
+      "width": {
+        "_": {
+          "ref": "$up.$up.bottom.width"
+        }
+      }
     },
     "spacing": {
       "_": {
@@ -546,10 +611,51 @@ let dictionary; export default dictionary = {
       }
     },
     "start": {
-      "ref": "$up.end"
+      "end": {
+        "radius": {
+          "_": {
+            "ref": "$up.$up.$up.end.end.radius"
+          }
+        }
+      },
+      "start": {
+        "radius": {
+          "_": {
+            "ref": "$up.$up.end.radius"
+          }
+        }
+      }
     },
     "top": {
-      "ref": "$up.bottom"
+      "color": {
+        "_": {
+          "ref": "$up.$up.bottom.color"
+        }
+      },
+      "left": {
+        "radius": {
+          "_": {
+            "ref": "$up.$up.$up.bottom.left.radius"
+          }
+        }
+      },
+      "right": {
+        "radius": {
+          "_": {
+            "ref": "$up.$up.left.radius"
+          }
+        }
+      },
+      "style": {
+        "_": {
+          "ref": "$up.$up.bottom.style"
+        }
+      },
+      "width": {
+        "_": {
+          "ref": "$up.$up.bottom.width"
+        }
+      }
     }
   },
   "bottom": {

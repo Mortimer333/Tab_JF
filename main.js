@@ -123,6 +123,8 @@ class TabJF {
     if ( set.addCss ) {
       this.addRules();
     }
+
+    this.set.docEvents();
   }
 
   inject () {
@@ -403,7 +405,6 @@ class TabJF {
     );
     this.activated = true;
     this.resetPressed();
-    this.set.docEvents();
   }
 
   resetPressed() {
@@ -419,12 +420,14 @@ class TabJF {
     });
     if ( event.defaultPrevented ) return;
 
-    this.remove.docEvents();
+    this.caret.hide();
     this.copiedHere = false;
     this.activated  = false;
   }
 
   key ( e ) {
+    if (!this.activated) return;
+    
     const type = e.type;
 
     if ( type == 'keydown' ) {
