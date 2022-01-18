@@ -14,7 +14,6 @@
   background-color : var(--editor-bg);
   max-height: calc( var(--max-height, 200) * 1px);
   overflow: auto;
-  margin-top: 50px;
 }
 
 .tabjf_editor .caret {

@@ -10,7 +10,7 @@
         return $path . '?v=' . $v;
       }
     ?>
-    <!-- <link rel="stylesheet" href="<?= cacheBurst('./master.css'); ?>"> -->
+    <link rel="stylesheet" href="<?= cacheBurst('./master.css'); ?>">
   </head>
   <body>
     <div id="editor" name="aa">
@@ -100,14 +100,17 @@
     <script src="<?= cacheBurst('./unit.js'); ?>" charset="utf-8"></script>
     <script type="module">
       import schema from '../schema/rules/css.js';
+      import { SyntaxCssTest } from './syntax/css.js';
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
+      const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 35, addCss : true, syntax : schema }, true);
+      const tabEditor = new TabJF(editor, { left : 35, syntax : schema, height }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
+      const tSyntaxCss = new SyntaxCssTest(tabEditor);
     </script>
   </body>
 </html>

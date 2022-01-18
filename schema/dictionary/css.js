@@ -351,7 +351,11 @@ let dictionary; export default dictionary = {
   },
   "border": {
     "_": {
-      ""
+      combine : [
+        "bottom.style",
+        "bottom.width",
+        "bottom.color"
+      ],
       multi : true,
       max : 3
     },
@@ -392,7 +396,9 @@ let dictionary; export default dictionary = {
         }
       },
       "start": {
-        "ref": "$up.end"
+        "_" : {
+          "ref": "$up.end"
+        }
       }
     },
     "bottom": {
@@ -561,10 +567,14 @@ let dictionary; export default dictionary = {
       },
       "start": {
         "end": {
-          "ref": "$up.$up.end.end"
+          "_": {
+            "ref": "$up.$up.end.end"
+          }
         },
         "start": {
-          "ref": "$up.$up.end.start"
+          "_" : {
+            "ref": "$up.$up.end.start"
+          }
         }
       }
     },

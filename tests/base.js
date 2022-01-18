@@ -20,13 +20,13 @@ class Test {
   instance;
   testData = [{"content":[{"attrs":[],"content":"1asd"},{"attrs":[],"content":" | dsa"},{"attrs":[],"content":" | dsa"}]},{"content":[{"attrs":[],"content":"2asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]},{"content":[{"attrs":[],"content":"3asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]},{"content":[{"attrs":[],"content":"4asd"},{"attrs":[],"content":"|dsa"},{"attrs":[],"content":"|dsa"}]}];
 
-  constructor( instance ) {
+  constructor( instance, testData = this.testData ) {
     if (this.constructor === Test) {
       throw new Error('This is abstract class, can\'t be instantiated');
     }
     this.instance = instance;
-    if (JSON.stringify(this.instance.render.content) != JSON.stringify(this.testData)) {
-      this.instance.truck.import(this.testData);
+    if (JSON.stringify(this.instance.render.content) != JSON.stringify(testData)) {
+      this.instance.truck.import(testData);
     }
   }
 

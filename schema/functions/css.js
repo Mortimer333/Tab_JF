@@ -126,6 +126,11 @@ let functions; export default functions = {
     return value.length == 0 || !!units[value];
   },
 
+  clone: function (object) {
+    if (typeof object != 'object') return object;
+    return JSON.parse(JSON.stringify(object));
+  },
+
   getValue : function ( name, rules ) {
     let route = this.createRoute( name, {'-' : true} );
     let value = this.directToValue( route, rules );
@@ -185,7 +190,7 @@ let functions; export default functions = {
   directToValue : function ( route, dictionary ) {
     if ( !dictionary[route[0]] ) return false;
 
-    if ( route.length == 1 ) return dictionary[route[0]]._;
+    if ( route.length == 1 ) return this.clone(dictionary[route[0]]._);
 
     return this.directToValue( route.slice(1), dictionary[route[0]] );
   },
@@ -244,7 +249,8 @@ let functions; export default functions = {
   },
 
   mergeDefaultRules: function (rules) {
-    return this.mergeObjects(this.defaultRules, rules);
+    const defaultObj = this.clone(this.defaultRules);
+    return this.mergeObjects(defaultObj, rules);
   },
 
   mergeObjects: function(parent, child) {

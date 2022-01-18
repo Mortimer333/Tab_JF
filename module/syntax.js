@@ -1,8 +1,33 @@
+import css from '../schema/dictionary/css.js';
 class TabJF_Syntax {
   rulesetOpen = false;
   groups = [];
   ends   = [];
   groupPath = [];
+
+  generateCssRules() {
+    let rules = [];
+    Object.keys(css).forEach( rule => {
+      rules = rules.concat(this.syntax.createRulePath(rule, css[rule]));
+    });
+    rules.forEach( (rule, i) => {
+      rules[i] = '<p><span>' + rule + ':</span></p>';
+    });
+
+    return rules.join("\n");
+  }
+
+  createRulePath(path, css) {
+    if (path[path.length - 1] == '_') {
+      return []
+    }
+    let rules = [];
+    if (css?._) rules.push(path);
+    Object.keys(css).forEach( rule => {
+      rules = rules.concat(this.syntax.createRulePath(path + '-' + rule, css[rule]));
+    });
+    return rules;
+  }
 
   init () {
     const start = this.render.hidden;             // Start line
@@ -37,7 +62,7 @@ class TabJF_Syntax {
     let start  = this.activated ? this.pos.line : this.render.hidden;
     start = this.syntax.getGroupPathLineNumber(start);
     const aStart = this.render.hidden;
-    const end    = this.settings.line;
+    const end    = this.render.linesLimit;
     const lines  = this.render.content.slice(start, aStart + end);
     this.syntax.groups = this.syntax.createGroups(
       this.get.clone(this.render.content[start].groupPath),
