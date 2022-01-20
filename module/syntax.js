@@ -5,6 +5,19 @@ class TabJF_Syntax {
   ends   = [];
   groupPath = [];
 
+  createTestData() {
+    const styles = getComputedStyle(document.documentElement);
+    const stylesAr = [];
+    Object.keys(styles).forEach( key => {
+      stylesAr.push(styles[key]);
+    });
+    console.log(stylesAr);
+    stylesAr.forEach( (rule, i) => {
+      stylesAr[i] = '<p><span>' + rule + ':</span></p>';
+    });
+    return stylesAr.join("\n");
+  }
+
   generateCssRules() {
     let rules = [];
     Object.keys(css).forEach( rule => {

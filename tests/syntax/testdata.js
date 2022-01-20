@@ -11,6 +11,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "  accent-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "  align-content:;"
       }
     ]
@@ -28,14 +36,6 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  align-self:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "  animation:;"
       }
     ]
   },
@@ -131,14 +131,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  background:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  background-attachment:;"
       }
     ]
@@ -187,14 +179,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  background-position:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  background-position-x:;"
       }
     ]
@@ -235,14 +219,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  border:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  border-block-end-color:;"
       }
     ]
@@ -267,7 +243,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  border-block-start:;"
+        "content": "  border-block-start-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  border-block-start-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  border-block-start-width:;"
       }
     ]
   },
@@ -403,7 +395,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  border-inline-start-end:;"
+        "content": "  border-inline-start-color:;"
       }
     ]
   },
@@ -411,7 +403,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  border-inline-start-start:;"
+        "content": "  border-inline-start-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  border-inline-start-width:;"
       }
     ]
   },
@@ -643,7 +643,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  color-adjust:;"
+        "content": "  color-interpolation:;"
       }
     ]
   },
@@ -652,6 +652,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  color-interpolation-filters:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  color-scheme:;"
       }
     ]
   },
@@ -780,6 +788,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  cy:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  d:;"
       }
     ]
   },
@@ -988,14 +1004,6 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  font-synthesis:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "  font-variant:;"
       }
     ]
   },
@@ -1323,14 +1331,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  margin:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  margin-block-end:;"
       }
     ]
@@ -1419,14 +1419,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  mask:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  mask-clip:;"
       }
     ]
@@ -1467,7 +1459,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  mask-position:;"
+        "content": "  mask-position-x:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  mask-position-y:;"
       }
     ]
   },
@@ -1667,14 +1667,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  overflow:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  overflow-anchor:;"
       }
     ]
@@ -1755,14 +1747,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  padding:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  padding-block-end:;"
       }
     ]
@@ -1827,22 +1811,6 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "  page-break-after:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "  page-break-before:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
         "content": "  paint-order:;"
       }
     ]
@@ -1876,6 +1844,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  print-color-adjust:;"
       }
     ]
   },
@@ -2131,6 +2107,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "  scrollbar-gutter:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "  scrollbar-width:;"
       }
     ]
@@ -2251,6 +2235,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "  tab-size:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "  table-layout:;"
       }
     ]
@@ -2284,14 +2276,6 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  text-combine-upright:;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "  text-decoration:;"
       }
     ]
   },
@@ -2628,6 +2612,158 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "  z-index:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-align:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-direction:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-flex:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-ordinal-group:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-orient:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-box-pack:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-float-edge:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-force-broken-image-icon:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-image-region:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-orient:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-text-size-adjust:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-user-focus:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-user-input:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-user-modify:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -moz-window-dragging:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -webkit-line-clamp:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -webkit-text-fill-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -webkit-text-stroke-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "  -webkit-text-stroke-width:;"
       }
     ]
   },

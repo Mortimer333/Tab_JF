@@ -1,4 +1,13 @@
 let dictionary; export default dictionary = {
+  accent : {
+    color : {
+      "_" : {
+        type : {
+          color : true
+        }
+      }
+    }
+  },
   "align": {
     "content": {
       "_": {
@@ -396,8 +405,20 @@ let dictionary; export default dictionary = {
         }
       },
       "start": {
-        "_" : {
-          "ref": "$up.end"
+        "color": {
+          "_": {
+            "ref": "$up.$up.end.color"
+          }
+        },
+        "style": {
+          "_": {
+            "ref": "$up.$up.end.style"
+          }
+        },
+        "width": {
+          "_": {
+            "ref": "$up.$up.end.width"
+          }
         }
       }
     },
@@ -566,14 +587,19 @@ let dictionary; export default dictionary = {
         }
       },
       "start": {
-        "end": {
+        "color": {
           "_": {
-            "ref": "$up.$up.end.end"
+            "ref": "$up.$up.end.color"
           }
         },
-        "start": {
-          "_" : {
-            "ref": "$up.$up.end.start"
+        "style": {
+          "_": {
+            "ref": "$up.$up.end.style"
+          }
+        },
+        "width": {
+          "_": {
+            "ref": "$up.$up.end.width"
           }
         }
       }
@@ -834,6 +860,20 @@ let dictionary; export default dictionary = {
         "color": true
       }
     },
+    scheme : {
+      "_" : {
+        type : {
+          custom : true
+        },
+        values : {
+          normal : true,
+          light : true,
+          dark : true
+        },
+        multi : true,
+        max : 2
+      }
+    },
     "adjust": {
       "_": {
         "values": {
@@ -843,9 +883,16 @@ let dictionary; export default dictionary = {
       }
     },
     "interpolation": {
+      "_" : {
+        values : {
+          auto : true,
+          sRGB : true,
+          linearRGB : true
+        }
+      },
       "filters": {
         "_": {
-          "value": {
+          "values": {
             "auto": true,
             "sRGB": true,
             "linearRGB": true
@@ -1058,6 +1105,39 @@ let dictionary; export default dictionary = {
   "cy": {
     "_": {
       "ref": "$up.$up.cx"
+    }
+  },
+  d : {
+    _ : {
+      values : {
+        A : true,
+        a : true,
+        M : true,
+        m : true,
+        L : true,
+        l : true,
+        H : true,
+        h : true,
+        V : true,
+        v : true,
+        C : true,
+        c : true,
+        S : true,
+        s : true,
+        Z : true,
+        z : true,
+        Q : true,
+        q : true,
+        T : true,
+        t : true
+      },
+      type : {
+        custom : true,
+        number : true
+      },
+      multi : true,
+      max : 3,
+      seperated : true
     }
   },
   "direction": {
@@ -1627,7 +1707,7 @@ let dictionary; export default dictionary = {
           "type": {
             "custom": true,
             "number": true,
-            "string": true
+            "name": true
           },
           "seperated": true
         }
@@ -1641,12 +1721,12 @@ let dictionary; export default dictionary = {
     "row": {
       "end": {
         "_": {
-          "ref": "$up.$up.end"
+          "ref": "$up.$up.column.end"
         }
       },
       "start": {
         "_": {
-          "ref": "$up.$up.end"
+          "ref": "$up.$up.column.end"
         }
       }
     },
@@ -1749,7 +1829,7 @@ let dictionary; export default dictionary = {
   "inline": {
     "size": {
       "_": {
-        "ref": "/.width"
+        "ref": "$up.$up.width"
       }
     }
   },
@@ -1776,12 +1856,12 @@ let dictionary; export default dictionary = {
     "inline": {
       "end": {
         "_": {
-          "ref": "$up.$up.end"
+          "ref": "$up.$up.block.end"
         }
       },
       "start": {
         "_": {
-          "ref": "$up.$up.end"
+          "ref": "$up.$up.block.end"
         }
       }
     }
@@ -2135,11 +2215,41 @@ let dictionary; export default dictionary = {
     },
     "position": {
       "_": {
-        "type": {
-          "position": true
-        },
+        combine : [
+          'x',
+          'y'
+        ],
         "seperated": true,
-        "multi": true
+        "multi": true,
+        max : 2
+      },
+      x : {
+        _ : {
+          type : {
+            length : true,
+            procent : true,
+            custom : true
+          },
+          values : {
+            left : true,
+            center : true,
+            right: true
+          }
+        }
+      },
+      y : {
+        _ : {
+          type : {
+            length : true,
+            procent : true,
+            custom : true
+          },
+          values : {
+            top : true,
+            center : true,
+            bottom: true
+          }
+        }
       }
     },
     "repeat": {
@@ -2185,7 +2295,7 @@ let dictionary; export default dictionary = {
     "block": {
       "size": {
         "_": {
-          "ref": "/.max.height"
+          "ref": "$up.$up.$up.max.height"
         }
       }
     },
@@ -2210,13 +2320,13 @@ let dictionary; export default dictionary = {
     "inline": {
       "size": {
         "_": {
-          "ref": "/.max.height"
+          "ref": "$up.$up.$up.max.height"
         }
       }
     },
     "width": {
       "_": {
-        "ref": "/.max.height"
+        "ref": "$up.$up.max.height"
       }
     }
   },
@@ -2224,25 +2334,25 @@ let dictionary; export default dictionary = {
     "block": {
       "size": {
         "_": {
-          "ref": "/.max.height"
+          "ref": "$up.$up.$up.max.height"
         }
       }
     },
     "height": {
       "_": {
-        "ref": "/.max.height"
+        "ref": "$up.$up.max.height"
       }
     },
     "inline": {
       "size": {
         "_": {
-          "ref": "/.max.height"
+          "ref": "$up.$up.$up.max.height"
         }
       }
     },
     "width": {
       "_": {
-        "ref": "/.max.height"
+        "ref": "$up.$up.max.height"
       }
     }
   },
@@ -2443,12 +2553,12 @@ let dictionary; export default dictionary = {
     },
     "x": {
       "_": {
-        "ref": "/.overflow"
+        "ref": "$up.$up.overflow"
       }
     },
     "y": {
       "_": {
-        "ref": "/.overflow"
+        "ref": "$up.$up.overflow"
       }
     }
   },
@@ -2510,12 +2620,12 @@ let dictionary; export default dictionary = {
     "inline": {
       "end": {
         "_": {
-          "ref": "/.padding.block.end"
+          "ref": "$up.$up.$up.padding.block.end"
         }
       },
       "start": {
         "_": {
-          "ref": "/.padding.block.end"
+          "ref": "$up.$up.$up.padding.block.end"
         }
       }
     },
@@ -2617,6 +2727,18 @@ let dictionary; export default dictionary = {
     "_": {
       "type": {
         "position": true
+      }
+    }
+  },
+  print : {
+    color : {
+      adjust : {
+        _ : {
+          values : {
+            economy : true,
+            exact : true
+          }
+        }
       }
     }
   },
@@ -2908,6 +3030,17 @@ let dictionary; export default dictionary = {
         "seperated": true
       }
     },
+    gutter : {
+      _ : {
+        values : {
+          auto : true,
+          stable : true,
+          "both-edges" : true
+        },
+        max : 2,
+        multi : true
+      }
+    },
     "width": {
       "_": {
         "values": {
@@ -3050,6 +3183,16 @@ let dictionary; export default dictionary = {
           "numeric": true,
           "length": true,
           "procent": true
+        }
+      }
+    }
+  },
+  tab : {
+    size : {
+      _ : {
+        type : {
+          length : true,
+          number : true
         }
       }
     }
@@ -3327,7 +3470,7 @@ let dictionary; export default dictionary = {
   },
   "top": {
     "_": {
-      "ref": "/.bottom"
+      "ref": "$up.$up.bottom"
     }
   },
   "touch": {
@@ -3553,7 +3696,7 @@ let dictionary; export default dictionary = {
   },
   "width": {
     "_": {
-      "ref": "/.height"
+      "ref": "$up.height"
     }
   },
   "will": {

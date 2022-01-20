@@ -78,14 +78,15 @@ let functions; export default functions = {
       if ( words[i].content != '&nbsp;') return false;
     }
 
-    if (
-      value.substr(0, 2) == '--'
-      || (!isNaN(value[0]) && value[0] != '-')
-      || value[0] == '_'
-      || !/^[0-9A-Za-z_-\s\-]+$/.test(value)
-    ) return false;
+    if ( this.name(value) ) return false;
 
     return true;
+  },
+  name : function ( group, value ) {
+    return value.substr(0, 2) == '--'
+    || (!isNaN(value[0]) && value[0] != '-')
+    || value[0] == '_'
+    || !/^[0-9A-Za-z_-\s\-]+$/.test(value);
   },
   color : function ( group, value ) {
     var el = document.createElement('div');
@@ -240,11 +241,18 @@ let functions; export default functions = {
 
   defaultRules : {
     type : {
-      functions : true
+      functions : true,
+      custom : true
     },
     functions : {
       'calc' : true,
       'var' : true
+    },
+    values : {
+      inherit : true,
+      initial : true,
+      revert : true,
+      unset : true
     }
   },
 

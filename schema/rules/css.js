@@ -55,11 +55,11 @@ let paths; export default paths = {
         end : '}',
         subset : {
           sets : {
-            'calc' : {
-              attrs : {
-                style : 'text-decoration:underline;'
-              }
-            },
+            // 'calc' : {
+            //   attrs : {
+            //     style : 'text-decoration:underline;'
+            //   }
+            // },
             ':' : {
               attrs : {
                 style : 'color:#AEE;'
