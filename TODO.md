@@ -5,7 +5,7 @@
 3. [DONE] Add Rendering
 4. [DONE] Check how we handle focusout on the editor
 5. [DONE] More customization and triggers
-6. [DONE] Add code coloring 
+6. [DONE] Add code coloring
 7. Make coloring optional, and possible to add your own style sheet [DONE]
 8. Move debug tool to other project, improve it and implement back as 3rd party service
 9. Server driven rendering (infinite loading), so we can open files of GB in size
@@ -37,3 +37,5 @@ and remove `;` from `margin:10px 20px;` in `.anama1asd|dsa|dsa` class
 
 
 ## Thinkers
+
+- Computed style sis not adding styles with multi attrbiutes. We have to verify which one we lack. Also it does provide small amount of webkit and moz methods

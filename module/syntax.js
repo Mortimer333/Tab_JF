@@ -5,43 +5,6 @@ class TabJF_Syntax {
   ends   = [];
   groupPath = [];
 
-  createTestData() {
-    const styles = getComputedStyle(document.documentElement);
-    const stylesAr = [];
-    Object.keys(styles).forEach( key => {
-      stylesAr.push(styles[key]);
-    });
-    console.log(stylesAr);
-    stylesAr.forEach( (rule, i) => {
-      stylesAr[i] = '<p><span>' + rule + ':</span></p>';
-    });
-    return stylesAr.join("\n");
-  }
-
-  generateCssRules() {
-    let rules = [];
-    Object.keys(css).forEach( rule => {
-      rules = rules.concat(this.syntax.createRulePath(rule, css[rule]));
-    });
-    rules.forEach( (rule, i) => {
-      rules[i] = '<p><span>' + rule + ':</span></p>';
-    });
-
-    return rules.join("\n");
-  }
-
-  createRulePath(path, css) {
-    if (path[path.length - 1] == '_') {
-      return []
-    }
-    let rules = [];
-    if (css?._) rules.push(path);
-    Object.keys(css).forEach( rule => {
-      rules = rules.concat(this.syntax.createRulePath(path + '-' + rule, css[rule]));
-    });
-    return rules;
-  }
-
   init () {
     const start = this.render.hidden;             // Start line
     let end     = start + this.render.linesLimit; // End Line

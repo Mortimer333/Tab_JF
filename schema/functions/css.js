@@ -92,7 +92,7 @@ let functions; export default functions = {
     var el = document.createElement('div');
     el.style.backgroundColor = value;
     if ( !!el.style.backgroundColor ) return true;
-    const colorFuncs = ["rgb", "rgba", "hsl", "hsla"];
+    const colorFuncs = ["rgb", "rgba", "hsl", "hsla", "hwb"];
     return colorFuncs.indexOf(value) !== -1;
   },
   image : function ( group, value ) {

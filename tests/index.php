@@ -111,6 +111,7 @@
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
       const tSyntaxCss = new SyntaxCssTest(tabEditor);
+      console.log(tSyntaxCss);
     </script>
   </body>
 </html>
