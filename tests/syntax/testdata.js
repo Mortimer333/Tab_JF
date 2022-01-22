@@ -11,6 +11,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;accent-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;accent-color:calc();"
       }
     ]
@@ -108,6 +116,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;accent-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;align-content:;"
       }
     ]
   },
@@ -219,6 +235,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;align-items:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;align-items:calc();"
       }
     ]
@@ -316,6 +340,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;align-items:space-evenly;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;align-self:;"
       }
     ]
   },
@@ -427,6 +459,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;all:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-delay:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;animation-delay:calc();"
       }
     ]
@@ -475,7 +523,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;animation-delay:50s;"
+        "content": "&nbsp;&nbsp;animation-delay:89s;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-direction:;"
       }
     ]
   },
@@ -563,6 +619,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;animation-duration:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;animation-duration:calc();"
       }
     ]
@@ -611,7 +675,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;animation-duration:19s;"
+        "content": "&nbsp;&nbsp;animation-duration:66s;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-fill-mode:;"
       }
     ]
   },
@@ -699,6 +771,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;animation-iteration-count:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;animation-iteration-count:calc();"
       }
     ]
@@ -755,7 +835,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;animation-iteration-count:66.06;"
+        "content": "&nbsp;&nbsp;animation-iteration-count:1.88;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-name:;"
       }
     ]
   },
@@ -812,6 +900,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;animation-name:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-play-state:;"
       }
     ]
   },
@@ -883,7 +979,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;animation-play-state:var()&nbsp;initial&nbsp;initial&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;animation-play-state:var()&nbsp;calc()&nbsp;initial&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation-timing-function:;"
       }
     ]
   },
@@ -995,7 +1099,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;animation-timing-function:inherit&nbsp;inherit&nbsp;initial&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;animation-timing-function:initial&nbsp;inherit&nbsp;calc()&nbsp;inherit&nbsp;;"
       }
     ]
   },
@@ -1003,7 +1107,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:calc();"
+        "content": "&nbsp;&nbsp;animation:;"
       }
     ]
   },
@@ -1011,7 +1115,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:var();"
+        "content": "&nbsp;&nbsp;animation:calc();"
       }
     ]
   },
@@ -1019,7 +1123,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:inherit;"
+        "content": "&nbsp;&nbsp;animation:var();"
       }
     ]
   },
@@ -1027,7 +1131,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:initial;"
+        "content": "&nbsp;&nbsp;animation:inherit;"
       }
     ]
   },
@@ -1035,7 +1139,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:revert;"
+        "content": "&nbsp;&nbsp;animation:initial;"
       }
     ]
   },
@@ -1043,7 +1147,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:unset;"
+        "content": "&nbsp;&nbsp;animation:revert;"
       }
     ]
   },
@@ -1051,7 +1155,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:auto;"
+        "content": "&nbsp;&nbsp;animation:unset;"
       }
     ]
   },
@@ -1059,7 +1163,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:textfield;"
+        "content": "&nbsp;&nbsp;animation:infinite;"
       }
     ]
   },
@@ -1067,7 +1171,127 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;appearance:menulist-button;"
+        "content": "&nbsp;&nbsp;animation:normal;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:reverse;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:alternate;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:alternate-reverse;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:forwards;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:backwords;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:both;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:26s;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:54.95;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:-Name_019-dasd;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;animation:var()&nbsp;var()&nbsp;calc()&nbsp;var()&nbsp;revert&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;appearance:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;-moz-appearance:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;-webkit-appearance:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;aspect-ratio:;"
       }
     ]
   },
@@ -1116,6 +1340,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;aspect-ratio:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;backdrop-filter:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;backface-visibility:;"
       }
     ]
   },
@@ -1180,6 +1420,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;backface-visibility:hidden;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-attachment:;"
       }
     ]
   },
@@ -1252,6 +1500,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;background-attachment:local;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-blend-mode:;"
       }
     ]
   },
@@ -1395,6 +1651,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;background-clip:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;background-clip:calc();"
       }
     ]
@@ -1468,6 +1732,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;background-clip:text;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-color:;"
       }
     ]
   },
@@ -1595,6 +1867,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;background-image:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;background-image:calc();"
       }
     ]
@@ -1667,6 +1947,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;background-origin:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;background-origin:calc();"
       }
     ]
@@ -1732,6 +2020,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;background-origin:content-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position-x:;"
       }
     ]
   },
@@ -1923,6 +2219,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;background-position-y:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;background-position-y:calc();"
       }
     ]
@@ -2107,6 +2411,238 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:bottom;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:center;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:top;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1px;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1em;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1rem;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1ch;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1ex;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1vh;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1vw;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1vmin;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1vmax;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1cm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1mm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1in;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1pc;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:5.58%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-position:inherit&nbsp;var()&nbsp;var()&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-repeat:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;background-repeat:calc();"
       }
     ]
@@ -2203,7 +2739,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;background-repeat:initial&nbsp;inherit&nbsp;initial&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;background-repeat:var()&nbsp;initial&nbsp;calc()&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background-size:;"
       }
     ]
   },
@@ -2395,7 +2939,463 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;background-size:53.69%;"
+        "content": "&nbsp;&nbsp;background-size:45.8%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:scroll;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:fixed;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:local;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:border-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:padding-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:content-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:text;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:transparent;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:currentColor;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:bottom;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:center;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:top;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:repeat-x;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:repeat-y;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:repeat;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:space;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:round;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:no-repeat;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:cover;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:contain;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:#FFF;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:#000000;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:rgba(0,0,0,0);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:rgb(0,0,0);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:hsl(30,&nbsp;100%,&nbsp;50%);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:linear-gradient();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:url();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1px;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1em;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1rem;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1ch;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1ex;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1vh;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1vw;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1vmin;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1vmax;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1cm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1mm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1in;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1pc;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:49.28%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;background:var()&nbsp;initial&nbsp;initial&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;block-size:;"
       }
     ]
   },
@@ -2611,6 +3611,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-end-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-block-end-color:calc();"
       }
     ]
@@ -2652,6 +3668,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-block-end-color:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-end-style:;"
       }
     ]
   },
@@ -2731,6 +3755,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-end-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-block-end-width:calc();"
       }
     ]
@@ -2787,6 +3819,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-end:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-start-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-block-start-color:calc();"
       }
     ]
@@ -2828,6 +3876,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-block-start-color:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-start-style:;"
       }
     ]
   },
@@ -2907,6 +3963,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-start-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-block-start-width:calc();"
       }
     ]
@@ -2956,6 +4020,30 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-block-start-width:thick;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-start:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-block-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom-color:;"
       }
     ]
   },
@@ -3068,6 +4156,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-bottom-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom-left-radius:;"
       }
     ]
   },
@@ -3235,7 +4331,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-bottom-left-radius:72.15%;"
+        "content": "&nbsp;&nbsp;border-bottom-left-radius:82.63%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom-right-radius:;"
       }
     ]
   },
@@ -3403,7 +4507,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-bottom-right-radius:5.41%;"
+        "content": "&nbsp;&nbsp;border-bottom-right-radius:76.42%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom-style:;"
       }
     ]
   },
@@ -3507,7 +4619,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-bottom-style:inherit&nbsp;initial&nbsp;inherit&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-bottom-style:inherit&nbsp;initial&nbsp;var()&nbsp;calc()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom-width:;"
       }
     ]
   },
@@ -3675,7 +4795,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-bottom-width:calc()&nbsp;initial&nbsp;var()&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;border-bottom-width:var()&nbsp;calc()&nbsp;initial&nbsp;initial&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-bottom:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-collapse:;"
       }
     ]
   },
@@ -3740,6 +4876,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-collapse:separate;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-end-end-radius:;"
       }
     ]
   },
@@ -3907,6 +5059,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-end-start-radius:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-end-start-radius:calc();"
       }
     ]
@@ -4060,6 +5220,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-end-start-radius:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image-outset:;"
       }
     ]
   },
@@ -4227,7 +5395,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-image-outset:var()&nbsp;calc()&nbsp;initial&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;border-image-outset:var()&nbsp;inherit&nbsp;inherit&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image-repeat:;"
       }
     ]
   },
@@ -4308,6 +5484,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-image-repeat:space;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image-slice:;"
       }
     ]
   },
@@ -4483,7 +5667,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-image-slice:61.26%;"
+        "content": "&nbsp;&nbsp;border-image-slice:9.93%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image-source:;"
       }
     ]
   },
@@ -4532,6 +5724,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-image-source:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image-width:;"
       }
     ]
   },
@@ -4707,7 +5907,31 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-image-width:15.17%;"
+        "content": "&nbsp;&nbsp;border-image-width:39.03%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-image:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-end-color:;"
       }
     ]
   },
@@ -4819,6 +6043,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-end-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-inline-end-style:calc();"
       }
     ]
@@ -4915,7 +6147,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-inline-end-style:inherit&nbsp;inherit&nbsp;var()&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-inline-end-style:calc()&nbsp;calc()&nbsp;calc()&nbsp;calc()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-end-width:;"
       }
     ]
   },
@@ -5091,6 +6331,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-end:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-start-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-inline-start-color:calc();"
       }
     ]
@@ -5195,6 +6451,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-start-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-inline-start-style:calc();"
       }
     ]
@@ -5291,7 +6555,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-inline-start-style:initial&nbsp;inherit&nbsp;var()&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;border-inline-start-style:calc()&nbsp;var()&nbsp;calc()&nbsp;initial&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-start-width:;"
       }
     ]
   },
@@ -5467,6 +6739,46 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-start:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-left-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-left-color:calc();"
       }
     ]
@@ -5579,6 +6891,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-left-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-left-style:calc();"
       }
     ]
@@ -5675,7 +6995,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-left-style:var()&nbsp;inherit&nbsp;var()&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;border-left-style:inherit&nbsp;calc()&nbsp;calc()&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-left-width:;"
       }
     ]
   },
@@ -5843,7 +7171,31 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-left-width:calc()&nbsp;calc()&nbsp;var()&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-left-width:calc()&nbsp;inherit&nbsp;var()&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-left:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-radius:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-right-color:;"
       }
     ]
   },
@@ -5963,6 +7315,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-right-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-right-style:calc();"
       }
     ]
@@ -6059,7 +7419,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-right-style:calc()&nbsp;calc()&nbsp;calc()&nbsp;calc()&nbsp;;"
+        "content": "&nbsp;&nbsp;border-right-style:calc()&nbsp;initial&nbsp;calc()&nbsp;calc()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-right-width:;"
       }
     ]
   },
@@ -6227,7 +7595,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-right-width:inherit&nbsp;inherit&nbsp;var()&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-right-width:inherit&nbsp;initial&nbsp;var()&nbsp;initial&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-right:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-spacing:;"
       }
     ]
   },
@@ -6395,6 +7779,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-start-end-radius:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-start-end-radius:calc();"
       }
     ]
@@ -6548,6 +7940,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-start-end-radius:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-start-start-radius:;"
       }
     ]
   },
@@ -6715,6 +8115,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;border-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top-color:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;border-top-color:calc();"
       }
     ]
@@ -6820,6 +8236,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;border-top-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top-left-radius:;"
       }
     ]
   },
@@ -6987,7 +8411,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-top-left-radius:25.07%;"
+        "content": "&nbsp;&nbsp;border-top-left-radius:41.7%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top-right-radius:;"
       }
     ]
   },
@@ -7155,7 +8587,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-top-right-radius:14.42%;"
+        "content": "&nbsp;&nbsp;border-top-right-radius:70.01%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top-style:;"
       }
     ]
   },
@@ -7259,7 +8699,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-top-style:var()&nbsp;inherit&nbsp;var()&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-top-style:var()&nbsp;calc()&nbsp;initial&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top-width:;"
       }
     ]
   },
@@ -7427,7 +8875,31 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;border-top-width:calc()&nbsp;initial&nbsp;inherit&nbsp;initial&nbsp;;"
+        "content": "&nbsp;&nbsp;border-top-width:var()&nbsp;var()&nbsp;inherit&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-top:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;border-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;bottom:;"
       }
     ]
   },
@@ -7603,7 +9075,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;bottom:9.44%;"
+        "content": "&nbsp;&nbsp;bottom:72.77%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;box-decoration-break:;"
       }
     ]
   },
@@ -7668,6 +9148,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;box-decoration-break:clone;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;box-shadow:;"
       }
     ]
   },
@@ -7787,7 +9275,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;box-shadow:calc()&nbsp;initial&nbsp;calc()&nbsp;calc()&nbsp;;"
+        "content": "&nbsp;&nbsp;box-shadow:var()&nbsp;inherit&nbsp;calc()&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;box-sizing:;"
       }
     ]
   },
@@ -7852,6 +9348,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;box-sizing:border-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;break-after:;"
       }
     ]
   },
@@ -8011,6 +9515,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;break-before:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;break-before:calc();"
       }
     ]
@@ -8163,6 +9675,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;break-inside:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;break-inside:calc();"
       }
     ]
@@ -8244,6 +9764,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;break-inside:avoid-region;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;caption-side:;"
       }
     ]
   },
@@ -8340,6 +9868,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;caption-side:bottom-outside;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;caret-color:;"
       }
     ]
   },
@@ -8459,6 +9995,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;clear:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;clear:calc();"
       }
     ]
@@ -8555,55 +10099,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;clip:auto;"
+        "content": "&nbsp;&nbsp;clip-path:;"
       }
     ]
   },
@@ -8723,7 +10219,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:calc();"
+        "content": "&nbsp;&nbsp;clip:;"
       }
     ]
   },
@@ -8731,7 +10227,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:var();"
+        "content": "&nbsp;&nbsp;clip:calc();"
       }
     ]
   },
@@ -8739,7 +10235,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:inherit;"
+        "content": "&nbsp;&nbsp;clip:var();"
       }
     ]
   },
@@ -8747,7 +10243,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:initial;"
+        "content": "&nbsp;&nbsp;clip:inherit;"
       }
     ]
   },
@@ -8755,7 +10251,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:revert;"
+        "content": "&nbsp;&nbsp;clip:initial;"
       }
     ]
   },
@@ -8763,7 +10259,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:unset;"
+        "content": "&nbsp;&nbsp;clip:revert;"
       }
     ]
   },
@@ -8771,7 +10267,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:nonzero;"
+        "content": "&nbsp;&nbsp;clip:unset;"
       }
     ]
   },
@@ -8779,7 +10275,103 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;clip-rule:evenodd;"
+        "content": "&nbsp;&nbsp;clip:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:normal;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:light;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:dark;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color-scheme:calc()&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;color:;"
       }
     ]
   },
@@ -8891,287 +10483,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:economy;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-adjust:exact;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:sRGB;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation:linearRGB;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:sRGB;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-interpolation-filters:linearRGB;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:normal;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:light;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:dark;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;color-scheme:var()&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;column-count:;"
       }
     ]
   },
@@ -9235,7 +10547,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;column-count:25.66;"
+        "content": "&nbsp;&nbsp;column-count:86.16;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;column-fill:;"
       }
     ]
   },
@@ -9315,7 +10635,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:calc();"
+        "content": "&nbsp;&nbsp;column-gap:;"
       }
     ]
   },
@@ -9323,7 +10643,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:var();"
+        "content": "&nbsp;&nbsp;grid-column-gap:;"
       }
     ]
   },
@@ -9331,39 +10651,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;column-gap:normal;"
+        "content": "&nbsp;&nbsp;column-rule-color:;"
       }
     ]
   },
@@ -9412,6 +10700,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;column-rule-color:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;column-rule-style:;"
       }
     ]
   },
@@ -9547,6 +10843,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;column-rule-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;column-rule-width:calc();"
       }
     ]
@@ -9619,6 +10923,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;column-rule:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;column-span:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;column-span:calc();"
       }
     ]
@@ -9683,6 +11003,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;column-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;column-width:calc();"
       }
     ]
@@ -9732,6 +11060,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;column-width:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;columns:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;contain:;"
       }
     ]
   },
@@ -9843,6 +11187,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;content-visibility:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;content:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;content:calc();"
       }
     ]
@@ -9939,6 +11299,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;counter-increment:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;counter-increment:calc();"
       }
     ]
@@ -9988,6 +11356,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;counter-increment:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;counter-reset:;"
       }
     ]
   },
@@ -10051,6 +11427,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;counter-set:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;counter-set:calc();"
       }
     ]
@@ -10100,6 +11484,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;counter-set:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;cursor:;"
       }
     ]
   },
@@ -10435,111 +11827,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;cx:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cx:14.45;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;cy:7.27;"
+        "content": "&nbsp;&nbsp;direction:;"
       }
     ]
   },
@@ -10604,6 +11892,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;direction:rtl;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;display:;"
       }
     ]
   },
@@ -10755,71 +12051,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:middle;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;dominant-baseline:hanging;"
+        "content": "&nbsp;&nbsp;empty-cells:;"
       }
     ]
   },
@@ -10891,223 +12123,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;fill:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:#FFF;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:#000000;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:rgba(0,0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:rgb(0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:hsl(30,&nbsp;100%,&nbsp;50%);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-opacity:55.99;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:evenodd;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;fill-rule:nonzero;"
+        "content": "&nbsp;&nbsp;filter:;"
       }
     ]
   },
@@ -11228,6 +12244,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;filter:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;flex-basis:;"
       }
     ]
   },
@@ -11443,6 +12467,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;flex-direction:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;flex-direction:calc();"
       }
     ]
@@ -11523,6 +12555,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;flex-flow:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;flex-grow:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;flex-grow:calc();"
       }
     ]
@@ -11571,7 +12619,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;flex-grow:79.78;"
+        "content": "&nbsp;&nbsp;flex-grow:11.79;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;flex-shrink:;"
       }
     ]
   },
@@ -11627,7 +12683,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;flex-shrink:80.9;"
+        "content": "&nbsp;&nbsp;flex-shrink:37.11;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;flex-wrap:;"
       }
     ]
   },
@@ -11700,6 +12764,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;flex-wrap:wrap-reverse;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;flex:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;float:;"
       }
     ]
   },
@@ -11795,159 +12875,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:#FFF;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:#000000;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:rgba(0,0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:rgb(0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:hsl(30,&nbsp;100%,&nbsp;50%);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;flood-opacity:41.93;"
+        "content": "&nbsp;&nbsp;font-family:;"
       }
     ]
   },
@@ -12100,6 +13028,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-family:fangsong;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-feature-settings:;"
       }
     ]
   },
@@ -12363,7 +13299,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-feature-settings:25.42;"
+        "content": "&nbsp;&nbsp;font-feature-settings:36.32;"
       }
     ]
   },
@@ -12371,7 +13307,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-feature-settings:inherit&nbsp;inherit&nbsp;var()&nbsp;calc()&nbsp;;"
+        "content": "&nbsp;&nbsp;font-feature-settings:calc()&nbsp;calc()&nbsp;initial&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-kerning:;"
       }
     ]
   },
@@ -12451,6 +13395,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;font-language-override:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;font-language-override:calc();"
       }
     ]
@@ -12500,6 +13452,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-language-override:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-optical-sizing:;"
       }
     ]
   },
@@ -12564,6 +13524,86 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-optical-sizing:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size-adjust:23.49;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-size:;"
       }
     ]
   },
@@ -12803,7 +13843,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-size:26.44%;"
+        "content": "&nbsp;&nbsp;font-size:73.32%;"
       }
     ]
   },
@@ -12811,63 +13851,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:none;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;font-size-adjust:25.66;"
+        "content": "&nbsp;&nbsp;font-stretch:;"
       }
     ]
   },
@@ -12995,7 +13979,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-stretch:74.04%;"
+        "content": "&nbsp;&nbsp;font-stretch:33.01%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-style:;"
       }
     ]
   },
@@ -13075,6 +14067,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;font-synthesis:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;font-synthesis:calc();"
       }
     ]
@@ -13140,6 +14140,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-synthesis:style;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-alternates:;"
       }
     ]
   },
@@ -13259,6 +14267,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-caps:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-caps:calc();"
       }
     ]
@@ -13356,6 +14372,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-caps:titling-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-east-asian:;"
       }
     ]
   },
@@ -13476,6 +14500,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-east-asian:ruby;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-ligatures:;"
       }
     ]
   },
@@ -13611,6 +14643,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-numeric:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-numeric:calc();"
       }
     ]
@@ -13731,6 +14771,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-position:calc();"
       }
     ]
@@ -13796,6 +14844,390 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;font-variant-position:super;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:stylistic();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:styleset();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:character-variant();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:swash();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:ornaments();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:annotation();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:normal;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:common-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:no-common-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:discretionary-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:no-discretionary-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:historical-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:no-historical-ligatures;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:contextual;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:no-contextual;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:historical-forms;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:small-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:all-small-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:petite-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:all-petite-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:unicase;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:titling-caps;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:lining-nums;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:oldstyle-nums;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:proportional-nums;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:tabular-nums;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:diagonal-fractions;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:stacked-fractions;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:ordinal;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:slashed-zero;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:jis78;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:jis83;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:jis90;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:jis04;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:simplified;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:traditional;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:full-width;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:proportional-width;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variant:ruby;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-variation-settings:;"
       }
     ]
   },
@@ -13899,7 +15331,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-variation-settings:35.44;"
+        "content": "&nbsp;&nbsp;font-variation-settings:11.36;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font-weight:;"
       }
     ]
   },
@@ -13987,7 +15427,55 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;font-weight:74.78;"
+        "content": "&nbsp;&nbsp;font-weight:49.98;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;font:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;forced-color-adjust:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;gap:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-gap:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-area:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-auto-columns:;"
       }
     ]
   },
@@ -14195,7 +15683,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-auto-columns:71.29%;"
+        "content": "&nbsp;&nbsp;grid-auto-columns:16.38%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-auto-flow:;"
       }
     ]
   },
@@ -14268,6 +15764,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;grid-auto-flow:dense;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-auto-rows:;"
       }
     ]
   },
@@ -14475,7 +15979,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-auto-rows:85.91%;"
+        "content": "&nbsp;&nbsp;grid-auto-rows:35.95%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-column-end:;"
       }
     ]
   },
@@ -14547,7 +16059,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-column-end:44.6;"
+        "content": "&nbsp;&nbsp;grid-column-end:17.81;"
       }
     ]
   },
@@ -14555,7 +16067,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-column-end:_Name_019-dasd;"
+        "content": "&nbsp;&nbsp;grid-column-end:-Name_019-dasd;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-column-start:;"
       }
     ]
   },
@@ -14627,7 +16147,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-column-start:53.92;"
+        "content": "&nbsp;&nbsp;grid-column-start:92.39;"
       }
     ]
   },
@@ -14635,7 +16155,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-column-start:_Name_019-dasd;"
+        "content": "&nbsp;&nbsp;grid-column-start:-Name_019-dasd;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-column:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-row-end:;"
       }
     ]
   },
@@ -14707,7 +16243,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-row-end:8.1;"
+        "content": "&nbsp;&nbsp;grid-row-end:62.68;"
       }
     ]
   },
@@ -14715,7 +16251,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-row-end:_Name_019-dasd;"
+        "content": "&nbsp;&nbsp;grid-row-end:-Name_019-dasd;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-row-start:;"
       }
     ]
   },
@@ -14787,7 +16331,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-row-start:95.62;"
+        "content": "&nbsp;&nbsp;grid-row-start:7.69;"
       }
     ]
   },
@@ -14795,7 +16339,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-row-start:_Name_019-dasd;"
+        "content": "&nbsp;&nbsp;grid-row-start:-Name_019-dasd;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-row:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-template-areas:;"
       }
     ]
   },
@@ -14844,6 +16404,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;grid-template-areas:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-template-columns:;"
       }
     ]
   },
@@ -15051,7 +16619,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-template-columns:59.49%;"
+        "content": "&nbsp;&nbsp;grid-template-columns:0.53%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-template-rows:;"
       }
     ]
   },
@@ -15259,7 +16835,39 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;grid-template-rows:4.78%;"
+        "content": "&nbsp;&nbsp;grid-template-rows:20.99%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid-template:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;grid:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;hanging-punctuation:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;height:;"
       }
     ]
   },
@@ -15451,7 +17059,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;height:60.96%;"
+        "content": "&nbsp;&nbsp;height:26.05%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;hyphenate-character:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;hyphens:;"
       }
     ]
   },
@@ -15531,6 +17155,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;image-orientation:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;image-orientation:calc();"
       }
     ]
@@ -15572,6 +17204,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;image-orientation:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;image-rendering:;"
       }
     ]
   },
@@ -15675,6 +17315,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;image-resolution:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;ime-mode:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;ime-mode:calc();"
       }
     ]
@@ -15716,6 +17372,30 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;ime-mode:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;initial-letter-align:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;initial-letter:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inline-size:;"
       }
     ]
   },
@@ -15907,7 +17587,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;inline-size:34.49%;"
+        "content": "&nbsp;&nbsp;inline-size:31.74%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-block-end:;"
       }
     ]
   },
@@ -16083,7 +17771,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;inset-block-end:31.61%;"
+        "content": "&nbsp;&nbsp;inset-block-end:24.98%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-block-start:;"
       }
     ]
   },
@@ -16259,7 +17955,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;inset-block-start:94.34%;"
+        "content": "&nbsp;&nbsp;inset-block-start:57.74%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-block:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-inline-end:;"
       }
     ]
   },
@@ -16435,7 +18147,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;inset-inline-end:71.87%;"
+        "content": "&nbsp;&nbsp;inset-inline-end:87.18%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-inline-start:;"
       }
     ]
   },
@@ -16611,7 +18331,31 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;inset-inline-start:61.01%;"
+        "content": "&nbsp;&nbsp;inset-inline-start:70.87%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;inset:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;isolation:;"
       }
     ]
   },
@@ -16676,6 +18420,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;isolation:isolate;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;justify-content:;"
       }
     ]
   },
@@ -16867,6 +18619,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;justify-items:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;justify-items:calc();"
       }
     ]
@@ -17044,6 +18804,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;justify-items:last;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;justify-self:;"
       }
     ]
   },
@@ -17235,6 +19003,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;left:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;left:calc();"
       }
     ]
@@ -17403,7 +19179,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;left:66.96%;"
+        "content": "&nbsp;&nbsp;left:49.57%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;letter-spacing:;"
       }
     ]
   },
@@ -17579,103 +19363,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:#FFF;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:#000000;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:rgba(0,0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:rgb(0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:hsl(30,&nbsp;100%,&nbsp;50%);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;lighting-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+        "content": "&nbsp;&nbsp;line-break:;"
       }
     ]
   },
@@ -17764,6 +19452,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;line-break:anywhere;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;line-height-step:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;line-height:;"
       }
     ]
   },
@@ -17939,7 +19643,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;line-height:62.78%;"
+        "content": "&nbsp;&nbsp;line-height:70.05%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;list-style-image:;"
       }
     ]
   },
@@ -18019,6 +19731,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;list-style-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;list-style-position:calc();"
       }
     ]
@@ -18076,6 +19796,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;list-style-position:outside;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;list-style-type:;"
       }
     ]
   },
@@ -18188,6 +19916,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;list-style-type:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;list-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-block-end:;"
       }
     ]
   },
@@ -18363,7 +20107,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-block-end:98.8%;"
+        "content": "&nbsp;&nbsp;margin-block-end:55.53%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-block-start:;"
       }
     ]
   },
@@ -18539,7 +20291,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-block-start:79.81%;"
+        "content": "&nbsp;&nbsp;margin-block-start:44.7%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-block:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-bottom:;"
       }
     ]
   },
@@ -18715,7 +20483,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-bottom:73.99%;"
+        "content": "&nbsp;&nbsp;margin-bottom:78.44%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-inline-end:;"
       }
     ]
   },
@@ -18891,7 +20667,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-inline-end:81.93%;"
+        "content": "&nbsp;&nbsp;margin-inline-end:64.47%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-inline-start:;"
       }
     ]
   },
@@ -19067,7 +20851,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-inline-start:15.56%;"
+        "content": "&nbsp;&nbsp;margin-inline-start:9.93%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-left:;"
       }
     ]
   },
@@ -19243,7 +21043,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-left:65.69%;"
+        "content": "&nbsp;&nbsp;margin-left:97.72%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-right:;"
       }
     ]
   },
@@ -19419,7 +21227,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-right:78.76%;"
+        "content": "&nbsp;&nbsp;margin-right:97.92%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin-top:;"
       }
     ]
   },
@@ -19595,7 +21411,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;margin-top:90.69%;"
+        "content": "&nbsp;&nbsp;margin-top:70.5%;"
       }
     ]
   },
@@ -19603,7 +21419,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:calc();"
+        "content": "&nbsp;&nbsp;margin-trim:;"
       }
     ]
   },
@@ -19611,7 +21427,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:var();"
+        "content": "&nbsp;&nbsp;margin:;"
       }
     ]
   },
@@ -19619,7 +21435,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:inherit;"
+        "content": "&nbsp;&nbsp;margin:calc();"
       }
     ]
   },
@@ -19627,7 +21443,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:initial;"
+        "content": "&nbsp;&nbsp;margin:var();"
       }
     ]
   },
@@ -19635,7 +21451,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:revert;"
+        "content": "&nbsp;&nbsp;margin:inherit;"
       }
     ]
   },
@@ -19643,7 +21459,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:unset;"
+        "content": "&nbsp;&nbsp;margin:initial;"
       }
     ]
   },
@@ -19651,7 +21467,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-end:none;"
+        "content": "&nbsp;&nbsp;margin:revert;"
       }
     ]
   },
@@ -19659,7 +21475,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:calc();"
+        "content": "&nbsp;&nbsp;margin:unset;"
       }
     ]
   },
@@ -19667,7 +21483,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:var();"
+        "content": "&nbsp;&nbsp;margin:auto;"
       }
     ]
   },
@@ -19675,7 +21491,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:inherit;"
+        "content": "&nbsp;&nbsp;margin:1px;"
       }
     ]
   },
@@ -19683,7 +21499,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:initial;"
+        "content": "&nbsp;&nbsp;margin:1em;"
       }
     ]
   },
@@ -19691,7 +21507,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:revert;"
+        "content": "&nbsp;&nbsp;margin:1rem;"
       }
     ]
   },
@@ -19699,7 +21515,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:unset;"
+        "content": "&nbsp;&nbsp;margin:1ch;"
       }
     ]
   },
@@ -19707,7 +21523,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-mid:none;"
+        "content": "&nbsp;&nbsp;margin:1ex;"
       }
     ]
   },
@@ -19715,7 +21531,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:calc();"
+        "content": "&nbsp;&nbsp;margin:1vh;"
       }
     ]
   },
@@ -19723,7 +21539,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:var();"
+        "content": "&nbsp;&nbsp;margin:1vw;"
       }
     ]
   },
@@ -19731,7 +21547,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:inherit;"
+        "content": "&nbsp;&nbsp;margin:1vmin;"
       }
     ]
   },
@@ -19739,7 +21555,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:initial;"
+        "content": "&nbsp;&nbsp;margin:1vmax;"
       }
     ]
   },
@@ -19747,7 +21563,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:revert;"
+        "content": "&nbsp;&nbsp;margin:1cm;"
       }
     ]
   },
@@ -19755,7 +21571,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:unset;"
+        "content": "&nbsp;&nbsp;margin:1mm;"
       }
     ]
   },
@@ -19763,7 +21579,103 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;marker-start:none;"
+        "content": "&nbsp;&nbsp;margin:1in;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin:1pc;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin:94.69%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;margin:calc()&nbsp;inherit&nbsp;initial&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-mode:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-outset:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-repeat:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-slice:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-source:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-border:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-clip:;"
       }
     ]
   },
@@ -19915,7 +21827,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-clip:var()&nbsp;var()&nbsp;initial&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;mask-clip:var()&nbsp;inherit&nbsp;inherit&nbsp;initial&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-composite:;"
       }
     ]
   },
@@ -20003,6 +21923,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;mask-image:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;mask-image:calc();"
       }
     ]
@@ -20068,6 +21996,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;mask-image:url();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-mode:;"
       }
     ]
   },
@@ -20147,7 +22083,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-mode:calc()&nbsp;var()&nbsp;inherit&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;mask-mode:inherit&nbsp;initial&nbsp;var()&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-origin:;"
       }
     ]
   },
@@ -20283,7 +22227,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-origin:calc()&nbsp;var()&nbsp;calc()&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;mask-origin:inherit&nbsp;calc()&nbsp;inherit&nbsp;initial&nbsp;;"
       }
     ]
   },
@@ -20291,7 +22235,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:calc();"
+        "content": "&nbsp;&nbsp;mask-position:;"
       }
     ]
   },
@@ -20299,7 +22243,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:var();"
+        "content": "&nbsp;&nbsp;mask-position:calc();"
       }
     ]
   },
@@ -20307,7 +22251,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:inherit;"
+        "content": "&nbsp;&nbsp;mask-position:var();"
       }
     ]
   },
@@ -20315,7 +22259,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:initial;"
+        "content": "&nbsp;&nbsp;mask-position:inherit;"
       }
     ]
   },
@@ -20323,7 +22267,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:revert;"
+        "content": "&nbsp;&nbsp;mask-position:initial;"
       }
     ]
   },
@@ -20331,7 +22275,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:unset;"
+        "content": "&nbsp;&nbsp;mask-position:revert;"
       }
     ]
   },
@@ -20339,7 +22283,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:left;"
+        "content": "&nbsp;&nbsp;mask-position:unset;"
       }
     ]
   },
@@ -20347,7 +22291,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:center;"
+        "content": "&nbsp;&nbsp;mask-position:left;"
       }
     ]
   },
@@ -20355,7 +22299,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:right;"
+        "content": "&nbsp;&nbsp;mask-position:center;"
       }
     ]
   },
@@ -20363,7 +22307,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1px;"
+        "content": "&nbsp;&nbsp;mask-position:right;"
       }
     ]
   },
@@ -20371,7 +22315,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1em;"
+        "content": "&nbsp;&nbsp;mask-position:top;"
       }
     ]
   },
@@ -20379,7 +22323,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1rem;"
+        "content": "&nbsp;&nbsp;mask-position:bottom;"
       }
     ]
   },
@@ -20387,7 +22331,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1ch;"
+        "content": "&nbsp;&nbsp;mask-position:1px;"
       }
     ]
   },
@@ -20395,7 +22339,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1ex;"
+        "content": "&nbsp;&nbsp;mask-position:1em;"
       }
     ]
   },
@@ -20403,7 +22347,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1vh;"
+        "content": "&nbsp;&nbsp;mask-position:1rem;"
       }
     ]
   },
@@ -20411,7 +22355,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1vw;"
+        "content": "&nbsp;&nbsp;mask-position:1ch;"
       }
     ]
   },
@@ -20419,7 +22363,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1vmin;"
+        "content": "&nbsp;&nbsp;mask-position:1ex;"
       }
     ]
   },
@@ -20427,7 +22371,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1vmax;"
+        "content": "&nbsp;&nbsp;mask-position:1vh;"
       }
     ]
   },
@@ -20435,7 +22379,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1cm;"
+        "content": "&nbsp;&nbsp;mask-position:1vw;"
       }
     ]
   },
@@ -20443,7 +22387,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1mm;"
+        "content": "&nbsp;&nbsp;mask-position:1vmin;"
       }
     ]
   },
@@ -20451,7 +22395,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1in;"
+        "content": "&nbsp;&nbsp;mask-position:1vmax;"
       }
     ]
   },
@@ -20459,7 +22403,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1pc;"
+        "content": "&nbsp;&nbsp;mask-position:1cm;"
       }
     ]
   },
@@ -20467,7 +22411,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:1pt;"
+        "content": "&nbsp;&nbsp;mask-position:1mm;"
       }
     ]
   },
@@ -20475,7 +22419,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-x:47.01%;"
+        "content": "&nbsp;&nbsp;mask-position:1in;"
       }
     ]
   },
@@ -20483,7 +22427,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:calc();"
+        "content": "&nbsp;&nbsp;mask-position:1pc;"
       }
     ]
   },
@@ -20491,7 +22435,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:var();"
+        "content": "&nbsp;&nbsp;mask-position:1pt;"
       }
     ]
   },
@@ -20499,7 +22443,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:inherit;"
+        "content": "&nbsp;&nbsp;mask-position:71.64%;"
       }
     ]
   },
@@ -20507,7 +22451,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:initial;"
+        "content": "&nbsp;&nbsp;mask-position:var()&nbsp;calc()&nbsp;;"
       }
     ]
   },
@@ -20515,159 +22459,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:top;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:center;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:bottom;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;mask-position-y:83.66%;"
+        "content": "&nbsp;&nbsp;mask-repeat:;"
       }
     ]
   },
@@ -20771,7 +22563,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-repeat:calc()&nbsp;calc()&nbsp;inherit&nbsp;calc()&nbsp;;"
+        "content": "&nbsp;&nbsp;mask-repeat:var()&nbsp;var()&nbsp;inherit&nbsp;calc()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-size:;"
       }
     ]
   },
@@ -20963,7 +22763,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-size:80.9%;"
+        "content": "&nbsp;&nbsp;mask-size:43.14%;"
       }
     ]
   },
@@ -20971,7 +22771,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;mask-size:var()&nbsp;var()&nbsp;inherit&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;mask-size:inherit&nbsp;inherit&nbsp;initial&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask-type:;"
       }
     ]
   },
@@ -21036,6 +22844,382 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;mask-type:alpha;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:add;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:subtract;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:intersect;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:exclude;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:content-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:padding-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:border-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:margin-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:fill-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:stroke-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:view-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:no-clip;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:border;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:padding;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:content;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:text;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:repeat-x;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:repeat-y;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:repeat;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:space;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:round;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:no-repeat;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:cover;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:contain;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:alpha;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:luminance;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:match-source;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:top;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:bottom;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:center;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:length;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:procent;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:linear-gradient();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:url();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mask:inherit&nbsp;var()&nbsp;initial&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;max-block-size:;"
       }
     ]
   },
@@ -21235,7 +23419,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;max-block-size:6.61%;"
+        "content": "&nbsp;&nbsp;max-block-size:7.98%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;max-height:;"
       }
     ]
   },
@@ -21435,7 +23627,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;max-height:55.26%;"
+        "content": "&nbsp;&nbsp;max-height:28.32%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;max-inline-size:;"
       }
     ]
   },
@@ -21635,7 +23835,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;max-inline-size:21.57%;"
+        "content": "&nbsp;&nbsp;max-inline-size:93.53%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;max-width:;"
       }
     ]
   },
@@ -21835,7 +24043,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;max-width:28.54%;"
+        "content": "&nbsp;&nbsp;max-width:0.27%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;min-block-size:;"
       }
     ]
   },
@@ -22035,7 +24251,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;min-block-size:58.45%;"
+        "content": "&nbsp;&nbsp;min-block-size:20.68%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;min-height:;"
       }
     ]
   },
@@ -22235,7 +24459,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;min-height:43.05%;"
+        "content": "&nbsp;&nbsp;min-height:68.85%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;min-inline-size:;"
       }
     ]
   },
@@ -22435,7 +24667,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;min-inline-size:63.98%;"
+        "content": "&nbsp;&nbsp;min-inline-size:38.38%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;min-width:;"
       }
     ]
   },
@@ -22635,7 +24875,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;min-width:64.31%;"
+        "content": "&nbsp;&nbsp;min-width:32.85%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;mix-blend-mode:;"
       }
     ]
   },
@@ -22819,6 +25067,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;object-fit:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;object-fit:calc();"
       }
     ]
@@ -22907,6 +25163,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;object-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;object-position:calc();"
       }
     ]
@@ -22955,47 +25219,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-anchor:unset;"
+        "content": "&nbsp;&nbsp;offset-distance:;"
       }
     ]
   },
@@ -23163,7 +25387,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;offset-distance:55.87%;"
+        "content": "&nbsp;&nbsp;offset-distance:63.25%;"
       }
     ]
   },
@@ -23171,7 +25395,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:calc();"
+        "content": "&nbsp;&nbsp;offset-position:;"
       }
     ]
   },
@@ -23179,79 +25403,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:none;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:margin-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:stroke-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:linear-gradient();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;offset-path:url();"
+        "content": "&nbsp;&nbsp;offset-rotate:;"
       }
     ]
   },
@@ -23323,6 +25475,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;offset:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;opacity:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;opacity:calc();"
       }
     ]
@@ -23371,7 +25539,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;opacity:73.64;"
+        "content": "&nbsp;&nbsp;opacity:35.59;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;order:;"
       }
     ]
   },
@@ -23427,7 +25603,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;order:91.87;"
+        "content": "&nbsp;&nbsp;order:88.6;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;orphans:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;outline-color:;"
       }
     ]
   },
@@ -23540,6 +25732,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;outline-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;outline-offset:;"
       }
     ]
   },
@@ -23707,6 +25907,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;outline-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;outline-style:calc();"
       }
     ]
@@ -23828,6 +26036,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;outline-style:outset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;outline-width:;"
       }
     ]
   },
@@ -24019,6 +26235,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;outline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-anchor:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overflow-anchor:calc();"
       }
     ]
@@ -24076,6 +26308,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;overflow-anchor:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-block:;"
       }
     ]
   },
@@ -24163,6 +26403,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-clip-margin:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overflow-inline:calc();"
       }
     ]
@@ -24243,6 +26499,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-wrap:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overflow-wrap:calc();"
       }
     ]
@@ -24308,6 +26572,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;overflow-wrap:anywhere;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-x:;"
       }
     ]
   },
@@ -24403,6 +26675,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overflow-y:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overflow-y:calc();"
       }
     ]
@@ -24491,6 +26771,110 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:visible;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:hidden;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:clip;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:scroll;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overflow:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overscroll-behavior-block:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overscroll-behavior-block:calc();"
       }
     ]
@@ -24556,6 +26940,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;overscroll-behavior-block:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overscroll-behavior-inline:;"
       }
     ]
   },
@@ -24635,6 +27027,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overscroll-behavior-x:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overscroll-behavior-x:calc();"
       }
     ]
@@ -24707,6 +27107,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;overscroll-behavior-y:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;overscroll-behavior-y:calc();"
       }
     ]
@@ -24772,6 +27180,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;overscroll-behavior-y:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;overscroll-behavior:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-block-end:;"
       }
     ]
   },
@@ -24939,7 +27363,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-block-end:26.44%;"
+        "content": "&nbsp;&nbsp;padding-block-end:1.47%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-block-start:;"
       }
     ]
   },
@@ -25107,7 +27539,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-block-start:31.13%;"
+        "content": "&nbsp;&nbsp;padding-block-start:89.68%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-bottom:;"
       }
     ]
   },
@@ -25275,7 +27715,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-bottom:49.38%;"
+        "content": "&nbsp;&nbsp;padding-bottom:48.25%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-inline-end:;"
       }
     ]
   },
@@ -25443,7 +27891,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-inline-end:86.16%;"
+        "content": "&nbsp;&nbsp;padding-inline-end:82.1%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-inline-start:;"
       }
     ]
   },
@@ -25611,7 +28067,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-inline-start:2.51%;"
+        "content": "&nbsp;&nbsp;padding-inline-start:66.77%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-left:;"
       }
     ]
   },
@@ -25779,7 +28243,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-left:74.29%;"
+        "content": "&nbsp;&nbsp;padding-left:65.78%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-right:;"
       }
     ]
   },
@@ -25947,7 +28419,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-right:63.98%;"
+        "content": "&nbsp;&nbsp;padding-right:79.01%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;padding-top:;"
       }
     ]
   },
@@ -26115,7 +28595,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;padding-top:45.58%;"
+        "content": "&nbsp;&nbsp;padding-top:90.69%;"
       }
     ]
   },
@@ -26123,7 +28603,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:calc();"
+        "content": "&nbsp;&nbsp;padding:;"
       }
     ]
   },
@@ -26131,7 +28611,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:var();"
+        "content": "&nbsp;&nbsp;padding:calc();"
       }
     ]
   },
@@ -26139,7 +28619,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:inherit;"
+        "content": "&nbsp;&nbsp;padding:var();"
       }
     ]
   },
@@ -26147,7 +28627,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:initial;"
+        "content": "&nbsp;&nbsp;padding:inherit;"
       }
     ]
   },
@@ -26155,7 +28635,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:revert;"
+        "content": "&nbsp;&nbsp;padding:initial;"
       }
     ]
   },
@@ -26163,7 +28643,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:unset;"
+        "content": "&nbsp;&nbsp;padding:revert;"
       }
     ]
   },
@@ -26171,7 +28651,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:normal;"
+        "content": "&nbsp;&nbsp;padding:unset;"
       }
     ]
   },
@@ -26179,7 +28659,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:stroke;"
+        "content": "&nbsp;&nbsp;padding:auto;"
       }
     ]
   },
@@ -26187,7 +28667,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:fill;"
+        "content": "&nbsp;&nbsp;padding:1px;"
       }
     ]
   },
@@ -26195,7 +28675,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;paint-order:markers;"
+        "content": "&nbsp;&nbsp;padding:1em;"
       }
     ]
   },
@@ -26203,7 +28683,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:calc();"
+        "content": "&nbsp;&nbsp;padding:1rem;"
       }
     ]
   },
@@ -26211,7 +28691,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:var();"
+        "content": "&nbsp;&nbsp;padding:1ch;"
       }
     ]
   },
@@ -26219,7 +28699,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:inherit;"
+        "content": "&nbsp;&nbsp;padding:1ex;"
       }
     ]
   },
@@ -26227,7 +28707,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:initial;"
+        "content": "&nbsp;&nbsp;padding:1vh;"
       }
     ]
   },
@@ -26235,7 +28715,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:revert;"
+        "content": "&nbsp;&nbsp;padding:1vw;"
       }
     ]
   },
@@ -26243,7 +28723,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:unset;"
+        "content": "&nbsp;&nbsp;padding:1vmin;"
       }
     ]
   },
@@ -26251,7 +28731,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:none;"
+        "content": "&nbsp;&nbsp;padding:1vmax;"
       }
     ]
   },
@@ -26259,7 +28739,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1px;"
+        "content": "&nbsp;&nbsp;padding:1cm;"
       }
     ]
   },
@@ -26267,7 +28747,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1em;"
+        "content": "&nbsp;&nbsp;padding:1mm;"
       }
     ]
   },
@@ -26275,7 +28755,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1rem;"
+        "content": "&nbsp;&nbsp;padding:1in;"
       }
     ]
   },
@@ -26283,7 +28763,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1ch;"
+        "content": "&nbsp;&nbsp;padding:1pc;"
       }
     ]
   },
@@ -26291,7 +28771,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1ex;"
+        "content": "&nbsp;&nbsp;padding:1pt;"
       }
     ]
   },
@@ -26299,7 +28779,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1vh;"
+        "content": "&nbsp;&nbsp;padding:80.33%;"
       }
     ]
   },
@@ -26307,7 +28787,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1vw;"
+        "content": "&nbsp;&nbsp;padding:initial&nbsp;calc()&nbsp;inherit&nbsp;inherit&nbsp;;"
       }
     ]
   },
@@ -26315,7 +28795,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1vmin;"
+        "content": "&nbsp;&nbsp;page-break-after:;"
       }
     ]
   },
@@ -26323,7 +28803,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1vmax;"
+        "content": "&nbsp;&nbsp;page-break-after:calc();"
       }
     ]
   },
@@ -26331,7 +28811,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1cm;"
+        "content": "&nbsp;&nbsp;page-break-after:var();"
       }
     ]
   },
@@ -26339,7 +28819,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1mm;"
+        "content": "&nbsp;&nbsp;page-break-after:inherit;"
       }
     ]
   },
@@ -26347,7 +28827,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1in;"
+        "content": "&nbsp;&nbsp;page-break-after:initial;"
       }
     ]
   },
@@ -26355,7 +28835,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1pc;"
+        "content": "&nbsp;&nbsp;page-break-after:revert;"
       }
     ]
   },
@@ -26363,7 +28843,191 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective:1pt;"
+        "content": "&nbsp;&nbsp;page-break-after:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:always;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:avoid;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:recto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-after:verso;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:always;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:avoid;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:recto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-before:verso;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;page-break-inside:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective-origin:;"
       }
     ]
   },
@@ -26555,7 +29219,215 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;perspective-origin:83.71%;"
+        "content": "&nbsp;&nbsp;perspective-origin:80.78%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1px;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1em;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1rem;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1ch;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1ex;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1vh;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1vw;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1vmin;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1vmax;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1cm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1mm;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1in;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1pc;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;perspective:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;place-content:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;place-items:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;place-self:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;pointer-events:;"
       }
     ]
   },
@@ -26691,6 +29563,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;position:calc();"
       }
     ]
@@ -26732,6 +29612,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;position:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;quotes:;"
       }
     ]
   },
@@ -26795,63 +29683,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;r:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:86.35;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;r:36.62%;"
+        "content": "&nbsp;&nbsp;resize:;"
       }
     ]
   },
@@ -26948,6 +29780,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;resize:inline;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;right:;"
       }
     ]
   },
@@ -27123,7 +29963,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;right:70.32%;"
+        "content": "&nbsp;&nbsp;right:47.19%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;rotate:;"
       }
     ]
   },
@@ -27211,7 +30059,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:calc();"
+        "content": "&nbsp;&nbsp;row-gap:;"
       }
     ]
   },
@@ -27219,7 +30067,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:var();"
+        "content": "&nbsp;&nbsp;grid-row-gap:;"
       }
     ]
   },
@@ -27227,151 +30075,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;row-gap:41.97%;"
+        "content": "&nbsp;&nbsp;ruby-align:;"
       }
     ]
   },
@@ -27459,6 +30163,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;ruby-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;ruby-position:calc();"
       }
     ]
@@ -27539,111 +30251,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;rx:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;rx:52.92;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;ry:59.96;"
+        "content": "&nbsp;&nbsp;scale:;"
       }
     ]
   },
@@ -27707,7 +30315,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scale:93.75;"
+        "content": "&nbsp;&nbsp;scale:94.36;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-behavior:;"
       }
     ]
   },
@@ -27779,319 +30395,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-end:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-block-start:1pt;"
+        "content": "&nbsp;&nbsp;scroll-margin-bottom:;"
       }
     ]
   },
@@ -28259,159 +30563,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-margin-inline-end:1pt;"
+        "content": "&nbsp;&nbsp;scroll-margin-inline-start:;"
       }
     ]
   },
@@ -28579,6 +30731,22 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-margin-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-margin-left:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;scroll-margin-left:calc();"
       }
     ]
@@ -28732,6 +30900,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;scroll-margin-left:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-margin-right:;"
       }
     ]
   },
@@ -28899,6 +31075,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-margin-top:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;scroll-margin-top:calc();"
       }
     ]
@@ -29052,6 +31236,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;scroll-margin-top:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-block-end:;"
       }
     ]
   },
@@ -29227,7 +31419,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-block-end:75.61%;"
+        "content": "&nbsp;&nbsp;scroll-padding-block-end:84.17%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-block-start:;"
       }
     ]
   },
@@ -29403,7 +31603,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-block-start:4.25%;"
+        "content": "&nbsp;&nbsp;scroll-padding-block-start:68.12%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-bottom:;"
       }
     ]
   },
@@ -29579,7 +31787,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-bottom:66.14%;"
+        "content": "&nbsp;&nbsp;scroll-padding-bottom:57.54%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-inline-end:;"
       }
     ]
   },
@@ -29755,6 +31971,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-inline-start:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;scroll-padding-inline-start:calc();"
       }
     ]
@@ -29916,6 +32140,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;scroll-padding-inline-start:1pt;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-inline:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scroll-padding-left:;"
       }
     ]
   },
@@ -30091,7 +32331,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-left:10.49%;"
+        "content": "&nbsp;&nbsp;scroll-padding-left:86.38%;"
       }
     ]
   },
@@ -30099,7 +32339,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:calc();"
+        "content": "&nbsp;&nbsp;scroll-padding:;"
       }
     ]
   },
@@ -30107,7 +32347,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:var();"
+        "content": "&nbsp;&nbsp;scroll-snap-coordinate:;"
       }
     ]
   },
@@ -30115,7 +32355,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:inherit;"
+        "content": "&nbsp;&nbsp;scroll-snap-destination:;"
       }
     ]
   },
@@ -30123,7 +32363,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:initial;"
+        "content": "&nbsp;&nbsp;scroll-snap-points-x:;"
       }
     ]
   },
@@ -30131,7 +32371,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:revert;"
+        "content": "&nbsp;&nbsp;scroll-snap-points-y:;"
       }
     ]
   },
@@ -30139,391 +32379,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-right:52.68%;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-padding-top:15.53%;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:none;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:start;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:end;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;scroll-snap-align:center;"
+        "content": "&nbsp;&nbsp;scroll-snap-type:;"
       }
     ]
   },
@@ -30636,6 +32492,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;scroll-snap-type:proximity;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;scrollbar-color:;"
       }
     ]
   },
@@ -30771,6 +32635,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;scrollbar-width:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;scrollbar-width:calc();"
       }
     ]
@@ -30843,6 +32715,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;shape-image-threshold:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;shape-image-threshold:calc();"
       }
     ]
@@ -30891,7 +32771,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;shape-image-threshold:71.67;"
+        "content": "&nbsp;&nbsp;shape-image-threshold:8.9;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;shape-margin:;"
       }
     ]
   },
@@ -31059,7 +32947,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;shape-margin:21.24%;"
+        "content": "&nbsp;&nbsp;shape-margin:2.47%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;shape-outside:;"
       }
     ]
   },
@@ -31171,919 +33067,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:optimizeSpeed;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:crispEdges;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;shape-rendering:geometricPrecision;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:#FFF;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:#000000;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:rgba(0,0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:rgb(0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:hsl(30,&nbsp;100%,&nbsp;50%);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-color:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stop-opacity:46.62;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:url();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:none;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:context-fill;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:context-stroke;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:#FFF;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:#000000;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:rgba(0,0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:rgb(0,0,0);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:hsl(30,&nbsp;100%,&nbsp;50%);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:hsla(30,&nbsp;100%,&nbsp;50%,&nbsp;.3);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke:hwb(1.5708rad&nbsp;20%&nbsp;10%&nbsp;/&nbsp;0.7);"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dasharray:33.29;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-dashoffset:59.15;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:butt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:round;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linecap:square;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:arcs;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:bevel;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:miter;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:miter-clip;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-linejoin:round;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-miterlimit:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-opacity:7.14%;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;stroke-width:58.89%;"
+        "content": "&nbsp;&nbsp;tab-size:;"
       }
     ]
   },
@@ -32251,7 +33235,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;tab-size:41.29;"
+        "content": "&nbsp;&nbsp;tab-size:21.53;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;table-layout:;"
       }
     ]
   },
@@ -32316,6 +33308,126 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;table-layout:fixed;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:auto;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:start;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:end;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:center;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align-last:justify;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-align:;"
       }
     ]
   },
@@ -32435,175 +33547,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:start;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:end;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:left;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:right;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:center;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-align-last:justify;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:start;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:middle;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-anchor:end;"
+        "content": "&nbsp;&nbsp;text-combine-upright:;"
       }
     ]
   },
@@ -32676,6 +33620,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-combine-upright:digits;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-decoration-color:;"
       }
     ]
   },
@@ -32787,6 +33739,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;text-decoration-line:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;text-decoration-line:calc();"
       }
     ]
@@ -32875,6 +33835,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;text-decoration-skip-ink:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;text-decoration-skip-ink:calc();"
       }
     ]
@@ -32940,6 +33908,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-decoration-skip-ink:none;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-decoration-skip:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-decoration-style:;"
       }
     ]
   },
@@ -33035,7 +34019,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:calc();"
+        "content": "&nbsp;&nbsp;text-decoration:;"
       }
     ]
   },
@@ -33043,7 +34027,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:var();"
+        "content": "&nbsp;&nbsp;text-decoration:calc();"
       }
     ]
   },
@@ -33051,7 +34035,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:inherit;"
+        "content": "&nbsp;&nbsp;text-decoration:var();"
       }
     ]
   },
@@ -33059,7 +34043,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:initial;"
+        "content": "&nbsp;&nbsp;text-decoration:inherit;"
       }
     ]
   },
@@ -33067,7 +34051,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:revert;"
+        "content": "&nbsp;&nbsp;text-decoration:initial;"
       }
     ]
   },
@@ -33075,7 +34059,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:unset;"
+        "content": "&nbsp;&nbsp;text-decoration:revert;"
       }
     ]
   },
@@ -33083,7 +34067,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:auto;"
+        "content": "&nbsp;&nbsp;text-decoration:unset;"
       }
     ]
   },
@@ -33091,127 +34075,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:from-font;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-decoration-thickness:84.52%;"
+        "content": "&nbsp;&nbsp;text-emphasis-color:;"
       }
     ]
   },
@@ -33323,6 +34187,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;text-emphasis-position:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;text-emphasis-position:calc();"
       }
     ]
@@ -33396,6 +34268,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-emphasis-position:left;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-emphasis-style:;"
       }
     ]
   },
@@ -33508,6 +34388,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-emphasis-style:sesame;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-emphasis:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-indent:;"
       }
     ]
   },
@@ -33691,7 +34587,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-indent:34.95%;"
+        "content": "&nbsp;&nbsp;text-indent:9.79%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-justify:;"
       }
     ]
   },
@@ -33787,6 +34691,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;text-orientation:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;text-orientation:calc();"
       }
     ]
@@ -33875,6 +34787,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;text-overflow:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;text-overflow:calc();"
       }
     ]
@@ -33940,6 +34860,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-overflow:fade;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-rendering:;"
       }
     ]
   },
@@ -34020,6 +34948,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-rendering:geometricPrecision;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-shadow:;"
       }
     ]
   },
@@ -34243,7 +35179,23 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-shadow:calc()&nbsp;var()&nbsp;var()&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;text-shadow:inherit&nbsp;var()&nbsp;var()&nbsp;var()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-size-adjust:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;text-transform:;"
       }
     ]
   },
@@ -34347,175 +35299,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:auto;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1px;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1em;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1rem;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1ch;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1ex;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1vh;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1vw;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1vmin;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1vmax;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1cm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1mm;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1in;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1pc;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:1pt;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;text-underline-offset:59.68%;"
+        "content": "&nbsp;&nbsp;text-underline-position:;"
       }
     ]
   },
@@ -34596,6 +35380,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;text-underline-position:right;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;top:;"
       }
     ]
   },
@@ -34771,7 +35563,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;top:99.23%;"
+        "content": "&nbsp;&nbsp;top:20.13%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;touch-action:;"
       }
     ]
   },
@@ -34900,6 +35700,238 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;touch-action:manipulation;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:content-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:border-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:fill-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:stroke-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-box:view-box;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-origin:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:calc();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:var();"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:inherit;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:initial;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:revert;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:unset;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:flat;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform-style:preserve-3d;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transform:;"
       }
     ]
   },
@@ -35131,199 +36163,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:content-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:border-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:fill-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:stroke-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-box:view-box;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-origin:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:flat;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;transform-style:preserve-3d;"
+        "content": "&nbsp;&nbsp;transition-delay:;"
       }
     ]
   },
@@ -35379,7 +36219,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;transition-delay:11s;"
+        "content": "&nbsp;&nbsp;transition-delay:27s;"
       }
     ]
   },
@@ -35387,7 +36227,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;transition-delay:calc()&nbsp;calc()&nbsp;initial&nbsp;calc()&nbsp;;"
+        "content": "&nbsp;&nbsp;transition-delay:initial&nbsp;inherit&nbsp;initial&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transition-duration:;"
       }
     ]
   },
@@ -35443,7 +36291,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;transition-duration:24s;"
+        "content": "&nbsp;&nbsp;transition-duration:27s;"
       }
     ]
   },
@@ -35451,7 +36299,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;transition-duration:calc()&nbsp;calc()&nbsp;var()&nbsp;inherit&nbsp;;"
+        "content": "&nbsp;&nbsp;transition-duration:calc()&nbsp;var()&nbsp;var()&nbsp;calc()&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transition-property:;"
       }
     ]
   },
@@ -35516,6 +36372,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;transition-property:all;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transition-timing-function:;"
       }
     ]
   },
@@ -35636,6 +36500,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;transition-timing-function:step-end;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;transition:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;translate:;"
       }
     ]
   },
@@ -35803,7 +36683,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;translate:44.97%;"
+        "content": "&nbsp;&nbsp;translate:96.87%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;unicode-bidi:;"
       }
     ]
   },
@@ -35907,6 +36795,14 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
+        "content": "&nbsp;&nbsp;user-select:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
         "content": "&nbsp;&nbsp;user-select:calc();"
       }
     ]
@@ -35995,87 +36891,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:none;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:non-scaling-stroke;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:non-scaling-size;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:non-rotation;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;vector-effect:fixed-position;"
+        "content": "&nbsp;&nbsp;vertical-align:;"
       }
     ]
   },
@@ -36307,7 +37123,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;vertical-align:17.67%;"
+        "content": "&nbsp;&nbsp;vertical-align:48.35%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;visibility:;"
       }
     ]
   },
@@ -36380,6 +37204,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;visibility:collapse;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;white-space:;"
       }
     ]
   },
@@ -36476,6 +37308,22 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;white-space:break-spaces;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;widows:;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;width:;"
       }
     ]
   },
@@ -36667,7 +37515,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;width:75.81%;"
+        "content": "&nbsp;&nbsp;width:54.35%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;will-change:;"
       }
     ]
   },
@@ -36747,7 +37603,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;will-change:var()&nbsp;initial&nbsp;inherit&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;will-change:initial&nbsp;var()&nbsp;initial&nbsp;inherit&nbsp;;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;word-break:;"
       }
     ]
   },
@@ -36820,6 +37684,14 @@ let data; export default data = [
       {
         "attrs": {},
         "content": "&nbsp;&nbsp;word-break:kepp-all;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;word-spacing:;"
       }
     ]
   },
@@ -36995,7 +37867,15 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;word-spacing:27.48%;"
+        "content": "&nbsp;&nbsp;word-spacing:77.21%;"
+      }
+    ]
+  },
+  {
+    "content": [
+      {
+        "attrs": {},
+        "content": "&nbsp;&nbsp;writing-mode:;"
       }
     ]
   },
@@ -37075,111 +37955,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;x:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;x:79.21;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;y:31.29;"
+        "content": "&nbsp;&nbsp;z-index:;"
       }
     ]
   },
@@ -37235,919 +38011,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;z-index:38.68;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-align:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-direction:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-flex:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-ordinal-group:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-orient:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-box-pack:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-float-edge:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-force-broken-image-icon:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-image-region:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-orient:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-text-size-adjust:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-focus:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-input:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-user-modify:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-moz-window-dragging:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-line-clamp:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-fill-color:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-color:unset;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:calc();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:var();"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:inherit;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:initial;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:revert;"
-      }
-    ]
-  },
-  {
-    "content": [
-      {
-        "attrs": {},
-        "content": "&nbsp;&nbsp;-webkit-text-stroke-width:unset;"
+        "content": "&nbsp;&nbsp;z-index:88.94;"
       }
     ]
   },

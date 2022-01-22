@@ -35,6 +35,7 @@ margin:10px 20px;
 
 and remove `;` from `margin:10px 20px;` in `.anama1asd|dsa|dsa` class
 
+- selection disapears when selecting from right to left and pressing ctrl
 
 ## Thinkers
 

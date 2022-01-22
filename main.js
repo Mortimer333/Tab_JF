@@ -427,7 +427,7 @@ class TabJF {
 
   key ( e ) {
     if (!this.activated) return;
-    
+
     const type = e.type;
 
     if ( type == 'keydown' ) {
@@ -652,6 +652,10 @@ class TabJF {
       },
       183 : ( e, type ) => {
         // AudioVolumeUp
+      },
+      191 : ( e, type ) => {
+        e.preventDefault();
+        this.insert('/');
       },
       192 : ( e, type ) => {
         if ( this.pressed.shift ) this.insert('~');

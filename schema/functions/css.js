@@ -58,8 +58,15 @@ let functions; export default functions = {
   procent : function ( group, value ) {
     return new RegExp(/\d%/).test(value);
   },
-  number : function ( group, value) {
+  number : function ( group, value ) {
     return !isNaN(value);
+  },
+  integer : function ( group, value ) {
+    return !isNaN(value) && (
+      function(x) {
+        return (x | 0) === x;
+      }
+    )( parseFloat( value ) );
   },
   time : function ( group, value ) {
     if (
@@ -78,7 +85,7 @@ let functions; export default functions = {
       if ( words[i].content != '&nbsp;') return false;
     }
 
-    if ( this.name(value) ) return false;
+    if ( this.name( group, value ) ) return false;
 
     return true;
   },
@@ -96,7 +103,7 @@ let functions; export default functions = {
     return colorFuncs.indexOf(value) !== -1;
   },
   image : function ( group, value ) {
-    const imageFuncs = ["linear-gradient", "url"];
+    const imageFuncs = ["repeating-linear-gradient", "linear-gradient", "url"];
     return imageFuncs.indexOf(value) !== -1;
   },
   length : function ( group, value ) {
@@ -178,7 +185,10 @@ let functions; export default functions = {
     for (let i = 0; i < name.length; i++) {
       const letter = name[i];
       if ( joiners[letter] ) {
-        route.push(name.substr(0, i));
+        let part = name.substr(0, i);
+        if (part.length != 0) {
+          route.push(part);
+        }
         name = name.substr(i + 1);
         i = 0;
       }
@@ -204,10 +214,6 @@ let functions; export default functions = {
       return { class : 'mistake', style : 'color:#FFF;' };
     }
 
-    if (validation?.combine) {
-
-    }
-
     const typeKeys = Object.keys(validation.type);
 
     if ( this.isSpace(word) ) {
@@ -223,7 +229,7 @@ let functions; export default functions = {
 
     for (var j = 0; j < typeKeys.length; j++) {
       const key = typeKeys[j];
-      const result = (this[ key ] || this['default'])( validation, word, words, key );
+      const result = (this[ key ] || this['default']).bind(this)( validation, word, words, key );
       if (result) {
         if (typeof result == 'object') {
           return result;

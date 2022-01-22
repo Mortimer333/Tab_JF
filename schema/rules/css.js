@@ -82,8 +82,27 @@ let paths; export default paths = {
                   ',' : {
                     single : true,
                     run : function (word, words, letter, sentence, sets) {
-                      sets.default.wordCount = 0;
+                      if (
+                        typeof sets.default.validation?.seperator == 'object'
+                        && sets.default.validation?.seperator[',']
+                        || typeof sets.default.validation?.seperator == 'undefined'
+                      ) {
+                        sets.default.wordCount = 0;
+                      }
                       return { style : 'color:#F00;' };
+                    }
+                  },
+                  '/' : {
+                    single : true,
+                    run : function (word, words, letter, sentence, sets) {
+                      if (
+                        typeof sets.default.validation?.seperator == 'object'
+                        && sets.default.validation?.seperator['/']
+                      ) {
+                        sets.default.wordCount = 0;
+                        return { style : 'color:#F00;' };
+                      }
+                      return { class : 'mistake' };
                     }
                   },
                   '(' : {
@@ -210,6 +229,7 @@ let paths; export default paths = {
                     validation : null,
                     wordCount : 0,
                     functions : functions,
+                    rule : '',
                     run : function (word, words, letter, sentence, sets) {
                       this.wordCount++;
                       return this.functions.validateValue(word, this.validation, words, this.wordCount);
@@ -247,6 +267,8 @@ let paths; export default paths = {
 
                 rules = this.functions.mergeDefaultRules.bind(this.functions)( rules );
                 sets[':'].subset.sets.default.validation = rules;
+
+                sets[':'].subset.sets.default.rule = word;
                 return { style : 'color:#0DA' };
               },
 

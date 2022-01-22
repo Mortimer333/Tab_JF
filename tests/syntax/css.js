@@ -1,5 +1,6 @@
 import { SyntaxTest } from '../syntax.js';
 import testdata from './testdata.js';
+import allRules from './allRules.js';
 import functions from '../../schema/functions/css.js';
 import dictionary from '../../schema/dictionary/css.js';
 
@@ -33,10 +34,10 @@ class SyntaxCssTest extends SyntaxTest {
       return [Math.round(Math.random(0,100) * 100) + 's'];
     },
     firstName : () => {
-      return ['_Name_019-dasd'];
+      return ['-Name_019-dasd'];
     },
     name : () => {
-      return ['_Name_019-dasd'];
+      return ['-Name_019-dasd'];
     },
     color : () => {
       return [
@@ -76,35 +77,39 @@ class SyntaxCssTest extends SyntaxTest {
   }
 
   createTestData() {
-    const styles = getComputedStyle(document.documentElement);
-    const stylesAr = [];
-    Object.keys(styles).forEach( key => {
-      stylesAr.push(styles[key]);
-    });
+    const styles = allRules; //getComputedStyle(document.documentElement);
+    const stylesAr = styles;
+    // Object.keys(styles).forEach( key => {
+    //   stylesAr.push(styles[key]);
+    // });
     const notFoundTypes = {};
     stylesAr.forEach( (rule, i) => {
       let rules = functions.getValue(rule, dictionary);
-      rules = functions.mergeDefaultRules(rules);
+      if (rules) {
+        rules = functions.mergeDefaultRules(rules);
+      }
       let destData = [];
       const notFound = {};
-
-      Object.keys(rules.type).forEach(type => {
-        if (this.rulesTestData[type]) {
-          destData = destData.concat(this.rulesTestData[type](rules));
-        } else {
-          notFound[type] = true;
-        }
-      });
+      if (rules?.type) {
+        Object.keys(rules.type).forEach(type => {
+          if (this.rulesTestData[type]) {
+            destData = destData.concat(this.rulesTestData[type](rules));
+          } else {
+            notFound[type] = true;
+          }
+        });
+      }
       console.log(rule, destData);
       if (Object.keys(notFound).length > 0) {
         notFoundTypes[rule] = notFound;
       }
       const testData = [];
+      testData.push("<p><span>&nbsp;&nbsp;" + rule + ":;</span></p>");
       destData.forEach(data => {
         testData.push("<p><span>&nbsp;&nbsp;" + rule + ":" + data + ";</span></p>");
       });
 
-      if (rules.multi) {
+      if (rules?.multi) {
         if (!rules?.max) {
           console.log(rule, 'Missing max');
           rules.max = 4;
@@ -114,7 +119,7 @@ class SyntaxCssTest extends SyntaxTest {
         testData.push("<p><span>&nbsp;&nbsp;" + rule + ":" + multiData + ";</span></p>");
       }
 
-      if (rules.seperate) {
+      if (rules?.seperate) {
         const multiData1 = this.generateMulti(rules, destData);
         const multiData2 = this.generateMulti(rules, destData);
 
