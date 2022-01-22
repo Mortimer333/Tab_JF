@@ -2373,7 +2373,7 @@ let dictionary; export default dictionary = {
         },
         "type": {
           "custom": true,
-          "numeric": true,
+          "number": true,
           "length": true,
           "procent": true
         }
@@ -3886,14 +3886,14 @@ let dictionary; export default dictionary = {
     "miterlimit": {
       "_": {
         "type": {
-          "numeric": true
+          "number": true
         }
       }
     },
     "opacity": {
       "_": {
         "type": {
-          "numeric": true,
+          "number": true,
           "procent": true
         }
       }
@@ -3901,7 +3901,7 @@ let dictionary; export default dictionary = {
     "width": {
       "_": {
         "type": {
-          "numeric": true,
+          "number": true,
           "length": true,
           "procent": true
         }
@@ -3989,7 +3989,7 @@ let dictionary; export default dictionary = {
           },
           "type": {
             "custom": true,
-            "numeric": true
+            "number": true
           },
           "seperated": true
         }

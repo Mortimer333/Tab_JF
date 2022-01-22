@@ -99,7 +99,7 @@ class SyntaxCssTest extends SyntaxTest {
           }
         });
       }
-      console.log(rule, destData);
+
       if (Object.keys(notFound).length > 0) {
         notFoundTypes[rule] = notFound;
       }
