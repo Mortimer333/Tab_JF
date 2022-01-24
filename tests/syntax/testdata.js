@@ -49563,7 +49563,7 @@ let data; export default data = [
     "content": [
       {
         "attrs": {},
-        "content": "&nbsp;&nbsp;will-change:initial&nbsp;initial&nbsp;calc()&nbsp;var()&nbsp;;"
+        "content": "&nbsp;&nbsp;will-change:initial,&nbsp;calc();"
       }
     ]
   },

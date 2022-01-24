@@ -55,11 +55,6 @@ let paths; export default paths = {
         end : '}',
         subset : {
           sets : {
-            // 'calc' : {
-            //   attrs : {
-            //     style : 'text-decoration:underline;'
-            //   }
-            // },
             ':' : {
               attrs : {
                 style : 'color:#AEE;'
@@ -103,6 +98,48 @@ let paths; export default paths = {
                         return { style : 'color:#F00;' };
                       }
                       return { class : 'mistake' };
+                    }
+                  },
+                  '"' : {
+                    attrs : {
+                      style : 'color:#0F0;'
+                    },
+                    end : '"',
+                    subset : {
+                      sets : {
+                        ' ' : {
+                          single : true,
+                          attrs : {
+                            class : 'spaces'
+                          }
+                        },
+                        default : {
+                          attrs : {
+                            style : 'color:#0F0;'
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "'" : {
+                    attrs : {
+                      style : 'color:#0F0;'
+                    },
+                    end : "'",
+                    subset : {
+                      sets : {
+                        ' ' : {
+                          single : true,
+                          attrs : {
+                            class : 'spaces'
+                          }
+                        },
+                        default : {
+                          attrs : {
+                            style : 'color:#0F0;'
+                          }
+                        }
+                      }
                     }
                   },
                   '(' : {
@@ -205,7 +242,8 @@ let paths; export default paths = {
                               length : true,
                               procent : true,
                               varName : true,
-                              number : true
+                              number : true,
+                              rad : true
                             },
                             functions : {
                               calc : true,

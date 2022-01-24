@@ -90,10 +90,10 @@ let functions; export default functions = {
     return true;
   },
   name : function ( group, value ) {
-    return value.substr(0, 2) == '--'
-    || (!isNaN(value[0]) && value[0] != '-')
-    || value[0] == '_'
-    || !/^[0-9A-Za-z_-\s\-]+$/.test(value);
+    return value.substr(0, 2) !== '--'
+      && (isNaN(value[0]) || value[0] === '-')
+      && value[0] !== '_'
+      && /^[0-9A-Za-z_-\s\-]+$/.test(value);
   },
   color : function ( group, value ) {
     var el = document.createElement('div');
@@ -132,6 +132,55 @@ let functions; export default functions = {
 
     value = value.substr(1).replace(/[0-9]/g, '');
     return value.length == 0 || !!units[value];
+  },
+  degree : function ( group, value ) {
+    let firstLetter = value[0];
+    let lastLetter  = value[value.length - 1];
+
+    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
+      return false;
+    }
+
+    value = value.substr(1).replace(/[0-9]/g, '');
+    return value !== 'deg';
+  },
+
+  fraction : function ( group, value ) {
+    let firstLetter = value[0];
+    let lastLetter  = value[value.length - 1];
+
+    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
+      return false;
+    }
+
+    value = value.substr(1).replace(/[0-9]/g, '');
+    return value !== 'fr';
+  },
+
+
+  turn : function ( group, value ) {
+    let firstLetter = value[0];
+    let lastLetter  = value[value.length - 1];
+
+    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
+      return false;
+    }
+
+    value = value.substr(1).replace(/[0-9]/g, '');
+    return value !== 'turn';
+  },
+
+
+  rad : function ( group, value ) {
+    let firstLetter = value[0];
+    let lastLetter  = value[value.length - 1];
+
+    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
+      return false;
+    }
+
+    value = value.substr(1).replace(/[0-9]/g, '');
+    return value !== 'rad';
   },
 
   clone: function (object) {

@@ -118,7 +118,7 @@ let dictionary; export default dictionary = {
     "name": {
       "_": {
         "type": {
-          "string": true,
+          "name": true,
           "custom": true
         },
         "values": {
@@ -168,7 +168,11 @@ let dictionary; export default dictionary = {
     "ratio": {
       "_": {
         "type": {
-          "ratio": true
+          "number": true
+        },
+        seperated : true,
+        seperator : {
+          '/' : true
         }
       }
     }
@@ -617,7 +621,7 @@ let dictionary; export default dictionary = {
       "source": {
         "_": {
           "type": {
-            "url": true
+            image: true
           }
         }
       },
@@ -983,7 +987,10 @@ let dictionary; export default dictionary = {
       },
       "type": {
         "custom": true,
-        "shape": true
+        "functions": true
+      },
+      functions : {
+        rect : true
       }
     },
     "path": {
@@ -999,9 +1006,17 @@ let dictionary; export default dictionary = {
           "content-box": true
         },
         "type": {
-          "ulr": true,
+          image: true,
           "custom": true,
-          "geometry": true
+          "functions": true
+        },
+        functions : {
+          inset : true,
+          circle : true,
+          ellipse : true,
+          polygon : true,
+          path : true,
+          url : true
         },
         "separated": true
       }
@@ -1199,10 +1214,14 @@ let dictionary; export default dictionary = {
       },
       "type": {
         "custom": true,
-        "string": true,
-        "url": true,
-        "attr": true,
+        "name": true,
+        "image": true,
+        "functions": true,
         "variable": true
+      },
+      functions : {
+        attr : true,
+        counter : true
       },
       "separated": true
     },
@@ -1284,7 +1303,7 @@ let dictionary; export default dictionary = {
       },
       "type": {
         "custom": true,
-        "url": true
+        "image": true
       }
     }
   },
@@ -1550,9 +1569,9 @@ let dictionary; export default dictionary = {
           "fangsong": true
         },
         "type": {
-          "custom": true,
-          "style": true
-        }
+          "custom": true
+        },
+        seperated : true
       }
     },
     "feature": {
@@ -1611,8 +1630,7 @@ let dictionary; export default dictionary = {
             "none": true
           },
           "type": {
-            "custom": true,
-            "string": true
+            "custom": true
           }
         }
       }
@@ -1948,11 +1966,8 @@ let dictionary; export default dictionary = {
           "type": {
             "length": true,
             "procent": true,
-            "unit": true,
+            "fraction": true,
             "functions": true
-          },
-          "units": {
-            "fr": true
           },
           "functions": {
             "minmax": true,
@@ -2004,7 +2019,8 @@ let dictionary; export default dictionary = {
             "number": true,
             "name": true
           },
-          "seperated": true
+          "multi": true,
+          max : 3
         }
       },
       "start": {
@@ -2051,10 +2067,7 @@ let dictionary; export default dictionary = {
       },
       "areas": {
         "_": {
-          "type": {
-            "string": true
-          },
-          "seperated": true
+          multi : true
         }
       },
       "columns": {
@@ -2065,14 +2078,11 @@ let dictionary; export default dictionary = {
           },
           "type": {
             "custom": true,
-            "unit": true,
+            "fraction": true,
             "length": true,
             "procent": true,
             "functions": true,
-            "linename": true
-          },
-          "units": {
-            "fr": true
+            "name": true
           },
           "functions": {
             "minmax": true,
@@ -2081,7 +2091,7 @@ let dictionary; export default dictionary = {
             "subgrid": true,
             "masonery": true
           },
-          "seperated": true
+          "multi": true
         }
       },
       "rows": {
@@ -2431,8 +2441,7 @@ let dictionary; export default dictionary = {
           },
           "type": {
             "custom": true,
-            "string": true,
-            "value-string": true
+            "name": true
           }
         }
       }
@@ -2536,7 +2545,7 @@ let dictionary; export default dictionary = {
         },
         "type": {
           "custom": true,
-          "url": true
+          "image": true
         }
       }
     },
@@ -2942,8 +2951,19 @@ let dictionary; export default dictionary = {
     "position": {
       "_": {
         "type": {
-          "position": true
-        }
+          procent : true,
+          length : true,
+          custom : true
+        },
+        values : {
+          right : true,
+          top : true,
+          left : true,
+          bottom : true,
+          center : true
+        },
+        multi : true,
+        max : 2
       }
     }
   },
@@ -2985,7 +3005,16 @@ let dictionary; export default dictionary = {
     "anchor": {
       "_": {
         "type": {
-          "position": true
+          procent : true,
+          length : true,
+          custom : true
+        },
+        values : {
+          right : true,
+          top : true,
+          left : true,
+          bottom : true,
+          center : true
         }
       }
     },
@@ -3378,8 +3407,19 @@ let dictionary; export default dictionary = {
   "position": {
     "_": {
       "type": {
-        "position": true
-      }
+        procent : true,
+        length : true,
+        custom : true
+      },
+      values : {
+        right : true,
+        top : true,
+        left : true,
+        bottom : true,
+        center : true
+      },
+      multi : true,
+      max : 2
     }
   },
   print : {
@@ -3397,12 +3437,10 @@ let dictionary; export default dictionary = {
   "quotes": {
     "_": {
       "values": {
-        "none": true
+        "none": true,
+        auto : true
       },
-      "type": {
-        "value-string": true
-      },
-      "seperated": true
+      "multi": true
     }
   },
   "r": {
@@ -3441,13 +3479,10 @@ let dictionary; export default dictionary = {
       "type": {
         "custom": true,
         "degree": true,
-        "unit": true
-      },
-      "units": {
         "turn": true,
         "rad": true
       },
-      "seperated": true
+      "multi": true
     }
   },
   "row": {
@@ -4115,8 +4150,7 @@ let dictionary; export default dictionary = {
             "sesame": true
           },
           "type": {
-            "custom": true,
-            "value-string": true
+            "custom": true
           }
         }
       }
@@ -4164,8 +4198,7 @@ let dictionary; export default dictionary = {
           "fade": true
         },
         "type": {
-          "custom": true,
-          "value-string": true
+          "custom": true
         }
       }
     },
@@ -4297,8 +4330,19 @@ let dictionary; export default dictionary = {
     "origin": {
       "_": {
         "type": {
-          "position": true
-        }
+          length : true,
+          procent : true,
+          custom : true
+        },
+        values : {
+          center : true,
+          left : true,
+          right : true,
+          top : true,
+          bottom : true
+        },
+        multi : true,
+        max : 3
       }
     },
     "style": {
@@ -4343,7 +4387,7 @@ let dictionary; export default dictionary = {
         },
         "type": {
           "custom": true,
-          "string": true
+          "name": true
         }
       }
     },
@@ -4493,9 +4537,9 @@ let dictionary; export default dictionary = {
         },
         "type": {
           "custom": true,
-          "string": true
+          "name": true
         },
-        "multi": true
+        "seperated": true
       }
     }
   },
