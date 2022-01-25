@@ -453,14 +453,73 @@ Thanks to `sets` we can easly reset `wordCount` and have properly working valida
 
 ## Triggers
 
-Currently there is only one trigger: when subset has ended. You can add it like this:
+Triggers work basically like `run` function but at specific moment of parsing the page. Their scope differs from trigger to trigger.
+
+### Subset has ended.
+
+There is trigger fired when subset has ended. You can add it like this:
 ```js
 [...]
-          ';' : {
-            end : function (word, words, letter, sentence, sets) {
-              sets.default.wordCount = 0;
+          ':' : {
+            end : ';',
+            triggers : {
+              end : function (word, words, letter, sentence, sets) {
+                sets.default.wordCount = 0;
+              }
+            },
+            subset : {
+              [...]
             }
           },
 [...]
 ```
-And it works basically like `run` function with the same scope. Also, it will work only on `landmarks` that actually end `subset`.
+And it works basically like `run` function with the same scope.
+
+### Before new line is highlighted
+
+Just before new line will be highlighted by script there is a trigger:
+
+```js
+[...]
+          ':' : {
+            end : ';',
+            triggers : {
+              line : {
+                start : function ( lineNumber, line, sentence, sets ) {
+                  // do something at start
+                }
+              }
+            },
+            subset : {
+              [...]
+            }
+          },
+[...]
+```
+
+It scope differs from `end` as it takes the whole passed syntax schema as its scope. So you can access all sets and subsets without problem.
+Line number is number of current line, line is an object from which script renders visible for user paragraph.
+
+### After new line was highlighted
+
+Same as `line.start` but after line was highlighted:
+
+```js
+[...]
+          ':' : {
+            end : ';',
+            triggers : {
+              line : {
+                end : function ( lineNumber, line, sets ) {
+                  // do something at end
+                }
+              }
+            },
+            subset : {
+              [...]
+            }
+          },
+[...]
+```
+
+Notice that `sentence` was removed as it will always be empty.

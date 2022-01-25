@@ -1,7 +1,8 @@
 class TabJF_Clear {
-  editor () {
-    Object.values(this.editor.children).forEach( p => {
-      if (p.nodeName == "P") p.remove();
+  editor (onlyLines = true) {
+    Object.values(this.editor.childNodes).forEach( p => {
+      if ( p.nodeName == "P" && onlyLines ) p.remove();
+      else if ( p != this.caret.el && p != this.font.lab && !onlyLines ) p.remove();
     });
   }
 }

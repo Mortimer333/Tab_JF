@@ -1,6 +1,7 @@
 import styles from '../dictionary/css.js';
 import functions from '../functions/css.js';
 let paths; export default paths = {
+  lines : {},
   subset : {
     sets : {
       '.' : {
@@ -64,6 +65,10 @@ let paths; export default paths = {
               triggers : {
                 end : function (word, words, letter, sentence, sets) {
                   sets.default.wordCount = 0;
+                },
+                line : {
+                  start : functions.line.start,
+                  end : functions.line.end
                 }
               },
               subset : {
@@ -104,6 +109,11 @@ let paths; export default paths = {
                     attrs : {
                       style : 'color:#0F0;'
                     },
+                    triggers : {
+                      line : {
+                        start : functions.line.start
+                      }
+                    },
                     end : '"',
                     subset : {
                       sets : {
@@ -124,6 +134,11 @@ let paths; export default paths = {
                   "'" : {
                     attrs : {
                       style : 'color:#0F0;'
+                    },
+                    triggers : {
+                      line : {
+                        start : functions.line.start
+                      }
                     },
                     end : "'",
                     subset : {
@@ -149,6 +164,11 @@ let paths; export default paths = {
                     end : ')',
                     start : '(',
                     selfref : true,
+                    triggers : {
+                      line : {
+                        start : functions.line.start
+                      }
+                    },
                     subset : {
                       sets : {
                         ')' : {
@@ -196,6 +216,11 @@ let paths; export default paths = {
                           attrs : {
                             style : 'color:#0F0;'
                           },
+                          triggers : {
+                            line : {
+                              start : functions.line.start
+                            }
+                          },
                           end : '"',
                           subset : {
                             sets : {
@@ -216,6 +241,11 @@ let paths; export default paths = {
                         "'" : {
                           attrs : {
                             style : 'color:#0F0;'
+                          },
+                          triggers : {
+                            line : {
+                              start : functions.line.start
+                            }
                           },
                           end : "'",
                           subset : {
@@ -270,7 +300,8 @@ let paths; export default paths = {
                     rule : '',
                     run : function (word, words, letter, sentence, sets) {
                       this.wordCount++;
-                      return this.functions.validateValue(word, this.validation, words, this.wordCount);
+                      const res = this.functions.validateValue(word, this.validation, words, this.wordCount);
+                      return res;
                     }
                   }
                 }

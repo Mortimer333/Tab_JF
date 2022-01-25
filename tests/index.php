@@ -21,7 +21,7 @@
       <p><span>} sss</span></p>
       <p><span></span></p>
       <p><span>.test {</span></p>
-        <p><span>&nbsp;&nbsp;margin:20px;</span></p>
+      <p><span>&nbsp;&nbsp;margin:20px;</span></p>
       <p><span>&nbsp;&nbsp;background: rgb(0,0,0) center;</span></p>
       <p><span>}</span></p>
       <p><span>margin:aa;</span></p>
@@ -105,13 +105,38 @@
       const editor = document.getElementById('editor');
       const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 35, syntax : schema, height }, true);
+      const contentText = `* {
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes tabjf_blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.tabjf_editor-con {
+  --editor-bg : #3e3e3e;
+  background-color : var(--editor-bg);
+  max-height: calc( var(--max-height, 200) * 1px);
+  overflow: auto;
+}
+
+.tabjf_editor .caret {
+  width     : 1px ;
+  height    : 20px;
+  position  : absolute   ;
+  background-color : #FFF;
+  animation : tabjf_blink 1s linear infinite;
+}`;
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
-      const tSyntaxCss = new SyntaxCssTest(tabEditor);
-      console.log(tSyntaxCss);
+      // const tSyntaxCss = new SyntaxCssTest(tabEditor);
+      // console.log(tSyntaxCss);
     </script>
   </body>
 </html>

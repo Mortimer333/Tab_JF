@@ -64,7 +64,7 @@ class TabJF_Caret {
   create ( parent ) {
     const caret = document.createElement("div");
     caret.className = 'caret';
-    parent.insertBefore( caret, parent.children[0] );
+    parent.insertBefore( caret, parent.childNodes[0] );
     return caret;
   }
 

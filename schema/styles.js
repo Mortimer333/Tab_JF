@@ -6,18 +6,19 @@ let styles; export default styles = [
     overflow   : auto;
   }`,
   `.tabjf_editor-con .tabjf_editor {
+    --padding-left : 65px;
     color       : #FFF;
     position    : relative;
     min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
     padding-top : calc( var(--paddingTop, 0) * 1px )                        ;
-    padding-left  : 35px;
+    padding-left  : var(--padding-left);
     padding-right : 10px;
     counter-reset : editor-line;
     font-family   : Consolas, monospace;
     counter-set : editor-line var(--counter-current, 0);
     padding-top : calc( var(--paddingTop, 0) * 1px );
     width       : calc(var(--scroll-width, 100%) * 1px + 5px );
-    min-width   : calc(100% - 35px - 10px);
+    min-width   : calc(100% - var(--padding-left) - 10px);
   }`,
   `.tabjf_editor-con .tabjf_editor p {
     position   : relative;

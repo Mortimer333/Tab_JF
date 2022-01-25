@@ -70,7 +70,8 @@ let functions; export default functions = {
   },
   time : function ( group, value ) {
     if (
-      value[ value.length - 1 ] != 's'
+      value.length == 1
+      || value[ value.length - 1 ] != 's'
       || isNaN(value.substr( 0, value.length - 1 ))
     ) return false;
     return true;
@@ -255,7 +256,8 @@ let functions; export default functions = {
     return this.directToValue( route.slice(1), dictionary[route[0]] );
   },
 
-  validateValue: function ( word, validation, words, wordCount = 1 ) {
+  validateValue: function ( word, realValidation, words, wordCount = 1 ) {
+    let validation = this.clone(realValidation);
     if (!validation) {
       if ( this.isSpace(word) ) {
         return { class : 'spaces' };
@@ -264,7 +266,6 @@ let functions; export default functions = {
     }
 
     const typeKeys = Object.keys(validation.type);
-
     if ( this.isSpace(word) ) {
       return { class : 'spaces' };
     }
@@ -328,5 +329,20 @@ let functions; export default functions = {
       }
     });
     return parent;
+  },
+
+  line : {
+    start : function (lineNumber, line, sentence, sets) {
+      if (this.lines[lineNumber]?.validation) {
+        const def = this.subset.sets['{'].subset.sets[':'].subset.sets.default;
+        def.validation = JSON.parse(JSON.stringify(this.lines[lineNumber].validation));
+        def.wordCount = this.lines[lineNumber].wordCount;
+      }
+    },
+    end : function (lineNumber, line, sets) {
+      if (typeof this.lines[lineNumber] == 'undefined') this.lines[lineNumber] = {};
+      this.lines[lineNumber].validation = JSON.parse(JSON.stringify(sets.default.validation));
+      this.lines[lineNumber].wordCount = JSON.parse(JSON.stringify(sets.default.wordCount));
+    }
   }
 }

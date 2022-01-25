@@ -85,7 +85,9 @@ class TabJF {
       line   : 20,
       height : 400,
       addCss : false,
-      syntax : false
+      syntax : false,
+      contentText : false,
+      contentObj  : false,
     };
 
     Object.keys(required).forEach( attr => {
@@ -116,7 +118,7 @@ class TabJF {
     this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
     this.font.createLab();
-    this.render.init();
+    this.render.init( this.settings.contentObj, this.settings.contentText );
     if ( this.settings.syntax ) this.syntax.init();
     this.truck.import( this.render.content, this.render.linesLimit );
 

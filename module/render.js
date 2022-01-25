@@ -10,9 +10,11 @@ class TabJF_Render {
     this.render.overflow.removeEventListener('scroll', this.render.fill.event, true);
   }
 
-  init ( importObj = false ) {
-    if ( importObj ) this.render.content = importObj;
-    else             this.render.content = this.truck.export(); // If we don't have saved state, save current state
+  init ( importObj = false, contentText = false ) {
+    if      ( importObj   ) this.render.content = importObj;
+    else if ( contentText ) this.render.content = this.truck.exportText( contentText );
+    else                    this.render.content = this.truck.export(); // If we don't have saved state, save current state
+    this.clear.editor( false );
     this.render.linesLimit = Math.ceil( this.settings.height / this.settings.line ) + 2;
     const overflow = document.createElement("div");
     overflow.addEventListener('scroll', this.render.fill.event, true);

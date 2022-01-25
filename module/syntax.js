@@ -26,11 +26,39 @@ class TabJF_Syntax {
       this.render.content[i + start].groupPath = this.get.clone( this.syntax.groupPath );
       const line     = lines[i];
       const sentence = this.get.sentence( line );
+      let group = this.syntax.groups[0];
+      // Line start trigger
+      if (group?.triggers) {
+        const triggers = group.triggers;
+        if (triggers?.line?.start) {
+          triggers?.line.start.bind(this.settings.syntax)(
+            i + start,
+            line,
+            sentence,
+            group.subset.sets
+          );
+        }
+      }
+
       const res      = this.syntax.validateResults(this.syntax.paint( sentence ));
       if ( res.words.length == 0 ) {
         res.words.push(this.syntax.create.span({}, ''));
       }
       this.render.content[i + start].content = res.words;
+
+      group = this.syntax.groups[0];
+      // Line end trigger
+      if (group?.triggers) {
+        const triggers = group.triggers;
+        if (triggers?.line?.end) {
+          triggers?.line.end.bind(this.settings.syntax)(
+            i + start,
+            line,
+            group.subset.sets
+          );
+        }
+      }
+
     }
   }
 
@@ -130,6 +158,15 @@ class TabJF_Syntax {
         this.syntax.groups.shift();
         this.syntax.ends  .shift();
         this.syntax.groupPath.pop();
+
+        // Subset end trigger
+        if (group?.triggers) {
+          const triggers = group.triggers;
+          if (triggers?.end) {
+            triggers?.end.bind(group.subset.sets[letter])( word, words, letter, sentence, group.subset.sets );
+          }
+        }
+
         return { words, sentence, i : -1 };
       }
     }
@@ -199,13 +236,6 @@ class TabJF_Syntax {
     this.syntax.groups.unshift( subset.sets[letter] );
     this.syntax.ends  .unshift( subset.sets[letter].end );
     const res = this.syntax.paint( sentence, words, debug + '\t' );
-    // Subset end trigger
-    if (subset.sets[letter]?.triggers) {
-      const triggers = subset.sets[letter].triggers;
-      if (triggers?.end) {
-        triggers?.end.bind(subset.sets[letter])( word, words, letter, sentence, subset.sets[letter].subset.sets );
-      }
-    }
     words = res.words;
     sentence = res.sentence;
     return {

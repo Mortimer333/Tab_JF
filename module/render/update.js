@@ -11,7 +11,7 @@ class TabJF_Render_Update {
       line.content.forEach( item => {
         text += item.content;
       });
-
+      
       const width = this.font.calculateWidth( text );
       if ( this.render.maxLineWidth < width ) this.render.maxLineWidth = width;
     });
