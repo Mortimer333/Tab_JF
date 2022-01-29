@@ -3406,20 +3406,13 @@ let dictionary; export default dictionary = {
   },
   "position": {
     "_": {
-      "type": {
-        procent : true,
-        length : true,
-        custom : true
-      },
       values : {
-        right : true,
-        top : true,
-        left : true,
-        bottom : true,
-        center : true
-      },
-      multi : true,
-      max : 2
+        static : true,
+        fixed : true,
+        absolute : true,
+        relative : true,
+        sticky : true
+      }
     }
   },
   print : {

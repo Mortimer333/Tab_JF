@@ -54,6 +54,8 @@ let paths; export default paths = {
           style : 'color:#AEE;'
         },
         end : '}',
+        selfref : true,
+        start : '{',
         subset : {
           sets : {
             ':' : {

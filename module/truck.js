@@ -69,6 +69,9 @@ class TabJF_Truck {
       line.content.forEach( (span, i) => {
         span.content   = this.replace.spaces( span.content );
         const spanNode = this.set.attributesFromContent( span.attrs, span.content );
+        if (!spanNode?.childNodes) {
+          console.log(span.attrs, span.content);
+        }
         if ( spanNode.childNodes.length == 0 ) spanNode.appendChild(document.createTextNode(''));
         lineNode.appendChild(spanNode);
       });

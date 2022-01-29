@@ -4,6 +4,9 @@ let functions; export default functions = {
     console.error('Unknow validation function was used ', key);
     return false;
   },
+  pass : function () {
+    return true;
+  },
   varName : function ( group, value, words ) {
     const checks = {
       firstMinus : false,
@@ -108,6 +111,10 @@ let functions; export default functions = {
     return imageFuncs.indexOf(value) !== -1;
   },
   length : function ( group, value ) {
+    if (value == 0) {
+      return true;
+    }
+
     const units = {
       px : true,
       em : true,
