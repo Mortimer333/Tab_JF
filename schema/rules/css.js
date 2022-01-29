@@ -64,10 +64,9 @@ let paths; export default paths = {
                 style : 'color:#AEE;'
               },
               end : ';',
-              single : true,
               triggers : {
-                end : function (word, words, letter, sentence, sets) {
-                  sets.default.wordCount = 0;
+                end : function (word, words, letter, sentence, group) {
+                  group.subset.sets.default.wordCount = 0;
                 },
                 line : {
                   start : functions.line.start,
@@ -160,140 +159,60 @@ let paths; export default paths = {
                       }
                     }
                   },
-                  '(' : {
+                  ')' : {
+                    single : true,
                     attrs : {
                       style : 'color:#F00;'
-                    },
+                    }
+                  },
+                  'var' : {
                     end : ')',
-                    start : '(',
-                    selfref : true,
-                    triggers : {
-                      line : {
-                        start : functions.line.start
-                      }
+                    attrs : {
+                      style : 'color:pink;'
                     },
                     subset : {
                       sets : {
                         ')' : {
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        ',' : {
                           single : true,
                           attrs : {
                             style : 'color:#F00;'
                           }
                         },
-                        '+' : {
+                        '(' : {
                           single : true,
                           attrs : {
                             style : 'color:#F00;'
                           }
                         },
-                        '-' : {
-                          single : true,
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        '*' : {
-                          single : true,
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        '/' : {
-                          single : true,
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        ' ' : {
-                          single : true,
-                          attrs : {
-                            class : 'spaces'
-                          }
-                        },
-                        '"' : {
-                          attrs : {
-                            style : 'color:#0F0;'
+                        '--' : {
+                          end : {
+                            ',' : true,
+                            ')' : true
                           },
                           triggers : {
-                            line : {
-                              start : functions.line.start
+                            end : function ( word, words, letter, sentence, group, syntax ) {
+                              if (letter == ')') syntax.endSubset();
                             }
                           },
-                          end : '"',
-                          subset : {
-                            sets : {
-                              ' ' : {
-                                single : true,
-                                attrs : {
-                                  class : 'spaces'
-                                }
-                              },
-                              default : {
-                                attrs : {
-                                  style : 'color:#0F0;'
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "'" : {
                           attrs : {
-                            style : 'color:#0F0;'
+                            style : 'color:#F00;'
                           },
-                          triggers : {
-                            line : {
-                              start : functions.line.start
-                            }
-                          },
-                          end : "'",
                           subset : {
                             sets : {
-                              ' ' : {
-                                single : true,
-                                attrs : {
-                                  class : 'spaces'
-                                }
-                              },
                               default : {
                                 attrs : {
-                                  style : 'color:#0F0;'
+                                  style : 'color:#FF0;'
                                 }
                               }
                             }
                           }
                         },
                         default : {
-                          functions : functions,
-                          validation : {
-                            type : {
-                              functions : true,
-                              length : true,
-                              procent : true,
-                              varName : true,
-                              number : true,
-                              rad : true
-                            },
-                            functions : {
-                              calc : true,
-                              var : true
-                            }
-                          },
-                          run : function (word, words, letter, sentence, sets) {
-                            return this.functions.validateValue(word, this.validation, words);
+                          attrs : {
+                            style : 'color:#F0F;'
                           }
                         }
                       }
-                    }
-                  },
-                  ')' : {
-                    single : true,
-                    attrs : {
-                      style : 'color:#F00;'
                     }
                   },
                   default : {
