@@ -136,8 +136,8 @@ class TabJF_Syntax {
         const results = this.syntax.splitWord( oldOne.subset, 0, letter, words, sentence.slice(i), '\t' + debug );
         words    = results.words;
         sentence = results.sentence;
-        letter = sentence[0];
-        i = results.i;
+        // letter = sentence[0];
+        i = results.i + 1;
         continue;
       }
 
@@ -171,7 +171,7 @@ class TabJF_Syntax {
           }
         }
 
-        return { words, sentence, i : 0 };
+        return { words, sentence, i : -1 };
       }
     }
 

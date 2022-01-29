@@ -1,10 +1,19 @@
 import styles from '../dictionary/css.js';
 import functions from '../functions/css.js';
 import variable from './css/variable.js';
+import varFunction from './css/functions/varFunction.js';
+import calcFunction from './css/functions/calcFunction.js';
+
 let paths; export default paths = {
   lines : {},
   subset : {
     sets : {
+      '*' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
+        }
+      },
       '.' : {
         attrs : {
           style : 'color:#F00;'
@@ -165,56 +174,8 @@ let paths; export default paths = {
                       style : 'color:#F00;'
                     }
                   },
-                  'var' : {
-                    end : ')',
-                    attrs : {
-                      style : 'color:pink;'
-                    },
-                    subset : {
-                      sets : {
-                        ')' : {
-                          single : true,
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        '(' : {
-                          single : true,
-                          attrs : {
-                            style : 'color:#F00;'
-                          }
-                        },
-                        '--' : {
-                          end : {
-                            ',' : true,
-                            ')' : true
-                          },
-                          triggers : {
-                            end : function ( word, words, letter, sentence, group, syntax ) {
-                              if (letter == ')') syntax.endSubset();
-                            }
-                          },
-                          attrs : {
-                            style : 'color:#F00;'
-                          },
-                          subset : {
-                            sets : {
-                              default : {
-                                attrs : {
-                                  style : 'color:#FF0;'
-                                }
-                              }
-                            }
-                          }
-                        },
-                        default : {
-                          attrs : {
-                            style : 'color:#F0F;'
-                          }
-                        }
-                      }
-                    }
-                  },
+                  'calc' : calcFunction,
+                  'var' : varFunction,
                   default : {
                     validation : null,
                     wordCount : 0,

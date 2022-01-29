@@ -1,34 +1,22 @@
 import singleQuote from './singleQuote.js';
 import doubleQuote from './doubleQuote.js';
 let varFunction; export default varFunction = {
+  end : ')',
   attrs : {
     style : 'color:pink;'
   },
-  end : ")",
   subset : {
     sets : {
-      '(' : {
+      ')' : {
         single : true,
         attrs : {
           style : 'color:#F00;'
         }
       },
-      '--' : {
-        end : {
-          ',' : true,
-          ')' : true
-        },
+      '(' : {
+        single : true,
         attrs : {
           style : 'color:#F00;'
-        },
-        subset : {
-          sets : {
-            default : {
-              attrs : {
-                style : 'color:#F00;'
-              }
-            }
-          }
         }
       },
       ',' : {
@@ -43,14 +31,32 @@ let varFunction; export default varFunction = {
           class : 'spaces'
         }
       },
-      '"' : doubleQuote,
-      "'" : singleQuote,
-      default : {
-        run :  function (word) {
-          console.log(word);
-          return {
-            style : 'color:#e67e22;'
+      '--' : {
+        end : {
+          ',' : true,
+          ')' : true
+        },
+        triggers : {
+          end : function ( word, words, letter, sentence, group, syntax ) {
+            if (letter == ')') syntax.endSubset();
           }
+        },
+        attrs : {
+          style : 'color:#F00;'
+        },
+        subset : {
+          sets : {
+            default : {
+              attrs : {
+                style : 'color:#FF0;'
+              }
+            }
+          }
+        }
+      },
+      default : {
+        attrs : {
+          style : 'color:#F0F;'
         }
       }
     }
