@@ -1,5 +1,6 @@
 import styles from '../dictionary/css.js';
 import functions from '../functions/css.js';
+import variable from './css/variable.js';
 let paths; export default paths = {
   lines : {},
   subset : {
@@ -326,10 +327,29 @@ let paths; export default paths = {
                 class : 'spaces'
               },
             },
+            '--' : variable,
+            '}' : {
+              attrs : {
+                style : 'color:#AEE;'
+              }
+            },
             default : {
               rules : styles,
               functions : functions,
-              run : function (word, words, letter, sentence, sets) {
+              animation : false,
+              run : function (word, words, letter, sentence, sets, subset) {
+                if (
+                  this.animation
+                  && (
+                    this.functions.procent(sets, word)
+                    || word == 'from'
+                    || word == 'to'
+                  )
+                ) {
+                  return {
+                    style : "color:#FFF"
+                  };
+                }
                 let rules = this.functions.getValue.bind(this.functions)(word, this.rules);
                 if (!rules) {
                   sets[':'].subset.sets.default.validation = null;
@@ -358,8 +378,11 @@ let paths; export default paths = {
         }
       },
       '@' : {
-        attrs : {
-          style : 'color:#EBE;'
+        run : function ( word, words, letter, sentence, sets, subset ) {
+          subset.sets['{'].subset.sets.default.animation = true;
+          return {
+            style : 'color:#EBE;'
+          };
         }
       },
       ' ' : {

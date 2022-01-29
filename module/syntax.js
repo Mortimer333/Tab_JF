@@ -119,8 +119,10 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
-      if ( subset?.sets && subset?.sets[letter] ) {
-        const results = this.syntax.splitWord( subset, i, letter, words, sentence, '\t' + debug );
+      console.log(debug, 'New letter', `'` + letter + `'`, i);
+      if ( subset?.sets && subset?.sets[letter] || subset?.sets[sentence.substr(0, i + 1)] ) {
+        const realLetter = subset?.sets[letter] ? letter : sentence.substr(0, i + 1);
+        const results = this.syntax.splitWord( subset, i, realLetter, words, sentence, '\t' + debug );
         words    = results.words;
         sentence = results.sentence;
         i = results.i;
@@ -134,9 +136,10 @@ class TabJF_Syntax {
         sentence = results.sentence;
         letter = sentence[0];
         i = results.i;
+        continue;
       }
 
-      if ( end !== null && letter == end ) {
+      if ( end !== null && (letter == end || typeof end == 'object' && end[letter]) ) {
         let word = sentence.substring( 0, i );
 
         if ( word.length != 0 ) {
@@ -155,6 +158,7 @@ class TabJF_Syntax {
         }
 
         sentence = sentence.substring( i );
+
         this.syntax.groups.shift();
         this.syntax.ends  .shift();
         this.syntax.groupPath.pop();
@@ -167,7 +171,7 @@ class TabJF_Syntax {
           }
         }
 
-        return { words, sentence, i : -1 };
+        return { words, sentence, i : 0 };
       }
     }
 
@@ -188,38 +192,45 @@ class TabJF_Syntax {
 
   splitWord( subset, i, letter, words, sentence, debug ) {
     const letterSet = subset?.sets[letter];
-    // Even if sentence if bonkers long with this we might escape int overflow
-    let word = sentence.substring( 0, i );
-
+    let word = sentence.substr( 0, i - (letter.length - 1) );
+    console.log(debug, 'word', '`' + word + '`', '`' + sentence + '`', '`' + letter + '`', i);
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
       let attrs = wordSet.attrs;
       if ( wordSet?.ignore ) wordSet = { attrs : { style : 'color:#FFF;' } };
       if ( wordSet?.run ) {
         const results = wordSet.run.bind( wordSet );
-        attrs = results( word, words, letter, sentence, subset.sets );
+        attrs = results( word, words, letter, sentence, subset.sets, subset );
       }
       words.push(this.syntax.create.span( attrs, word ));
     }
 
-    if ( letterSet?.single && !subset.sets[letter]?.subset ) {
+    if ( letterSet?.single ) {
       let attrs = letterSet.attrs ?? { style : 'color:#FFF;' };
       if ( letterSet?.run ) {
         const results = letterSet.run.bind( letterSet );
-        attrs = results( word, words, letter, sentence, subset.sets );
+        attrs = results( word, words, letter, sentence, subset.sets, subset );
       }
-      words.push(this.syntax.create.span( attrs, sentence.substring( i, i + 1 )));
-      i++;
+      console.log(debug, "pushed single", '`' + sentence.substr( i, letter.length ) + '`');
+      words.push(this.syntax.create.span( attrs, sentence.substr( i, letter.length )));
+      i += letter.length;
+      word += letter;
     }
-    sentence = sentence.substring( i );
-    if ( letterSet?.single ) i = -1;
-    else i = 0;
+    console.log(debug, 'sentence', '`' + sentence + '`', i);
+    sentence = sentence.substring( word.length );
+    console.log(debug, 'after sentence', '`' + sentence + '`', i);
+
+    // if ( letterSet?.single ) i = 0;
+    // else
+    i = word.length > 0 ? -1 : i;
+
     if ( subset.sets[letter]?.subset ) {
-      words.push(this.syntax.create.span( letterSet.attrs, sentence.substring( 0, 1 )));
+      words.push(this.syntax.create.span( letterSet.attrs, sentence.substr( 0, letter.length )));
       this.syntax.groupPath.push(letter);
-      const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(1), debug, subset);
+      const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(letter.length), debug, subset);
       words = res.words;
       sentence = res.sentence;
+      i = res.i;
     }
 
     return {
@@ -230,17 +241,31 @@ class TabJF_Syntax {
   }
 
   startNewSubset(letter, letterSet, word, words, sentence, debug, subset) {
+    const group = subset.sets[letter];
+    if (group?.triggers) {
+      const triggers = group.triggers;
+      if (triggers?.start) {
+        triggers?.start.bind(group)(
+          letter,
+          letterSet,
+          word,
+          words,
+          sentence,
+          subset
+        );
+      }
+    }
+
     if ( !letterSet?.single && !subset.sets[letter]?.subset ) {
       words.push(this.syntax.create.span( subset.sets[letter].attrs, letter));
     }
     this.syntax.groups.unshift( subset.sets[letter] );
     this.syntax.ends  .unshift( subset.sets[letter].end );
     const res = this.syntax.paint( sentence, words, debug + '\t' );
-    words = res.words;
-    sentence = res.sentence;
     return {
-      words,
-      sentence
+      words : res.words,
+      sentence : res.sentence,
+      i : res.i
     }
   }
 
@@ -254,7 +279,7 @@ class TabJF_Syntax {
 
     if (set?.run) {
       const results = set.run.bind(set);
-      attrs = results( word, words, letter, sentence, group.sets );
+      attrs = results( word, words, letter, sentence, group.sets, group );
     }
     return attrs;
   }
