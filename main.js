@@ -40,6 +40,7 @@ class TabJF {
   copiedHere   = false;
   activated    = false;
   spaceUChar   = '\u00A0';
+  updateMethod; // Place for update method
 
   pressed = {
     shift : false,
@@ -76,10 +77,10 @@ class TabJF {
   constructor( editor, set = {} ) {
     if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
-    console.log(this);
     this.editor   = editor;
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
+    console.info(this);
     const required = {
       left   : 0,
       top    : 0,
@@ -128,6 +129,9 @@ class TabJF {
     }
 
     this.set.docEvents();
+
+    this.updateMethod = this.update.select.bind ? this.update.select.bind(this) : this.update.select;
+
   }
 
   inject () {
@@ -290,7 +294,8 @@ class TabJF {
     }
 
     this.selection.update = false;
-    this.editor.removeEventListener('mousemove', this.update.select.bind ? this.update.select.bind(this) : this.update.select, true);
+    const updateMethod = this.update.select.bind ? this.update.select.bind(this) : this.update.select;
+    this.editor.removeEventListener('mousemove', this.updateMethod, true);
     this.checkSelect();
   }
 
@@ -403,7 +408,7 @@ class TabJF {
     this.selection.active = false;
     this.editor.addEventListener(
       'mousemove',
-      this.update.select.bind ? this.update.select.bind(this) : this.update.select,
+      this.updateMethod,
       true
     );
     this.activated = true;
