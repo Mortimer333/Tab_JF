@@ -130,13 +130,13 @@
   background-color : #FFF;
   animation : tabjf_blink 1s linear infinite;
 }`;
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText }, true);
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
-      // const tSyntaxCss = new SyntaxCssTest(tabEditor);
-      // console.log(tSyntaxCss);
+      const tSyntaxCss = new SyntaxCssTest(tabEditor);
+      console.log(tSyntaxCss);
     </script>
   </body>
 </html>

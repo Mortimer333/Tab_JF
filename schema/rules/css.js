@@ -3,6 +3,9 @@ import functions from '../functions/css.js';
 import variable from './css/variable.js';
 import varFunction from './css/functions/varFunction.js';
 import calcFunction from './css/functions/calcFunction.js';
+import rgbFunction from './css/functions/rgbFunction.js';
+import hslFunction from './css/functions/hslFunction.js';
+import hwbFunction from './css/functions/hwbFunction.js';
 
 let paths; export default paths = {
   lines : {},
@@ -176,6 +179,9 @@ let paths; export default paths = {
                   },
                   'calc' : calcFunction,
                   'var' : varFunction,
+                  'rgb' : rgbFunction,
+                  'hsl' : hslFunction,
+                  'hwb' : hwbFunction,
                   default : {
                     validation : null,
                     wordCount : 0,

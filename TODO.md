@@ -6,7 +6,7 @@
 4. [DONE] Check how we handle focusout on the editor
 5. [DONE] More customization and triggers
 6. [DONE] Add code coloring
-7. Make coloring optional, and possible to add your own style sheet [DONE]
+7. [DONE] Make coloring optional, and possible to add your own style sheet 
 8. Move debug tool to other project, improve it and implement back as 3rd party service
 9. Server driven rendering (infinite loading), so we can open files of GB in size
 10. Add Y rendering (for very long lines like min.js)
@@ -18,3 +18,4 @@
 ## Thinkers
 
 - Add webkit and moz styles
+- Add all functions

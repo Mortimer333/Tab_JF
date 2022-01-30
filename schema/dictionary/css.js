@@ -42,23 +42,16 @@ let dictionary; export default dictionary = {
   },
   "animation": {
     "_" : {
-      "type": {
-        "time": true,
-        "number": true,
-        "custom": true,
-        firstName : true
-      },
-      "values": {
-        "infinite": true,
-        "normal": true,
-        "reverse": true,
-        "alternate": true,
-        "alternate-reverse": true,
-        "none": true,
-        "forwards": true,
-        "backwords": true,
-        "both": true
-      },
+      combine : [
+        "name",
+        "duration",
+        "timing.function",
+        "delay",
+        "iteration.count",
+        "direction",
+        "fill.mode",
+        "play.state"
+      ],
       multi : true,
       seperated : true,
       max : 5

@@ -1,6 +1,7 @@
 import functions from '../../../functions/css.js';
+import calcFunction from './calcFunction.js';
 import varFunction from './varFunction.js';
-let calcFunction; export default calcFunction = {
+let hwbFunction; export default hwbFunction = {
   attrs : {
     style : 'color:pink;'
   },
@@ -14,28 +15,11 @@ let calcFunction; export default calcFunction = {
         }
       },
       'var' : varFunction,
-      ',' : {
+      'calc' : calcFunction,
+      ' ' : {
         single : true,
         attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      '+' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      '-' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      '*' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
+          class : 'spaces'
         }
       },
       '/' : {
@@ -44,28 +28,21 @@ let calcFunction; export default calcFunction = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
-          console.log(word);
           if (
             this.functions.number(subset, word)
-            || this.functions.length(subset, word)
             || this.functions.procent(subset, word)
+            || this.functions.rad(subset, word)
           ) {
             return {
               style : 'color:#F00;'
-            }
+            };
           }
           return {
             class : 'mistake'
-          }
+          };
         }
       }
     }
