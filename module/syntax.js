@@ -22,6 +22,7 @@ class TabJF_Syntax {
 
   highlightLines(lines, start) {
     for (let i = 0; i < lines.length; i++) {
+      console.log("=== Line", i);
       this.render.content[i + start].ends      = this.get.clone( this.syntax.ends      );
       this.render.content[i + start].groupPath = this.get.clone( this.syntax.groupPath );
       const line     = lines[i];
@@ -40,7 +41,7 @@ class TabJF_Syntax {
         }
       }
 
-      const res      = this.syntax.validateResults(this.syntax.paint( sentence ));
+      const res = this.syntax.validateResults(this.syntax.paint( sentence ));
       if ( res.words.length == 0 ) {
         res.words.push(this.syntax.create.span({}, ''));
       }
@@ -119,6 +120,7 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
+      console.log(debug, 'Letter:', '`' + letter + '`');
 
       if ( subset?.sets && subset?.sets[letter] || subset?.sets[sentence.substr(0, i + 1)] ) {
         const realLetter = subset?.sets[letter] ? letter : sentence.substr(0, i + 1);
@@ -129,6 +131,7 @@ class TabJF_Syntax {
         group    = this.syntax.groups[0];
         subset   = group.subset;
         end      = this.syntax.ends[0];
+
       } else if ( group?.selfref && letter == group?.start ) {
         let oldOne = { 'subset' : { 'sets' : { [group.start] : group } } };
         const resultsFirstWord = this.syntax.splitWord( subset, i, letter, words, sentence.slice(0, i), '\t' + debug );
@@ -143,6 +146,7 @@ class TabJF_Syntax {
 
       if ( end !== null && (letter == end || typeof end == 'object' && end[letter]) ) {
         let word = sentence.substring( 0, i );
+        console.log(debug, 'End subset', 'letter', '`' + letter + '`', 'end', '`' + end + '`', '`' + word + '`', '`' + sentence + '`', letter == end, typeof end == 'object' && end[letter]);
 
         if ( word.length != 0 ) {
           let wordSet = this.syntax.getSet(subset, word);
@@ -171,7 +175,7 @@ class TabJF_Syntax {
           }
         }
 
-        return { words, sentence, i : -1 };
+        return { words, sentence, i : sentence[0] == group.start ? 0 : -1 };
       }
     }
 
@@ -243,6 +247,7 @@ class TabJF_Syntax {
   }
 
   startNewSubset(letter, letterSet, word, words, sentence, debug, subset) {
+    console.log(debug, 'Start subset', '`' + letter + '`', '`' + word + '`', '`' + sentence + '`');
     const group = subset.sets[letter];
     if (group?.triggers) {
       const triggers = group.triggers;
@@ -261,6 +266,12 @@ class TabJF_Syntax {
     if ( !letterSet?.single && !subset.sets[letter]?.subset ) {
       words.push(this.syntax.create.span( subset.sets[letter].attrs, letter));
     }
+
+    // Assign start of subset
+    if (!subset.sets[letter]?.start) {
+      subset.sets[letter].start = letter;
+    }
+
     this.syntax.groups.unshift( subset.sets[letter] );
     this.syntax.ends  .unshift( subset.sets[letter].end );
     const res = this.syntax.paint( sentence, words, debug + '\t' );
