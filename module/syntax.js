@@ -22,7 +22,6 @@ class TabJF_Syntax {
 
   highlightLines(lines, start) {
     for (let i = 0; i < lines.length; i++) {
-      console.log("=== Line", i);
       this.render.content[i + start].ends      = this.get.clone( this.syntax.ends      );
       this.render.content[i + start].groupPath = this.get.clone( this.syntax.groupPath );
       const line     = lines[i];
@@ -120,7 +119,10 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
-      console.log(debug, 'Letter:', '`' + letter + '`');
+
+      if ( end !== null && (letter == end || typeof end == 'object' && end[letter]) ) {
+        return this.syntax.endSubsetChecks(i, letter, end, words, sentence, subset, group, debug);
+      }
 
       if ( subset?.sets && subset?.sets[letter] || subset?.sets[sentence.substr(0, i + 1)] ) {
         const realLetter = subset?.sets[letter] ? letter : sentence.substr(0, i + 1);
@@ -139,43 +141,8 @@ class TabJF_Syntax {
         const results = this.syntax.splitWord( oldOne.subset, 0, letter, words, sentence.slice(i), '\t' + debug );
         words    = results.words;
         sentence = results.sentence;
-        // letter = sentence[0];
         i = results.i + 1;
         continue;
-      }
-
-      if ( end !== null && (letter == end || typeof end == 'object' && end[letter]) ) {
-        let word = sentence.substring( 0, i );
-        console.log(debug, 'End subset', 'letter', '`' + letter + '`', 'end', '`' + end + '`', '`' + word + '`', '`' + sentence + '`', letter == end, typeof end == 'object' && end[letter]);
-
-        if ( word.length != 0 ) {
-          let wordSet = this.syntax.getSet(subset, word);
-          words.push( this.syntax.create.span(
-              this.syntax.getAttrsFromSet(
-                wordSet,
-                word,
-                words,
-                letter,
-                sentence,
-                subset
-              ),
-              word
-          ));
-        }
-
-        sentence = sentence.substring( i );
-
-        this.syntax.endSubset();
-
-        // Subset end trigger
-        if (group?.triggers) {
-          const triggers = group.triggers;
-          if (triggers?.end) {
-            triggers?.end.bind(group.subset.sets[letter])( word, words, letter, sentence, group, this.syntax );
-          }
-        }
-
-        return { words, sentence, i : sentence[0] == group.start ? 0 : -1 };
       }
     }
 
@@ -192,6 +159,38 @@ class TabJF_Syntax {
       sentence = '';
     }
     return { words, sentence };
+  }
+
+  endSubsetChecks(i, letter, end, words, sentence, subset, group, debug) {
+    let word = sentence.substring( 0, i );
+
+    if ( word.length != 0 ) {
+      let wordSet = this.syntax.getSet(subset, word);
+      words.push( this.syntax.create.span(
+          this.syntax.getAttrsFromSet(
+            wordSet,
+            word,
+            words,
+            letter,
+            sentence,
+            subset
+          ),
+          word
+      ));
+    }
+
+    sentence = sentence.substring( i );
+
+    this.syntax.endSubset();
+
+    // Subset end trigger
+    if (group?.triggers) {
+      const triggers = group.triggers;
+      if (triggers?.end) {
+        triggers?.end.bind(group.subset.sets[letter])( word, words, letter, sentence, group, this.syntax );
+      }
+    }
+    return { words, sentence, i : sentence[0] == group.start ? 0 : -1 };
   }
 
   endSubset() {
@@ -232,7 +231,6 @@ class TabJF_Syntax {
 
     if ( subset.sets[letter]?.subset ) {
       words.push(this.syntax.create.span( letterSet.attrs, sentence.substr( 0, letter.length )));
-      this.syntax.groupPath.push(letter);
       const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(letter.length), debug, subset);
       words = res.words;
       sentence = res.sentence;
@@ -247,7 +245,7 @@ class TabJF_Syntax {
   }
 
   startNewSubset(letter, letterSet, word, words, sentence, debug, subset) {
-    console.log(debug, 'Start subset', '`' + letter + '`', '`' + word + '`', '`' + sentence + '`');
+    this.syntax.groupPath.push(letter);
     const group = subset.sets[letter];
     if (group?.triggers) {
       const triggers = group.triggers;

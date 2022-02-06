@@ -80,7 +80,7 @@ class TabJF {
     this.editor   = editor;
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
-    console.info(this);
+    window.tab = this;
     const required = {
       left   : 0,
       top    : 0,
