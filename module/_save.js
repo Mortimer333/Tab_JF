@@ -137,12 +137,10 @@ class TabJF_Save {
     // this._save.slowVersion(version);
 
     const focus = version[ version.length - 1 ].focus;
-
-    this.caret.refocus(
-      focus.letter,
-      focus.line,
-      focus.childIndex,
-    );
+    this.lastX          = focus.lastX;
+    this.pos.letter     = focus.letter;
+    this.pos.line       = focus.line;
+    this.pos.childIndex = focus.childIndex;
 
     if ( !this.is.line.visible( focus.line ) ) {
       this.render.move.page({ offset : focus.line - Math.floor( this.render.linesLimit/2 ) });

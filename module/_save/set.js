@@ -9,6 +9,7 @@ class TabJF_Save_Set {
       line       : this.pos.line,
       childIndex : this.get.childIndex(this.pos.el),
       topLine    : this.render.hidden,
+      lastX      : this.get.realPos().x
     };
   }
 
