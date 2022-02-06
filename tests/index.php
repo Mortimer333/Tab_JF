@@ -129,8 +129,9 @@
   position  : absolute   ;
   background-color : #FFF;
   animation : tabjf_blink 1s linear infinite;
+  backdrop-filter: url(data:png/image;base64,);
 }`;
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height }, true);
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : contentText }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);

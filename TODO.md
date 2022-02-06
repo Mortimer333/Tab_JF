@@ -17,4 +17,16 @@
 ## Thinkers
 
 - Add webkit and moz styles
+- On doubleclick save selection
 - Add all functions
+  - url
+  - blur
+  - brightness
+  - contrast
+  - drop-shadow
+  - grayscale
+  - hue-rotate
+  - invert
+  - opacity
+  - sepia
+  - saturate

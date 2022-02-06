@@ -190,7 +190,24 @@ class TabJF_Syntax {
         triggers?.end.bind(group.subset.sets[letter])( word, words, letter, sentence, group, this.syntax );
       }
     }
-    return { words, sentence, i : sentence[0] == group.start ? 0 : -1 };
+    let index = -1;
+    // If current group has the same start as current one jump one so we don't start the same subset again,
+    // or if the end of sentence is the same as the end of previous subset (we don't want to end two subsets
+    // on the same landmark)
+    if (
+      sentence[0] == group.start
+      || (
+        sentence[0] == this.syntax.groups[0].end
+        || (
+          typeof this.syntax.groups[0].end == 'object'
+          && this.syntax.groups[0].end[sentence[0]]
+        )
+      )
+    ) {
+      index = 0;
+    }
+
+    return { words, sentence, i : index };
   }
 
   endSubset() {
