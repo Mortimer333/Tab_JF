@@ -5,22 +5,9 @@ let rgb; export default rgb = {
   attrs : {
     style : 'color:pink;'
   },
-  triggers : {
-    start : [
-      function () {
-        this.subset.sets.a.set = false;
-      }
-    ]
-  },
   end : ")",
   subset : {
     sets : {
-      '(' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       'var(' : varF,
       'calc(' : calc,
       ',' : {

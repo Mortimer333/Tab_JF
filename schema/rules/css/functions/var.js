@@ -7,12 +7,6 @@ let varF; export default varF = {
   },
   subset : {
     sets : {
-      ')' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       '(' : {
         single : true,
         attrs : {

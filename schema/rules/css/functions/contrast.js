@@ -8,12 +8,6 @@ let contrast; export default contrast = {
   end : ")",
   subset : {
     sets : {
-      '(' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       'var(' : varF,
       'calc(' : calc,
       ')' : {

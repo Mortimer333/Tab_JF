@@ -32,7 +32,7 @@
   - [DONE] opacity
   - [DONE] sepia
   - [DONE] saturate
-  - linear-gradient
+  - [DONE] linear-gradient
   - stylistic
   - styleset
   - character-variant

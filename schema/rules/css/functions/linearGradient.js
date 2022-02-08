@@ -1,15 +1,49 @@
 import functions from '../../../functions/css.js';
 import calc from './calc.js';
 import varF from './var.js';
-let hsl; export default hsl = {
+import rgb from './rgb.js';
+import hsl from './hsl.js';
+import hwb from './hwb.js';
+
+let linearGradient; export default linearGradient = {
   attrs : {
     style : 'color:pink;'
   },
   end : ")",
   subset : {
     sets : {
+      'to' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'left' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'right' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'bottom' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'top' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
       'var(' : varF,
       'calc(' : calc,
+      'rgb(' : rgb,
+      'rgba(' : rgb,
+      'hsl(' : hsl,
+      'hsla(' : hsl,
+      'hwb(' : hwb,
       ',' : {
         single : true,
         attrs : {
@@ -32,8 +66,10 @@ let hsl; export default hsl = {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
           if (
-            this.functions.number(subset, word)
+            this.functions.color(subset, word)
+            || this.functions.turn(subset, word)
             || this.functions.procent(subset, word)
+            || this.functions.degree(subset, word)
           ) {
             return {
               style : 'color:#F00;'

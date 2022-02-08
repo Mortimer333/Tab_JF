@@ -7,12 +7,6 @@ let calc; export default calc = {
   end : ")",
   subset : {
     sets : {
-      '(' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       'var(' : varF,
       ',' : {
         single : true,

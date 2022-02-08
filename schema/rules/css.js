@@ -17,6 +17,7 @@ import invert from './css/functions/invert.js';
 import opacity from './css/functions/opacity.js';
 import sepia from './css/functions/sepia.js';
 import saturate from './css/functions/saturate.js';
+import linearGradient from './css/functions/linearGradient.js';
 
 let paths; export default paths = {
   lines : {},
@@ -208,6 +209,7 @@ let paths; export default paths = {
                   'opacity(' : opacity,
                   'sepia(' : sepia,
                   'saturate(' : saturate,
+                  'linear-gradient(' : linearGradient,
                   default : {
                     validation : null,
                     wordCount : 0,

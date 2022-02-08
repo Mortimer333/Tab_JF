@@ -150,6 +150,12 @@
   backdrop-filter: sepia(.5);
   backdrop-filter: saturate(.5);
   backdrop-filter: saturate(-1000%);
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+  background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  background: linear-gradient(#e66465, #9198e5);
 }`;
       const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : contentText }, true);
       console.info(tabEditor);

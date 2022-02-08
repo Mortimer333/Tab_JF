@@ -8,12 +8,6 @@ let url; export default url = {
   end : ")",
   subset : {
     sets : {
-      '(' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       'var(' : varF,
       '"' : doubleQuote,
       "'" : singleQuote,
