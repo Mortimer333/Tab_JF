@@ -14,8 +14,8 @@ let contrast; export default contrast = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
-      'calc' : calc,
+      'var(' : varF,
+      'calc(' : calc,
       ')' : {
         single : true,
         attrs : {

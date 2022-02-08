@@ -21,27 +21,12 @@ let rgb; export default rgb = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
-      'calc' : calc,
+      'var(' : varF,
+      'calc(' : calc,
       ',' : {
         single : true,
         attrs : {
           style : 'color:#F00;'
-        }
-      },
-      'a' : {
-        set : false,
-        single : true,
-        run : function () {
-          if (this.set) {
-            return {
-              class : 'mistake'
-            };
-          }
-          this.set = true;
-          return {
-            style : 'color:pink;'
-          }
         }
       },
       ' ' : {

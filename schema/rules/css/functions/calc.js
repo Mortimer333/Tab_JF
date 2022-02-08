@@ -13,7 +13,7 @@ let calc; export default calc = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
+      'var(' : varF,
       ',' : {
         single : true,
         attrs : {

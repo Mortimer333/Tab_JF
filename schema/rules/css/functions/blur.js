@@ -14,8 +14,8 @@ let blur; export default blur = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
-      'calc' : calc,
+      'var(' : varF,
+      'calc(' : calc,
       ')' : {
         single : true,
         attrs : {

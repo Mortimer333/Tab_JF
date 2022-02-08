@@ -47,11 +47,13 @@ let dropShadow; export default dropShadow = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
-      'calc' : calc,
-      'rgb' : rgb,
-      'hsl' : calc,
-      'hwb' : hwb,
+      'var(' : varF,
+      'calc(' : calc,
+      'rgb(' : rgb,
+      'rgba(' : rgb,
+      'hsl(' : hsl,
+      'hsla(' : hsl,
+      'hwb(' : hwb,
       ')' : {
         single : true,
         attrs : {

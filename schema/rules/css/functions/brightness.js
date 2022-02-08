@@ -14,8 +14,8 @@ let brightness; export default brightness = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
-      'calc' : calc,
+      'var(' : varF,
+      'calc(' : calc,
       ')' : {
         single : true,
         attrs : {

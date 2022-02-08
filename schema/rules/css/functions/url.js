@@ -14,7 +14,7 @@ let url; export default url = {
           style : 'color:#F00;'
         }
       },
-      'var' : varF,
+      'var(' : varF,
       '"' : doubleQuote,
       "'" : singleQuote,
       '#' : {
