@@ -9,6 +9,14 @@ import hwb from './css/functions/hwb.js';
 import url from './css/functions/url.js';
 import blur from './css/functions/blur.js';
 import brightness from './css/functions/brightness.js';
+import contrast from './css/functions/contrast.js';
+import dropShadow from './css/functions/dropShadow.js';
+import grayscale from './css/functions/grayscale.js';
+import hueRotate from './css/functions/hueRotate.js';
+import invert from './css/functions/invert.js';
+import opacity from './css/functions/opacity.js';
+import sepia from './css/functions/sepia.js';
+import saturate from './css/functions/saturate.js';
 
 let paths; export default paths = {
   lines : {},
@@ -80,12 +88,14 @@ let paths; export default paths = {
               },
               end : ';',
               triggers : {
-                end : function (word, words, letter, sentence, group) {
-                  group.subset.sets.default.wordCount = 0;
-                },
+                end : [
+                  function (word, words, letter, sentence, group) {
+                    group.subset.sets.default.wordCount = 0;
+                  }
+                ],
                 line : {
-                  start : functions.line.start,
-                  end : functions.line.end
+                  start : [functions.line.start],
+                  end : [functions.line.end]
                 }
               },
               subset : {
@@ -128,7 +138,7 @@ let paths; export default paths = {
                     },
                     triggers : {
                       line : {
-                        start : functions.line.start
+                        start : [functions.line.start]
                       }
                     },
                     end : '"',
@@ -154,7 +164,7 @@ let paths; export default paths = {
                     },
                     triggers : {
                       line : {
-                        start : functions.line.start
+                        start : [functions.line.start]
                       }
                     },
                     end : "'",
@@ -188,6 +198,14 @@ let paths; export default paths = {
                   'url' : url,
                   'blur' : blur,
                   'brightness' : brightness,
+                  'contrast' : contrast,
+                  'drop-shadow' : dropShadow,
+                  'grayscale' : grayscale,
+                  'hue-rotate' : hueRotate,
+                  'invert' : invert,
+                  'opacity' : opacity,
+                  'sepia' : sepia,
+                  'saturate' : saturate,
                   default : {
                     validation : null,
                     wordCount : 0,

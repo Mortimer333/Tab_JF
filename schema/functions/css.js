@@ -102,9 +102,7 @@ let functions; export default functions = {
   color : function ( group, value ) {
     var el = document.createElement('div');
     el.style.backgroundColor = value;
-    if ( !!el.style.backgroundColor ) return true;
-    const colorFuncs = ["rgb", "rgba", "hsl", "hsla", "hwb"];
-    return colorFuncs.indexOf(value) !== -1;
+    return !!el.style.backgroundColor;
   },
   image : function ( group, value ) {
     const imageFuncs = ["repeating-linear-gradient", "linear-gradient", "url"];
@@ -132,63 +130,43 @@ let functions; export default functions = {
       pt : true,
     };
 
-    let firstLetter = value[0];
-    let lastLetter  = value[value.length - 1];
-    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
+    const maxUnitLength = 4;
+    const minUnitLength = 2;
+    const numberMin = value.substr(0, value.length - maxUnitLength);
+    const numberMax = value.substr(0, value.length - minUnitLength);
+
+    if (isNaN(numberMin) && isNaN(numberMax)) {
       return false;
     }
 
-    value = value.substr(1).replace(/[0-9]/g, '');
-    return value.length == 0 || !!units[value];
+    let unit = value.substr(-maxUnitLength);
+    if (units[unit]) {
+      return true;
+    }
+    
+    unit = value.substr(-minUnitLength);
+    return units[unit];
+  },
+  unit : function ( group, value, unit ) {
+    let number = value.substr(0, value.length - unit.length);
+
+    if ( isNaN(number) ) {
+      return false;
+    }
+
+    return value.substr(-unit.length) == unit;
   },
   degree : function ( group, value ) {
-    let firstLetter = value[0];
-    let lastLetter  = value[value.length - 1];
-
-    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
-      return false;
-    }
-
-    value = value.substr(1).replace(/[0-9]/g, '');
-    return value !== 'deg';
+    return this.unit( group, value, 'deg');
   },
-
   fraction : function ( group, value ) {
-    let firstLetter = value[0];
-    let lastLetter  = value[value.length - 1];
-
-    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
-      return false;
-    }
-
-    value = value.substr(1).replace(/[0-9]/g, '');
-    return value !== 'fr';
+    return this.unit( group, value, 'fr');
   },
-
-
   turn : function ( group, value ) {
-    let firstLetter = value[0];
-    let lastLetter  = value[value.length - 1];
-
-    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
-      return false;
-    }
-
-    value = value.substr(1).replace(/[0-9]/g, '');
-    return value !== 'turn';
+    return this.unit( group, value, 'turn');
   },
-
-
   rad : function ( group, value ) {
-    let firstLetter = value[0];
-    let lastLetter  = value[value.length - 1];
-
-    if ( firstLetter != '-' && isNaN(firstLetter) || !isNaN(lastLetter) ) {
-      return false;
-    }
-
-    value = value.substr(1).replace(/[0-9]/g, '');
-    return value !== 'rad';
+    return this.unit( group, value, 'rad');
   },
 
   clone: function (object) {

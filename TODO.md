@@ -21,12 +21,12 @@
 - Add all functions
   - [DONE] url
   - [DONE] blur
-  - brightness
-  - contrast
-  - drop-shadow
-  - grayscale
-  - hue-rotate
-  - invert
-  - opacity
-  - sepia
-  - saturate
+  - [DONE] brightness
+  - [DONE] contrast
+  - [DONE] drop-shadow
+  - [DONE] grayscale
+  - [DONE] hue-rotate
+  - [DONE] invert
+  - [DONE] opacity
+  - [DONE] sepia
+  - [DONE] saturate

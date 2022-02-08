@@ -8,7 +8,7 @@ let parenthesis; export default parenthesis = {
   selfref : true,
   triggers : {
     line : {
-      start : functions.line.start
+      start : [functions.line.start]
     }
   },
   subset : {
@@ -60,7 +60,7 @@ let parenthesis; export default parenthesis = {
         },
         triggers : {
           line : {
-            start : functions.line.start
+            start : [functions.line.start]
           }
         },
         end : '"',
@@ -86,7 +86,7 @@ let parenthesis; export default parenthesis = {
         },
         triggers : {
           line : {
-            start : functions.line.start
+            start : [functions.line.start]
           }
         },
         end : "'",

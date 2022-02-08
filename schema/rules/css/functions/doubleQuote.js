@@ -5,7 +5,7 @@ let doubleQuote;export default doubleQuote = {
   },
   triggers : {
     line : {
-      start : functions.line.start
+      start : [functions.line.start]
     }
   },
   end : '"',

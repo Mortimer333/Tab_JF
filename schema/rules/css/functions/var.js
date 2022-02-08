@@ -37,9 +37,11 @@ let varF; export default varF = {
           ')' : true
         },
         triggers : {
-          end : function ( word, words, letter, sentence, group, syntax ) {
-            if (letter == ')') syntax.endSubset();
-          }
+          end : [
+            function ( word, words, letter, sentence, group, syntax ) {
+              if (letter == ')') syntax.endSubset();
+            }
+          ]
         },
         attrs : {
           style : 'color:#F00;'

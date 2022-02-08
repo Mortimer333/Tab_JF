@@ -4,15 +4,17 @@ let variable; export default variable = {
     ' ' : true
   },
   triggers : {
-    start : function ( letter, letterSet, word, words, sentence, subset ) {
-      subset.sets[':'].subset.sets.default.validation = {
-        type : {
-          pass : true
-        },
-        multi : true,
-        seperated : true
-      };
-    }
+    start : [
+      function ( letter, letterSet, word, words, sentence, subset ) {
+        subset.sets[':'].subset.sets.default.validation = {
+          type : {
+            pass : true
+          },
+          multi : true,
+          seperated : true
+        };
+      }
+    ]
   },
   attrs : {
     style : 'color:#F00;'

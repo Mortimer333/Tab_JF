@@ -6,9 +6,11 @@ let rgb; export default rgb = {
     style : 'color:pink;'
   },
   triggers : {
-    start : function () {
-      this.subset.sets.a.set = false;
-    }
+    start : [
+      function () {
+        this.subset.sets.a.set = false;
+      }
+    ]
   },
   end : ")",
   subset : {
@@ -31,6 +33,7 @@ let rgb; export default rgb = {
         set : false,
         single : true,
         run : function () {
+          console.log(this.set);
           if (this.set) {
             return {
               class : 'mistake'
@@ -46,6 +49,12 @@ let rgb; export default rgb = {
         single : true,
         attrs : {
           class : 'spaces'
+        }
+      },
+      ')' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
         }
       },
       default : {

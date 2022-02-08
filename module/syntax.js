@@ -31,12 +31,15 @@ class TabJF_Syntax {
       if (group?.triggers) {
         const triggers = group.triggers;
         if (triggers?.line?.start) {
-          triggers?.line.start.bind(this.settings.syntax)(
-            i + start,
-            line,
-            sentence,
-            group.subset.sets
-          );
+          triggers?.line.start.forEach( func => {
+            func.bind(this.settings.syntax)(
+              i + start,
+              line,
+              sentence,
+              group.subset.sets
+            );
+          });
+
         }
       }
 
@@ -51,11 +54,14 @@ class TabJF_Syntax {
       if (group?.triggers) {
         const triggers = group.triggers;
         if (triggers?.line?.end) {
-          triggers?.line.end.bind(this.settings.syntax)(
-            i + start,
-            line,
-            group.subset.sets
-          );
+          triggers?.line.end.forEach(func => {
+            func.bind(this.settings.syntax)(
+              i + start,
+              line,
+              group.subset.sets
+            );
+          });
+
         }
       }
 
@@ -187,7 +193,9 @@ class TabJF_Syntax {
     if (group?.triggers) {
       const triggers = group.triggers;
       if (triggers?.end) {
-        triggers?.end.bind(group.subset.sets[letter])( word, words, letter, sentence, group, this.syntax );
+        triggers?.end.forEach( func => {
+          func.bind(group)( word, words, letter, sentence, group, this.syntax );
+        });
       }
     }
     let index = -1;
@@ -267,14 +275,16 @@ class TabJF_Syntax {
     if (group?.triggers) {
       const triggers = group.triggers;
       if (triggers?.start) {
-        triggers?.start.bind(group)(
-          letter,
-          letterSet,
-          word,
-          words,
-          sentence,
-          subset
-        );
+        triggers?.start.forEach( func => {
+          func.bind(group)(
+            letter,
+            letterSet,
+            word,
+            words,
+            sentence,
+            subset
+          );
+        });
       }
     }
 

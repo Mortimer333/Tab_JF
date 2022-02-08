@@ -60,6 +60,12 @@ let url; export default url = {
           class : 'spaces'
         }
       },
+      ')' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
+        }
+      },
       default : {
         attrs : {
           style : 'color:#F00;'

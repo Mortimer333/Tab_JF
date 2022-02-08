@@ -16,6 +16,18 @@ let brightness; export default brightness = {
       },
       'var' : varF,
       'calc' : calc,
+      ')' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
+        }
+      },
+      ' ' : {
+        single : true,
+        attrs : {
+          class : 'spaces'
+        }
+      },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {

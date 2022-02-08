@@ -5,7 +5,7 @@ let singleQuote;export default singleQuote = {
   },
   triggers : {
     line : {
-      start : functions.line.start
+      start : [functions.line.start]
     }
   },
   end : "'",
