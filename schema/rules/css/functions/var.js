@@ -1,6 +1,6 @@
 import singleQuote from './singleQuote.js';
 import doubleQuote from './doubleQuote.js';
-let varFunction; export default varFunction = {
+let varF; export default varF = {
   end : ')',
   attrs : {
     style : 'color:pink;'

@@ -1,12 +1,14 @@
 import styles from '../dictionary/css.js';
 import functions from '../functions/css.js';
 import variable from './css/variable.js';
-import varFunction from './css/functions/varFunction.js';
-import calcFunction from './css/functions/calcFunction.js';
-import rgbFunction from './css/functions/rgbFunction.js';
-import hslFunction from './css/functions/hslFunction.js';
-import hwbFunction from './css/functions/hwbFunction.js';
-import urlFunction from './css/functions/urlFunction.js';
+import varF from './css/functions/var.js';
+import calc from './css/functions/calc.js';
+import rgb from './css/functions/rgb.js';
+import hsl from './css/functions/hsl.js';
+import hwb from './css/functions/hwb.js';
+import url from './css/functions/url.js';
+import blur from './css/functions/blur.js';
+import brightness from './css/functions/brightness.js';
 
 let paths; export default paths = {
   lines : {},
@@ -178,12 +180,14 @@ let paths; export default paths = {
                       style : 'color:#F00;'
                     }
                   },
-                  'calc' : calcFunction,
-                  'var' : varFunction,
-                  'rgb' : rgbFunction,
-                  'hsl' : hslFunction,
-                  'hwb' : hwbFunction,
-                  'url' : urlFunction,
+                  'calc' : calc,
+                  'var' : varF,
+                  'rgb' : rgb,
+                  'hsl' : hsl,
+                  'hwb' : hwb,
+                  'url' : url,
+                  'blur' : blur,
+                  'brightness' : brightness,
                   default : {
                     validation : null,
                     wordCount : 0,

@@ -19,8 +19,8 @@
 - Add webkit and moz styles
 - On doubleclick save selection
 - Add all functions
-  - url
-  - blur
+  - [DONE] url
+  - [DONE] blur
   - brightness
   - contrast
   - drop-shadow

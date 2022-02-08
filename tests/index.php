@@ -130,6 +130,11 @@
   background-color : #FFF;
   animation : tabjf_blink 1s linear infinite;
   backdrop-filter: url(data:png/image;base64,);
+  backdrop-filter: blur(2px);
+  backdrop-filter: blur(0);
+  backdrop-filter: blur(20rem);
+  backdrop-filter: brightness(.20);
+  backdrop-filter: brightness(20%);
 }`;
       const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : contentText }, true);
       console.info(tabEditor);

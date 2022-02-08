@@ -1,7 +1,7 @@
 import functions from '../../../functions/css.js';
-import calcFunction from './calcFunction.js';
-import varFunction from './varFunction.js';
-let rgbFunction; export default rgbFunction = {
+import calc from './calc.js';
+import varF from './var.js';
+let rgb; export default rgb = {
   attrs : {
     style : 'color:pink;'
   },
@@ -19,8 +19,8 @@ let rgbFunction; export default rgbFunction = {
           style : 'color:#F00;'
         }
       },
-      'var' : varFunction,
-      'calc' : calcFunction,
+      'var' : varF,
+      'calc' : calc,
       ',' : {
         single : true,
         attrs : {

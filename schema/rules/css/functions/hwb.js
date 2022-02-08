@@ -1,14 +1,9 @@
 import functions from '../../../functions/css.js';
-import calcFunction from './calcFunction.js';
-import varFunction from './varFunction.js';
-let hslFunction; export default hslFunction = {
+import calc from './calc.js';
+import varF from './var.js';
+let hwb; export default hwb = {
   attrs : {
     style : 'color:pink;'
-  },
-  triggers : {
-    start : function () {
-      this.subset.sets.a.set = false;
-    }
   },
   end : ")",
   subset : {
@@ -19,33 +14,18 @@ let hslFunction; export default hslFunction = {
           style : 'color:#F00;'
         }
       },
-      'var' : varFunction,
-      'calc' : calcFunction,
-      ',' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      'a' : {
-        set : false,
-        single : true,
-        run : function () {
-          if (this.set) {
-            return {
-              class : 'mistake'
-            };
-          }
-          this.set = true;
-          return {
-            style : 'color:pink;'
-          }
-        }
-      },
+      'var' : varF,
+      'calc' : calc,
       ' ' : {
         single : true,
         attrs : {
           class : 'spaces'
+        }
+      },
+      '/' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
         }
       },
       default : {
@@ -54,6 +34,7 @@ let hslFunction; export default hslFunction = {
           if (
             this.functions.number(subset, word)
             || this.functions.procent(subset, word)
+            || this.functions.rad(subset, word)
           ) {
             return {
               style : 'color:#F00;'

@@ -1,7 +1,7 @@
-import varFunction from './varFunction.js';
+import varF from './var.js';
 import singleQuote from './singleQuote.js';
 import doubleQuote from './doubleQuote.js';
-let urlFunction; export default urlFunction = {
+let url; export default url = {
   attrs : {
     style : 'color:pink;'
   },
@@ -14,7 +14,7 @@ let urlFunction; export default urlFunction = {
           style : 'color:#F00;'
         }
       },
-      'var' : varFunction,
+      'var' : varF,
       '"' : doubleQuote,
       "'" : singleQuote,
       '#' : {
