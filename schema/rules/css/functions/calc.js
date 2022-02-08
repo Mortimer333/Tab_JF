@@ -59,7 +59,6 @@ let calc; export default calc = {
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
-          console.log(word);
           if (
             this.functions.number(subset, word)
             || this.functions.length(subset, word)

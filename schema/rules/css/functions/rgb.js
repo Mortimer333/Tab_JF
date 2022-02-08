@@ -33,7 +33,6 @@ let rgb; export default rgb = {
         set : false,
         single : true,
         run : function () {
-          console.log(this.set);
           if (this.set) {
             return {
               class : 'mistake'
