@@ -1,7 +1,7 @@
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
-let grayscale; export default grayscale = {
+let greyscale; export default greyscale = {
   attrs : {
     style : 'color:pink;'
   },

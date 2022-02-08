@@ -156,8 +156,8 @@
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
       // const tUnit = new Unit(tabEditor);
-      // const tSyntaxCss = new SyntaxCssTest(tabEditor);
-      // console.log(tSyntaxCss);
+      const tSyntaxCss = new SyntaxCssTest(tabEditor);
+      console.log(tSyntaxCss);
     </script>
   </body>
 </html>

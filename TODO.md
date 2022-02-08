@@ -14,10 +14,12 @@
 
 ## Bugs:
 
+- On doubleclick save selection
+- When scrolled selection starts from top but should from click point
+
 ## Thinkers
 
 - Add webkit and moz styles
-- On doubleclick save selection
 - Add all functions
   - [DONE] url
   - [DONE] blur
@@ -30,3 +32,38 @@
   - [DONE] opacity
   - [DONE] sepia
   - [DONE] saturate
+  - linear-gradient
+  - stylistic
+  - styleset
+  - character-variant
+  - swash
+  - ornaments
+  - annotation
+  - minmax
+  - fit-content
+  - repeat
+  - subgrid
+  - masonery
+  - matrix
+  - matrix3d
+  - perspective
+  - rotate
+  - rotate3d
+  - rotateX
+  - rotateY
+  - rotateZ
+  - translate
+  - translate3d
+  - translateX
+  - translateY
+  - translateZ
+  - scale
+  - scale3d
+  - scaleX
+  - scaleY
+  - scaleZ
+  - skew
+  - skewX
+  - skewY
+  - cubic-bezier
+  - steps

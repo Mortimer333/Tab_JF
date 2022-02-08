@@ -11,7 +11,7 @@ import blur from './css/functions/blur.js';
 import brightness from './css/functions/brightness.js';
 import contrast from './css/functions/contrast.js';
 import dropShadow from './css/functions/dropShadow.js';
-import grayscale from './css/functions/grayscale.js';
+import greyscale from './css/functions/greyscale.js';
 import hueRotate from './css/functions/hueRotate.js';
 import invert from './css/functions/invert.js';
 import opacity from './css/functions/opacity.js';
@@ -190,22 +190,24 @@ let paths; export default paths = {
                       style : 'color:#F00;'
                     }
                   },
-                  'calc' : calc,
-                  'var' : varF,
-                  'rgb' : rgb,
-                  'hsl' : hsl,
-                  'hwb' : hwb,
-                  'url' : url,
-                  'blur' : blur,
-                  'brightness' : brightness,
-                  'contrast' : contrast,
-                  'drop-shadow' : dropShadow,
-                  'grayscale' : grayscale,
-                  'hue-rotate' : hueRotate,
-                  'invert' : invert,
-                  'opacity' : opacity,
-                  'sepia' : sepia,
-                  'saturate' : saturate,
+                  'calc(' : calc,
+                  'var(' : varF,
+                  'rgb(' : rgb,
+                  'rgba(' : rgb,
+                  'hsl(' : hsl,
+                  'hsla(' : hsl,
+                  'hwb(' : hwb,
+                  'url(' : url,
+                  'blur(' : blur,
+                  'brightness(' : brightness,
+                  'contrast(' : contrast,
+                  'drop-shadow(' : dropShadow,
+                  'greyscale(' : greyscale,
+                  'hue-rotate(' : hueRotate,
+                  'invert(' : invert,
+                  'opacity(' : opacity,
+                  'sepia(' : sepia,
+                  'saturate(' : saturate,
                   default : {
                     validation : null,
                     wordCount : 0,
