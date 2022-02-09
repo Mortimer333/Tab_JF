@@ -143,7 +143,7 @@ let functions; export default functions = {
     if (units[unit]) {
       return true;
     }
-    
+
     unit = value.substr(-minUnitLength);
     return units[unit];
   },
@@ -167,6 +167,9 @@ let functions; export default functions = {
   },
   rad : function ( group, value ) {
     return this.unit( group, value, 'rad');
+  },
+  grad : function ( group, value ) {
+    return this.unit( group, value, 'grad');
   },
 
   clone: function (object) {

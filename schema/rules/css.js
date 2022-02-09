@@ -27,6 +27,19 @@ import annotation from './css/functions/annotation.js';
 import minmax from './css/functions/minmax.js';
 import fitContent from './css/functions/fitContent.js';
 import repeat from './css/functions/repeat.js';
+import matrix from './css/functions/matrix.js';
+import perspective from './css/functions/perspective.js';
+import rotate from './css/functions/rotate.js';
+import rotate3d from './css/functions/rotate3d.js';
+import rotateX from './css/functions/rotatex.js';
+import scale from './css/functions/scale.js';
+import scaleX from './css/functions/scaleX.js';
+import skew from './css/functions/skew.js';
+import skewX from './css/functions/skewX.js';
+import translate from './css/functions/translate.js';
+import translateX from './css/functions/translateX.js';
+import cubicBezier from './css/functions/cubicBezier.js';
+import steps from './css/functions/steps.js';
 
 let paths; export default paths = {
   lines : {},
@@ -228,6 +241,28 @@ let paths; export default paths = {
                   'minmax(' : minmax,
                   'fit-content(' : fitContent,
                   'repeat(' : repeat,
+                  'matrix(' : matrix,
+                  'matrix3d(' : matrix,
+                  'perspective(' : perspective,
+                  'rotate(' : rotate,
+                  'rotate3d(' : rotate3d,
+                  'rotateX(' : rotateX,
+                  'rotateY(' : rotateX,
+                  'rotateZ(' : rotateX,
+                  'scale(' : scale,
+                  'scaleX(' : scaleX,
+                  'scaleY(' : scaleX,
+                  'scale3d(' : scale,
+                  'skew(' : skew,
+                  'skewX(' : skewX,
+                  'skewY(' : skewX,
+                  'translate(' : translate,
+                  'translate3d(' : translate,
+                  'translateX(' : translateX,
+                  'translateY(' : translateX,
+                  'translateZ(' : translateX,
+                  'cubic-bezier(' : cubicBezier,
+                  'steps(' : steps,
                   default : {
                     validation : null,
                     wordCount : 0,
