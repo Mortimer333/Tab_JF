@@ -33,15 +33,15 @@
   - [DONE] sepia
   - [DONE] saturate
   - [DONE] linear-gradient
-  - stylistic
-  - styleset
-  - character-variant
-  - swash
-  - ornaments
-  - annotation
-  - minmax
-  - fit-content
-  - repeat
+  - [DONE] stylistic
+  - [DONE] styleset
+  - [DONE] character-variant
+  - [DONE] swash
+  - [DONE] ornaments
+  - [DONE] annotation
+  - [DONE] minmax
+  - [DONE] fit-content
+  - [DONE] repeat
   - subgrid
   - masonery
   - matrix

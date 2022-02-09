@@ -156,6 +156,10 @@
   background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
   background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
   background: linear-gradient(#e66465, #9198e5);
+  grid-template-columns: minmax(0.1fr) minmax(0.1fr) minmax(0.1fr);
+  grid-template-columns: fit-content(10%);
+  margin : repeat(4, [col-start] min-content [col-middle] max-content [col-end]);
+  margin: repeat(4, [col-start] fit-content(200px) [col-end]);
 }`;
       const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : contentText }, true);
       console.info(tabEditor);

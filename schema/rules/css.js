@@ -18,6 +18,15 @@ import opacity from './css/functions/opacity.js';
 import sepia from './css/functions/sepia.js';
 import saturate from './css/functions/saturate.js';
 import linearGradient from './css/functions/linearGradient.js';
+import stylistic from './css/functions/stylistic.js';
+import styleset from './css/functions/styleset.js';
+import characterVariant from './css/functions/characterVariant.js';
+import swash from './css/functions/swash.js';
+import ornaments from './css/functions/ornaments.js';
+import annotation from './css/functions/annotation.js';
+import minmax from './css/functions/minmax.js';
+import fitContent from './css/functions/fitContent.js';
+import repeat from './css/functions/repeat.js';
 
 let paths; export default paths = {
   lines : {},
@@ -210,6 +219,15 @@ let paths; export default paths = {
                   'sepia(' : sepia,
                   'saturate(' : saturate,
                   'linear-gradient(' : linearGradient,
+                  'stylistic(' : stylistic,
+                  'styleset(' : styleset,
+                  'characterVariant(' : characterVariant,
+                  'swash(' : swash,
+                  'ornaments(' : ornaments,
+                  'annotation(' : annotation,
+                  'minmax(' : minmax,
+                  'fit-content(' : fitContent,
+                  'repeat(' : repeat,
                   default : {
                     validation : null,
                     wordCount : 0,
