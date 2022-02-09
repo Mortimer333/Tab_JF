@@ -1,18 +1,83 @@
 import functions from '../../../functions/css.js';
-import calc from './calc.js';
 import varF from './var.js';
+import calc from './calc.js';
 import rgb from './rgb.js';
 import hsl from './hsl.js';
 import hwb from './hwb.js';
-
-let linearGradient; export default linearGradient = {
+let radialGradient; export default radialGradient = {
   attrs : {
     style : 'color:pink;'
   },
   end : ")",
   subset : {
     sets : {
-      'to' : {
+      'var(' : varF,
+      'calc(' : calc,
+      'rgb(' : rgb,
+      'rgba(' : rgb,
+      'hsl(' : hsl,
+      'hsla(' : hsl,
+      'hwb(' : hwb,
+      ')' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
+        }
+      },
+      ' ' : {
+        single : true,
+        attrs : {
+          class : 'spaces'
+        }
+      },
+      ',' : {
+        single : true,
+        attrs : {
+          style : 'color:#F00;'
+        }
+      },
+      'ellipse' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'circle' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'closest-side' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'closest-corner' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'farthest-side' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'farthest-corner' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+
+      'center' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'top' : {
+        attrs : {
+          style : 'color:pink;'
+        }
+      },
+      'bottom' : {
         attrs : {
           style : 'color:pink;'
         }
@@ -27,39 +92,9 @@ let linearGradient; export default linearGradient = {
           style : 'color:pink;'
         }
       },
-      'bottom' : {
+      'at' : {
         attrs : {
           style : 'color:pink;'
-        }
-      },
-      'top' : {
-        attrs : {
-          style : 'color:pink;'
-        }
-      },
-      'var(' : varF,
-      'calc(' : calc,
-      'rgb(' : rgb,
-      'rgba(' : rgb,
-      'hsl(' : hsl,
-      'hsla(' : hsl,
-      'hwb(' : hwb,
-      ',' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
-      ')' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
         }
       },
       default : {
@@ -68,9 +103,7 @@ let linearGradient; export default linearGradient = {
           if (
             this.functions.color(subset, word)
             || this.functions.length(subset, word)
-            || this.functions.turn(subset, word)
             || this.functions.procent(subset, word)
-            || this.functions.degree(subset, word)
           ) {
             return {
               style : 'color:#F00;'

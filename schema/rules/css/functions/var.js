@@ -13,6 +13,8 @@ let varF; export default varF = {
           style : 'color:#F00;'
         }
       },
+      '"' : doubleQuote,
+      "'" : singleQuote,
       ',' : {
         single : true,
         attrs : {

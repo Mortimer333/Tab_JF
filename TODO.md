@@ -66,4 +66,25 @@
   - [DONE] skewX
   - [DONE] skewY
   - [DONE] cubic-bezier
-  - steps
+  - [DONE] steps
+  - [DONE] clamp
+  - [DONE] max
+  - [DONE] min
+  - [DONE] conic-gradient
+  - [DONE] radial-gradient
+  - [DONE] repeating-linear-gradient
+  - [DONE] repeating-radial-gradient
+  - [DONE] repeating-conic-gradient
+  - [DONE] cross-fade
+  - [EXP] element
+  - [EXP] paint
+  - [DONE] counter
+  - [DONE] counters
+  - [DONE] symbols
+  - [DONE] circle
+  - [DONE] ellipse
+  - [DONE] inset
+  - [DONE] polygon
+  - [DONE] path
+  - [EXP] attr
+  - env

@@ -59,6 +59,10 @@ let functions; export default functions = {
     return !!group.values[value];
   },
   procent : function ( group, value ) {
+    if (value == 0) {
+      return true;
+    }
+    
     return new RegExp(/\d%/).test(value);
   },
   number : function ( group, value ) {

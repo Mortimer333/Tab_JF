@@ -40,6 +40,18 @@ import translate from './css/functions/translate.js';
 import translateX from './css/functions/translateX.js';
 import cubicBezier from './css/functions/cubicBezier.js';
 import steps from './css/functions/steps.js';
+import clamp from './css/functions/clamp.js';
+import conicGradient from './css/functions/conicGradient.js';
+import radialGradient from './css/functions/radialGradient.js';
+import crossFade from './css/functions/crossFade.js';
+import counter from './css/functions/counter.js';
+import counters from './css/functions/counters.js';
+import symbols from './css/functions/symbols.js';
+import circle from './css/functions/circle.js';
+import inset from './css/functions/inset.js';
+import polygon from './css/functions/polygon.js';
+import path from './css/functions/path.js';
+import env from './css/functions/env.js';
 
 let paths; export default paths = {
   lines : {},
@@ -263,6 +275,24 @@ let paths; export default paths = {
                   'translateZ(' : translateX,
                   'cubic-bezier(' : cubicBezier,
                   'steps(' : steps,
+                  'clamp(' : clamp,
+                  'max(' : clamp,
+                  'min(' : clamp,
+                  'conic-gradient(' : conicGradient,
+                  'radial-gradient(' : radialGradient,
+                  'repeating-linear-gradient(' : linearGradient,
+                  'repeating-conic-gradient(' : conicGradient,
+                  'repeating-radial-gradient(' : radialGradient,
+                  'cross-fade(' : crossFade,
+                  'counter(' : counter,
+                  'counters(' : counters,
+                  'symbols(' : symbols,
+                  'circle(' : circle,
+                  'ellipse(' : circle,
+                  'inset(' : inset,
+                  'polygon(' : polygon,
+                  'path(' : path,
+                  'env(' : env,
                   default : {
                     validation : null,
                     wordCount : 0,

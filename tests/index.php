@@ -184,6 +184,31 @@
   margin: cubic-bezier(0.1, 0.7, 1.0, 0.1);
   margin: steps(2, jump-start);
   margin: steps(2, start);
+  margin: clamp(20px, 100px);
+  margin: min(50px, -20px);
+  margin: max(45vh, 10vw);
+  background: conic-gradient(
+     red 6deg, orange 6deg 18deg, yellow 18deg 45deg,
+     green 45deg 110deg, blue 110deg 200deg, purple 200deg);
+  background: radial-gradient(circle at center, red 0, blue, green 100%);
+  background: repeating-linear-gradient(transparent, #4d9f0c 40px),
+            repeating-linear-gradient(0.25turn, transparent, #3f87a6 20px);
+  background: repeating-radial-gradient(circle at 100%, #333, #333 10px, #eee 10px, #eee 20px);
+  background: repeating-conic-gradient(
+    from 3deg at 25% 25%,
+    hsl(200, 100%, 50%) 0deg 15deg,
+    hsl(200, 100%, 60%) 10deg 30deg
+  );
+  margin: cross-fade(url(white.png), url(black.png), 100%);
+  margin: counter(countername, upper-roman);
+  margin: counters(countername, '.', upper-roman);
+  list-style: symbols(cyclic "*" "†" "‡");
+  shape-outside: circle(50%);
+  clip-path: circle(6rem at 12rem 8rem);
+  shape-outside: inset(20px 50px 10px 0 round 50px);
+  clip-path: polygon(50% 2.4%, 34.5% 33.8%, 0% 38.8%, 25% 63.1%, 19.1% 97.6%);
+  margin: path(evenodd,"M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80");
+  margin: env(safe-area-inset-left, 1.4rem);
 }`;
       const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : contentText }, true);
       console.info(tabEditor);
