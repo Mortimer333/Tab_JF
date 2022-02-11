@@ -1,5 +1,6 @@
 import styles from '../dictionary/css.js';
 import functions from '../functions/css.js';
+import pseudoClasses from './css/pseudoClasses.js';
 import variable from './css/variable.js';
 import varF from './css/functions/var.js';
 import calc from './css/functions/calc.js';
@@ -52,7 +53,7 @@ import inset from './css/functions/inset.js';
 import polygon from './css/functions/polygon.js';
 import path from './css/functions/path.js';
 import env from './css/functions/env.js';
-
+console.log(pseudoClasses);
 let paths; export default paths = {
   lines : {},
   subset : {
@@ -369,11 +370,7 @@ let paths; export default paths = {
           style : 'color:#AEE;'
         }
       },
-      ':' : {
-        attrs : {
-          style : 'color:#FEE;'
-        }
-      },
+      ':' : pseudoClasses,
       '@' : {
         run : function ( word, words, letter, sentence, sets, subset ) {
           subset.sets['{'].subset.sets.default.animation = true;
@@ -387,6 +384,30 @@ let paths; export default paths = {
           class : 'spaces'
         },
         single : true
+      },
+      "+" : {
+        single : true,
+        attrs : {
+          style: "color:red;"
+        }
+      },
+      ">" : {
+        single : true,
+        attrs : {
+          style: "color:red;"
+        }
+      },
+      "~" : {
+        single : true,
+        attrs : {
+          style: "color:red;"
+        }
+      },
+      "||" : {
+        single : true,
+        attrs : {
+          style: "color:red;"
+        }
       },
       default : {
         attrs : {

@@ -65,7 +65,6 @@ let dropShadow; export default dropShadow = {
         wordCount : 0,
         max : 4,
         run : function ( word, words, letter, sentence, sets, subset ) {
-          console.log("drop", word);
           this.wordCount++;
           if ((
               this.functions.length(subset, word)
