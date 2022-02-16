@@ -53,62 +53,15 @@ import inset from './css/functions/inset.js';
 import polygon from './css/functions/polygon.js';
 import path from './css/functions/path.js';
 import env from './css/functions/env.js';
-console.log(pseudoClasses);
-let paths; export default paths = {
+import selectors from './css/selectors.js';
+selectors[':'] = pseudoClasses;
+selectors[':'].subset.sets["host("].subset.sets = selectors;
+selectors[':'].subset.sets["host-context("].subset.sets = selectors;
+
+let paths = {
   lines : {},
   subset : {
     sets : {
-      '*' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      '.' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
-      '#' : {
-        attrs : {
-          style : 'color:#0F0;'
-        }
-      },
-      ']' : {
-        attrs : {
-          style : 'color:#00F;'
-        }
-      },
-      '[' : {
-        attrs : {
-          style : 'color:#00F;'
-        },
-        end : ']',
-        subset : {
-          sets : {
-            '=' : {
-              attrs : {
-                style : 'color:#0FF;'
-              }
-            },
-            '"' : {
-              attrs : {
-                style : 'color:#FF0;'
-              }
-            },
-            "'" : {
-              attrs : {
-                style : 'color:#FF0;'
-              }
-            },
-            default : {
-              attrs : {
-                style : 'color:#ABC;'
-              }
-            }
-          }
-        }
-      },
       '{' : {
         attrs : {
           style : 'color:#AEE;'
@@ -370,45 +323,6 @@ let paths; export default paths = {
           style : 'color:#AEE;'
         }
       },
-      ':' : pseudoClasses,
-      '@' : {
-        run : function ( word, words, letter, sentence, sets, subset ) {
-          subset.sets['{'].subset.sets.default.animation = true;
-          return {
-            style : 'color:#EBE;'
-          };
-        }
-      },
-      ' ' : {
-        attrs : {
-          class : 'spaces'
-        },
-        single : true
-      },
-      "+" : {
-        single : true,
-        attrs : {
-          style: "color:red;"
-        }
-      },
-      ">" : {
-        single : true,
-        attrs : {
-          style: "color:red;"
-        }
-      },
-      "~" : {
-        single : true,
-        attrs : {
-          style: "color:red;"
-        }
-      },
-      "||" : {
-        single : true,
-        attrs : {
-          style: "color:red;"
-        }
-      },
       default : {
         attrs : {
           style : 'color:#ECB;'
@@ -417,3 +331,5 @@ let paths; export default paths = {
     }
   }
 };
+paths.subset.sets = Object.assign(paths.subset.sets, selectors);
+export default paths;

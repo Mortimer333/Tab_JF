@@ -21,8 +21,8 @@ let pseudoClasses; export default pseudoClasses = `.tabjf_editor:active {}
 .tabjf_editor:focus-within {}
 .tabjf_editor:has(> img) {}
 .tabjf_editor:host {}
-.tabjf_editor:host() {}
-.tabjf_editor:host-context() {}
+.tabjf_editor:host(.selector #id) {}
+.tabjf_editor:host-context(body.dark-theme) {}
 .tabjf_editor:hover {}
 .tabjf_editor:indeterminate {}
 .tabjf_editor:in-range {}

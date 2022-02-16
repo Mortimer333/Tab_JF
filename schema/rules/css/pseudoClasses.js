@@ -193,14 +193,22 @@ let pseudoClasses; export default pseudoClasses = {
           style: color
         }
       },
-      "host()": {
+      "host(": {
         attrs: {
           style: color
+        },
+        end : ')',
+        subset : {
+          sets : {} // Set selectors here
         }
       },
-      "host-context()": {
+      "host-context(": {
         attrs: {
           style: color
+        },
+        end : ')',
+        subset : {
+          sets : {} // Set selectors here
         }
       },
       "hover": {
@@ -405,7 +413,6 @@ let pseudoClasses; export default pseudoClasses = {
       },
       default : {
         run : function (word, words, letter, sentence, subset) {
-          console.log(word);
           if (word == 'default') {
             return {
               style: color
