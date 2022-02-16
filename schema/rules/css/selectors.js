@@ -1,5 +1,6 @@
 import pseudoClasses from './pseudoClasses.js';
-let selectors; export default selectors = {
+import tags from './tags.js';
+let selectors = {
   '*' : {
     single : true,
     attrs : {
@@ -89,5 +90,7 @@ let selectors; export default selectors = {
     attrs : {
       style: "color:red;"
     }
-  },
-}
+  }
+};
+selectors = Object.assign(selectors, tags);
+export default selectors;

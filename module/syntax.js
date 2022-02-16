@@ -26,7 +26,8 @@ class TabJF_Syntax {
       this.render.content[i + start].groupPath = this.get.clone( this.syntax.groupPath );
       const line     = lines[i];
       const sentence = this.get.sentence( line );
-      let group = this.syntax.groups[0];
+      let group      = this.syntax.groups[0];
+
       // Line start trigger
       if (group?.triggers) {
         const triggers = group.triggers;
@@ -130,7 +131,16 @@ class TabJF_Syntax {
         return this.syntax.endSubsetChecks(i, letter, end, words, sentence, subset, group, debug);
       }
 
-      if ( subset?.sets && subset?.sets[letter] || subset?.sets[sentence.substr(0, i + 1)] ) {
+      if ( subset?.sets &&
+        ((
+            subset?.sets[letter]
+            && !subset?.sets[letter].whole
+          ) || (
+            subset?.sets[sentence.substr(0, i + 1)]
+            && !subset?.sets[sentence.substr(0, i + 1)].whole
+        ))
+      ) {
+        console.log("has subset", letter, sentence.substr(0, i + 1));
         const realLetter = subset?.sets[letter] ? letter : sentence.substr(0, i + 1);
         const results = this.syntax.splitWord( subset, i, realLetter, words, sentence, '\t' + debug );
         words    = results.words;
@@ -139,6 +149,7 @@ class TabJF_Syntax {
         group    = this.syntax.groups[0];
         subset   = group.subset;
         end      = this.syntax.ends[0];
+        console.log("sentence afet", '`' + sentence + '`');
 
       } else if ( group?.selfref && letter == group?.start ) {
         let oldOne = { 'subset' : { 'sets' : { [group.start] : group } } };
@@ -227,9 +238,10 @@ class TabJF_Syntax {
   splitWord( subset, i, letter, words, sentence, debug ) {
     const letterSet = subset?.sets[letter];
     let word = sentence.substr( 0, i - (letter.length - 1) );
-
+    console.log("word to set", '`' + word + '`');
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
+      console.log(wordSet,subset, word);
       let attrs = wordSet.attrs;
       if ( wordSet?.ignore ) wordSet = { attrs : { style : 'color:#FFF;' } };
       if ( wordSet?.run ) {
@@ -308,7 +320,11 @@ class TabJF_Syntax {
   }
 
   getSet(group, word) {
-    return group.sets[word[0]] || group.sets[word] || group.sets['default'] || { attrs : { style : 'color:#FFF;' } };
+    let set = group.sets[word[0]] || group.sets[word] || group.sets['default'] || { attrs : { class : 'mistake' } };
+    if (set.whole && group.sets[word[0]]) {
+      return group.sets[word] || group.sets['default'] || { attrs : { class : 'mistake' } };
+    }
+    return set;
   }
 
   getAttrsFromSet(set, word, words, letter, sentence, group) {

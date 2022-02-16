@@ -26,6 +26,8 @@ class Test {
     }
     this.instance = instance;
     if (JSON.stringify(this.instance.render.content) != JSON.stringify(testData)) {
+      this.instance.syntax.groupPath = [];
+      this.instance.syntax.ends = [];
       this.instance.truck.import(testData);
     }
   }

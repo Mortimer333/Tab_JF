@@ -14,7 +14,7 @@
   </head>
   <body>
     <div id="editor" name="aa">
-      <p><span>tag #id .color @method [name="a"] {</span></p>
+      <p><span>tag #id bodya.color @method [name="a"] {</span></p>
       <p><span>margin : 20px 2% 2em 4rem 5%;</span></p>
       <p><span>&nbsp;margin&nbsp;&nbsp;&nbsp;: 1px 5% e auto s e;margin-bottom:&nbsp; calc(2px + </span></p>
       <p><span>var(--asd, var(aa, "bas"))) 'asda;padding : 10px;a"s"d()dd' var(asd)</span></p>
@@ -107,7 +107,7 @@
       const editor = document.getElementById('editor');
       const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : pseudoClasses }, true);
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);
