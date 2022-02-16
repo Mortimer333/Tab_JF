@@ -140,8 +140,7 @@ class TabJF_Syntax {
             && !subset?.sets[sentence.substr(0, i + 1)].whole
         ))
       ) {
-        console.log("has subset", letter, sentence.substr(0, i + 1));
-        const realLetter = subset?.sets[letter] ? letter : sentence.substr(0, i + 1);
+        const realLetter = subset?.sets[sentence.substr(0, i + 1)] ? sentence.substr(0, i + 1) : letter;
         const results = this.syntax.splitWord( subset, i, realLetter, words, sentence, '\t' + debug );
         words    = results.words;
         sentence = results.sentence;
@@ -149,8 +148,6 @@ class TabJF_Syntax {
         group    = this.syntax.groups[0];
         subset   = group.subset;
         end      = this.syntax.ends[0];
-        console.log("sentence afet", '`' + sentence + '`');
-
       } else if ( group?.selfref && letter == group?.start ) {
         let oldOne = { 'subset' : { 'sets' : { [group.start] : group } } };
         const resultsFirstWord = this.syntax.splitWord( subset, i, letter, words, sentence.slice(0, i), '\t' + debug );
@@ -205,7 +202,7 @@ class TabJF_Syntax {
       const triggers = group.triggers;
       if (triggers?.end) {
         triggers?.end.forEach( func => {
-          func.bind(group)( word, words, letter, sentence, group, this.syntax );
+          func.bind(group)( i, word, words, letter, sentence, group, this.syntax );
         });
       }
     }
@@ -238,15 +235,13 @@ class TabJF_Syntax {
   splitWord( subset, i, letter, words, sentence, debug ) {
     const letterSet = subset?.sets[letter];
     let word = sentence.substr( 0, i - (letter.length - 1) );
-    console.log("word to set", '`' + word + '`');
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
-      console.log(wordSet,subset, word);
       let attrs = wordSet.attrs;
       if ( wordSet?.ignore ) wordSet = { attrs : { style : 'color:#FFF;' } };
       if ( wordSet?.run ) {
         const results = wordSet.run.bind( wordSet );
-        attrs = results( word, words, letter, sentence, subset.sets, subset );
+        attrs = results( word, words, letter, sentence, subset.sets, subset, this.syntax );
       }
       words.push(this.syntax.create.span( attrs, word ));
     }
@@ -255,7 +250,7 @@ class TabJF_Syntax {
       let attrs = letterSet.attrs ?? { style : 'color:#FFF;' };
       if ( letterSet?.run ) {
         const results = letterSet.run.bind( letterSet );
-        attrs = results( word, words, letter, sentence, subset.sets, subset );
+        attrs = results( word, words, letter, sentence, subset.sets, subset, this.syntax );
       }
       words.push(this.syntax.create.span( attrs, sentence.substr( i, letter.length )));
       i += letter.length;
@@ -333,7 +328,7 @@ class TabJF_Syntax {
 
     if (set?.run) {
       const results = set.run.bind(set);
-      attrs = results( word, words, letter, sentence, group.sets, group );
+      attrs = results( word, words, letter, sentence, group.sets, group, this.syntax );
     }
     return attrs;
   }

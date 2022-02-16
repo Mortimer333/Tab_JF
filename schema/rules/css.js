@@ -55,8 +55,11 @@ import path from './css/functions/path.js';
 import env from './css/functions/env.js';
 import selectors from './css/selectors.js';
 selectors[':'] = pseudoClasses;
-selectors[':'].subset.sets["host("].subset.sets = selectors;
-selectors[':'].subset.sets["host-context("].subset.sets = selectors;
+selectors[':'].subset.sets["host("].subset.sets = Object.assign(selectors[':'].subset.sets["host("].subset.sets, selectors);;
+selectors[':'].subset.sets["host-context("].subset.sets = Object.assign(selectors[':'].subset.sets["host-context("].subset.sets, selectors);;
+selectors[':'].subset.sets["not("].subset.sets = Object.assign(selectors[':'].subset.sets["not("].subset.sets, selectors);;
+selectors[':'].subset.sets["is("].subset.sets = Object.assign(selectors[':'].subset.sets["is("].subset.sets, selectors);
+selectors[':'].subset.sets["where("].subset.sets = Object.assign(selectors[':'].subset.sets["where("].subset.sets, selectors);
 
 let paths = {
   lines : {},
@@ -78,7 +81,7 @@ let paths = {
               end : ';',
               triggers : {
                 end : [
-                  function (word, words, letter, sentence, group) {
+                  function (i, word, words, letter, sentence, group) {
                     group.subset.sets.default.wordCount = 0;
                   }
                 ],

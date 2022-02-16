@@ -78,6 +78,7 @@ class TabJF {
     if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
+    console.log(this);
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
     window.tab = this;

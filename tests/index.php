@@ -107,7 +107,7 @@
       const editor = document.getElementById('editor');
       const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height }, true);
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : pseudoClasses }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);

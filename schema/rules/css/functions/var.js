@@ -34,7 +34,7 @@ let varF; export default varF = {
         },
         triggers : {
           end : [
-            function ( word, words, letter, sentence, group, syntax ) {
+            function ( i, word, words, letter, sentence, group, syntax ) {
               if (letter == ')') syntax.endSubset();
             }
           ]

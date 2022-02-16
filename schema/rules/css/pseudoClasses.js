@@ -1,12 +1,40 @@
 import functions from '../../functions/css.js';
+import lang from './pseudoClasses/lang.js';
+import nthChild from './pseudoClasses/nthChild.js';
 const color = "color:pink;";
+const name = "pseudoClass";
+const pseudoClass = {
+  run : function (word, words, letter, sentence, sets, subset, syntax) {
+    if (syntax.groups[0]?.name == name) {
+      // syntax.endSubset();
+    }
+
+    return {
+      style: color
+    };
+  }
+}
 let pseudoClasses; export default pseudoClasses = {
   attrs : {
     style : color
   },
   end : {
     ' ' : true,
-    '{' : true
+    '{' : true,
+    ')' : true
+  },
+  triggers : {
+    end : [
+      function ( i, word, words, letter, sentence, group, syntax) {
+        // Weird check for pseudo class without subset in pseudo class with subset
+        if (
+          sentence[1] != ')'
+          && this.subset.sets[syntax.groups[0].start]
+        ) {
+          syntax.endSubset();
+        }
+      }
+    ]
   },
   subset : {
     sets : {
@@ -22,41 +50,13 @@ let pseudoClasses; export default pseudoClasses = {
           class: 'spaces'
         }
       },
-      "active": {
-        attrs: {
-          style: color
-        }
-      },
-      "any-link": {
-        attrs: {
-          style: color
-        }
-      },
-      "autofill": {
-        attrs: {
-          style: color
-        }
-      },
-      "blank": {
-        attrs: {
-          style: color
-        }
-      },
-      "checked": {
-        attrs: {
-          style: color
-        }
-      },
-      "current": {
-        attrs: {
-          style: color
-        }
-      },
-      "defined": {
-        attrs: {
-          style: color
-        }
-      },
+      "active": pseudoClass,
+      "any-link": pseudoClass,
+      "autofill": pseudoClass,
+      "blank": pseudoClass,
+      "checked": pseudoClass,
+      "current": pseudoClass,
+      "defined": pseudoClass,
       "dir(": {
         attrs: {
           style: color
@@ -88,61 +88,17 @@ let pseudoClasses; export default pseudoClasses = {
           }
         }
       },
-      "disabled": {
-        attrs: {
-          style: color
-        }
-      },
-      "empty": {
-        attrs: {
-          style: color
-        }
-      },
-      "enabled": {
-        attrs: {
-          style: color
-        }
-      },
-      "first": {
-        attrs: {
-          style: color
-        }
-      },
-      "first-child": {
-        attrs: {
-          style: color
-        }
-      },
-      "first-of-type": {
-        attrs: {
-          style: color
-        }
-      },
-      "fullscreen": {
-        attrs: {
-          style: color
-        }
-      },
-      "future": {
-        attrs: {
-          style: color
-        }
-      },
-      "focus": {
-        attrs: {
-          style: color
-        }
-      },
-      "focus-visible": {
-        attrs: {
-          style: color
-        }
-      },
-      "focus-within": {
-        attrs: {
-          style: color
-        }
-      },
+      "disabled": pseudoClass,
+      "empty": pseudoClass,
+      "enabled": pseudoClass,
+      "first": pseudoClass,
+      "first-child": pseudoClass,
+      "first-of-type": pseudoClass,
+      "fullscreen": pseudoClass,
+      "future": pseudoClass,
+      "focus": pseudoClass,
+      "focus-visible": pseudoClass,
+      "focus-within": pseudoClass,
       "has(": {
         attrs: {
           style: color
@@ -188,11 +144,7 @@ let pseudoClasses; export default pseudoClasses = {
           }
         }
       },
-      "host": {
-        attrs: {
-          style: color
-        }
-      },
+      "host": pseudoClass,
       "host(": {
         attrs: {
           style: color
@@ -211,204 +163,89 @@ let pseudoClasses; export default pseudoClasses = {
           sets : {} // Set selectors here
         }
       },
-      "hover": {
+      "hover": pseudoClass,
+      "indeterminate": pseudoClass,
+      "in-range": pseudoClass,
+      "invalid": pseudoClass,
+      "is(": {
         attrs: {
           style: color
+        },
+        end : ")",
+        subset : {
+          sets : { // Set selectors here
+            "," : {
+              single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            }
+          }
         }
       },
-      "indeterminate": {
+      "lang(": lang,
+      "last-child": pseudoClass,
+      "last-of-type": pseudoClass,
+      "left": pseudoClass,
+      "link": pseudoClass,
+      "local-link": pseudoClass,
+      "not(": {
         attrs: {
           style: color
+        },
+        end : ')',
+        subset : {
+          sets : { // Set selectors here
+            "," : {
+              single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            }
+          }
         }
       },
-      "in-range": {
+      "nth-child(": nthChild,
+      "nth-col(": nthChild,
+      "nth-last-child(": nthChild,
+      "nth-last-col(": nthChild,
+      "nth-last-of-type(": nthChild,
+      "nth-of-type(": nthChild,
+      "only-child": pseudoClass,
+      "only-of-type": pseudoClass,
+      "optional": pseudoClass,
+      "out-of-range": pseudoClass,
+      "past": pseudoClass,
+      "picture-in-picture": pseudoClass,
+      "placeholder-shown": pseudoClass,
+      "paused": pseudoClass,
+      "playing": pseudoClass,
+      "read-only": pseudoClass,
+      "read-write": pseudoClass,
+      "required": pseudoClass,
+      "right": pseudoClass,
+      "root": pseudoClass,
+      "scope": pseudoClass,
+      // "state()": pseudoClass, - no info
+      "target": pseudoClass,
+      "target-within": pseudoClass,
+      "user-invalid": pseudoClass,
+      "valid": pseudoClass,
+      "visited": pseudoClass,
+      "where(": {
         attrs: {
           style: color
-        }
-      },
-      "invalid": {
-        attrs: {
-          style: color
-        }
-      },
-      "is()": {
-        attrs: {
-          style: color
-        }
-      },
-      "lang()": {
-        attrs: {
-          style: color
-        }
-      },
-      "last-child": {
-        attrs: {
-          style: color
-        }
-      },
-      "last-of-type": {
-        attrs: {
-          style: color
-        }
-      },
-      "left": {
-        attrs: {
-          style: color
-        }
-      },
-      "link": {
-        attrs: {
-          style: color
-        }
-      },
-      "local-link": {
-        attrs: {
-          style: color
-        }
-      },
-      "not()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-child()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-col()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-last-child()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-last-col()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-last-of-type()": {
-        attrs: {
-          style: color
-        }
-      },
-      "nth-of-type()": {
-        attrs: {
-          style: color
-        }
-      },
-      "only-child": {
-        attrs: {
-          style: color
-        }
-      },
-      "only-of-type": {
-        attrs: {
-          style: color
-        }
-      },
-      "optional": {
-        attrs: {
-          style: color
-        }
-      },
-      "out-of-range": {
-        attrs: {
-          style: color
-        }
-      },
-      "past": {
-        attrs: {
-          style: color
-        }
-      },
-      "picture-in-picture": {
-        attrs: {
-          style: color
-        }
-      },
-      "placeholder-shown": {
-        attrs: {
-          style: color
-        }
-      },
-      "paused": {
-        attrs: {
-          style: color
-        }
-      },
-      "playing": {
-        attrs: {
-          style: color
-        }
-      },
-      "read-only": {
-        attrs: {
-          style: color
-        }
-      },
-      "read-write": {
-        attrs: {
-          style: color
-        }
-      },
-      "required": {
-        attrs: {
-          style: color
-        }
-      },
-      "right": {
-        attrs: {
-          style: color
-        }
-      },
-      "root": {
-        attrs: {
-          style: color
-        }
-      },
-      "scope": {
-        attrs: {
-          style: color
-        }
-      },
-      "state()": {
-        attrs: {
-          style: color
-        }
-      },
-      "target": {
-        attrs: {
-          style: color
-        }
-      },
-      "target-within": {
-        attrs: {
-          style: color
-        }
-      },
-      "user-invalid": {
-        attrs: {
-          style: color
-        }
-      },
-      "valid": {
-        attrs: {
-          style: color
-        }
-      },
-      "visited": {
-        attrs: {
-          style: color
-        }
-      },
-      "where()": {
-        attrs: {
-          style: color
+        },
+        end : ')',
+        subset : {
+          sets : { // Set selectors here
+            "," : {
+              single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            }
+          }
         }
       },
       default : {
