@@ -1,7 +1,7 @@
 let pseudoClasses; export default pseudoClasses = `.tabjf_editor:active {}
-.tabjf_editor:any-link{}
+.tabjf_editor /* :any-link{}
 .tabjf_editor:autofill {}
-.tabjf_editor:blank {}
+.tabjf_editor:blank {} */
 .tabjf_editor:checked {}
 .tabjf_editor:current {}
 .tabjf_editor:default {}

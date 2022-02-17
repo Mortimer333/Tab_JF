@@ -62,7 +62,7 @@ let functions; export default functions = {
     if (value == 0) {
       return true;
     }
-    
+
     return new RegExp(/\d%/).test(value);
   },
   number : function ( group, value ) {
@@ -332,9 +332,11 @@ let functions; export default functions = {
       }
     },
     end : function (lineNumber, line, sets) {
+      console.log("end");
       if (typeof this.lines[lineNumber] == 'undefined') this.lines[lineNumber] = {};
-      this.lines[lineNumber].validation = JSON.parse(JSON.stringify(sets.default.validation));
-      this.lines[lineNumber].wordCount = JSON.parse(JSON.stringify(sets.default.wordCount));
+      console.log(sets.default);
+      this.lines[lineNumber].validation = JSON.parse(JSON.stringify(sets.default.validation ?? {}));
+      this.lines[lineNumber].wordCount = JSON.parse(JSON.stringify(sets.default.wordCount ?? 0));
     }
   }
 }

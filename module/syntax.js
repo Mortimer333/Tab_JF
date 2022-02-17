@@ -119,25 +119,40 @@ class TabJF_Syntax {
     return res;
   }
 
-  paint( sentence, words = [], debug = '\t' ) {
+  paint( sentence, words = [], debug = '' ) {
     let group  = this.syntax.groups[0];
     let subset = group.subset;
+    subset.sets = Object.assign({}, this.settings.syntax.global ?? {}, subset.sets);
     let end    = this.syntax.ends[0];
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
+      let endFound = false;
 
-      if ( end !== null && (letter == end || typeof end == 'object' && end[letter]) ) {
-        return this.syntax.endSubsetChecks(i, letter, end, words, sentence, subset, group, debug);
+      if (end !== null) {
+        if (typeof end == 'object') {
+          Object.keys(end).forEach(function (endLandmark) {
+            if (sentence.substr(0, i + 1).substr(-endLandmark.length) == endLandmark) {
+              endFound = endLandmark;
+              return;
+            }
+          });
+        } else if (sentence.substr(0, i + 1).substr(-end.length) == end) {
+          endFound = end;
+        }
+      }
+
+      if ( endFound ) {
+        return this.syntax.endSubsetChecks(i, letter, endFound, words, sentence, subset, group, debug);
       }
 
       if ( subset?.sets &&
         ((
             subset?.sets[letter]
-            && !subset?.sets[letter].whole
+            && !subset?.sets[letter]?.whole
           ) || (
             subset?.sets[sentence.substr(0, i + 1)]
-            && !subset?.sets[sentence.substr(0, i + 1)].whole
+            && !subset?.sets[sentence.substr(0, i + 1)]?.whole
         ))
       ) {
         const realLetter = subset?.sets[sentence.substr(0, i + 1)] ? sentence.substr(0, i + 1) : letter;
@@ -176,7 +191,7 @@ class TabJF_Syntax {
   }
 
   endSubsetChecks(i, letter, end, words, sentence, subset, group, debug) {
-    let word = sentence.substring( 0, i );
+    let word = sentence.substring( 0, (i + 1) - end.length );
 
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
@@ -193,7 +208,7 @@ class TabJF_Syntax {
       ));
     }
 
-    sentence = sentence.substring( i );
+    sentence = sentence.substring( (i + 1) - end.length );
 
     this.syntax.endSubset();
 

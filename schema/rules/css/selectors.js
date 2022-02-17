@@ -2,6 +2,7 @@ import pseudoClasses from './pseudoClasses.js';
 import tags from './tags.js';
 let selectors = {
   '*' : {
+    whole : true,
     single : true,
     attrs : {
       style : 'color:#F00;'

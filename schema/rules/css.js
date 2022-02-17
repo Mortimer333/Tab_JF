@@ -55,14 +55,35 @@ import path from './css/functions/path.js';
 import env from './css/functions/env.js';
 import selectors from './css/selectors.js';
 selectors[':'] = pseudoClasses;
-selectors[':'].subset.sets["host("].subset.sets = Object.assign(selectors[':'].subset.sets["host("].subset.sets, selectors);;
-selectors[':'].subset.sets["host-context("].subset.sets = Object.assign(selectors[':'].subset.sets["host-context("].subset.sets, selectors);;
-selectors[':'].subset.sets["not("].subset.sets = Object.assign(selectors[':'].subset.sets["not("].subset.sets, selectors);;
+selectors[':'].subset.sets["host("].subset.sets = Object.assign(selectors[':'].subset.sets["host("].subset.sets, selectors);
+selectors[':'].subset.sets["host-context("].subset.sets = Object.assign(selectors[':'].subset.sets["host-context("].subset.sets, selectors);
+selectors[':'].subset.sets["not("].subset.sets = Object.assign(selectors[':'].subset.sets["not("].subset.sets, selectors);
 selectors[':'].subset.sets["is("].subset.sets = Object.assign(selectors[':'].subset.sets["is("].subset.sets, selectors);
 selectors[':'].subset.sets["where("].subset.sets = Object.assign(selectors[':'].subset.sets["where("].subset.sets, selectors);
 
 let paths = {
-  lines : {},
+  global : {
+    '/*' : {
+      attrs : {
+        style : "color:grey;"
+      },
+      end : "*/",
+      subset : {
+        sets : {
+          default : {
+            attrs : {
+              style : "color:grey;"
+            }
+          }
+        }
+      }
+    },
+    '*/' : {
+      attrs : {
+        style : "color:grey;"
+      }
+    },
+  },
   subset : {
     sets : {
       '{' : {
@@ -84,20 +105,10 @@ let paths = {
                   function (i, word, words, letter, sentence, group) {
                     group.subset.sets.default.wordCount = 0;
                   }
-                ],
-                line : {
-                  start : [functions.line.start],
-                  end : [functions.line.end]
-                }
+                ]
               },
               subset : {
                 sets : {
-                  ' ' : {
-                    single : true,
-                    attrs : {
-                      class : 'spaces'
-                    },
-                  },
                   ',' : {
                     single : true,
                     run : function (word, words, letter, sentence, sets) {
@@ -136,12 +147,6 @@ let paths = {
                     end : '"',
                     subset : {
                       sets : {
-                        ' ' : {
-                          single : true,
-                          attrs : {
-                            class : 'spaces'
-                          }
-                        },
                         default : {
                           attrs : {
                             style : 'color:#0F0;'
@@ -162,12 +167,6 @@ let paths = {
                     end : "'",
                     subset : {
                       sets : {
-                        ' ' : {
-                          single : true,
-                          attrs : {
-                            class : 'spaces'
-                          }
-                        },
                         default : {
                           attrs : {
                             style : 'color:#0F0;'
@@ -274,12 +273,6 @@ let paths = {
               attrs : {
                 style : 'color:#F00;'
               }
-            },
-            ' ' : {
-              single : true,
-              attrs : {
-                class : 'spaces'
-              },
             },
             '--' : variable,
             '}' : {
