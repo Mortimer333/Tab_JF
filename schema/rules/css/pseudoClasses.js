@@ -4,14 +4,8 @@ import nthChild from './pseudoClasses/nthChild.js';
 const color = "color:pink;";
 const name = "pseudoClass";
 const pseudoClass = {
-  run : function (word, words, letter, sentence, sets, subset, syntax) {
-    if (syntax.groups[0]?.name == name) {
-      // syntax.endSubset();
-    }
-
-    return {
-      style: color
-    };
+  attrs: {
+    style: color
   }
 }
 let pseudoClasses; export default pseudoClasses = {
@@ -151,7 +145,13 @@ let pseudoClasses; export default pseudoClasses = {
         },
         end : ')',
         subset : {
-          sets : {} // Set selectors here
+          sets : { // Set selectors here
+            ')' : {
+              attrs : {
+                style : "color:#F00;"
+              }
+            }
+          }
         }
       },
       "host-context(": {
@@ -160,7 +160,13 @@ let pseudoClasses; export default pseudoClasses = {
         },
         end : ')',
         subset : {
-          sets : {} // Set selectors here
+          sets : { // Set selectors here
+            ')' : {
+              attrs : {
+                style : "color:#F00;"
+              }
+            }
+          }
         }
       },
       "hover": pseudoClass,
@@ -176,6 +182,11 @@ let pseudoClasses; export default pseudoClasses = {
           sets : { // Set selectors here
             "," : {
               single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            },
+            ')' : {
               attrs : {
                 style : "color:#F00;"
               }
@@ -198,6 +209,11 @@ let pseudoClasses; export default pseudoClasses = {
           sets : { // Set selectors here
             "," : {
               single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            },
+            ')' : {
               attrs : {
                 style : "color:#F00;"
               }
@@ -241,6 +257,11 @@ let pseudoClasses; export default pseudoClasses = {
           sets : { // Set selectors here
             "," : {
               single : true,
+              attrs : {
+                style : "color:#F00;"
+              }
+            },
+            ')' : {
               attrs : {
                 style : "color:#F00;"
               }
