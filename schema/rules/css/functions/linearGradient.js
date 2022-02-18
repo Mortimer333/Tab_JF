@@ -50,12 +50,6 @@ let linearGradient; export default linearGradient = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ')' : {
         single : true,
         attrs : {

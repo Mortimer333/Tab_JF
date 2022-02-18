@@ -16,12 +16,6 @@ let circle; export default circle = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       'at' : {
         attrs : {
           style : 'color:pink;'

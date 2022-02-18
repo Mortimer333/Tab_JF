@@ -16,12 +16,6 @@ let minmax; export default minmax = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       'max-content' : {
         attrs : {
           style : 'color:#F00;'

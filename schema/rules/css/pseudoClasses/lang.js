@@ -20,12 +20,6 @@ let langPseudo; export default langPseudo = {
           style : "color:#F00;"
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       default : {
         attrs : {
           style : "#FFF;"

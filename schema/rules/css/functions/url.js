@@ -48,12 +48,6 @@ let url; export default url = {
           }
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ')' : {
         single : true,
         attrs : {

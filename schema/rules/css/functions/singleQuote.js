@@ -11,12 +11,6 @@ let singleQuote;export default singleQuote = {
   end : "'",
   subset : {
     sets : {
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       default : {
         attrs : {
           style : 'color:#0F0;'

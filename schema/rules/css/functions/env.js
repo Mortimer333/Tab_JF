@@ -16,12 +16,6 @@ let env; export default env = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ',' : {
         single : true,
         attrs : {

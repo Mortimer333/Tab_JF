@@ -48,12 +48,6 @@ let parenthesis; export default parenthesis = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       '"' : {
         attrs : {
           style : 'color:#0F0;'
@@ -66,12 +60,6 @@ let parenthesis; export default parenthesis = {
         end : '"',
         subset : {
           sets : {
-            ' ' : {
-              single : true,
-              attrs : {
-                class : 'spaces'
-              }
-            },
             default : {
               attrs : {
                 style : 'color:#0F0;'
@@ -92,12 +80,6 @@ let parenthesis; export default parenthesis = {
         end : "'",
         subset : {
           sets : {
-            ' ' : {
-              single : true,
-              attrs : {
-                class : 'spaces'
-              }
-            },
             default : {
               attrs : {
                 style : 'color:#0F0;'

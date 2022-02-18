@@ -16,12 +16,6 @@ let steps; export default steps = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       'jump-start' : {
         attrs : {
           style : 'color:#F00;'

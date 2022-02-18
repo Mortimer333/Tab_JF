@@ -54,12 +54,6 @@ let dropShadow; export default dropShadow = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       default : {
         functions : functions,
         wordCount : 0,

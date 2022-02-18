@@ -10,12 +10,6 @@ let hwb; export default hwb = {
     sets : {
       'var(' : varF,
       'calc(' : calc,
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       '/' : {
         single : true,
         attrs : {
@@ -26,12 +20,6 @@ let hwb; export default hwb = {
         single : true,
         attrs : {
           style : 'color:#F00;'
-        }
-      },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
         }
       },
       default : {

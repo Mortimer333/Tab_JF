@@ -62,12 +62,6 @@ let selectors = {
       };
     }
   },
-  ' ' : {
-    attrs : {
-      class : 'spaces'
-    },
-    single : true
-  },
   "+" : {
     single : true,
     attrs : {

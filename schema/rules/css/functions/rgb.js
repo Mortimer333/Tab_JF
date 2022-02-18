@@ -16,12 +16,6 @@ let rgb; export default rgb = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ')' : {
         single : true,
         attrs : {

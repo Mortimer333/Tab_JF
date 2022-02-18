@@ -16,12 +16,6 @@ let cubicBezier; export default cubicBezier = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ',' : {
         single : true,
         attrs : {

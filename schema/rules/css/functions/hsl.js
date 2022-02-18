@@ -16,12 +16,6 @@ let hsl; export default hsl = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ')' : {
         single : true,
         attrs : {

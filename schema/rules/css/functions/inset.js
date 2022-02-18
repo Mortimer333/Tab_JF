@@ -16,12 +16,6 @@ let inset; export default inset = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       'round' : {
         attrs : {
           style : 'color:pink;'

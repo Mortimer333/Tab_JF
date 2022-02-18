@@ -17,12 +17,6 @@ let counter; export default counter = {
       },
       '"' : doubleQuote,
       "'" : singleQuote,
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ',' : {
         single : true,
         attrs : {

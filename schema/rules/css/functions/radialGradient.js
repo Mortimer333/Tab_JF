@@ -24,12 +24,6 @@ let radialGradient; export default radialGradient = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ',' : {
         single : true,
         attrs : {

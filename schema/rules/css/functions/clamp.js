@@ -16,12 +16,6 @@ let clamp; export default clamp = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       ',' : {
         single : true,
         attrs : {

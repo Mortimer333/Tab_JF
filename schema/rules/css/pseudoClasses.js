@@ -38,12 +38,6 @@ let pseudoClasses; export default pseudoClasses = {
           style: 'color:red;'
         }
       },
-      ' ' : {
-        single: true,
-        attrs: {
-          class: 'spaces'
-        }
-      },
       "active": pseudoClass,
       "any-link": pseudoClass,
       "autofill": pseudoClass,
@@ -58,12 +52,6 @@ let pseudoClasses; export default pseudoClasses = {
         end : ')',
         subset : {
           sets : {
-            ' ' : {
-              single: true,
-              attrs: {
-                class: 'spaces'
-              }
-            },
             "ltr" : {
               attrs : {
                 style: 'color:red;'
@@ -104,12 +92,6 @@ let pseudoClasses; export default pseudoClasses = {
               single : true,
               attrs : {
                 style: "color:red;"
-              }
-            },
-            ' ' : {
-              single: true,
-              attrs: {
-                class: 'spaces'
               }
             },
             ">" : {

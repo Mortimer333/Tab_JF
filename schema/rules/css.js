@@ -83,6 +83,12 @@ let paths = {
         style : "color:grey;"
       }
     },
+    ' ' : {
+      single : true,
+      attrs : {
+        class : "spaces"
+      }
+    }
   },
   subset : {
     sets : {

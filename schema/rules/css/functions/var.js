@@ -21,12 +21,6 @@ let varF; export default varF = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       '--' : {
         end : {
           ',' : true,

@@ -16,12 +16,6 @@ let opacity; export default opacity = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {

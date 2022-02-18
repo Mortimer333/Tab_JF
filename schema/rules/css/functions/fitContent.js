@@ -16,18 +16,6 @@ let fitContent; export default fitContent = {
           style : 'color:#F00;'
         }
       },
-      ' ' : {
-        single : true,
-        attrs : {
-          class : 'spaces'
-        }
-      },
-      ' ' : {
-        single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
-      },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
