@@ -1,11 +1,10 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 import url from './url.js';
 let crossFade; export default crossFade = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -14,27 +13,19 @@ let crossFade; export default crossFade = {
       'url(' : url,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
           if (this.functions.procent(subset, word)) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

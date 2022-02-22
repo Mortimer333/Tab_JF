@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 let minmax; export default minmax = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,24 +11,16 @@ let minmax; export default minmax = {
       'calc(' : calc,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       'max-content' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'min-content' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'auto' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       default : {
         functions : functions,
@@ -39,13 +30,9 @@ let minmax; export default minmax = {
             || this.functions.fraction(subset, word)
             || this.functions.procent(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

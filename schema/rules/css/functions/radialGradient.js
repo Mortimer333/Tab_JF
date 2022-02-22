@@ -1,3 +1,4 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
@@ -5,9 +6,7 @@ import rgb from './rgb.js';
 import hsl from './hsl.js';
 import hwb from './hwb.js';
 let radialGradient; export default radialGradient = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -20,76 +19,47 @@ let radialGradient; export default radialGradient = {
       'hwb(' : hwb,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'ellipse' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'circle' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'closest-side' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'closest-corner' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'farthest-side' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'farthest-corner' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
-
       'center' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'top' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'bottom' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'left' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'right' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'at' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       default : {
         functions : functions,
@@ -99,13 +69,9 @@ let radialGradient; export default radialGradient = {
             || this.functions.length(subset, word)
             || this.functions.procent(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

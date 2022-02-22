@@ -1,12 +1,11 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 import minmax from './minmax.js';
 import fitContent from './fitContent.js';
 let repeat; export default repeat = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -16,61 +15,41 @@ let repeat; export default repeat = {
       'fit-content(' : fitContent,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'max-content' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'min-content' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'auto' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'auto-fill' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'auto-fit' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       '[' : {
-        attrs : {
-          style : 'color:pink;'
-        },
+        attrs : attrs.pink,
         end : ']',
         subset : {
           sets : {
             default : {
-              attrs : {
-                style : 'color:#FFF'
-              }
+              attrs : attrs.white
             }
           }
         }
       },
       ']' : {
         single : true,
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       default : {
         functions : functions,
@@ -81,13 +60,9 @@ let repeat; export default repeat = {
             || this.functions.fraction(subset, word)
             || this.functions.procent(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

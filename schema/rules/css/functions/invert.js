@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 let invert; export default invert = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,21 +11,15 @@ let invert; export default invert = {
       'calc(' : calc,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs :attrs.functions.func
       },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
           if (this.functions.number(subset, word) || this.functions.procent(subset, word)) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

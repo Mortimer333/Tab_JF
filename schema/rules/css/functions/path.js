@@ -1,11 +1,10 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import singleQuote from '../singleQuote.js';
 import doubleQuote from '../doubleQuote.js';
 let polygon; export default polygon = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -14,30 +13,20 @@ let polygon; export default polygon = {
       "'" : singleQuote,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'evenodd' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'nonzero' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       default : {
-        attrs : {
-          class : 'mistake'
-        }
+        attrs : attrs.mistake
       }
     }
   }

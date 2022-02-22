@@ -2,6 +2,53 @@ let attrs; export default attrs = {
   pseudo : {
     function : {
       style : "color:pink;"
+    },
+    lang : {
+      valid : {
+        style : "color:#FFF;"
+      }
+    },
+    nth : {
+      n : {
+        style: "color:pink;"
+      }
+    }
+  },
+  functions : {
+    func : {
+      style : "color:pink;"
+    },
+    url : {
+      data : {
+        style : 'color:#F0F;'
+      },
+      dataSubset : {
+        base : {
+          style : 'color:#FFF;'
+        },
+        semiColon : {
+          style : 'color:#FB0;'
+        },
+        colon : {
+          style : 'color:#FB0;'
+        },
+        default : {
+          style : 'color:#0F0;'
+        }
+      }
+    },
+    var : {
+      doubleDash : {
+        style : 'color:#F00;'
+      },
+      doubleDashSubset : {
+        default : {
+          style : 'color:#F00;'
+        }
+      },
+      default : {
+        style : 'color:#F0F;'
+      }
     }
   },
   attribute : {
@@ -50,5 +97,37 @@ let attrs; export default attrs = {
   },
   variable : {
     style : "color:#F00;"
+  },
+  fadded : {
+    style : "color:#bdc3c7;"
+  },
+  comment : {
+    style : "color:grey;"
+  },
+  spaces : {
+    class : "spaces"
+  },
+  rules : {
+    braces : {
+      style : "color:#AEE;"
+    },
+    colon : {
+      style : "color:#AEE;"
+    },
+    semiColon : {
+      style : "color:#AEE;"
+    },
+    parenthesis : {
+      style : "color:pink;"
+    },
+    rule : {
+      style : 'color:#0DA'
+    }
+  },
+  customTag : {
+    style : 'color:#ECB;'
+  },
+  pink : {
+    style : "color:pink;"
   }
 };

@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import varF from './var.js';
 import singleQuote from '../singleQuote.js';
 import doubleQuote from '../doubleQuote.js';
 let url; export default url = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,52 +11,36 @@ let url; export default url = {
       '"' : doubleQuote,
       "'" : singleQuote,
       '#' : {
-        attrs : {
-          style : 'color:#0FF;'
-        }
+        attrs : attrs.id
       },
       'data' : {
-        attrs : {
-          style : 'color:#F0F;'
-        },
+        attrs : attrs.functions.url.data,
         end : ',',
         subset : {
           sets : {
             'base64' : {
-              attrs : {
-                style : 'color:#FFF;'
-              }
+              attrs : attrs.functions.url.dataSubset.base
             },
             ';' : {
               single : true,
-              attrs : {
-                style : 'color:#FB0;'
-              }
+              attrs : attrs.functions.url.dataSubset.semiColon
             },
             ':' : {
               single : true,
-              attrs : {
-                style : 'color:#FB0;'
-              }
+              attrs : attrs.functions.url.dataSubset.colon
             },
             default : {
-              attrs : {
-                style : 'color:#0F0;'
-              }
+              attrs : attrs.functions.url.dataSubset.default
             }
           }
         }
       },
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       }
     }
   }

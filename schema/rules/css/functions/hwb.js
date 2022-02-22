@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import calc from './calc.js';
 import varF from './var.js';
 let hwb; export default hwb = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,15 +11,11 @@ let hwb; export default hwb = {
       'calc(' : calc,
       '/' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
         functions : functions,
@@ -30,13 +25,9 @@ let hwb; export default hwb = {
             || this.functions.procent(subset, word)
             || this.functions.rad(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

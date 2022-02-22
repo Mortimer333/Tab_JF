@@ -54,6 +54,9 @@ import polygon from './css/functions/polygon.js';
 import path from './css/functions/path.js';
 import env from './css/functions/env.js';
 import selectors from './css/selectors.js';
+import attrs from './css/attrs.js';
+import doubleQuote from './css/doubleQuote.js';
+import singleQuote from './css/singleQuote.js';
 selectors[':'] = pseudoClasses;
 selectors[':'].subset.sets["host("].subset.sets = Object.assign(selectors[':'].subset.sets["host("].subset.sets, selectors);
 selectors[':'].subset.sets["host-context("].subset.sets = Object.assign(selectors[':'].subset.sets["host-context("].subset.sets, selectors);
@@ -64,47 +67,35 @@ selectors[':'].subset.sets["where("].subset.sets = Object.assign(selectors[':'].
 let paths = {
   global : {
     '/*' : {
-      attrs : {
-        style : "color:grey;"
-      },
+      attrs : attrs.comment,
       end : "*/",
       subset : {
         sets : {
           default : {
-            attrs : {
-              style : "color:grey;"
-            }
+            attrs : attrs.comment
           }
         }
       }
     },
     '*/' : {
-      attrs : {
-        style : "color:grey;"
-      }
+      attrs : attrs.comment
     },
     ' ' : {
       single : true,
-      attrs : {
-        class : "spaces"
-      }
+      attrs : attrs.spaces
     }
   },
   subset : {
     sets : {
       '{' : {
-        attrs : {
-          style : 'color:#AEE;'
-        },
+        attrs : attrs.rules.braces,
         end : '}',
         selfref : true,
         start : '{',
         subset : {
           sets : {
             ':' : {
-              attrs : {
-                style : 'color:#AEE;'
-              },
+              attrs : attrs.rules.colon,
               end : ';',
               triggers : {
                 end : [
@@ -125,7 +116,7 @@ let paths = {
                       ) {
                         sets.default.wordCount = 0;
                       }
-                      return { style : 'color:#F00;' };
+                      return attrs.red;
                     }
                   },
                   '/' : {
@@ -136,56 +127,16 @@ let paths = {
                         && sets.default.validation?.seperator['/']
                       ) {
                         sets.default.wordCount = 0;
-                        return { style : 'color:#F00;' };
+                        return attrs.red;
                       }
-                      return { class : 'mistake' };
+                      return attrs.mistake;
                     }
                   },
-                  '"' : {
-                    attrs : {
-                      style : 'color:#0F0;'
-                    },
-                    triggers : {
-                      line : {
-                        start : [functions.line.start]
-                      }
-                    },
-                    end : '"',
-                    subset : {
-                      sets : {
-                        default : {
-                          attrs : {
-                            style : 'color:#0F0;'
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "'" : {
-                    attrs : {
-                      style : 'color:#0F0;'
-                    },
-                    triggers : {
-                      line : {
-                        start : [functions.line.start]
-                      }
-                    },
-                    end : "'",
-                    subset : {
-                      sets : {
-                        default : {
-                          attrs : {
-                            style : 'color:#0F0;'
-                          }
-                        }
-                      }
-                    }
-                  },
+                  '"' : doubleQuote,
+                  "'" : singleQuote,
                   ')' : {
                     single : true,
-                    attrs : {
-                      style : 'color:#F00;'
-                    }
+                    attrs : attrs.rules.parenthesis
                   },
                   'calc(' : calc,
                   'var(' : varF,
@@ -270,21 +221,15 @@ let paths = {
               }
             },
             ';' : {
-              attrs : {
-                style : 'color:#AEE;'
-              },
+              attrs : attrs.rules.semiColon,
               single : true
             },
             ',' : {
-              attrs : {
-                style : 'color:#F00;'
-              }
+              attrs : attrs.comma
             },
             '--' : variable,
             '}' : {
-              attrs : {
-                style : 'color:#AEE;'
-              }
+              attrs : attrs.rules.braces
             },
             default : {
               rules : styles,
@@ -299,21 +244,19 @@ let paths = {
                     || word == 'to'
                   )
                 ) {
-                  return {
-                    style : "color:#FFF"
-                  };
+                  return attrs.white;
                 }
                 let rules = this.functions.getValue.bind(this.functions)(word, this.rules);
                 if (!rules) {
                   sets[':'].subset.sets.default.validation = null;
-                  return { style : 'color:#FFF', class : 'mistake' };
+                  return attrs.mistake;
                 }
 
                 rules = this.functions.mergeDefaultRules.bind(this.functions)( rules );
                 sets[':'].subset.sets.default.validation = rules;
 
                 sets[':'].subset.sets.default.rule = word;
-                return { style : 'color:#0DA' };
+                return attrs.rules.rule;
               },
 
             }
@@ -321,14 +264,10 @@ let paths = {
         }
       },
       '}' : {
-        attrs : {
-          style : 'color:#AEE;'
-        }
+        attrs : attrs.rules.braces
       },
       default : {
-        attrs : {
-          style : 'color:#ECB;'
-        }
+        attrs : attrs.customTag
       }
     }
   }

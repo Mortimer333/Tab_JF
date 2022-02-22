@@ -1,3 +1,4 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import calc from './calc.js';
 import varF from './var.js';
@@ -6,36 +7,24 @@ import hsl from './hsl.js';
 import hwb from './hwb.js';
 
 let linearGradient; export default linearGradient = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
       'to' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'left' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'right' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'bottom' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs :attrs.pink
       },
       'top' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'var(' : varF,
       'calc(' : calc,
@@ -46,15 +35,11 @@ let linearGradient; export default linearGradient = {
       'hwb(' : hwb,
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
         functions : functions,
@@ -66,13 +51,9 @@ let linearGradient; export default linearGradient = {
             || this.functions.procent(subset, word)
             || this.functions.degree(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

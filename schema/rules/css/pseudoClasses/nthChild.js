@@ -1,58 +1,35 @@
-const color = "color:pink;";
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
-// There is like 10k lang tags we are just going to allow anything there and hame small amount of them
-const lang = {
-  whole : true,
-  attrs : {
-    style : "color:grey"
-  }
-}
 let nthChild; export default nthChild = {
-  attrs: {
-    style: color
-  },
+  attrs: attrs.pseudo.function,
   end : ")",
   subset : {
     sets : {
       "odd" : {
-        attrs : {
-          style : "color:#F00;"
-        }
+        attrs : attrs.red
       },
       "even" : {
-        attrs : {
-          style : "color:#F00;"
-        }
+        attrs : attrs.red
       },
       "+" : {
         single : true,
-        attrs : {
-          style : "color:#F00;"
-        }
+        attrs : attrs.red
       },
       "-" : {
         single : true,
-        attrs : {
-          style : "color:#F00;"
-        }
+        attrs : attrs.red
       },
       "n" : {
-        attrs : {
-          style : "color:pink;"
-        }
+        attrs : attrs.pseudo.nth.n
       },
       default : {
         functions : functions,
         run : function (word, words, letter, sentence, sets, subset) {
           if (this.functions.number(sets, word)) {
-            return {
-              style : "#FFF;"
-            };
+            return attrs.white;
           }
 
-          return {
-            class : "mistake"
-          };
+          return attrs.mistake;
         }
       }
     }

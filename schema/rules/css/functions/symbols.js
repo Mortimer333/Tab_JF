@@ -1,11 +1,10 @@
+import attrs from '../attrs.js';
 import varF from './var.js';
 import singleQuote from '../singleQuote.js';
 import doubleQuote from '../doubleQuote.js';
 import url from './url.js';
 let counter; export default counter = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -15,45 +14,29 @@ let counter; export default counter = {
       'url(': url,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'cyclic' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'numeric' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'alphabetic' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'symbolic' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'fixed' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       default : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       }
     }
   }

@@ -1,3 +1,4 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
@@ -5,9 +6,7 @@ import rgb from './rgb.js';
 import hsl from './hsl.js';
 import hwb from './hwb.js';
 let conicGradient; export default conicGradient = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs :  attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -20,55 +19,35 @@ let conicGradient; export default conicGradient = {
       'hwb(' : hwb,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs :  attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'center' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'top' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'bottom' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'left' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'right' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'to' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'from' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       'at' : {
-        attrs : {
-          style : 'color:pink;'
-        }
+        attrs : attrs.pink
       },
       default : {
         functions : functions,
@@ -82,13 +61,9 @@ let conicGradient; export default conicGradient = {
             || this.functions.rad(subset, word)
             || this.functions.procent(subset, word)
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

@@ -1,25 +1,20 @@
+import attrs from '../attrs.js';
 import singleQuote from '../singleQuote.js';
 import doubleQuote from '../doubleQuote.js';
 let varF; export default varF = {
   end : ')',
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   subset : {
     sets : {
       '(' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       '"' : doubleQuote,
       "'" : singleQuote,
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       '--' : {
         end : {
@@ -33,23 +28,17 @@ let varF; export default varF = {
             }
           ]
         },
-        attrs : {
-          style : 'color:#F00;'
-        },
+        attrs : attrs.functions.var.doubleDash,
         subset : {
           sets : {
             default : {
-              attrs : {
-                style : 'color:#FF0;'
-              }
+              attrs : attrs.functions.var.doubleDashSubset.default
             }
           }
         }
       },
       default : {
-        attrs : {
-          style : 'color:#F0F;'
-        }
+        attrs : attrs.functions.var.default
       }
     }
   }

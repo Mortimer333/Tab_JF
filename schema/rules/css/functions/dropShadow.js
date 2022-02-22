@@ -1,3 +1,4 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
@@ -28,9 +29,7 @@ hsl.triggers.start.push(updateWordCount);
 hwb.triggers.start.push(updateWordCount);
 
 let dropShadow; export default dropShadow = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   triggers : {
     end : [
@@ -50,9 +49,7 @@ let dropShadow; export default dropShadow = {
       'hwb(' : hwb,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
         functions : functions,
@@ -66,14 +63,10 @@ let dropShadow; export default dropShadow = {
             )
             && this.max >= this.wordCount
           ) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
 
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

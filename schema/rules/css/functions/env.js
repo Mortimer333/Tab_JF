@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 let env; export default env = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,47 +11,31 @@ let env; export default env = {
       'calc(' : calc,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       ',' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.comma
       },
       'safe-area-inset-top' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'safe-area-inset-right' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'safe-area-inset-bottom' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       'safe-area-inset-left' : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.red
       },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
           if (this.functions.length(subset, word)) {
-            return {
-              style : 'color:#F00;'
-            };
+            return attrs.red;
           }
-          return {
-            class : 'mistake'
-          };
+          return attrs.mistake;
         }
       }
     }

@@ -1,10 +1,8 @@
-import functions from '../../../functions/css.js';
+import attrs from '../attrs.js';
 import varF from './var.js';
 import calc from './calc.js';
 let stylistic; export default stylistic = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,17 +10,10 @@ let stylistic; export default stylistic = {
       'calc(' : calc,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
-        functions : functions,
-        run : function ( word, words, letter, sentence, sets, subset ) {
-          return {
-            style : 'color:#F00;'
-          };
-        }
+        attrs : attrs.red
       }
     }
   }

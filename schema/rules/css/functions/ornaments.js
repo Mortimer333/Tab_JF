@@ -1,10 +1,9 @@
+import attrs from '../attrs.js';
 import functions from '../../../functions/css.js';
 import varF from './var.js';
 import calc from './calc.js';
 let ornaments; export default ornaments = {
-  attrs : {
-    style : 'color:pink;'
-  },
+  attrs : attrs.functions.func,
   end : ")",
   subset : {
     sets : {
@@ -12,16 +11,12 @@ let ornaments; export default ornaments = {
       'calc(' : calc,
       ')' : {
         single : true,
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.functions.func
       },
       default : {
         functions : functions,
         run : function ( word, words, letter, sentence, sets, subset ) {
-          return {
-            style : 'color:#F00;'
-          };
+          return attrs.red;
         }
       }
     }
