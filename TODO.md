@@ -16,6 +16,16 @@
 
 - On doubleclick save selection
 - When scrolled selection starts from top but should from click point
+- When selected lower line and scrolling up:
+Uncaught Error: Line not found when recalculating caret position
+    recalculatePos http://localhost/tab_jf/module/caret.js:106
+    page http://localhost/tab_jf/module/update.js:7
+    event http://localhost/tab_jf/module/render/fill.js:12
+    init http://localhost/tab_jf/module/render.js:20
+    TabJF http://localhost/tab_jf/main.js:124
+    <anonymous> http://localhost/tab_jf/tests/:104
+caret.js:106:22
+
 
 ## Thinkers
 
