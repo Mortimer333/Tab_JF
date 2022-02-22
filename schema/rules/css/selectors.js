@@ -1,54 +1,36 @@
 import pseudoClasses from './pseudoClasses.js';
 import tags from './tags.js';
+import attrs from './attrs.js';
+import doubleQuote from './doubleQuote.js';
+import singleQuote from './singleQuote.js';
 let selectors = {
   '*' : {
     whole : true,
     single : true,
-    attrs : {
-      style : 'color:#F00;'
-    }
+    attrs : attrs.red
   },
   '.' : {
-    attrs : {
-      style : 'color:#F00;'
-    }
+    attrs : attrs.class
   },
   '#' : {
-    attrs : {
-      style : 'color:#0F0;'
-    }
+    attrs : attrs.id
   },
   ']' : {
-    attrs : {
-      style : 'color:#00F;'
-    }
+    attrs : attrs.attribute.parenthesis
   },
   '[' : {
-    attrs : {
-      style : 'color:#00F;'
-    },
+    attrs : attrs.attribute.parenthesis,
     end : ']',
     subset : {
       sets : {
         '=' : {
-          attrs : {
-            style : 'color:#0FF;'
-          }
+          single : true,
+          attrs : attrs.attribute.equal
         },
-        '"' : {
-          attrs : {
-            style : 'color:#FF0;'
-          }
-        },
-        "'" : {
-          attrs : {
-            style : 'color:#FF0;'
-          }
-        },
+        '"' : doubleQuote,
+        "'" : singleQuote,
         default : {
-          attrs : {
-            style : 'color:#ABC;'
-          }
+          attrs : attrs.white
         }
       }
     }
@@ -57,34 +39,24 @@ let selectors = {
   '@' : {
     run : function ( word, words, letter, sentence, sets, subset ) {
       subset.sets['{'].subset.sets.default.animation = true;
-      return {
-        style : 'color:#EBE;'
-      };
+      return attrs.animation;
     }
   },
   "+" : {
     single : true,
-    attrs : {
-      style: "color:red;"
-    }
+    attrs : attrs.operator
   },
   ">" : {
     single : true,
-    attrs : {
-      style: "color:red;"
-    }
+    attrs : attrs.operator
   },
   "~" : {
     single : true,
-    attrs : {
-      style: "color:red;"
-    }
+    attrs : attrs.operator
   },
   "||" : {
     single : true,
-    attrs : {
-      style: "color:red;"
-    }
+    attrs : attrs.operator
   }
 };
 selectors = Object.assign(selectors, tags);

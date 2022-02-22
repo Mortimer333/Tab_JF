@@ -1,6 +1,6 @@
 import functions from '../../../functions/css.js';
 import varF from './var.js';
-let calc; export default calc = {
+let calc = {
   attrs : {
     style : 'color:pink;'
   },
@@ -64,3 +64,5 @@ let calc; export default calc = {
     }
   }
 };
+calc.subset.sets['('] = calc;
+export default calc;

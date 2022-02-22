@@ -1,6 +1,6 @@
 import varF from './var.js';
-import singleQuote from './singleQuote.js';
-import doubleQuote from './doubleQuote.js';
+import singleQuote from '../singleQuote.js';
+import doubleQuote from '../doubleQuote.js';
 import url from './url.js';
 let counter; export default counter = {
   attrs : {

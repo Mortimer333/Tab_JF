@@ -102,12 +102,13 @@
       import schema from '../schema/rules/css.js';
       import { SyntaxCssTest } from './syntax/css.js';
       import functions from './data/functions.js';
+      import normal from './data/normal.js';
       import pseudoClasses from './data/pseudoClasses.js';
       import { TabJF } from './../main.js';
       const editor = document.getElementById('editor');
       const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : pseudoClasses }, true);
+      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : normal }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);

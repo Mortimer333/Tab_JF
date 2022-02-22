@@ -436,7 +436,6 @@ class TabJF {
 
   key ( e ) {
     if (!this.activated) return;
-
     const type = e.type;
 
     if ( type == 'keydown' ) {
@@ -649,6 +648,7 @@ class TabJF {
       111 : ( e, type ) => {
         // em it's / but it opens search?
         e.preventDefault();
+        this.insert('/');
       },
       144 : ( e, type ) => {
         // NumLock

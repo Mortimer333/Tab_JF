@@ -1,6 +1,6 @@
 import varF from './var.js';
-import singleQuote from './singleQuote.js';
-import doubleQuote from './doubleQuote.js';
+import singleQuote from '../singleQuote.js';
+import doubleQuote from '../doubleQuote.js';
 let url; export default url = {
   attrs : {
     style : 'color:pink;'

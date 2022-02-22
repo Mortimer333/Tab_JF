@@ -1,5 +1,6 @@
-import functions from '../../../functions/css.js';
-let doubleQuote;export default doubleQuote = {
+import functions from '../../functions/css.js';
+import attrs from './attrs.js';
+let singleQuote;export default singleQuote = {
   attrs : {
     style : 'color:#0F0;'
   },
@@ -8,12 +9,12 @@ let doubleQuote;export default doubleQuote = {
       start : [functions.line.start]
     }
   },
-  end : '"',
+  end : "'",
   subset : {
     sets : {
       default : {
         attrs : {
-          style : 'color:#0F0;'
+          attrs : attrs.quote
         }
       }
     }

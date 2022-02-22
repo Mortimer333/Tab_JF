@@ -1,17 +1,16 @@
 import functions from '../../functions/css.js';
 import lang from './pseudoClasses/lang.js';
+import attrs from './attrs.js';
 import nthChild from './pseudoClasses/nthChild.js';
-const color = "color:pink;";
-const name = "pseudoClass";
 const pseudoClass = {
-  attrs: {
-    style: color
-  }
-}
+  attrs: attrs.pseudo.function
+};
+const operator = {
+  single : true,
+  attrs : attrs.operator
+};
 let pseudoClasses; export default pseudoClasses = {
-  attrs : {
-    style : color
-  },
+  attrs : attrs.pseudo.function,
   end : {
     ' ' : true,
     '{' : true,
@@ -34,9 +33,7 @@ let pseudoClasses; export default pseudoClasses = {
     sets : {
       ')' : {
         single: true,
-        attrs: {
-          style: 'color:red;'
-        }
+        attrs: attrs.pseudo.function
       },
       "active": pseudoClass,
       "any-link": pseudoClass,
@@ -46,26 +43,18 @@ let pseudoClasses; export default pseudoClasses = {
       "current": pseudoClass,
       "defined": pseudoClass,
       "dir(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : {
             "ltr" : {
-              attrs : {
-                style: 'color:red;'
-              }
+              attrs : attrs.red
             },
             "rtl" : {
-              attrs : {
-                style: 'color:red;'
-              }
+              attrs : attrs.red
             },
             default : {
-              attrs : {
-                class : 'mistake'
-              }
+              attrs : attrs.mistake
             }
           }
         }
@@ -82,72 +71,36 @@ let pseudoClasses; export default pseudoClasses = {
       "focus-visible": pseudoClass,
       "focus-within": pseudoClass,
       "has(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : {
-            "+" : {
-              single : true,
-              attrs : {
-                style: "color:red;"
-              }
-            },
-            ">" : {
-              single : true,
-              attrs : {
-                style: "color:red;"
-              }
-            },
-            "~" : {
-              single : true,
-              attrs : {
-                style: "color:red;"
-              }
-            },
-            "||" : {
-              single : true,
-              attrs : {
-                style: "color:red;"
-              }
-            },
+            "+" : operator,
+            ">" : operator,
+            "~" : operator,
+            "||" : operator,
             default : {
-              attrs : {
-                style: "color:#FFF;"
-              }
+              attrs : attrs.white
             }
           }
         }
       },
       "host": pseudoClass,
       "host(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : { // Set selectors here
-            ')' : {
-              attrs : {
-                style : "color:#F00;"
-              }
-            }
+            ')' : pseudoClass
           }
         }
       },
       "host-context(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : { // Set selectors here
-            ')' : {
-              attrs : {
-                style : "color:#F00;"
-              }
-            }
+            ')' : pseudoClass
           }
         }
       },
@@ -156,23 +109,15 @@ let pseudoClasses; export default pseudoClasses = {
       "in-range": pseudoClass,
       "invalid": pseudoClass,
       "is(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ")",
         subset : {
           sets : { // Set selectors here
             "," : {
               single : true,
-              attrs : {
-                style : "color:#F00;"
-              }
+              attrs : attrs.comma
             },
-            ')' : {
-              attrs : {
-                style : "color:#F00;"
-              }
-            }
+            ')' : pseudoClass
           }
         }
       },
@@ -183,23 +128,15 @@ let pseudoClasses; export default pseudoClasses = {
       "link": pseudoClass,
       "local-link": pseudoClass,
       "not(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : { // Set selectors here
             "," : {
               single : true,
-              attrs : {
-                style : "color:#F00;"
-              }
+              attrs : attrs.comma
             },
-            ')' : {
-              attrs : {
-                style : "color:#F00;"
-              }
-            }
+            ')' : pseudoClass
           }
         }
       },
@@ -231,36 +168,24 @@ let pseudoClasses; export default pseudoClasses = {
       "valid": pseudoClass,
       "visited": pseudoClass,
       "where(": {
-        attrs: {
-          style: color
-        },
+        attrs: attrs.pseudo.function,
         end : ')',
         subset : {
           sets : { // Set selectors here
             "," : {
               single : true,
-              attrs : {
-                style : "color:#F00;"
-              }
+              attrs : attrs.comma
             },
-            ')' : {
-              attrs : {
-                style : "color:#F00;"
-              }
-            }
+            ')' : pseudoClass
           }
         }
       },
       default : {
         run : function (word, words, letter, sentence, subset) {
           if (word == 'default') {
-            return {
-              style: color
-            }
+            return attrs.pseudo.function
           }
-          return {
-            class : "mistake"
-          };
+          return attrs.mistake;
         }
       }
     }

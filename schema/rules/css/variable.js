@@ -1,4 +1,6 @@
+import attrs from './attrs.js';
 let variable; export default variable = {
+  attrs : attrs.variable,
   end :{
     ':' : true,
     ' ' : true
@@ -16,15 +18,10 @@ let variable; export default variable = {
       }
     ]
   },
-  attrs : {
-    style : 'color:#F00;'
-  },
   subset : {
     sets : {
       default : {
-        attrs : {
-          style : 'color:#F00;'
-        }
+        attrs : attrs.variable
       }
     }
   }

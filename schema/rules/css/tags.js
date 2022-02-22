@@ -1,8 +1,7 @@
+import attrs from './attrs.js';
 const tag = {
   whole : true,
-  attrs: {
-    style: "color:brown"
-  }
+  attrs: attrs.tag
 };
 let tags; export default tags = {
   "a": tag,
