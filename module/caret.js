@@ -42,7 +42,7 @@ class TabJF_Caret {
 
   setByChar ( letter, line, el = null ) {
     if ( el ) this.pos.el = el;
-    let posX = this.font.calculateWidth( this.pos.el.innerText.slice( 0, letter) );
+    let posX = this.font.calculateWidth( this.pos.el.innerText.slice( 0, letter), this.pos.el );
     this.pos.letter = letter;
     this.pos.line   = line  ;
 

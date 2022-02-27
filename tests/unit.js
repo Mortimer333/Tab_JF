@@ -82,11 +82,14 @@ class Unit extends Test {
       calculateWidth : () => {
         const letters = "test";
         const span = document.createElement("span");
+        const p = document.createElement("p");
         span.innerHTML = letters;
         this.instance.editor.appendChild(span);
         const realWidth = span.offsetWidth;
         span.remove();
-        const width = this.instance.font.calculateWidth(letters);
+        this.instance.editor.appendChild(p);
+        const width = this.instance.font.calculateWidth(letters, p);
+        p.remove();
         this.error(
           width != realWidth,
           '[FONT:CALCULATEWIDTH] Failed',
@@ -94,8 +97,11 @@ class Unit extends Test {
         );
       },
       getLetterByWidth : () => {
+        const p = document.createElement("p");
+        this.instance.editor.appendChild(p);
         const letters = "test";
-        const width = this.instance.font.calculateWidth(letters);
+        const width = this.instance.font.calculateWidth(letters, p);
+        p.remove();
         const x = (width/2) - 1;
         const el = document.createElement("span");
         el.appendChild(document.createTextNode(letters));

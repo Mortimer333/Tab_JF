@@ -6,15 +6,17 @@ class TabJF_Render_Update {
 
   scrollWidth () {
     this.render.maxLineWidth = 0;
+    const p = document.createElement('p');
+    this.editor.appendChild(p);
     this.render.content.forEach( line => {
       let text = '';
       line.content.forEach( item => {
         text += item.content;
       });
-      
-      const width = this.font.calculateWidth( text );
+      const width = this.font.calculateWidth( text, p );
       if ( this.render.maxLineWidth < width ) this.render.maxLineWidth = width;
     });
+    p.remove();
     this.editor.style.setProperty("--scroll-width", this.render.maxLineWidth + this.settings.left );
   }
 }
