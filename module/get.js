@@ -13,6 +13,10 @@ class TabJF_Get {
     return this;
   }
 
+  visibleLines() {
+    return this.render.content.slice(this.render.hidden, this.render.hidden + this.render.linesLimit);
+  }
+
   selectedLines ( sLine = null, eLine = null ) {
     if ( !sLine || !eLine ) {
       const sel = this.get.selection(), revCheck = this.selection.reverse && !this.selection.expanded;

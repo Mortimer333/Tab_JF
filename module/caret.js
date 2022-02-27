@@ -11,12 +11,18 @@ class TabJF_Caret {
   }
 
   scrollTo () {
-    const caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
-    const caretTop  = ( this.pos.line + 1 ) * this.settings.line;
-    const yPos      = caretTop - this.editor.offsetHeight > 0 ? caretTop - this.editor.offsetHeight : 0;
-
-    if ( caretLeft > this.editor.offsetWidth - 20 ) this.editor.scrollTo( caretLeft + 20 - this.editor.offsetWidth, yPos );
-    else this.editor.scrollTo( 0, yPos );
+    // const caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
+    // const caretTop  = ( this.pos.line + 1 ) * this.settings.line;
+    // const yPos      = caretTop - this.render.overflow.offsetHeight > 0 ? caretTop - this.render.overflow.offsetHeight : 0;
+    //
+    // if ( caretLeft > this.render.overflow.offsetWidth - 20 ) {
+    //   console.log("scrolol x and y");
+    //   this.render.overflow.scrollTo( caretLeft + 20 - this.render.overflow.offsetWidth, yPos );
+    // }
+    // else {
+    //   console.log("scroll Y", yPos);
+    //   this.render.overflow.scrollTo( caretLeft, yPos );
+    // }
   }
 
   scrollToX () {
@@ -30,6 +36,22 @@ class TabJF_Caret {
     } else if ( caretPos.left < left + 10 + this.settings.left ) {
       this.render.move.overflow(
         -(left + 10  + this.settings.left - caretPos.left),
+        0
+       );
+    }
+  }
+
+  scrollToY () {
+    const top = this.render.overflow.scrollTop;
+    const caretPos = this.caret.getPos();
+    if ( this.render.overflow.offsetHeight + top - 10 - this.settings.top < caretPos.top ) {
+      this.render.move.overflow(
+        0,
+        caretPos.top - (this.render.overflow.offsetHeight + top - 10 - this.settings.top),
+      );
+    } else if ( caretPos.top < top + 10 + this.settings.top ) {
+      this.render.move.overflow(
+        -(top + 10  + this.settings.top - caretPos.top),
         0
        );
     }
@@ -50,8 +72,6 @@ class TabJF_Caret {
       posX + this.settings.left + this.pos.el.offsetLeft,
       ( line * this.settings.line ) + this.settings.top
     );
-
-    this.caret.scrollTo();
   }
 
   getPos () {
@@ -103,7 +123,7 @@ class TabJF_Caret {
 
   recalculatePos ( first = true ) {
     const line = this.get.lineByPos( this.activated ? this.pos.line : this.render.hidden );
-    if (!line) throw new Error('Line not found when recalculating caret position');
+    if (!line) return;
 
     // If its first iteration then reset letter to lastX and childIndex to 0
     // to properly recalculate position

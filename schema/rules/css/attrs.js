@@ -90,7 +90,7 @@ let attrs; export default attrs = {
     style : 'color:#EBE;'
   },
   quote : {
-    style : 'color:#0F0;'
+    style : 'color:#0FF;'
   },
   tag : {
     style: "color:brown"

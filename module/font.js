@@ -5,7 +5,6 @@ class TabJF_Font {
     this.font.lab = document.createElement("canvas");
   }
 
-
   getCssStyle(element, prop) {
     return window.getComputedStyle(element, null).getPropertyValue(prop);
   }

@@ -127,6 +127,7 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
+      // console.log(debug, 'Letter', '`' + letter + '`');
       let endFound = false;
 
       if (end !== null) {
@@ -143,7 +144,14 @@ class TabJF_Syntax {
       }
 
       if ( endFound ) {
-        return this.syntax.endSubsetChecks(i, letter, endFound, words, sentence, subset, group, debug);
+        const results = this.syntax.endSubsetChecks(i, letter, endFound, words, sentence, subset, group, debug);
+        words    = results.words;
+        sentence = results.sentence;
+        i        = results.i;
+        group    = this.syntax.groups[0];
+        subset   = group.subset;
+        end      = this.syntax.ends[0];
+        continue;
       }
 
       if ( subset?.sets &&
@@ -209,7 +217,6 @@ class TabJF_Syntax {
     }
 
     sentence = sentence.substring( (i + 1) - end.length );
-
     this.syntax.endSubset();
 
     // Subset end trigger

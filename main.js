@@ -381,9 +381,10 @@ class TabJF {
     if ( e.target == this.editor  ||  e.x < 0  ||  e.y < 0 ) return;
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
-    let left = e.x - this.settings.left;
+    const overflow = this.render?.overflow?.scrollLeft ?? 0;
+    let left = e.x - this.settings.left + overflow;
     if ( el.offsetWidth + el.offsetLeft < left ) {
-      left = el.offsetWidth + el.offsetLeft;
+      left = el.offsetWidth + el.offsetLeft + overflow;
     }
 
     let y = this.caret.pos.toY( el.parentElement.offsetTop + this.settings.top );
@@ -434,7 +435,7 @@ class TabJF {
     this.activated  = false;
   }
 
-  key ( e ) {
+  key( e ) {
     if (!this.activated) return;
     const type = e.type;
 
@@ -722,7 +723,12 @@ class TabJF {
     if (
       !( skipUpdate[ e.keyCode ]
       || skipUpdate[ 'default' ] )()
-    ) this.update.page()
+    ) {
+      this.update.page()
+      this.render.update.scrollWidthWithCurrentLine();
+      this.caret.scrollToX();
+      this.caret.scrollToY();
+    }
 
   }
 
