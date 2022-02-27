@@ -10,17 +10,17 @@ class TabJF_Font {
     return window.getComputedStyle(element, null).getPropertyValue(prop);
   }
 
-  getCanvasFontSize(el = document.body) {
-    const fontWeight = getCssStyle(el, 'font-weight') || 'normal';
-    const fontSize = getCssStyle(el, 'font-size') || '16px';
-    const fontFamily = getCssStyle(el, 'font-family') || 'Times New Roman';
+  getCanvasFontSize(el) {
+    const fontWeight = this.font.getCssStyle(el, 'font-weight') || 'normal';
+    const fontSize = this.font.getCssStyle(el, 'font-size') || '16px';
+    const fontFamily = this.font.getCssStyle(el, 'font-family') || 'Times New Roman';
 
     return `${fontWeight} ${fontSize} ${fontFamily}`;
   }
 
-  calculateWidth ( text, font ) {
+  calculateWidth ( text, el ) {
     const context = this.font.lab.getContext("2d");
-    context.font = font;
+    context.font = this.font.getCanvasFontSize(el);
     return context.measureText(text).width;
   }
 
