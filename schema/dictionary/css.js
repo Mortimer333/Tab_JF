@@ -365,7 +365,10 @@ let dictionary; export default dictionary = {
           "length": true,
           "procent": true,
           "custom": true
-        }
+        },
+        multi : true,
+        max : 2,
+        seperated : true
       }
     }
   },
@@ -755,7 +758,9 @@ let dictionary; export default dictionary = {
     },
     "right": {
       _ : {
-        ref : "$up.$up.left"
+        ref : "$up.left",
+        multi : true,
+        max : 3
       },
       "color": {
         "_": {

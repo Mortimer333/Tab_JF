@@ -106,6 +106,16 @@ let paths = {
               },
               subset : {
                 sets : {
+                  ' ' : {
+                    single: true,
+                    run : function (word, words, letter, sentence, sets) {
+                      const content = words[words.length - 1].content;
+                      if (content != ' ' && content != ':') {
+                        sets.default.wordCount++;
+                      }
+                      return attrs.spaces;
+                    }
+                  },
                   ',' : {
                     single : true,
                     run : function (word, words, letter, sentence, sets) {
@@ -212,7 +222,7 @@ let paths = {
                     functions : functions,
                     rule : '',
                     run : function (word, words, letter, sentence, sets) {
-                      this.wordCount++;
+                      // this.wordCount++;
                       const res = this.functions.validateValue(word, this.validation, words, this.wordCount);
                       return res;
                     }

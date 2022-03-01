@@ -192,7 +192,7 @@ let functions; export default functions = {
     if (value?.combine) {
       value.combine.forEach( direction => {
         let newRoute = this.redirect( [...route], direction.split('.') );
-        let newValue = this.directToValue( newRoute, rules );
+        let newValue = this.getValue( newRoute.join('-'), rules );
         value = this.mergeObjects(value, newValue);
       });
     }
