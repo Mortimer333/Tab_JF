@@ -1,3 +1,4 @@
+import fonts from './fonts.js';
 let dictionary; export default dictionary = {
   accent : {
     color : {
@@ -1551,21 +1552,7 @@ let dictionary; export default dictionary = {
     },
     "family": {
       "_": {
-        "values": {
-          "serif": true,
-          "sans-serif": true,
-          "monospace": true,
-          "cursive": true,
-          "fantasy": true,
-          "system-ui": true,
-          "ui-serif": true,
-          "ui-sans-serif": true,
-          "ui-monospace": true,
-          "ui-rounded": true,
-          "emoji": true,
-          "math": true,
-          "fangsong": true
-        },
+        "values": fonts,
         "type": {
           "custom": true
         },

@@ -35,6 +35,8 @@ let pseudoClasses; export default pseudoClasses = {
         single: true,
         attrs: attrs.pseudo.function
       },
+      ":after": pseudoClass,
+      ":before": pseudoClass,
       "active": pseudoClass,
       "any-link": pseudoClass,
       "autofill": pseudoClass,

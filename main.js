@@ -279,9 +279,21 @@ class TabJF {
   }
 
   assignEvents() {
-    this.editor.addEventListener("mousedown", this.active.bind      ? this.active    .bind(this) : this.active    );
-    this.editor.addEventListener("mouseup"  , this.stopSelect.bind  ? this.stopSelect.bind(this) : this.stopSelect);
-    this.editor.addEventListener("focusout" , this.deactive.bind    ? this.deactive  .bind(this) : this.deactive  );
+    console.log("assignEvent");
+    this.editor.addEventListener("mousedown", this.active.bind        ? this.active       .bind(this) : this.active       );
+    this.editor.addEventListener("mouseup"  , this.stopSelect.bind    ? this.stopSelect   .bind(this) : this.stopSelect   );
+    this.editor.addEventListener("focusout" , this.deactive.bind      ? this.deactive     .bind(this) : this.deactive     );
+    this.editor.addEventListener("dblclick" , this.saveSelection.bind ? this.saveSelection.bind(this) : this.saveSelection);
+  }
+
+  saveSelection( e ) {
+    this.update.select();
+    this.update.selection.start(
+      0,
+      this.selection.end.line,
+      this.selection.end.node
+    );
+    this.checkSelect();
   }
 
   stopSelect( e ) {
