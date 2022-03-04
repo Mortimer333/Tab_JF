@@ -1,4 +1,6 @@
 class TabJF_Update {
+  resizeDebounce = null; // Placeholder for resize event debounce
+
   page () {
     if ( this.settings.syntax ) this.syntax.update();
     this.render.move.page({ refocus : false });
@@ -45,6 +47,22 @@ class TabJF_Update {
 
   currentSpanContent ( text ) {
     this.render.content[this.pos.line].content[this.pos.childIndex].content = this.replace.spaces(text);
+  }
+
+  resize() {
+    console.log("resize");
+    this.render.overflow.style.setProperty("--max-height", 'none');
+    setTimeout(this.update.resizeTimeout.bind(this), 0)
+  }
+
+  resizeTimeout() {
+    this.settings.height = this.render.overflow.offsetHeight;
+    this.render.overflow.style.setProperty("--max-height", this.settings.height);
+    this.render.linesLimit = Math.ceil( this.settings.height / this.settings.line ) + 2;
+    this.render.update.minHeight();
+    this.render.update.scrollWidth();
+    this.clear.editor( false );
+    this.render.fill.event();
   }
 }
 export { TabJF_Update };

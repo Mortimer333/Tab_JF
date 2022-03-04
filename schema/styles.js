@@ -8,6 +8,7 @@ let styles; export default styles = [
   `.tabjf_editor-con .tabjf_editor {
     position    : relative;
     min-height  : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
+    height      : calc( (var(--min-height, 0) - var(--paddingTop, 0)) * 1px);
     padding-top : calc( var(--paddingTop, 0) * 1px )                        ;
     padding-left  : var(--padding-left);
     padding-right : 10px;
@@ -17,6 +18,7 @@ let styles; export default styles = [
   }`,
   `.tabjf_editor-con .tabjf_editor p {
     position   : relative;
+    line-height: 20px    ;
     min-height : 20px    ;
     max-height : 20px    ;
     height     : 20px    ;

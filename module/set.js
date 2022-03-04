@@ -1,9 +1,10 @@
 class TabJF_Set {
   docEvents () {
     if ( this.docEventsSet ) return;
-    document.addEventListener('paste'  , this.catchClipboard.bind(this), true);
-    document.addEventListener('keydown', this.key           .bind(this), true);
-    document.addEventListener('keyup'  , this.key           .bind(this), true);
+    document.addEventListener('paste'  , this.catchClipboard       .bind(this));
+    document.addEventListener('keydown', this.key                  .bind(this));
+    document.addEventListener('keyup'  , this.key                  .bind(this));
+    window  .addEventListener('resize' , this.update.resizeDebounce.bind(this));
     this.docEventsSet = true;
   }
 

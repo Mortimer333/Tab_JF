@@ -37,6 +37,7 @@
   padding-top : calc( var(--paddingTop, 0) * 1px );
   width       : calc(var(--scroll-width, 100%) * 1px + 5px );
   min-width   : calc(100% - var(--padding-left) - 10px);
+  height: 100vh;
 }
 
 .tabjf_editor p {

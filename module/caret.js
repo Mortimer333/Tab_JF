@@ -29,14 +29,14 @@ class TabJF_Caret {
   scrollToY () {
     const top = this.render.overflow.scrollTop;
     const caretPos = this.caret.getPos();
-    if ( this.render.overflow.offsetHeight + top - 10 - this.settings.top < caretPos.top ) {
+    if ( this.render.overflow.offsetHeight + top - 10 < caretPos.top ) {
       this.render.move.overflow(
         0,
-        caretPos.top - (this.render.overflow.offsetHeight + top - 10 - this.settings.top),
+        caretPos.top - (this.render.overflow.offsetHeight + top - 10),
       );
-    } else if ( caretPos.top < top + 10 + this.settings.top ) {
+    } else if ( caretPos.top < top + 10 ) {
       this.render.move.overflow(
-        -(top + 10  + this.settings.top - caretPos.top),
+        -(top + 10 - caretPos.top),
         0
        );
     }
@@ -52,10 +52,9 @@ class TabJF_Caret {
     let posX = this.font.calculateWidth( this.pos.el.innerText.slice( 0, letter), this.pos.el );
     this.pos.letter = letter;
     this.pos.line   = line  ;
-
     this.caret.set(
       posX + this.settings.left + this.pos.el.offsetLeft,
-      ( line * this.settings.line ) + this.settings.top
+      ( line * this.settings.line )
     );
   }
 

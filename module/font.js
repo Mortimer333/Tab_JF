@@ -31,7 +31,7 @@ class TabJF_Font {
    * @return {int   }      Amount of letters before caret
    */
   getLetterByWidth( text, el, left ) {
-    if (text.length == 1) {
+    if (text.length <= 1) {
       const singleSize = this.font.calculateWidth( text, el );
       // Find if to positionc aret before or after letter
       if (singleSize/2 > left) {
