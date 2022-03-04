@@ -1102,7 +1102,7 @@ let dictionary; export default dictionary = {
         "values": {
           "normal": true
         },
-        "types": {
+        "type": {
           "custom": true,
           "length": true,
           "procent": true
@@ -1121,7 +1121,7 @@ let dictionary; export default dictionary = {
       },
       "color": {
         "_": {
-          "types": {
+          "type": {
             "color": true
           }
         }
@@ -1149,7 +1149,7 @@ let dictionary; export default dictionary = {
             "medium": true,
             "thick": true
           },
-          "types": {
+          "type": {
             "custom": true,
             "length": true
           }
@@ -1215,8 +1215,7 @@ let dictionary; export default dictionary = {
         "custom": true,
         "name": true,
         "image": true,
-        "functions": true,
-        "variable": true
+        "functions": true
       },
       functions : {
         attr : true,
@@ -1243,9 +1242,9 @@ let dictionary; export default dictionary = {
         "values": {
           "none": true
         },
-        "types": {
-          "variable": true,
-          "number": true
+        "type": {
+          "number": true,
+          name: true
         },
         "separated": true
       }
@@ -1554,7 +1553,8 @@ let dictionary; export default dictionary = {
       "_": {
         "values": fonts,
         "type": {
-          "custom": true
+          "custom": true,
+          name: true
         },
         seperated : true
       }

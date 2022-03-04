@@ -83,25 +83,17 @@ let functions; export default functions = {
     ) return false;
     return true;
   },
-  firstName : function ( group, value, words ) {
-
-    for (var i = words.length - 1; i >= 0; i--) {
-      if (
-        words[i].content == ','
-        || words[i].content == ':'
-      ) break;
-      if ( words[i].content != '&nbsp;') return false;
-    }
-
-    if ( this.name( group, value ) ) return false;
-
-    return true;
-  },
-  name : function ( group, value ) {
-    return value.substr(0, 2) !== '--'
+  name : function ( group, value, words, key, wordCount, max ) {
+    if (
+      wordCount == 0
+      && value.substr(0, 2) !== '--'
       && (isNaN(value[0]) || value[0] === '-')
       && value[0] !== '_'
-      && /^[0-9A-Za-z_-\s\-]+$/.test(value);
+      && /^[0-9A-Za-z_-\s\-]+$/.test(value)
+    ) {
+      return { 'style' : 'color:#FFF;' };
+    }
+    return false;
   },
   color : function ( group, value ) {
     var el = document.createElement('div');
@@ -271,7 +263,7 @@ let functions; export default functions = {
 
     for (var j = 0; j < typeKeys.length; j++) {
       const key = typeKeys[j];
-      const result = (this[ key ] || this['default']).bind(this)( validation, word, words, key );
+      const result = (this[ key ] || this['default']).bind(this)( validation, word, words, key, wordCount, validation.max );
       if (result) {
         if (typeof result == 'object') {
           return result;
