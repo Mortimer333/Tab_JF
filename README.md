@@ -1,15 +1,14 @@
 # Overview
 
-Text editor which doesn't use `contenteditable`, does render only visible part of text onto the page and has option of creating your own custom syntax highlighting. Currently half supports CSS which can be found in `/schema/rules/css.js`.
+Text editor which doesn't use `contenteditable`, does render only visible part of text onto the page and has option of creating your own custom syntax highlighting. Example syntax can be found in this file - `/schema/rules/css.js` (and related files).
 
 # How to use
 
 Create instance:
 ```js
-const editor = document.getElementById('someEditorID');
-new TabJF(editor);
+new TabJF(document.getElementById('someEditorID'));
 ```
-and you are done!
+and done! This should replace given node with editor.
 
 ## Padding
 
@@ -40,7 +39,6 @@ But if you want to add your own styles you have to remember about few things:
   - `tabjf_editor-con` - editors container
   - `tabjf_editor-con tabjf_editor` - editor
   - `tabjf_editor-con tabjf_editor caret` - the text cursor class
-  - `.tabjf_editor-con .tabjf_editor p .spaces` - class for showing spaces when syntax enabled
 - And few variables that must be used for editor to work properly:
   - `--min-height` - editors min height
   - `--paddingTop` - editors padding top

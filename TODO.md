@@ -13,13 +13,8 @@
 
 
 ## Bugs:
-- [Known bug - NGTFI] all sets with subset are not counted to wordLimit
-- add ::after and ::before
-- fix names like  in this:
-font-family   : Consolas, monospace; (Consolas is underlined as error)
-counter-reset : editor-line; (name of editor-line is underlined)
+- [Known bug - NO FIX] all sets with subset are not counted to wordLimit
 
-
-
-## Thinkers
+## Later
 - Add webkit and moz styles
+- Add on resize event

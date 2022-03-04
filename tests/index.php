@@ -11,6 +11,11 @@
       }
     ?>
     <link rel="stylesheet" href="<?= cacheBurst('./master.css'); ?>">
+    <style media="screen">
+      body {
+        /* background-color: #000; */
+      }
+    </style>
   </head>
   <body>
     <div id="editor" name="aa">
@@ -108,7 +113,7 @@
       const editor = document.getElementById('editor');
       const height = window.innerHeight;
       console.info(editor);
-      const tabEditor = new TabJF(editor, { left : 65, syntax : schema, height, contentText : normal }, true);
+      const tabEditor = new TabJF(editor, { contentText : normal, syntax: schema, left : 65 }, true);
       console.info(tabEditor);
       // Unit and Integrity test won't work with syntax enabled
       // const tIntg = new Integration(tabEditor);

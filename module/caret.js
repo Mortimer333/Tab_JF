@@ -10,21 +10,6 @@ class TabJF_Caret {
     );
   }
 
-  scrollTo () {
-    // const caretLeft = this.get.realPos().x * this.settings.letter + this.settings.left;
-    // const caretTop  = ( this.pos.line + 1 ) * this.settings.line;
-    // const yPos      = caretTop - this.render.overflow.offsetHeight > 0 ? caretTop - this.render.overflow.offsetHeight : 0;
-    //
-    // if ( caretLeft > this.render.overflow.offsetWidth - 20 ) {
-    //   console.log("scrolol x and y");
-    //   this.render.overflow.scrollTo( caretLeft + 20 - this.render.overflow.offsetWidth, yPos );
-    // }
-    // else {
-    //   console.log("scroll Y", yPos);
-    //   this.render.overflow.scrollTo( caretLeft, yPos );
-    // }
-  }
-
   scrollToX () {
     const left = this.render.overflow.scrollLeft;
     const caretPos = this.caret.getPos();

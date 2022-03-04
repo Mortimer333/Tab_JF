@@ -78,7 +78,6 @@ class TabJF {
     if ( typeof editor?.nodeType == 'undefined') throw new Error('You can\'t create Editor JF without passing node to set as editor.');
     if ( editor.nodeType != 1                  ) throw new Error('Editor node has to be of proper node type. (1)'                    );
     this.editor   = editor;
-    console.log(this);
     this.editor.setAttribute('tabindex', '-1');
     this.editor.classList.add('tabjf_editor');
     window.tab = this;
@@ -87,7 +86,6 @@ class TabJF {
       top    : 0,
       line   : 20,
       height : 400,
-      addCss : false,
       syntax : false,
       contentText : false,
       contentObj  : false,
@@ -125,9 +123,7 @@ class TabJF {
     if ( this.settings.syntax ) this.syntax.init();
     this.truck.import( this.render.content, this.render.linesLimit );
 
-    if ( set.addCss ) {
-      this.addRules();
-    }
+    this.addRules();
 
     this.set.docEvents();
 
@@ -218,13 +214,10 @@ class TabJF {
   }
 
   addRules () {
-    let css = window.document.styleSheets[0];
-    if (!css) {
-      var styleEl = document.createElement('style');
-      styleEl.setAttribute('name', "TabJF Styles");
-      document.head.insertBefore(styleEl, document.head.children[0]);
-      css = styleEl.sheet;
-    }
+    var styleEl = document.createElement('style');
+    styleEl.setAttribute('name', "TabJF Styles");
+    document.head.insertBefore(styleEl, document.head.children[0]);
+    const css = styleEl.sheet;
     // Using styles schema
     styles.forEach( rule => {
       css.insertRule(
@@ -389,7 +382,6 @@ class TabJF {
       event     : e,
     });
     if ( event.defaultPrevented ) return;
-
     if ( e.target == this.editor  ||  e.x < 0  ||  e.y < 0 ) return;
     let el = e.target;
     if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
@@ -400,8 +392,9 @@ class TabJF {
     }
 
     let y = this.caret.pos.toY( el.parentElement.offsetTop + this.settings.top );
+    const x   = e.layerX;
     let line = Math.ceil ( ( y - this.settings.top ) / this.settings.line );
-    const letter = this.font.getLetterByWidth( left, el );
+    const letter = this.font.getLetterByWidth( el.innerText, el, x - el.offsetLeft );
     this.caret.show();
     const index  = this.get.childIndex( el );
     this.caret.refocus(
@@ -677,7 +670,11 @@ class TabJF {
       },
       191 : ( e, type ) => {
         e.preventDefault();
-        this.insert('/');
+        if (this.pressed.shift) {
+          this.insert('?');
+        } else {
+          this.insert('/');
+        }
       },
       192 : ( e, type ) => {
         if ( this.pressed.shift ) this.insert('~');

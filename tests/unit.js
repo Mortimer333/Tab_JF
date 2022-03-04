@@ -105,7 +105,7 @@ class Unit extends Test {
         const x = (width/2) - 1;
         const el = document.createElement("span");
         el.appendChild(document.createTextNode(letters));
-        const letter = this.instance.font.getLetterByWidth(x, el);
+        const letter = this.instance.font.getLetterByWidth(el.innerText, el, x);
         this.error(
           letter != 2,
           '[FONT:GETLETTERBYWIDTH] Failed',

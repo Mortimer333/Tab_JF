@@ -16,7 +16,7 @@
   overflow: auto;
 }
 
-.tabjf_editor .caret {
+.tabjf_editor-con .tabjf_editor .caret {
   width     : 1px ;
   height    : 20px;
   position  : absolute   ;
