@@ -682,7 +682,7 @@ with extended example of solution:
   }
 }
 ```
-As you can see those two subset have the same end `)`. But one `landmark` can onle end one `subset` at time so to actually exit all `subsets` the example would have to look like this:
+As you can see those two subset have the same end `)`. But one `landmark` can only end one `subset` at time so to actually exit all `subsets` the example would have to look like this:
 ```css
 margin: var(--margin-value));
 ```
