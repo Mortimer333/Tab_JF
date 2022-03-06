@@ -1,11 +1,9 @@
 import { TabJF_Action } from './module/action.js';
-import { TabJF_Caret_Pos } from './module/caret/pos.js';
 import { TabJF_Caret } from './module/caret.js';
 import { TabJF_Clear } from './module/clear.js';
 import { TabJF_End } from './module/end.js';
 import { TabJF_Event } from './module/event.js';
 import { TabJF_Font } from './module/font.js';
-import { TabJF_Get_Css } from './module/get/css.js';
 import { TabJF_Get } from './module/get.js';
 import { TabJF_Is_Line } from './module/is/line.js';
 import { TabJF_Is } from './module/is.js';
@@ -158,16 +156,12 @@ class TabJF {
         { instance : TabJF_Save_Content, var : 'content' },
       ]},
       { instance : TabJF_Action , var : 'action'  },
-      { instance : TabJF_Caret  , var : 'caret', modules : [
-        { instance : TabJF_Caret_Pos, var : 'pos' },
-      ]},
+      { instance : TabJF_Caret  , var : 'caret'   },
       { instance : TabJF_Clear  , var : 'clear'   },
       { instance : TabJF_End    , var : 'end'     },
       { instance : TabJF_Event  , var : 'event'   },
       { instance : TabJF_Font   , var : 'font'    },
-      { instance : TabJF_Get    , var : 'get', modules : [
-        { instance : TabJF_Get_Css, var : 'css' },
-      ]},
+      { instance : TabJF_Get    , var : 'get'     },
       { instance : TabJF_Is     , var : 'is', modules : [
         { instance : TabJF_Is_Line, var : 'line' },
       ]},

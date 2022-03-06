@@ -1,4 +1,9 @@
 class TabJF_Render_Fill {
+  /**
+   * Fill editor event.
+   * Its requested every time overflow is scrolled and is updating contents of editor
+   * @param  {Object} [e=null] Scroll event
+   */
   event ( e = null ) {
     try {
       const selection = this.get.selection();

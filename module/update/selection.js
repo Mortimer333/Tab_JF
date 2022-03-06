@@ -1,4 +1,10 @@
 class TabJF_Update_Selection {
+  /**
+   * Updates start of selection
+   * @param  {Number} [letter=this.pos.letter]
+   * @param  {Number} [line=this.pos.line]
+   * @param  {Number} [index=this.pos.childIndex]
+   */
   start (
     letter = this.pos.letter,
     line = this.pos.line,
@@ -10,6 +16,12 @@ class TabJF_Update_Selection {
     start.node   = index;
   }
 
+  /**
+   * Updates end of selection
+   * @param  {Number} [letter=this.pos.letter]
+   * @param  {Number} [line=this.pos.line]
+   * @param  {Number} [index=this.pos.childIndex]
+   */
   end (
     letter = this.pos.letter,
     line = this.pos.line,

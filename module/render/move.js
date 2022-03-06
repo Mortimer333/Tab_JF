@@ -1,4 +1,12 @@
 class TabJF_Render_Move {
+  /**
+   * Move page to passed offset and update editor variables
+   * @param  {Object} [obj={}] Some settings:
+   * - {Number } offset  [this.render.hidden] - from where start rendering
+   * - {Boolean} clear   [true              ] - clear editor?
+   * - {Boolean} clear   [false             ] - reverse insert?
+   * - {Boolean} refocus [true              ] - refocus caret after rendering?
+   */
   page ( obj = {} ) {
     const required = {
       'offset' : this.render.hidden,
@@ -18,6 +26,11 @@ class TabJF_Render_Move {
     if ( refocus && this.caret.isVisible() ) this.caret.refocus();
   }
 
+  /**
+   * Scroll editor for addtional pixels on X or/and Y axis. Passed values will be added to current scroll amount
+   * @param  {Number} x 
+   * @param  {Number} y
+   */
   overflow ( x, y ) {
     let top  = this.render.overflow.scrollTop;
     let left = this.render.overflow.scrollLeft;
