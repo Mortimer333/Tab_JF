@@ -1,4 +1,7 @@
 class TabJF_Set {
+  /**
+   * Setup all events on document or window
+   */
   docEvents () {
     if ( this.docEventsSet ) return;
     document.addEventListener('paste'  , this.catchClipboard       .bind(this));
@@ -8,6 +11,11 @@ class TabJF_Set {
     this.docEventsSet = true;
   }
 
+  /**
+   * Find method and set VC proxy on her
+   * @param  {Object  } scope Current scope to which path led
+   * @param  {String[]} path  Path to method
+   */
   preciseMethodsProxy ( scope, path ) {
     if (path.length == 1)
       scope[ path[0] ] = new Proxy( scope[ path[0] ], this._proxySaveHandle );
@@ -16,19 +24,13 @@ class TabJF_Set {
     }
   }
 
-  methodsProxy ( object, keys ) {
-    for (var i = 0; i < keys.length; i++) {
-      let propertyName = keys[i];
-      const type = typeof object[ propertyName ];
-      if ( type == 'function') {
-        if ( object[ propertyName ] == this.set.methodsProxy )  continue;
-        object[ propertyName ] = new Proxy( object[ propertyName ], this._proxyHandle );
-      } else if ( type == 'object' && object[ propertyName ] !== null && propertyName[0] != '_' ) {
-        this.set.methodsProxy( object[ propertyName ], Object.keys( object[ propertyName ] ) );
-      }
-    };
-  }
-
+  /**
+   * Move caret to side of passed node
+   * @param  {Node  } node
+   * @param  {Number} dirX                             -1 go left, 1 go right
+   * @param  {Number} [newLine=this.pos.line         ] New line position
+   * @param  {Number} [childIndex=this.pos.childIndex] New child index
+   */
   side ( node, dirX, newLine = this.pos.line, childIndex = this.pos.childIndex ) {
     let letter = this.pos.letter;
     this.pos.childIndex = childIndex;
@@ -38,6 +40,13 @@ class TabJF_Set {
     this.caret.setByChar( letter, newLine );
   }
 
+  /**
+   * Set caret position and update it on page
+   * @param  {Node} node
+   * @param  {Number} letter
+   * @param  {Number} line
+   * @param  {Number} childIndex
+   */
   pos ( node, letter, line, childIndex ) {
     this.pos.childIndex = childIndex;
     this.pos.letter = letter;
@@ -45,6 +54,12 @@ class TabJF_Set {
     this.caret.setByChar( letter, line, node );
   }
 
+  /**
+   * Creates span and sets attrbiutes and text in it
+   * @param  {Object[]} attributes [{nodeName: "style", nodeValue: "color:#FFF"}]
+   * @param  {String  } text
+   * @return {Node    }            Created span
+   */
   attributes(attributes, text) {
     let newSpan = document.createElement("span");
     for ( let att, i = 0, atts = attributes, n = atts.length; i < n; i++ ){
@@ -55,6 +70,12 @@ class TabJF_Set {
     return newSpan;
   }
 
+  /**
+   * Creates span and sets attributes in a way they are described in render content
+   * @param  {Object} attributes {style: "color:#FFF"}
+   * @param  {String} text
+   * @return {Node  }            Span
+   */
   attributesFromContent(attributes, text) {
     if (!attributes) {
       return;

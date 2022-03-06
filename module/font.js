@@ -1,22 +1,41 @@
 class TabJF_Font {
-  lab = null;
+  lab = null;   // Placeholder for lab where we calculate width of text
 
+  /**
+   * Creates laboratory and saves it into this.font.lab
+   */
   createLab () {
     this.font.lab = document.createElement("canvas");
   }
 
+  /**
+   * Get assigned css to passed node
+   * @param  {Node  } element Node from which we take style
+   * @param  {String} prop    Name of searched style
+   * @return {String|Boolean} Value of searched css style or false if not found
+   */
   getCssStyle(element, prop) {
     return window.getComputedStyle(element, null).getPropertyValue(prop);
   }
 
+  /**
+   * Returns font config for canvas
+   * @param  {Node  } el Element to take css from
+   * @return {String}    Config
+   */
   getCanvasFontSize(el) {
     const fontWeight = this.font.getCssStyle(el, 'font-weight') || 'normal';
-    const fontSize = this.font.getCssStyle(el, 'font-size') || '16px';
+    const fontSize   = this.font.getCssStyle(el, 'font-size'  ) || '16px';
     const fontFamily = this.font.getCssStyle(el, 'font-family') || 'Times New Roman';
-
     return `${fontWeight} ${fontSize} ${fontFamily}`;
   }
 
+  /**
+   * Calculated width of given text
+   * @param  {String      } text Text which length we will calculate
+   * @param  {Node        } el   Node from which we will take styles
+   * @return {Float|Number} Width of text (format depends on browser)
+   */
   calculateWidth ( text, el ) {
     const context = this.font.lab.getContext("2d");
     context.font = this.font.getCanvasFontSize(el);

@@ -1,4 +1,9 @@
 class TabJF_Truck {
+  /**
+   * Export contents of editor (or passed html) by converting it into render content type. Used for transforming html nodes into editor readable type
+   * @param  {Node[]} [html=null] Array of nodes
+   * @return {Object}             Something similar to: [{content:[{content:'text',attrs:{}}]}]
+   */
   export ( html = null ) {
     const exportAr = [];
     if ( !html ) html = this.editor.children;
@@ -12,6 +17,11 @@ class TabJF_Truck {
     return exportAr;
   }
 
+  /**
+   * Convert node into render content type
+   * @param  {Node  } p It has to be paragraph
+   * @return {Object}   Something similar to: {content:[{content:'text',attrs:{}}]}
+   */
   exportLine ( p ) {
     if ( p.nodeName !== "P" ) return false;
 
@@ -33,6 +43,11 @@ class TabJF_Truck {
     };
   }
 
+  /**
+   * Convert text into render content type
+   * @param  {String} text
+   * @return {Object}      Something similar to: [{content:[{content:'text',attrs:{}}]}]
+   */
   exportText ( text ) {
     const content = text.split('\n');
     const conAr = [];
@@ -49,6 +64,16 @@ class TabJF_Truck {
     return conAr;
   }
 
+  /**
+   * Populates editor with lines
+   * @param  {Object[] } importAr              Render content type array
+   * @param  {Boolean  } [limit=false        ] How many lines we want to import
+   * @param  {Number   } [offset=0           ] From which line we should start importing
+   * @param  {Boolean  } [clear=true         ] Remove content from editor?
+   * @param  {Boolean  } [reverse=false      ] Import lines in reverse order
+   * @param  {Node|null} [container=null     ] Container to which import lines (default editor)
+   * @param  {Boolean  } [replaceContent=true] Replace render.content with passed array in importAr
+   */
   import (
     importAr,
     limit = false,

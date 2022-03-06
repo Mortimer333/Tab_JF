@@ -12,7 +12,7 @@
 .tabjf_editor-con {
   --editor-bg : #3e3e3e;
   background-color : var(--editor-bg);
-  max-height: calc( var(--max-height, 200) * 1px);
+  height: 100vh;
   overflow: auto;
 }
 

@@ -1,23 +1,46 @@
 class TabJF_Get {
+  /**
+   * Creates clone of passed object. Doesn't clone functions
+   * @param  {Object} obj Object to clone
+   * @return {Object}     Cloned object
+   */
   clone ( obj ) {
     return JSON.parse(JSON.stringify( obj ));
   }
 
+  /**
+   * Clone position attribute (used for Unit tests)
+   * @return {Object} Cloned position of caret
+   */
   clonedPos () {
     const pos = Object.assign({}, this.pos);
     pos.el = this.pos.el;
     return pos;
   }
 
+  /**
+   * Returns main class
+   * @return {Object} Main class
+   */
   myself () {
     return this;
   }
 
+  /**
+   * Returns all visible lines
+   * @return {Object} Visible lines in render content form
+   */
   visibleLines() {
     return this.render.content.slice(this.render.hidden, this.render.hidden + this.render.linesLimit);
   }
 
-  selectedLines ( sLine = null, eLine = null ) {
+  /**
+   * Returns all selected lines (cloned)
+   * @param  {Node|null} [sLine=null] Node line start
+   * @param  {Node|null} [eLine=null] Node line end
+   * @return {Node[]   }              Selected nodes
+   */
+  selectedNodes ( sLine = null, eLine = null ) {
     if ( !sLine || !eLine ) {
       const sel = this.get.selection(), revCheck = this.selection.reverse && !this.selection.expanded;
       sLine = this.get.line( revCheck ? sel.focusNode : sel.anchorNode );
@@ -28,22 +51,33 @@ class TabJF_Get {
 
     return [
       sLine.cloneNode(true),
-      ...this.get.selectedLinesRecursive( sLine.nextSibling, eLine )
+      ...this.get.selectedNodesRecursive( sLine.nextSibling, eLine )
     ];
   }
 
-  selectedLinesRecursive ( node, end ) {
+  /**
+   * Recursively gather selected nodes, starting from `node` and searching of `end` (cloned)
+   * @param  {Node} node Start node
+   * @param  {Node} end  End node
+   * @return {Node[]}    Found nodes
+   */
+  selectedNodesRecursive ( node, end ) {
     if ( node === null         ) throw new Error('The node doesn\'t exist in this parent');
     if ( node == end           ) return [ node.cloneNode(true) ];
-    if ( node.nodeName !== "P" ) return this.get.selectedLinesRecursive( node.nextSibling, end );
-    return [ node.cloneNode(true), ...this.get.selectedLinesRecursive( node.nextSibling, end ) ];
+    if ( node.nodeName !== "P" ) return this.get.selectedNodesRecursive( node.nextSibling, end );
+    return [ node.cloneNode(true), ...this.get.selectedNodesRecursive( node.nextSibling, end ) ];
   }
 
-  selectedNodes () {
+  /**
+   * Get seleced lines from render content based on our saved selection start and end (cloned)
+   * @return {Object[]} Selected nodes in content render form (cloned)
+   */
+  selectedLines () {
     const sel = this.get.selection();
     if ( sel.type != 'Range') return;
     let start = this.get.clone( this.selection.start );
     let end   = this.get.clone( this.selection.end   );
+    // Check if start and end are not reversed
     if (
       start.line > end.line
       || (start.line == end.line && start.node > end.node)
@@ -53,11 +87,12 @@ class TabJF_Get {
       start   = end;
       end     = tmp;
     }
-
+    // If we copy only part of one line
     if ( start.line == end.line ) {
       const line = this.get.clone( this.render.content[ start.line ] );
       delete line.ends;
       delete line.groupPath;
+      // If from the same node
       if ( start.node == end.node ) {
         let content = this.replace.spaceChars( line.content[ start.node ].content );
         let text    = this.replace.spaces( content.substr( start.letter, end.letter - start.letter ) );
@@ -78,6 +113,7 @@ class TabJF_Get {
         return [ line ];
       }
     }
+
     let linesBetween = this.render.content.slice( start.line + 1, end.line );
     let startLine    = this.get.clone( this.render.content[ start.line ]);
     let endLine      = this.get.clone( this.render.content[ end.line   ]);
@@ -96,6 +132,11 @@ class TabJF_Get {
     return [ startLine ].concat( linesBetween, [ endLine ] );
   }
 
+  /**
+   * Get child index of element
+   * @param  {Node} el Node
+   * @return {Number|Boolean}  Child Index or false if not found
+   */
   elPos ( el ) {
     for ( let i = 0; i < el.parentElement.children.length; i++ ) {
       if ( el.parentElement.children[i] == el ) return i;
@@ -103,6 +144,11 @@ class TabJF_Get {
     return false;
   }
 
+  /**
+   * Get position of line in editor
+   * @param  {Node}           line Line node
+   * @return {Number|Boolean}      Child Index if found, false if not
+   */
   linePos ( line ) {
     let linePos = 0;
     for ( let i = 0; i < this.editor.children.length; i++ ) {
@@ -114,10 +160,19 @@ class TabJF_Get {
     return false;
   }
 
+  /**
+   * Get selection
+   * @return {Object} Selection object
+   */
   selection () {
     return window.getSelection ? window.getSelection() : document.selection;
   }
 
+  /**
+   * Get real position of caret (real number of letter is the main purpose because in position element you only have on which letter he is in
+   * current node)
+   * @return {Object} { x: 0, y: 0 } - x is letters and y is lines
+   */
   realPos () {
     const children = Object.values( this.pos.el.parentElement.children );
     let letters = 0;
@@ -133,11 +188,22 @@ class TabJF_Get {
     }
   }
 
+  /**
+   * Given some kind og child of the line find related line
+   * @param  {Node        } el Lines child
+   * @return {Node|Boolean}    Found line or false
+   */
   line ( el ) {
+    if (!el.parentElement) return false;
     if ( el.parentElement == this.editor ) return el;
     return this.get.line( el.parentElement );
   }
 
+  /**
+   * Get line node by its position
+   * @param  {Number      } pos
+   * @return {Node|Boolean}     Line node or false
+   */
   lineByPos ( pos ) {
     pos -= this.render.hidden;
     if (pos >= 0) {
@@ -158,8 +224,14 @@ class TabJF_Get {
     return false;
   }
 
+  /**
+   * Get closest line in given direction (0 is up, 1 is down)
+   * @param  {Node     }  line        Start line
+   * @param  {Number   }  dir         Direction
+   * @param  {Boolean  } [first=true] Checks if this si first iteration
+   * @return {Node|null}              Line node or null
+   */
   lineInDirection ( line, dir, first = true ) {
-
     if ( first  && line?.nodeName != "P" ) throw new Error("Parent has wrong tag, can't find proper lines");
     if ( !first && line?.nodeName == "P" ) return line;
 
@@ -183,11 +255,22 @@ class TabJF_Get {
     return this.get.lineInDirection( newLine, dir < 0 ? dir + 1 : dir - 1, true );
   }
 
+  /**
+   * Get sibling, based on passed direction
+   * @param  {Node     } node
+   * @param  {Number   } dir  1 is next 0 is previous
+   * @return {Node|null}
+   */
   sibling ( node, dir ) {
          if ( dir > 0 ) return node.nextSibling;
     else if ( dir < 0 ) return node.previousSibling;
   }
 
+  /**
+   * Get child nodes index of element
+   * @param  {Node} el        Element to find
+   * @return {Number|Boolean} Found index or false
+   */
   childIndex ( el ) {
     for (var i = 0; i < el.parentElement.childNodes.length; i++) {
       if ( el.parentElement.childNodes[i] == el ) return i;
@@ -195,6 +278,11 @@ class TabJF_Get {
     return false;
   }
 
+  /**
+   * Get all attributes of element and return them in key => value fashion
+   * @param  {Object} el
+   * @return {Object}    Attrbiutes
+   */
   attributes(el) {
     const attrsObj = {};
     for ( let att, i = 0, atts = el.attributes, n = atts.length; i < n; i++ ){
@@ -204,29 +292,45 @@ class TabJF_Get {
     return attrsObj;
   }
 
-  splitNode() {
+  /**
+   * Split node based on passed position
+   * @param  {Number} [pos=this.pos.letter] Split position
+   * @return {Object}                       { pre: '', suf: '' }
+   */
+  splitNode( pos = this.pos.letter ) {
     let text = this.pos.el.innerText;
     return {
-      pre : this.set.attributes( this.pos.el.attributes, text.substr( 0, this.pos.letter ) ),
-      suf : this.set.attributes( this.pos.el.attributes, text.substr( this.pos.letter    ) )
+      pre : this.set.attributes( this.pos.el.attributes, text.substr( 0, pos ) ),
+      suf : this.set.attributes( this.pos.el.attributes, text.substr( pos    ) )
     }
   }
 
-  splitRow() {
-    let local = this.get.splitNode();
-    let nodes = this.get.nextSiblignAndRemove( this.pos.el.nextSibling );
+  /**
+   * Split whole row based on passed node and on which letter of this node
+   * @param  {Node    } [el=this.pos.el     ]
+   * @param  {Node    } [pos=this.pos.letter]
+   * @return {Object[]}                       { pre : [node], suf: [nodes] }
+   */
+  splitRow( el = this.pos.el, pos = this.pos.letter ) {
+    let local = this.get.splitNode( pos );
+    let nodes = this.get.nextSiblingAndRemove( el.nextSibling );
     local.suf = [ local.suf, ...nodes ];
     return local;
   }
 
-  nextSiblignAndRemove( el ) {
+  /**
+   * Get this element and all his next siblings and remove them all
+   * @param  {Node  } el
+   * @return {Node[]}    Nodes
+   */
+  nextSiblingAndRemove( el ) {
     if ( el === null ) return [];
     let nodes = [];
 
     let span = this.set.attributes( el.attributes, el.innerText );
     nodes.push( span );
     if ( el.nextSibling ) {
-      let nextSpan = this.get.nextSiblignAndRemove( el.nextSibling );
+      let nextSpan = this.get.nextSiblingAndRemove( el.nextSibling );
       nodes = nodes.concat( nextSpan );
     }
 
@@ -234,6 +338,11 @@ class TabJF_Get {
     return nodes;
   }
 
+  /**
+   * Get whole line content from render content type line
+   * @param  {Object} line Render content type line
+   * @return {String}
+   */
   sentence( line ) {
     let words = '';
     line.content.forEach( span => {
@@ -242,8 +351,12 @@ class TabJF_Get {
     return this.replace.spaceChars(words);
   }
 
+  /**
+   * Cut senetence into words
+   * @param  {String  } sentence
+   * @return {String[]}          Words
+   */
   words( sentence ) {
-
     let word = '';
     words = [];
     let spaces = false;
@@ -266,16 +379,26 @@ class TabJF_Get {
     return words;
   }
 
+  /**
+   * Get currently active spans content from render content
+   * @return {String} Spans content
+   */
   currentSpanContent () {
     return this.replace.spaceChars(this.render.content[this.pos.line].content[this.pos.childIndex].content);
   }
 
+  /**
+   * Get closest index of space in string (be it char or actual letter)
+   * @param  {String} text      Text to search in
+   * @param  {Number} [start=0] Where to start search
+   * @return {Number]}          Index of space from indexOf
+   */
   spaceIndex ( text, start = 0 ) {
     const char = text.indexOf('\u00A0', start);
     if ( char !== -1 ) {
       return char;
     }
-    return  text.indexOf(' ', start);
+    return text.indexOf(' ', start);
   }
 }
 export { TabJF_Get };

@@ -109,6 +109,9 @@ let paths = {
                   ' ' : {
                     single: true,
                     run : function (word, words, letter, sentence, sets) {
+                      if (words.length == 0) {
+                        return attrs.spaces;
+                      }
                       const content = words[words.length - 1].content;
                       if (content != ' ' && content != ':') {
                         sets.default.wordCount++;

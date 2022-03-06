@@ -56,7 +56,7 @@ class TabJF_Save_Set {
     // Save line from modificators if we haven't already saved her
     if ( modifiers != 0 && !tmp.add[ linePos + modifiers ] ) {
       let nexLine = this.get.lineInDirection( line, modifiers );
-      if ( nexLine ) tmp.add[ linePos + modifiers ] = this.render.content[ linePos + modifiers ];
+      if ( nexLine ) tmp.add[ linePos + modifiers ] = this.get.clone( this.render.content[ linePos + modifiers ] );
     }
 
     // Push created step to tmp
@@ -90,8 +90,8 @@ class TabJF_Save_Set {
       return;
     }
 
-    // Paste if pretty special as it uses a lot of existing functionality like newLine
-    // which makes this solution get wierd out. So we have one whole exception for this method
+    // Paste is pretty special because it uses a lot of existing functionality like newLine
+    // which makes this solution freak out a little. So we had to add new exception for this method:
     if ( name == "paste" ) {
       let tmp = save.tmp[ step ]
       tmp.remove = {
@@ -99,9 +99,8 @@ class TabJF_Save_Set {
         len   : pos - startLine + 1,
       };
       tmp.focusAfter = this._save.set.focus();
-
       for (let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++) {
-        tmp.after[i] = this.render.content[i];
+        tmp.after[i] = this.get.clone( this.render.content[i] );
       }
       save.tmp = [ tmp ];
       return;
@@ -154,7 +153,7 @@ class TabJF_Save_Set {
 
     // Add new/changed line so we can recall them later on undo
     for ( let i = tmp.remove.sLine; i < tmp.remove.sLine + tmp.remove.len; i++ ) {
-      tmp.after[i] = this.render.content[i];
+      tmp.after[i] = this.get.clone( this.render.content[i] );
     }
 
     // Save where caret is focused

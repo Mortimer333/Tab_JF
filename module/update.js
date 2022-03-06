@@ -1,6 +1,13 @@
 class TabJF_Update {
   resizeDebounce = null; // Placeholder for resize event debounce
 
+  /**
+   * Updates whole page:
+   * - syntax (if set)
+   * - rerender page
+   * - update selection
+   * - recalculate caret position and refocus
+   */
   page () {
     if ( this.settings.syntax ) this.syntax.update();
     this.render.move.page({ refocus : false });
@@ -11,7 +18,11 @@ class TabJF_Update {
     }
   }
 
-  select( e ) {
+  /**
+   * Update our selection with values from browser selection. So you could select something using Range, use this method and be sure that it
+   * will be selected even after user rerenders document
+   */
+  select() {
     this.selection.update = true;
     // If this was called then some selection appeared
     const selection = this.get.selection();
@@ -25,8 +36,12 @@ class TabJF_Update {
     };
   }
 
+  /**
+   * Updates special keys such as alt, ctrl and shift
+   * @param  {Object} e Keydown|Keyup event
+   */
   specialKeys( e ) {
-    // Clicking Alt also triggers Ctrl ?????? wierd stuff man
+    // Clicking Alt also triggers Ctrl (??????)
     if ( !e.altKey ) {
       this.pressed.ctrl = e.ctrlKey;
     } else {
@@ -45,19 +60,20 @@ class TabJF_Update {
     this.pressed.alt   = e.altKey  ;
   }
 
+  /**
+   * Updates active node with test
+   * @param  {String} text
+   */
   currentSpanContent ( text ) {
     this.render.content[this.pos.line].content[this.pos.childIndex].content = this.replace.spaces(text);
   }
 
-  resize() {
-    console.log("resize");
-    this.render.overflow.style.setProperty("--max-height", 'none');
-    setTimeout(this.update.resizeTimeout.bind(this), 0)
-  }
-
-  resizeTimeout() {
+  /**
+   * Updates editors values on resize
+   * @param  {Object|null} [e=null] Resize event
+   */
+  resize( e = null) {
     this.settings.height = this.render.overflow.offsetHeight;
-    this.render.overflow.style.setProperty("--max-height", this.settings.height);
     this.render.linesLimit = Math.ceil( this.settings.height / this.settings.line ) + 2;
     this.render.update.minHeight();
     this.render.update.scrollWidth();

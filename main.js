@@ -71,6 +71,8 @@ class TabJF {
     },
   }
 
+  tabWidth = 2                // Length of tab in spaces
+
   /**
    * Tab_JS constructor
    * @param {node  } editor    Node to be replaced with editor
@@ -125,11 +127,13 @@ class TabJF {
     });
     // Assign all used events on editor
     this.assignEvents();
+    // Create additional elements
     this.caret.el = this.caret.create( this.editor );
     this.caret.hide();
     this.font.createLab();
     // Start the render of the editor - display all visible lines
     this.render.init( this.settings.contentObj, this.settings.contentText );
+    this.action.createCopyGround();
     if ( this.settings.syntax ) this.syntax.init();
     this.truck.import( this.render.content, this.render.linesLimit );
     // Add neccessary css rules
@@ -450,7 +454,7 @@ class TabJF {
     if ( el.nodeName === "P") el = el.children[ el.children.length - 1 ];
     // Translate position to which line was clicked and which letter
     const line   = el.parentElement.offsetTop / this.settings.line;
-    const letter = this.font.getLetterByWidth( el.innerText, el, e.layerX - el.offsetLeft );
+    const letter = this.font.getLetterByWidth( el.innerText, el, e.clientX - el.offsetLeft - this.settings.left );
     // Activate caret and refocus it
     this.caret.show();
     const index  = this.get.childIndex( el );
@@ -528,7 +532,8 @@ class TabJF {
     }
 
     this.update.specialKeys( e );
-    if ( type == 'keyup' ) return;      // We don't do anything for keyup expect update modify keys (shift, ctrl etc.)
+    // We don't do anything for keyup expect update modify keys (shift, ctrl etc.)
+    if ( type == 'keyup' ) return;
     // Prevent Default on those keys
     const prevent = {
       33 : true,
@@ -587,9 +592,6 @@ class TabJF {
       },
       18 : ( e, type ) => {
         // alt
-      },
-      18 : ( e, type ) => {
-        // pause ?
       },
       20 : ( e, type ) => {
         // CAPS
@@ -782,8 +784,17 @@ class TabJF {
     } else {
       ( keys[e.keyCode] || keys['default'] )( e, type );
     }
+
+    // Keys which prevent from automatic scrolling
+    const preventScroll = {
+      16 : true,
+      17 : true,
+      18 : true,
+      20 : true,
+    };
+
     // If caret is not visible render page so it is
-    if ( !this.caret.isVisible() ) {
+    if ( !preventScroll[e.keyCode] && !this.caret.isVisible() ) {
       this.render.set.overflow(
         null,
         (this.pos.line - (this.render.linesLimit/2)) * this.settings.line
@@ -795,6 +806,7 @@ class TabJF {
         if ( !this.pressed.ctrl ) return false;
         return true;
       },
+      67 : () => true,
       default : () => false
     };
 
@@ -802,16 +814,10 @@ class TabJF {
       !( skipUpdate[ e.keyCode ]
       || skipUpdate[ 'default' ] )()
     ) {
-      // Keys which prevent from automatic scrolling
-      const preventScroll = {
-        16 : true
-      };
-
       this.update.page()
       this.render.update.scrollWidthWithCurrentLine();
-      if (!preventScroll[e.keyCode]) {
+      if ( !preventScroll[e.keyCode] ) {
         this.caret.scrollToX();
-        this.caret.scrollToY();
       }
     }
 
@@ -912,6 +918,9 @@ class TabJF {
     }
     this.caret.refocus( 0, this.pos.line + 1, 0 );
     this.lastX = 0;
+    // Update important constants
+    this.render.update.minHeight();
+    this.render.update.scrollWidth();
   }
 
   /**
@@ -943,6 +952,9 @@ class TabJF {
 
       this.render.content.splice( this.pos.line + 1, 1 );
     }
+    // Update important constants
+    this.render.update.minHeight();
+    this.render.update.scrollWidth();
   }
 
   /**

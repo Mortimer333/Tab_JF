@@ -1,8 +1,11 @@
 class TabJF_Remove {
+  /**
+   * Remove all selected nodes
+   */
   selected () {
     let start = this.get.clone( this.selection.start );
     let end   = this.get.clone( this.selection.end   );
-
+    // Check if selection is not reversed
     if (
       start.line > end.line
       || ( start.line == end.line && start.node > end.node )
@@ -15,16 +18,15 @@ class TabJF_Remove {
     const sel = this.get.selection();
     if ( sel.type != 'Range' ) return;
 
-    if ( start.line == end.line ) {
-      if ( start.node == end.node ) {
+    if ( start.line == end.line ) {       // Delete nodes in the same line
+      if ( start.node == end.node ) {     // In the same node, delete only text
         let content = this.replace.spaceChars(
           this.render.content[ start.line ].content[ start.node ].content
         );
         let pre     = this.replace.spaces( content.substr( 0, start.letter ));
         let suf     = this.replace.spaces( content.substr( end.letter      ));
         this.render.content[ start.line ].content[ start.node ].content = pre + suf;
-      } else {
-
+      } else {                            // Delete nodes between but not lines
         let startNode = this.render.content[ start.line ].content[ start.node ];
         let endNode   = this.render.content[ end.line   ].content[ end.node   ];
 
@@ -42,7 +44,7 @@ class TabJF_Remove {
           end.node - (start.node + 1)
         );
       }
-    } else {
+    } else {                            // Delete lines and nodes
       let startLine = this.render.content[ start.line ];
       startLine.content = startLine.content.slice( 0, start.node + 1 );
       let startSpan = startLine.content[ start.node ];
@@ -65,7 +67,7 @@ class TabJF_Remove {
       this.render.update.minHeight();
       this.render.update.scrollWidth();
     }
-
+    // Refocus caret and set constants
     this.caret.refocus(
       start.letter,
       start.line,
@@ -76,6 +78,12 @@ class TabJF_Remove {
     this.end.select();
   }
 
+  /**
+   * Remove whole word - all characters until space if found in chosen direction
+   * @param  {Number} dir                              -1 word on the left, 1 on the right
+   * @param  {Number} [childIndex=this.pos.childIndex] Node Index in which script should delete word
+   * @param  {Number} [c_pos=this.pos.letter         ] From which letter start search
+   */
   word ( dir, childIndex = this.pos.childIndex, c_pos = this.pos.letter ) {
     const text       = this.get.currentSpanContent();
     const spanLength = text.length;
@@ -87,6 +95,7 @@ class TabJF_Remove {
       text : ''
     };
 
+    // If we are trying to delete something at the end or start of line then depending on direction merge lines
     if (
       letter == 0 && this.pos.childIndex == 0 && dir < 0
       || letter == text.length && this.pos.childIndex == line.content.length - 1 && dir > 0
@@ -113,7 +122,7 @@ class TabJF_Remove {
       }
 
     }
-
+    // If next symbol is space just remove it and finish script
     if ( this.is.space(nextSymbol) ) {
       this.remove.one(dir);
       return;
@@ -164,12 +173,16 @@ class TabJF_Remove {
     this.lastX = this.get.realPos().x;
   }
 
+  /**
+   * Remove one letter in chosen direction
+   * @param  {Number} dir -1 go left, 1 go right
+   */
   one ( dir ) {
     const text       = this.get.currentSpanContent();
     const spanLength = text.length;
     const letter     = this.pos.letter;
     const line       = this.render.content[this.pos.line];
-
+    // If we are trying to delete something at the end or start of line then depending on direction merge lines
     if (
       letter == 0 && this.pos.childIndex == 0 && dir < 0
       || letter == text.length && this.pos.childIndex == line.content.length - 1 && dir > 0

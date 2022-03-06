@@ -1,6 +1,5 @@
 let styles; export default styles = [
   `.tabjf_editor-con {
-    max-height : calc( var(--max-height, 200) * 1px);
     overflow   : auto;
     background : #FFF;
     color      : #000;

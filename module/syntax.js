@@ -1,10 +1,12 @@
 import css from '../schema/dictionary/css.js';
 class TabJF_Syntax {
-  rulesetOpen = false;
-  groups = [];
-  ends   = [];
-  groupPath = [];
+  groups    = [];     // Subsets in order they are applied
+  ends      = [];     // Letters ending subset in order they should be searched
+  groupPath = [];     // Path directing to group
 
+  /**
+   * Functions prepares syntax module to work and highlightes visible lines
+   */
   init () {
     const start = this.render.hidden;             // Start line
     let end     = start + this.render.linesLimit; // End Line
@@ -20,6 +22,49 @@ class TabJF_Syntax {
     this.syntax.highlightLines(lines, start);
   }
 
+  /**
+   * Fire trigger
+   * Triggers are events fired at some point of the script. We currently have 4 triggers:
+   * - Start of the line
+   * - End of the line
+   * - Start of subset
+   * - End of subset
+   * @param  {Object  } subset
+   * @param  {Object  } scope
+   * @param  {String[]} path Path to triggers ex: ['line', 'start']
+   * @param  {mixed[] } args Arguments passed to trigger
+   */
+  fireTrigger(subset, scope, path, args) {
+    if (!subset) return;
+    const triggers = this.syntax.findTriggers(subset, path);
+    if (!triggers) return;
+    triggers.forEach( func => {
+      func.bind(scope)(...args);
+    });
+  }
+
+  /**
+   * Using path this function searches if given object has triggers setup
+   * @param  {Object          } subset
+   * @param  {String[]        } path   Path to triggers ex: ['line', 'start']
+   * @return {Object[]|Boolean}        Found triggers or false
+   */
+  findTriggers(subset, path) {
+    if (path.length == 1) return subset[path[0]];
+    if (!subset[path[path.length - 1]]) return false;
+    return this.syntax.findTriggers(subset[path[path.length - 1]], path.slice(1));
+  }
+
+  /**
+   * This methods iterates over all given lines in this fashion:
+   * 1. Fires trigger line-start
+   * 2. Paints line
+   * 3. Validates results
+   * 4. Fires trigger line-end
+   * Each time saving painted lines in render content
+   * @param  {Object[]} lines Lines from render content
+   * @param  {Number  } start From which line start updating in render content
+   */
   highlightLines(lines, start) {
     for (let i = 0; i < lines.length; i++) {
       this.render.content[i + start].ends      = this.get.clone( this.syntax.ends      );
@@ -29,20 +74,9 @@ class TabJF_Syntax {
       let group      = this.syntax.groups[0];
 
       // Line start trigger
-      if (group?.triggers) {
-        const triggers = group.triggers;
-        if (triggers?.line?.start) {
-          triggers?.line.start.forEach( func => {
-            func.bind(this.settings.syntax)(
-              i + start,
-              line,
-              sentence,
-              group.subset.sets
-            );
-          });
-
-        }
-      }
+      this.syntax.fireTrigger(group?.triggers, this.settings.syntax, ['line', 'start'], [
+        i + start, line, sentence, group.subset.sets
+      ]);
 
       const res = this.syntax.validateResults(this.syntax.paint( sentence ));
       if ( res.words.length == 0 ) {
@@ -52,39 +86,41 @@ class TabJF_Syntax {
 
       group = this.syntax.groups[0];
       // Line end trigger
-      if (group?.triggers) {
-        const triggers = group.triggers;
-        if (triggers?.line?.end) {
-          triggers?.line.end.forEach(func => {
-            func.bind(this.settings.syntax)(
-              i + start,
-              line,
-              group.subset.sets
-            );
-          });
-
-        }
-      }
-
+      this.syntax.fireTrigger(group?.triggers, this.settings.syntax, ['line', 'end'], [
+        i + start, line, group.subset.sets
+      ]);
     }
   }
 
+  /**
+   * Method fired each time there is change in line or we render new page
+   */
   update() {
+    // Find from which line to start highlighting
     let start  = this.activated ? this.pos.line : this.render.hidden;
     start = this.syntax.getGroupPathLineNumber(start);
     const aStart = this.render.hidden;
     const end    = this.render.linesLimit;
     const lines  = this.render.content.slice(start, aStart + end);
+    // Create groups based on first line saved pathGroup
     this.syntax.groups = this.syntax.createGroups(
       this.get.clone(this.render.content[start].groupPath),
       this.settings.syntax
     );
+    // Set syntax as last group
     this.syntax.groups.push( this.settings.syntax );
     this.syntax.ends      = this.render.content[start].ends;
     this.syntax.groupPath = this.render.content[start].groupPath;
+    // Start painting
     this.syntax.highlightLines(lines, start);
   }
 
+  /**
+   * Find closest line with group and start painting from it
+   * @param  {Number} start Where to start searching and go up
+   * @return {Number}       Line index
+   * @throws {Error }       Group Path was not found on any line
+   */
   getGroupPathLineNumber(start) {
     for (let i = start; i >= 0; i--) {
       if (this.render.content[i].groupPath) {
@@ -94,17 +130,30 @@ class TabJF_Syntax {
     throw new Error('Group Path was not found on any line');
   }
 
+  /**
+   * Create groups for painting
+   * @param  {String[]} directions  GroupPath direction how to find target group
+   * @param  {Object[]} schemats    Object holding all groups
+   * @param  {Array   } [groups=[]] Found groups
+   * @return {Array   }             Found groups
+   */
   createGroups( directions, schemats, groups = [] ) {
     if (directions.length == 0) {
       return groups;
     }
+    // If new group was found add it to groups to create map of group where the deppest is set the closest to index 0
     const schemat = schemats.subset.sets[directions[0]];
     groups.unshift(schemat);
     directions.shift();
     return this.syntax.createGroups(directions, schemat, groups);
   }
 
-  validateResults ( res, rec = false ) {
+  /**
+   * Validate if given sentence was fully highlighted, if not try again until it is
+   * @param  {Object[]} res Results of painting
+   * @return {Object[]}     Properly checked results
+   */
+  validateResults ( res ) {
     if ( res.sentence.length > 0 ) {
       return {
         words : res.words.concat(
@@ -119,7 +168,35 @@ class TabJF_Syntax {
     return res;
   }
 
-  paint( sentence, words = [], debug = '' ) {
+  /**
+   * Find if end landmark if present in sentence
+   * @param  {String       } sentence
+   * @param  {String|Object} end
+   * @return {Boolean      }
+   */
+  findEndLandmark(sentence, end) {
+    let endFound = false;
+    if (typeof end == 'object') {
+      Object.keys(end).forEach(function (endLandmark) {
+        if (sentence.substr(-endLandmark.length) == endLandmark) {
+          endFound = endLandmark;
+          return;
+        }
+      });
+    } else if (sentence.substr(-end.length) == end) {
+      endFound = end;
+    }
+    return endFound;
+  }
+
+  /**
+   * Highlight given sentence
+   * @param  {String} sentence
+   * @param  {Array}  [words=[]] Highlighted words
+   * @return {Object}            {sentence: '', words: []}
+   */
+  paint( sentence, words = [] ) {
+    // Set group which will tell us how to paint this sentence
     let group  = this.syntax.groups[0];
     let subset = group.subset;
     subset.sets = Object.assign({}, this.settings.syntax.global ?? {}, subset.sets);
@@ -127,24 +204,14 @@ class TabJF_Syntax {
 
     for (var i = 0; i < sentence.length; i++) {
       let letter = sentence[i];
-      // console.log(debug, 'Letter', '`' + letter + '`');
       let endFound = false;
-
+      // Check if subset has ended
       if (end !== null) {
-        if (typeof end == 'object') {
-          Object.keys(end).forEach(function (endLandmark) {
-            if (sentence.substr(0, i + 1).substr(-endLandmark.length) == endLandmark) {
-              endFound = endLandmark;
-              return;
-            }
-          });
-        } else if (sentence.substr(0, i + 1).substr(-end.length) == end) {
-          endFound = end;
-        }
+        endFound = this.syntax.findEndLandmark(sentence.substr(0, i + 1), end);
       }
 
       if ( endFound ) {
-        const results = this.syntax.endSubsetChecks(i, letter, endFound, words, sentence, subset, group, debug);
+        const results = this.syntax.endSubsetChecks(i, letter, endFound, words, sentence, subset, group);
         words    = results.words;
         sentence = results.sentence;
         i        = results.i;
@@ -153,7 +220,7 @@ class TabJF_Syntax {
         end      = this.syntax.ends[0];
         continue;
       }
-
+      // Check if letter hes its own subset or is self refering itself
       if ( subset?.sets &&
         ((
             subset?.sets[letter]
@@ -164,7 +231,7 @@ class TabJF_Syntax {
         ))
       ) {
         const realLetter = subset?.sets[sentence.substr(0, i + 1)] ? sentence.substr(0, i + 1) : letter;
-        const results = this.syntax.splitWord( subset, i, realLetter, words, sentence, '\t' + debug );
+        const results = this.syntax.splitWord( subset, i, realLetter, words, sentence );
         words    = results.words;
         sentence = results.sentence;
         i        = results.i;
@@ -173,16 +240,16 @@ class TabJF_Syntax {
         end      = this.syntax.ends[0];
       } else if ( group?.selfref && letter == group?.start ) {
         let oldOne = { 'subset' : { 'sets' : { [group.start] : group } } };
-        const resultsFirstWord = this.syntax.splitWord( subset, i, letter, words, sentence.slice(0, i), '\t' + debug );
+        const resultsFirstWord = this.syntax.splitWord( subset, i, letter, words, sentence.slice(0, i) );
         words    = resultsFirstWord.words;
-        const results = this.syntax.splitWord( oldOne.subset, 0, letter, words, sentence.slice(i), '\t' + debug );
+        const results = this.syntax.splitWord( oldOne.subset, 0, letter, words, sentence.slice(i) );
         words    = results.words;
         sentence = results.sentence;
         i = results.i + 1;
         continue;
       }
     }
-
+    // Check if after whole for sentence wasn't finished and if so, paint the rest of it
     if ( sentence.length > 0 ) {
       let attr = this.syntax.getAttrsFromSet(
         this.syntax.getSet(subset, sentence),
@@ -198,9 +265,22 @@ class TabJF_Syntax {
     return { words, sentence };
   }
 
-  endSubsetChecks(i, letter, end, words, sentence, subset, group, debug) {
+  /**
+   * End subset
+   * Highlighting is made of subsets, which are actiavted by ladnmarks and finished by others. This finishes current subset and opens previous one.
+   * @param {Number} i        Letter iteration
+   * @param {String} letter
+   * @param {String} end      Ending landmark
+   * @param {Array } words
+   * @param {String} sentence
+   * @param {Object} subset   Rules of highlighting
+   * @param {Object} group
+   * @return {Object}         { words: [], sentence: '', i : 0 }
+   */
+  endSubsetChecks(i, letter, end, words, sentence, subset, group) {
+    // Get previous word
     let word = sentence.substring( 0, (i + 1) - end.length );
-
+    // If word is not empty try to paint it and add it to words
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
       words.push( this.syntax.create.span(
@@ -215,19 +295,14 @@ class TabJF_Syntax {
           word
       ));
     }
-
+    // Remove end from sentence
     sentence = sentence.substring( (i + 1) - end.length );
     this.syntax.endSubset();
 
     // Subset end trigger
-    if (group?.triggers) {
-      const triggers = group.triggers;
-      if (triggers?.end) {
-        triggers?.end.forEach( func => {
-          func.bind(group)( i, word, words, letter, sentence, group, this.syntax );
-        });
-      }
-    }
+    this.syntax.fireTrigger(group?.triggers, group, ['end'], [
+      i, word, words, letter, sentence, group, this.syntax
+    ]);
     let index = -1;
     // If current group has the same start as current one jump one so we don't start the same subset again,
     // or if the end of sentence is the same as the end of previous subset (we don't want to end two subsets
@@ -248,15 +323,29 @@ class TabJF_Syntax {
     return { words, sentence, i : index };
   }
 
+  /**
+   * Ends susbset by removing first items from groups, sends and groupPath
+   */
   endSubset() {
     this.syntax.groups.shift();
     this.syntax.ends  .shift();
     this.syntax.groupPath.pop();
   }
 
-  splitWord( subset, i, letter, words, sentence, debug ) {
+  /**
+   * Split current sentence into word and rest of sentence, paint the word and check if to create new subset and start it.
+   * @param  {Object} subset
+   * @param  {Number} i        Letter iteration in sentence
+   * @param  {String} letter
+   * @param  {Array } words
+   * @param  {String} sentence
+   * @return {Object}          { words: [], i: 0, sentence: '' }
+   */
+  splitWord( subset, i, letter, words, sentence ) {
     const letterSet = subset?.sets[letter];
+    // Get word
     let word = sentence.substr( 0, i - (letter.length - 1) );
+    // If not empty try to paint it
     if ( word.length != 0 ) {
       let wordSet = this.syntax.getSet(subset, word);
       let attrs = wordSet.attrs;
@@ -267,7 +356,7 @@ class TabJF_Syntax {
       }
       words.push(this.syntax.create.span( attrs, word ));
     }
-
+    // If set for letter has single attribute we don't add it to word when we find another landmark but make it standalone mark
     if ( letterSet?.single ) {
       let attrs = letterSet.attrs ?? { style : 'color:#FFF;' };
       if ( letterSet?.run ) {
@@ -278,14 +367,14 @@ class TabJF_Syntax {
       i += letter.length;
       word += letter;
     }
-
+    // Remove word from sentence
     sentence = sentence.substring( word.length );
 
     i = word.length > 0 ? -1 : i;
-
+    // If passed subset has its own subset start new highlighting with this set of rules
     if ( subset.sets[letter]?.subset ) {
       words.push(this.syntax.create.span( letterSet.attrs, sentence.substr( 0, letter.length )));
-      const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(letter.length), debug, subset);
+      const res = this.syntax.startNewSubset(letter, letterSet, word, words, sentence.substring(letter.length), subset);
       words = res.words;
       sentence = res.sentence;
       i = res.i;
@@ -298,24 +387,22 @@ class TabJF_Syntax {
     };
   }
 
-  startNewSubset(letter, letterSet, word, words, sentence, debug, subset) {
+  /**
+   * Start new subset by adding it to groups, ends and groupPath and firing paint method on the rest of sentence it has
+   * @param {String} letter
+   * @param {Object} letterSet
+   * @param {String} word
+   * @param {Array} words
+   * @param {String} sentence
+   * @param {Object} subset
+   * @return {Object}          {words: [], sentence: '', i: 0}
+   */
+  startNewSubset(letter, letterSet, word, words, sentence, subset) {
     this.syntax.groupPath.push(letter);
     const group = subset.sets[letter];
-    if (group?.triggers) {
-      const triggers = group.triggers;
-      if (triggers?.start) {
-        triggers?.start.forEach( func => {
-          func.bind(group)(
-            letter,
-            letterSet,
-            word,
-            words,
-            sentence,
-            subset
-          );
-        });
-      }
-    }
+    this.syntax.fireTrigger(group?.triggers, group, ['start'], [
+      letter, letterSet, word, words, sentence, subset
+    ]);
 
     if ( !letterSet?.single && !subset.sets[letter]?.subset ) {
       words.push(this.syntax.create.span( subset.sets[letter].attrs, letter));
@@ -328,7 +415,7 @@ class TabJF_Syntax {
 
     this.syntax.groups.unshift( subset.sets[letter] );
     this.syntax.ends  .unshift( subset.sets[letter].end );
-    const res = this.syntax.paint( sentence, words, debug + '\t' );
+    const res = this.syntax.paint( sentence, words );
     return {
       words : res.words,
       sentence : res.sentence,
@@ -336,6 +423,16 @@ class TabJF_Syntax {
     }
   }
 
+  /**
+   * Try to get set for letter in this hierarchy:
+   * - firstly try for single letter landmark
+   * - then try to check if whole word doesn't have any attributes
+   * - then check if subset doesn't have default styles
+   * - and at the end return the script default
+   * @param  {Object} group
+   * @param  {String} word
+   * @return {Object}       Set for letter/word
+   */
   getSet(group, word) {
     let set = group.sets[word[0]] || group.sets[word] || group.sets['default'] || { attrs : { class : 'mistake' } };
     if (set.whole && group.sets[word[0]]) {
@@ -344,6 +441,16 @@ class TabJF_Syntax {
     return set;
   }
 
+  /**
+   * Try to retrive attrsibutes for set to highlight word. It will check if to ignore this set, or if set has method to run.
+   * @param  {Object} set
+   * @param  {String} word
+   * @param  {Array} words
+   * @param  {String} letter
+   * @param  {String} sentence
+   * @param  {Object} group
+   * @return {Object}          Object looking similar to this: {attrs:{style:'color:#FFF'}}
+   */
   getAttrsFromSet(set, word, words, letter, sentence, group) {
     let attrs = set.attrs;
     if (set?.ignore) set = { attrs : { style : 'color:#FFF;' } };
@@ -353,19 +460,6 @@ class TabJF_Syntax {
       attrs = results( word, words, letter, sentence, group.sets, group, this.syntax );
     }
     return attrs;
-  }
-
-  chainSearch( chunks ) {
-    const chunk = chunks[0];
-    if ( this.settings.syntax[chunk] ) {
-      if (chunks.length == 1) {
-        return this.settings.syntax[chunk];
-      } else {
-        this.syntax.chainSearch(chunks.slice(1));
-      }
-    } else {
-      return false;
-    }
   }
 }
 export { TabJF_Syntax };
