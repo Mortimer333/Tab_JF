@@ -245,6 +245,8 @@ class TabJF {
    * They are set at the top of head so any class later should overwrite them without problem without usage of !important
    */
   addRules () {
+    // If this is set to true, there was other instance which add styles to the page already
+    if ( TabJF.prototype.cssAdded ) return;
     var styleEl = document.createElement('style');
     styleEl.setAttribute('name', "TabJF Styles");
     document.head.insertBefore(styleEl, document.head.children[0]);
@@ -256,6 +258,7 @@ class TabJF {
         css.cssRules.length
       );
     });
+    TabJF.prototype.cssAdded = true;
   }
 
   /**

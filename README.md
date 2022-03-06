@@ -1,6 +1,6 @@
 # Overview
 
-Text editor which doesn't use `contenteditable`, does render only visible part of text onto the page and has option of creating your own custom syntax highlighting. Example syntax can be found in this file - `/schema/rules/css.js` (and related files).
+Text editor written in Javascript. Displays only visible parts of viewed document which makes page lighter and quicker (_doesn't render not visible lines_). Uses its own script for simulating user interaction instead of deprecated `contenteditable`. Supports creating syntax highlights if used as code editor. More in `HOWTOSYNTAX.md`.
 
 # How to use
 
@@ -10,12 +10,44 @@ new TabJF(document.getElementById('someEditorID'));
 ```
 and done! This should replace given node with editor.
 
+## Using the editor
+
+After you have create your instance of editor:
+```js
+const editor = new TabJF(someEditorNode);
+```
+You can use this variable (`editor`) to, for example, get editors content by accessing `editor.render.content`. Or if you would like to replace contents of the editor with saved previously state you can use `editor.truck.import()` method:
+```js
+/**
+ * Populates editor.
+ * Requires data transformed into readable, by editor, array. Look into truck.export or truck.exportText how to create it.
+ * @param  {Object[] } importAr              Render content type array
+ * @param  {Boolean  } [limit=false        ] How many lines we want to import
+ * @param  {Number   } [offset=0           ] From which line we should start importing
+ * @param  {Boolean  } [clear=true         ] Remove content from editor?
+ * @param  {Boolean  } [reverse=false      ] Import lines in reverse order
+ * @param  {Node|null} [container=null     ] Container to which import lines (default editor)
+ * @param  {Boolean  } [replaceContent=true] Replace render.content with passed array in importAr
+ */
+import (
+  importAr,
+  limit = false,
+  offset = 0,
+  clear = true,
+  reverse = false,
+  container = null,
+  replaceContent = true
+)
+```
+Every method is described like this and separated into modules so you can easily use them like documentation. All available module are located in `/module/` folder.
+
+# Stylization
 ## Padding
 
-If you have added some stylization to your editor (for example, you have line numbers added) which required padding the editor node, you can specify it by passing amount of pagination (script does care only for top and left pagination):
+If you have added some stylization to your editor (for example, you have line numbers added) which requires padding the editor, you can specify it by passing amount of pagination (script only cares for left pagination):
 
 ```js
-new TabJF(editor, { left : 35, top : 10 });
+new TabJF(editor, { left : 35 });
 ```
 
 ## Line height
@@ -23,29 +55,24 @@ new TabJF(editor, { left : 35, top : 10 });
 For now line height is static (_default is 20_) and can be changed by passing it to the instance:
 
 ```js
-new TabJF(editor, { left : 35, top : 10, line : 20 });
+new TabJF(editor, { left : 35, line : 20 });
 ```
 
-## Styles
+## CSS
 
-This editor is included with some basic styles which are disabled by default. They can be added to the page by passing `addCss` to the instance:
+Editor requires some CSS to work properly. Its added automatically when first instance is created and added at the top of head for easier overwriting. Full list of used style can be found in `/schema/styles.js`.
 
-```js
-new TabJF(editor, { left : 35, top : 10, line : 20, addCss : true });
-```
-
-But if you want to add your own styles you have to remember about few things:
-- It has few classes on its own:
-  - `tabjf_editor-con` - editors container
-  - `tabjf_editor-con tabjf_editor` - editor
-  - `tabjf_editor-con tabjf_editor caret` - the text cursor class
+If you would like to customize this editor you can use this classes:
+- `.tabjf_editor-con` - editors container
+- `.tabjf_editor-con .tabjf_editor` - editor
+- `.tabjf_editor-con .tabjf_editor .caret` - cusros
 - And few variables that must be used for editor to work properly:
-  - `--min-height` - editors min height
+  - `--min-height` - minial height of editor
   - `--paddingTop` - editors padding top
-  - `--counter-current` - the line counter (optional, if you don't have lines)
+  - `--counter-current` - the line counter (optional, if you want to display line numbers)
   - `--scroll-width` - scroll width, the maximum of Y axis scroll
 
-And I mean used - not defined, you have to include them in your classes. Example:
+And I mean used - not defined, you have to include them in your classes. For example:
 
 ```css
 .tabjf_editor-con .tabjf_editor {
@@ -56,18 +83,18 @@ And I mean used - not defined, you have to include them in your classes. Example
 }
 ```
 
-Remember to add this class when you are setting your own styles otherwise editor will start to behave weirdly.
+Remember to try not overwrite those rules as this might break editor behavior.
 
-## Syntax
+# Syntax
 
-Editor has a feature for highlighting syntax. Right now it has config file for CSS (functionality is tested but this config might be lacking for some cases) so you can use it as reference. To add your own syntax configuration pass it in `schema`:
+Editor has a feature for syntax highlighting. Right now it has config file for CSS - you can use it as a reference. To add your own syntax configuration pass it in `schema`:
 
 ```js
-import cssDefaultStyles from `./schema/rules/css.js`; // Actual path for the default configuration
+import cssDefaultStyles from `/schema/rules/css.js`; // Actual path for the example configuration configuration
 import jsConfig from './path/to/config.js';           // Your custom path to the file
 
-const defaultCss   = new TabJF(editor , { left : 35, top : 10, line : 20, addCss : true, schema : cssDefaultStyles });
-const customEditor = new TabJF(editor2, { left : 35, top : 10, line : 20, addCss : true, schema : jsConfig         });
+const defaultCss   = new TabJF(editor , { left : 35, line : 20, schema : cssDefaultStyles });
+const customEditor = new TabJF(editor2, { left : 35, line : 20, schema : jsConfig         });
 ```
 
 More on syntax in `HOWTOSYNTAX.md`.
@@ -144,7 +171,7 @@ Each `event` returns additional information in `detail` attribute:
 Example:
 
 ```js
-const TabJFEditor = new TabJF(editor, { left : 35, top : 10, line : 20 });
+const tabJFEditor = new TabJF(editor, { left : 35, line : 20 });
 editor.addEventListener("tabJFDeactivate", e => {
   // The variable `underlineButton` is an example of a button
   // which applies underline to the selected nodes.
@@ -159,6 +186,6 @@ editor.addEventListener("tabJFDeactivate", e => {
 ```
 
 ### Planned features (_in a order they will be implemented_):
-  - server driven rendering (_for viewing GB file without having to send them to the client_)
+  - server driven rendering (_for viewing GB file without having to full files to the client_)
   - Y Rendering (_for files which are made of one big line ( any min.js for example)_)
-  - [OPTIONAL] font stylization (_bold/italic/underline_) (_class/inline CSS_) (_might be done by following menu_)
+  - [OPTIONAL] rich editor (_bold/italic/underline_) (_class/inline CSS_) (_might be done by context menu_)

@@ -24,6 +24,7 @@ let varF; export default varF = {
         triggers : {
           end : [
             function ( i, word, words, letter, sentence, group, syntax ) {
+              console.log(i, word, words, letter, sentence, group, syntax);
               if (letter == ')') syntax.endSubset();
             }
           ]

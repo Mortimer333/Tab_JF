@@ -75,7 +75,7 @@ class TabJF_Syntax {
 
       // Line start trigger
       this.syntax.fireTrigger(group?.triggers, this.settings.syntax, ['line', 'start'], [
-        i + start, line, sentence, group.subset.sets
+        i + start, line, sentence, group.subset.sets, this.syntax
       ]);
 
       const res = this.syntax.validateResults(this.syntax.paint( sentence ));
@@ -87,7 +87,7 @@ class TabJF_Syntax {
       group = this.syntax.groups[0];
       // Line end trigger
       this.syntax.fireTrigger(group?.triggers, this.settings.syntax, ['line', 'end'], [
-        i + start, line, group.subset.sets
+        i + start, line, group.subset.sets, this.syntax
       ]);
     }
   }
@@ -400,8 +400,9 @@ class TabJF_Syntax {
   startNewSubset(letter, letterSet, word, words, sentence, subset) {
     this.syntax.groupPath.push(letter);
     const group = subset.sets[letter];
+    console.log(letter, letterSet, word, words, sentence, subset);
     this.syntax.fireTrigger(group?.triggers, group, ['start'], [
-      letter, letterSet, word, words, sentence, subset
+      letter, letterSet, word, words, sentence, subset, this.syntax
     ]);
 
     if ( !letterSet?.single && !subset.sets[letter]?.subset ) {

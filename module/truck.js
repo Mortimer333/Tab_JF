@@ -65,7 +65,8 @@ class TabJF_Truck {
   }
 
   /**
-   * Populates editor with lines
+   * Populates editor
+   * Requires transformed data into readable by editor array. Look into truck.export or truck.exportText how to create it.
    * @param  {Object[] } importAr              Render content type array
    * @param  {Boolean  } [limit=false        ] How many lines we want to import
    * @param  {Number   } [offset=0           ] From which line we should start importing
