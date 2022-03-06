@@ -705,7 +705,7 @@ You can end another `subset` if the `end landmark` was `)`. When you can manipul
 
 ## Global Sets
 
-If you have that should be added to every subset you can create them in special attribute `global` at the top of schema:
+If you have `sets` that should be added to every `subset` you can create them in special attribute `global` at the top of schema:
 ```js
 {
   global : {
@@ -721,4 +721,4 @@ If you have that should be added to every subset you can create them in special 
   }
 }
 ```
-`sets` created here will be added to all `subsets` you have created but won't overwrite them. So you can still define `space landmark` which would have special `triggers` and it won't get overwritten.
+All `sets` created there will be added to all `subsets` you have created but won't overwrite them. So you can still define `space landmark` which would have special `triggers` and it won't get overwritten.
