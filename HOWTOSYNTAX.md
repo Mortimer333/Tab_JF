@@ -4,7 +4,17 @@ This document will explain how to write your own syntax using this editor highli
 
 ## Basic Structure
 
-This template is something you have to start with:
+To start writing instructions for your syntax you have to prefix them with `subset` (_later will be explained why_):
+
+```js
+const syntax = {
+  subset : {
+    [...]
+  }
+}
+```
+
+Every single description of your syntax will go into `sets` attribute inside `subset`:
 
 ```js
 const syntax = {
@@ -15,8 +25,8 @@ const syntax = {
   }
 }
 ```
+But firstly some theory:
 
-Everything there is will go into `sets` attribute.
 Script works by iterating over letters in each line and checking `landmarks` to stop and create syntax highlight. For example:
 
 ```js
@@ -33,14 +43,14 @@ const syntax = {
 }
 ```
 
-We have inserted new `landmark` to this syntax schema which will make script stop when encoutered `.` in sentence and apply syntax to everything _behind_ it using _previous word landmark_. Example:
+We have inserted new `landmark` to this syntax instruction which will make script stop when encoutered `.` in sentence and apply syntax to everything _behind_ it using _previous word landmark_. Example:
 
 ```
 .class
 ```
 
-Firstly the script will encounter `landmark` and try to create highlight for previous part of the sentence but will notice that the cut part is empty and decide to ignore it.
-Secondly it will iterate to the end of the line and try to set highlight for the rest of unused sentence which is `.class`. It will check for `landmarks` in this order:
+Firstly the script will encounter `landmark` (`.`) and try to create highlight for previous part of the sentence. It will notice that the cut part is empty and decide to ignore it.
+Secondly it will iterate to the end of the line without encountering any new `landmarks`. At the end it will try to set highlight for the rest of unused sentence which is `.class`. It will check for `landmarks` in this order:
 
 - First letter of grabbed sentence (in this example it will be `.`)
 - Whole sentence (in this example it would be `.class`)
@@ -127,9 +137,9 @@ In that case we can set `single` attribute to the space `landmark`.
       }
 [...]
 ```
-This will create an `standalone landmark` aka `standmark` each time this letter is found. It will be highlighted with chosen attributes and removed from sentence. So lets try our example:
+This will create an `standalone landmark` a.k.a. `standmark` each time this letter is found. It will be highlighted with chosen attributes and removed from sentence. So lets try our example:
 
-After adding `single` sentence will be breaked into 5 pieces:
+After adding `single` sentence will be broken into 5 pieces:
 1. `.class`
 2. `<space>`
 3. `span`
@@ -270,13 +280,13 @@ span.class div[name="div1"] #id
 <span class="id" style="color:#00F;">#id</span>
 ```
 
-Everything looks correct but you can see there is a small error:
+Everything looks almost correct but you can see there is a small error:
 
 ```html
 <span style="color:#FF0;">"name</span>
 <span style="color:#FF0;">"</span>
 ```
-Which could lead to more problems if for example we would add `=` to the attribute declaration, script would highlight it with red instead of leaving it yellow. But we can repeair it with another `subset` so we can replace old rules:
+Which could lead to more problems if for example we would add `=` to the attribute declaration, script would highlight it with red instead of leaving it yellow. But we can repeair it with another `subset`, so we can replace old rules:
 
 
 ```js
@@ -335,7 +345,7 @@ or with default if `--margin-value` doesn't exist:
 ```css
 margin: var(--margin-value, 10);
 ```
-Each time we have to end subset for variable, so on `,` and `)`. Example:
+Each time we have to end subset, so on `,` or `)`. Example:
 ```js
 [...]
   '--' : {
@@ -362,7 +372,7 @@ This will start subset on `--` and finish it on either `,` or `)`.
 
 ## Syntax validation
 
-We can highlight code based on `landmarks` but what if code is just incorect? It might be preceded with proper `landmark` but it contains not allowed characters. For that cases we can use user defined methods/functions and validate chosen word.
+We can highlight code based on `landmarks` but what if code is just incorrect? It might be preceded with proper `landmark` but it contains not allowed characters. For that cases we can use user defined methods/functions and validate chosen word.
 
 ```js
 const syntax = {
@@ -711,4 +721,4 @@ If you have that should be added to every subset you can create them in special 
   }
 }
 ```
-`sets` created here will be added to all `subsets` you have created but won't overwrite them. So you can still define `space landmark` which would have special `triggers` and it won't get overwritten. 
+`sets` created here will be added to all `subsets` you have created but won't overwrite them. So you can still define `space landmark` which would have special `triggers` and it won't get overwritten.
